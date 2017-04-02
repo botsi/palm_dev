@@ -668,7 +668,7 @@ var sh_me = function(sh, ih, t) {
 
     if (sh == 0) {
 
-        //mpt.style.visibility = 'hidden';
+        mpt.style.visibility = 'hidden';
 
         return;
 
@@ -677,11 +677,9 @@ var sh_me = function(sh, ih, t) {
     mpt.innerHTML = ih;
     mpt.style.visibility = 'visible';
 
-    //		mpt.style.marginLeft = t.offsetLeft - mpt.offsetWidth / 2 - 372 + 'px';
-    mpt.style.marginLeft = t.offsetLeft - mpt.offsetWidth / 2 - 400 + 'px';
+    mpt.style.marginLeft = t.offsetLeft - mpt.offsetWidth / 2 - 412 + 'px';
 
-    //		mpt.style.marginTop = t.offsetTop + 24 + 'px';
-    mpt.style.marginTop = t.offsetTop - 284 + 'px';
+    mpt.style.marginTop = t.offsetTop - 278 + 'px';
 
 };
 
