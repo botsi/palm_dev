@@ -668,7 +668,7 @@ var sh_me = function(sh, ih, t) {
 
     if (sh == 0) {
 
-        mpt.style.visibility = 'hidden';
+        //mpt.style.visibility = 'hidden';
 
         return;
 
