@@ -919,20 +919,24 @@ var white_head = function() {
 
             switch (true) {
                 case (pre_point < h + 210):
-                    var point = uat[i].offsetTop + uat[i].offsetHeight;
+                    midpoints.push(uat[i].offsetTop + uat[i].offsetHeight);
+                    //var point = uat[i].offsetTop + uat[i].offsetHeight;
                     break;
                 case (pre_point > h + 210 + window.innerHeight):
-                    var point = uat[i].offsetTop;
+                    midpoints.push(uat[i].offsetTop + parseInt((window.innerHeight - 210) / 2));
+                    //var point = uat[i].offsetTop;
                     break;
                 default:
-                    var point = pre_point;
+                    midpoints.push(pre_point);
+
+                    //var point = pre_point;
             }
 
             /*
             console.log(point);
             */
 
-            midpoints.push(point);
+            //midpoints.push(point);
 
             // old way
 
@@ -942,7 +946,7 @@ var white_head = function() {
 
         //console.log('midarr: ', midpoints);
 
-        console.log('mid (ultra new way): ', midpoints[folders[chapter].last_position]);
+        //console.log('mid (ultra new way): ', midpoints[folders[chapter].last_position]);
 
         //console.log('g: midarr,', h + window.innerHeight / 2 + 240);
 
