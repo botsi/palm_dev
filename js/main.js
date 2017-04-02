@@ -886,19 +886,26 @@ var white_head = function() {
 
             if (pre_point < h + 210) {
 
-                var point = uat[i].offsetTop + 210 + uat[i].offsetHeight;
+                var point = uat[i].offsetTop + uat[i].offsetHeight;
+
+                console.log('overflow up');
+
 
             }
 
             if (pre_point > h + window.innerHeight) {
 
-                var point = uat[i].offsetTop + 210;
+                var point = uat[i].offsetTop;
+
+                console.log('overflow down');
 
             }
 
             if (point == '') {
 
                 var point = pre_point;
+
+                console.log('overflow normal');
 
             }
 
