@@ -885,9 +885,9 @@ var white_head = function() {
 
         }
 
-        //console.log('midarr: ', midpoints);
+        console.log('midarr: ', midpoints);
 
-        //console.log('mid: ', midpoints[folders[chapter].last_position]);
+        console.log('mid: ', midpoints[folders[chapter].last_position]);
 
         //console.log('g: midarr,', h + window.innerHeight / 2 + 240);
 
