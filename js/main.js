@@ -878,10 +878,10 @@ var white_head = function() {
         for (var i = 0; i < uat.length; i++) {
 
             // new way
-            /*
-                        var point = '';
+            //                        var point = '';
 
-                        var pre_point = parseInt(uat[i].offsetTop + 210 + uat[i].offsetHeight / 2);
+            var pre_point = parseInt(uat[i].offsetTop + 210 + uat[i].offsetHeight / 2);
+            /*
 
                         if (pre_point < h + 210) {
 
