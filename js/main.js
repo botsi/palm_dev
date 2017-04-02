@@ -878,34 +878,62 @@ var white_head = function() {
         for (var i = 0; i < uat.length; i++) {
 
             // new way
+            /*
+                        var point = '';
 
-            var point = '';
+                        var pre_point = parseInt(uat[i].offsetTop + 210 + uat[i].offsetHeight / 2);
 
-            var pre_point = parseInt(uat[i].offsetTop + 210 + uat[i].offsetHeight / 2);
+                        if (pre_point < h + 210) {
 
-            if (pre_point < h + 210) {
+                            var point = uat[i].offsetTop + 210 + uat[i].offsetHeight;
 
-                var point = uat[i].offsetTop + 210 + uat[i].offsetHeight;
+                            var upoint = 99;
 
-                var upoint = 99;
+                        }
 
+                        if (pre_point > h + window.innerHeight) {
+
+                            var point = uat[i].offsetTop + 210;
+
+                            var upoint = 11;switch
+
+                        }
+            */
+            /*
+            switch (true) {
+                case (count == 2):
+                    document.write("hi");
+                    break;
+                case (count > 3):
+                    document.write("bye");
+                    break;
+                case (count >= 4):
+                    document.write("lol");
+                    break;
+            }*/
+
+            switch (true) {
+                case (pre_point < h + 210):
+                    var point = uat[i].offsetTop + 210 + uat[i].offsetHeight;
+                    break;
+                case (pre_point > h + window.innerHeight):
+                    var point = uat[i].offsetTop + 210;
+                    break;
+                default:
+                    var point = pre_point;
             }
 
-            if (pre_point > h + window.innerHeight) {
 
-                var point = uat[i].offsetTop + 210;
 
-                var upoint = 11;
+            /*
+                        if (point == '') {
 
-            }
+                            var point = pre_point;
 
-            console.log(upoint);
+                        }
 
-            if (point == '') {
-
-                var point = pre_point;
-
-            }
+            */
+            console.log(point);
 
             midpoints.push(point);
 
@@ -917,7 +945,7 @@ var white_head = function() {
 
         //console.log('midarr: ', midpoints);
 
-        console.log('mid (new way): ', midpoints[folders[chapter].last_position]);
+        console.log('mid (ultra new way): ', midpoints[folders[chapter].last_position]);
 
         //console.log('g: midarr,', h + window.innerHeight / 2 + 240);
 
