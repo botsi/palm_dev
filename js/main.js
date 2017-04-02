@@ -879,12 +879,13 @@ var white_head = function() {
 
             // new way
 
+            /*
 
             var point = '';
 
             var pre_point = parseInt(uat[i].offsetTop + 210 + uat[i].offsetHeight / 2);
 
-            if (pre_point < h - 210) {
+            if (pre_point < h + 210) {
 
                 var point = uat[i].offsetTop + uat[i].offsetHeight;
 
@@ -893,7 +894,7 @@ var white_head = function() {
 
             }
 
-            if (pre_point > h - 210 + window.innerHeight) {
+            if (pre_point > h + 210 + window.innerHeight) {
 
                 var point = uat[i].offsetTop;
 
@@ -909,28 +910,27 @@ var white_head = function() {
 
             }
 
-            /*
              */
 
 
 
-            /*
 
-						var pre_point = parseInt(uat[i].offsetTop + 210 + uat[i].offsetHeight / 2);
+            var pre_point = parseInt(uat[i].offsetTop + 210 + uat[i].offsetHeight / 2);
 
             switch (true) {
                 case (pre_point < h + 210):
-                    var point = uat[i].offsetTop + 210 + uat[i].offsetHeight;
+                    var point = uat[i].offsetTop + uat[i].offsetHeight;
                     break;
-                case (pre_point > h + window.innerHeight):
-                    var point = uat[i].offsetTop + 210;
+                case (pre_point > h + 210 + window.innerHeight):
+                    var point = uat[i].offsetTop;
                     break;
                 default:
                     var point = pre_point;
             }
 
-            */
+            /*
             console.log(point);
+            */
 
             midpoints.push(point);
 
