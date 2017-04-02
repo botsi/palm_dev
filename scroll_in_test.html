@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<meta charset="utf-8" />
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+
+	<title>scroll_in_test</title>
+
+	<link rel="shortcut icon" href="images/favicon.ico" />
+
+	<style>
+		body {
+			line-height: 12px;
+			font-family: 'Futura';
+		}
+
+		span {
+			margin-left: 24px;
+			display: block;
+			line-height: 24px;
+		}
+
+		.ueandtx {
+			padding: 12px 8px;
+			width: calc(100% - 276px);
+			margin: 0 130px 30px 130px;
+			background: rgba(0, 0, 0, 0.2);
+		}
+
+		#mp {
+			position: absolute;
+			right: 0;
+			height: 24px;
+			background: rgba(255, 0, 0, 1);
+			/*
+			width: 60px !important;
+	margin-top: calc(180px - 50vh);
+*/
+		}
+	</style>
+
+
+	<script type="text/javascript" charset="utf-8">
+		var sivId;
+
+		var get_page_scroll_position = function() {
+
+			var h;
+
+			if (document.body.scrollTop) {
+				//console.log('dbs: ' + document.body.scrollTop);
+				h = document.body.scrollTop;
+			} else {
+				//console.log('ddEs: ' + document.documentElement.scrollTop);
+				h = document.documentElement.scrollTop;
+			}
+			return h;
+		};
+
+
+		var getNearestNumber = function(a, n) {
+			if ((l = a.length) < 2)
+				return l - 1;
+			for (var l, p = Math.abs(a[--l] - n); l--;)
+				if (p < (p = Math.abs(a[l] - n)))
+					break;
+			return l + 1;
+		};
+
+		var white_head = function() {
+
+
+			clearTimeout(sivId);
+
+			sivId = setTimeout(function() {
+
+				var h = get_page_scroll_position();
+
+				var uat = document.getElementsByClassName('ueandtx');
+
+				var midpoints = [];
+
+				for (var i = 0; i < uat.length; i++) {
+
+var point = '';
+
+					var pre_point = parseInt(uat[i].offsetTop + uat[i].offsetHeight / 2);
+
+					if (pre_point < h) {
+
+						var point = uat[i].offsetTop + uat[i].offsetHeight;
+
+					}
+
+					if (pre_point > h + window.innerHeight) {
+
+						var point = uat[i].offsetTop;
+
+					}
+
+					if (point == '') {
+
+						var point = pre_point;
+
+					}
+
+					midpoints.push(point);
+
+					//uat[i].previousSibling.style.height = uat[i].offsetHeight + 'px';
+
+				}
+
+				console.log('midarr: ', midpoints);
+
+				console.log('mid: ', midpoints[i]);
+
+				//console.log('g: midarr,', h + window.innerHeight / 2 + 240);
+
+				var g = getNearestNumber(midpoints, h + window.innerHeight / 2);
+
+				//if (folders[chapter].last_position == g && chapter == old_chapter) {
+				//console.log('ireturn in middle of white_head');
+				//return;
+				//}
+
+				//old_chapter = chapter;
+
+				//folders[chapter].last_position = g;
+				document.getElementById('mp').style.top = midpoints[g] + 'px';
+				//document.getElementById('mp').style.height = uat[g].offsetHeight + 'px';
+				//document.getElementById('mp').style.marginTop = -uat[g].offsetHeight / 2 + 'px';
+				document.getElementById('mp').innerHTML = uat[g].innerHTML.slice(17,26) + '<br/>' + midpoints[g] + 'px';
+				console.log(g);
+				/*
+
+				document.getElementById('chapter_content').style.height = 'auto';
+
+				change_image(folders[chapter].data[folders[chapter].last_position].comp_name + '_' + folders[chapter].data[folders[chapter].last_position].slid_count);
+
+				document.getElementsByClassName('fa-angle-left')[0].style.display = document.getElementsByClassName('fa-angle-right')[0].style.display = (uat[folders[chapter].last_position].children[1].style.visibility == 'hidden' && folders[chapter].data[folders[chapter].last_position].epilog.Impressionen && !isTouchSupported() && folders[chapter].data[folders[chapter].last_position].video.playstate == 'closed') ? 'block' : 'none';
+
+	        if (typeof folders[chapter].data[g].form !== 'undefined') {
+
+	            loadForm();
+
+	        }
+	        if (typeof folders[chapter].data[g].map !== 'undefined') {
+
+	            loadMap();
+
+	        } else {
+
+	            map = null;
+
+	            if (document.getElementById('palma_map')) {
+	                document.getElementById('palma_map').innerHTML = '';
+	            }
+
+	        }
+
+*/
+
+			}, 100);
+
+		};
+
+		var add_links = function() {
+
+			var uat = document.getElementsByClassName('ueandtx');
+
+			for (var i = 0; i < uat.length; i++) {
+
+				uat[i].addEventListener("click",
+					function() {
+						if (this.offsetHeight < 800) {
+							this.style.height = 2800 + 'px';
+							console.log('click i go 800');
+						} else {
+							this.style.height = 'auto';
+							console.log('click i go auto');
+						}
+						white_head();
+					}, false);
+
+			}
+		};
+
+		window.addEventListener("load", add_links, false);
+
+		window.addEventListener("scroll", white_head, false);
+	</script>
+
+
+</head>
+
+<body>
+	<div id="display">
+		<span class="scroll_positioner"></span><span class="ueandtx"><span class="ue">Schreibrausch - Februar 2017<span class="sh"><i class="fa fa-download" aria-hidden="true" style="visibility: visible;"></i><i class="fa fa-pause" aria-hidden="true"></i><i class="fa fa-play" aria-hidden="true"></i><i class="fa fa-volume-off" aria-hidden="true"></i><i class="fa fa-volume-up" aria-hidden="true"></i><i class="fa fa-expand" aria-hidden="true"></i><i class="fa fa-eye" aria-hidden="true"></i><i class="fa fa-file-text-o" aria-hidden="true"></i></span></span>
+		<span class="tx tx_in" style="-webkit-column-count:2;-moz-column-count:2;column-count:2;">
+			<h2>«Schreibrausch» thematisiert die Verbindung ekstatischer Momente und literarischer Inspiration. Als «furor poeticus» existiert seit der Antike die Vorstellung, dass wahre Literatur nur im Zustand rauschhafter Entrückung geschrieben werde. Die Ausstellung im Strauhof will dieses Phänomen in all seinen Höhen und Tiefen ausloten.</h2>Zum einen ist die Ausstellung den diversen Schreibprozessen und -praktiken gewidmet: Wie bringt man sich zum Schreiben? Was tun, wenn es nicht läuft? Diese Frage treibt Schriftstellerinnen und Schriftsteller seit jeher um. Und sie bedienen sich dabei
+			verschiedener Methoden, um in Schreibfluss zu gelangen, der sich dann bestenfalls bis zum Schreibrausch steigern kann. Neben substantiellen Enthemmern wie Alkohol, Opiaten und anderen Stimulanzien gibt es auch experimentelle Techniken, um ein gelöstes
+			Schreiben zu befördern- so zum Beispiel die «écriture automatique» der Surrealisten oder das Cut-Up-Verfahren der Beat-Literaten. Nicht zuletzt zielen solche Experimente im Resultat auch darauf ab, durch die Texte selbst einen Rauschzustand zu erzeugen
+			oder mindestens eine rauschhafte Wahrnehmung zu simulieren.<br>Zum anderen beleuchtet die Ausstellung dann spezifische Ausprägungen rauschhaften Schreibens: So schwierig der Anfang mitunter auch sein kann- umso grösser ist die Euphorie, wenn das Schreiben
+			plötzlich wie von selbst läuft. Die Literaturgeschichte kennt zahlreiche Aussagen, die von solchen Momenten höchster Produktivität sprechen. Doch wie manifestiert sich der flüchtige Augenblick des Rausches? Blitznotizen, randvoll beschriebene Blätter,
+			verdichtete Texte oder hektische Schriftzüge, ellenlange Papierrollen und mehrfach angeklebte Manuskriptstreifen zeugen noch heute sichtbar von der besonderen Intensität beim Schreiben. Nicht immer entsteht dabei Sinnvolles und Verständliches. Der
+			Rausch ist nur die eine Seite, auf ihn folgen oft zähe Stunden der Überarbeitung.<br>Die Ausstellung geht den Spuren und Geschichten solch rauschhafter Schreibmomente nach und stellt schliesslich auch die Frage nach der Kehrseite des Rausches: seiner
+			lähmenden Wirkung sowie seiner pathologischen Seite bei zwanghaftem Schreibverhalten.</span>
+		<div class="epilog epilog_ini change_img_in" style="visibility: visible;"><span onclick="sub_chapter(this)">Einleitung</span><br><span onclick="sub_chapter(this)">Orte und Daten</span><br><span onclick="sub_chapter(this)">Impressionen</span><br><span onclick="sub_chapter(this)">Hören</span><br><span onclick="sub_chapter(this)">Ausstellungskonzept</span><br>
+			<span onclick="sub_chapter(this)">Impressum</span><br><span onclick="sub_chapter(this)">Medienberichte</span><br></div>
+		</span><span class="scroll_positioner"></span><span class="ueandtx"><span class="ue">Den Körper im Blick - Oktober 2016<span class="sh"><i class="fa fa-download" aria-hidden="true" style="visibility: visible;"></i><i class="fa fa-pause" aria-hidden="true"></i><i class="fa fa-play" aria-hidden="true"></i><i class="fa fa-volume-off" aria-hidden="true"></i><i class="fa fa-volume-up" aria-hidden="true"></i><i class="fa fa-expand" aria-hidden="true"></i><i class="fa fa-eye" aria-hidden="true"></i><i class="fa fa-file-text-o" aria-hidden="true"></i></span></span>
+		<span class="tx tx_out" style="-webkit-column-count:2;-moz-column-count:2;column-count:2;">
+				<h2>In der Ausstellung geht es um Methoden der Sichtbarmachung am menschlichen Körper. Diese haben sich im Laufe der Zeit verändert und verfeinert: In der Renaissance entstanden erste Körperatlanten, in welchem der menschliche Körper nicht nur von aussen dargestellt, sondern seine Funktionsweise auch von innen erklärt wurde.</h2>Die wissenschaftlichen Fortschritte im 19. Jahrhundert erlaubten, den Zellaufbau zu verstehen und die Entwicklung der Bakteriologie sowie das Röntgen als bildgebendes Verfahren. Die im 20. und 21. entwickelten Verfahren erlaubten, in Modellen neue
+				Elemente der Sichtbarmachung zu entwickeln. Bahnbrechend waren beispielsweise die Beschreibung der <a class="line" onclick="slide_lr(16)">DNA als Doppelhelix</a> durch Watson und Crick 1953 und die vollständige Entschlüsselung des menschlichen Genoms
+				2004.<br>Gleichzeitig wurden mit der Wissenschaft auch Modelle und Theoreme entwickelt, wie das Unsichtbare zu Lehrzwecken sichtbar gemacht werden konnte. Das fing bereits mit den vereinfachten Organdarstellungen in den medizinischen Atlanten des
+				16. Jahrhunderts an. Fritz Kahns Darstellungen in seiner mehrbändigen Reihe «Das Leben des Menschen» (ab 1922, die bekannteste davon: <a class="line" onclick="slide_lr(12)">«Der Mensch als Industriepalast»</a>) zeigte die Funktionen des menschlichen
+				Körpers mit den Metaphern eines industriellen Betriebs. Bis heute werden in der Lehre, beispielsweise für angehende Ärzte, vereinfachende Darstellungen verwendet. Auch die Farbgebung der einzelnen Körperteile in diesen Darstellungen ist alles andere
+				als zufällig.</span>
+		<div class="epilog epilog_ini change_img_out" style="visibility: hidden;"><span onclick="sub_chapter(this)">Einleitung</span><br><span onclick="sub_chapter(this)">Orte und Daten</span><br><span onclick="sub_chapter(this)">Impressionen</span><br><span onclick="sub_chapter(this)">Ausstellungskonzept</span><br><span onclick="sub_chapter(this)">Impressum</span><br></div>
+		</span><span class="scroll_positioner"></span><span class="ueandtx"><span class="ue">IndustrieStadt Baden - September 2016<span class="sh"><i class="fa fa-download" aria-hidden="true" style="visibility: visible;"></i><i class="fa fa-pause" aria-hidden="true"></i><i class="fa fa-play" aria-hidden="true"></i><i class="fa fa-volume-off" aria-hidden="true"></i><i class="fa fa-volume-up" aria-hidden="true"></i><i class="fa fa-expand" aria-hidden="true"></i><i class="fa fa-eye" aria-hidden="true"></i><i class="fa fa-file-text-o" aria-hidden="true"></i></span></span>
+		<span class="tx tx_out" style="-webkit-column-count:2;-moz-column-count:2;column-count:2;">
+					<h2>Eine Ausstellung zu den Wechselwirkungen zwischen dem Weltkonzern BBC/ABB und der Kleinstadt. Geplant für September 2016 im Historischen Museum Baden</h2>
+					<p>Stadt in der Stadt, Verbotene Stadt, Baden-Nord: allein die Begriffe, die dem 22 Hektaren grossen BBC-Areal im Haselfeld zugeschrieben werden, lassen einen vermuten, dass es zwischen der Stadt Baden und der Firma BBC /ABB eine Wechselwirkung gibt.
+						Doch beeinflussten sich die Bürgerstadt und der Industriekonzern in der 125-jährigen Firmengeschichte tatsächlich? Wenn ja, in welcher Form? Und welche Auswirkungen hatte dies für beide Seiten?</p>
+					<p>Die von Charles Brown (1863–1924) und Walter Boveri (1865–1924) 1891 gegründete Firma BBC hinterlässt bis heute markante Spuren in Baden. Umgekehrt prägte auch die Stadt die Entwicklung des ehemaligen BBC-Konzerns zur heutigen ABB laufend mit. Die
+						Sonderausstellung beleuchtet die vielseitigen Beziehungen zwischen Baden und seiner Industrie, indem sie Menschen zu Wort kommen lässt.</p>
+					<p>Es gibt unzählige Personen in der Region Baden, in deren Biografien die BBC auftaucht: Grosseltern, die einst wegen der BBC in die Schweiz gekommen sind. Mütter und Väter, die sich dank der BBC kennengelernt haben. Töchter und Söhne, die in den BBC-Arbeitersiedlungen
+						«Dynamoheim», «Wyden» oder «Brisgi» aufgewachsen sind. Firmenmanager und Stadtvertreter, die sich für eine Zukunft nach der Fusion von BBC und Asea zu ABB stark machten. – Es sind zahlreiche Schicksale und Erinnerungen, die mit der Erfolgsgeschichte
+						der Firmen verbunden sind. Davon zeugen die persönlichen Interviews an den vielen Hörstationen in der Ausstellung.</p>
+					<p>Die Geschichten stehen stellvertrn stellvertretend für das Geflecht zwischen Mensch, Industrie und Stadt, welches auch an anderen Orten Industriegeschichte schrieb. Neben den vielen Berichten der direkt Betroffenen, wird auch der Blick «von aussen»
+						gezeigt: Texte von Schriftstellern, Werke von Künstlern, Reportagen von Journalisten und zahlreiche Fotografien beleuchten bisherige Geschichten aus einem neuen Blickwinkel. So richtet sich die zweisprachig (englisch / deutsch) konzipierte Ausstellung
+						ebenso an Einheimische wie Auswärtige.</p>
+					<p>Ein Schwerpunkt der Ausstellung bildet das Thema Arbeitsmigration. Die Kleinstadt Baden verdankt ihren multikulturellen Charme nicht zuletzt den zahlreichen Menschen, die für die Arbeit ihre Heimat verlassen und nach Baden gekommen sind. Begleitend
+						zur Ausstellung lanciert darum das Historische Museum Baden in Zusammenarbeit mit der städtischen Fachstelle Integration eine Wetten. «Wetten, dass…» es dem Museum gelingt, während der Laufzeit der Sonderausstellung 70 der 109 in Baden gemeldeten
+						Nationen ins Museum zu holen.</p>
+					<p>Zum Abschluss der Sonderausstellung findet im Museum ein Gesprächsforum zum Thema Arbeitsmigration statt. Die BBC rekrutierte ihre Arbeitskräfte schon früh in der ganzen Welt. Was bewegte bzw. zwang diese Menschen, für die Arbeit ihre Heimat zu verlassen?
+						Wie ist das heute und wie wird sich die Situation in Zukunft entwickeln?</p>
+					</span>
+		<div class="epilog epilog_ini change_img_out" style="visibility: hidden;"><span onclick="sub_chapter(this)">Einleitung</span><br><span onclick="sub_chapter(this)">Orte und Daten</span><br><span onclick="sub_chapter(this)">Impressionen</span><br><span onclick="sub_chapter(this)">Film</span><br><span onclick="sub_chapter(this)">Hören</span><br>
+			<span onclick="sub_chapter(this)">Ausstellungskonzept</span><br><span onclick="sub_chapter(this)">Impressum</span><br><span onclick="sub_chapter(this)">Medienberichte</span><br></div>
+		</span><span class="scroll_positioner"></span><span class="ueandtx"><span class="ue">Dreiecksgeschichte - Mai 2015<span class="sh"><i class="fa fa-download" aria-hidden="true" style="visibility: visible;"></i><i class="fa fa-pause" aria-hidden="true"></i><i class="fa fa-play" aria-hidden="true"></i><i class="fa fa-volume-off" aria-hidden="true"></i><i class="fa fa-volume-up" aria-hidden="true"></i><i class="fa fa-expand" aria-hidden="true"></i><i class="fa fa-eye" aria-hidden="true"></i><i class="fa fa-file-text-o" aria-hidden="true"></i></span></span>
+		<span class="tx tx_out" style="-webkit-column-count:2;-moz-column-count:2;column-count:2;">
+						<h2>Warum gehört Engelberg heute zu Obwalden? Warum hat sich das Klosterdorf 1815 von Nidwalden getrennt? Warum gab es zwischen den beiden Nachbarkantonen trotz einer gemeinsamen Geschichte immer wieder Streit? Eine Ausstellung zu den Fakten und Wirren, welche vor 200 Jahren zum Kantonswechsel Engelbergs geführt haben. Und zu den jahrhundertlang angespannten Beziehungen in Unterwalden.</h2>Engelberg feiert 2015 die 200-jährige Zugehörigkeit zu Obwalden. Dass sich das Klosterdorf heute zu Obwalden zählt, ist nicht selbstverständlich. Gehörte der ehemals selbstständige Klosterstaat doch nach seiner Aufhebung 1798 während zwölf Jahren
+						zu Nidwalden. Aufgrund von politischen Wirren um den eidgenössischen Bundesvertrag und der Eigenwilligkeit der Nidwaldner, die sich dem Vertrag verweigerten, schloss sich Engelberg 1815 dem Nachbarkanton an. Doch die Beziehungen zwischen den Tälern
+						blieben gespannt.<br>Das Engelberger Jubiläum von 2015 eröffnet eine Chance, die Verhältnisse Engelbergs, Nidwaldens und Obwaldens untereinander einmal vertieft zu untersuchen. Dazu sind im Nidwaldner Museum, im Tal Museum Engelberg, im Historischen
+						Museum Sarnen und im Museum Bruder Klaus Sachseln vier Sonderausstelllungen geplant, die je aus einer anderen Perspektive das Thema Beziehung beleuchten.<br>Nebst der eigentlichen Geschichte ist auch die Untersuchung der Gegenwart ein Thema. Das
+						gemeinsame Ausstellungsprojekt zwischen Ob- und Nidwaldner Museen ist in dieser Art und Grösse bisher einmalig. Im Rahmen einer Mitmachkampagne werden unter anderem persönliche Anekdoten, Fotos und Geschichten 2015 in den Museen gezeigt werden.
+						«Zeig mir deinen Lieblingsort in Unterwalden!» – unter diesem Titel werden etwa Fotos von bevorzugten Orten gesucht, die auch in den Ausstellungen «Dreiecksgeschichte: Engelberg, Nidwalden, Obwalden – 4 Szenen» Eingang finden!<br>Die unterschiedlich
+						gestalteten Ausstellungen in den vier Museen der Kantone Nidwalden und Obwalden leuchten die historischen Ereignisse rund um den Anschluss Engelberg an Obwalden aus und spannen den Bogen bis in die Gegenwart. Nebst der Sonderstellung, die Engelberg
+						innerhalb des einstigen Unterwaldens seither einnimmt, geht es vor allem um die jahrhundertlang angespannten Beziehungen zwischen Nidwalden und Obwalden. Was ist heute noch spürbar von der Rivalität zwischen den Nachbarkantonen, die in der Eidgenossenschaft
+						zusammen auftreten mussten und im Grunde gar nicht zusammenpassten?</span>
+		<div class="epilog epilog_ini change_img_out" style="visibility: hidden;"><span onclick="sub_chapter(this)">Einleitung</span><br><span onclick="sub_chapter(this)">Orte und Daten</span><br><span onclick="sub_chapter(this)">Impressionen</span><br><span onclick="sub_chapter(this)">Film</span><br><span onclick="sub_chapter(this)">Ausstellungskonzept</span><br>
+			<span onclick="sub_chapter(this)">Impressum</span><br><span onclick="sub_chapter(this)">Medienberichte</span><br></div>
+		</span><span class="scroll_positioner"></span><span class="ueandtx"><span class="ue">L’albigna di Emil Zbinden - Juni 2015<span class="sh"><i class="fa fa-download" aria-hidden="true" style="visibility: visible;"></i><i class="fa fa-pause" aria-hidden="true"></i><i class="fa fa-play" aria-hidden="true"></i><i class="fa fa-volume-off" aria-hidden="true"></i><i class="fa fa-volume-up" aria-hidden="true"></i><i class="fa fa-expand" aria-hidden="true"></i><i class="fa fa-eye" aria-hidden="true"></i><i class="fa fa-file-text-o" aria-hidden="true"></i></span></span>
+		<span class="tx tx_out" style="-webkit-column-count:2;-moz-column-count:2;column-count:2;">
+							<h2>Arbeiter und Künstler am Werk- 60 Jahre nach dem Baubeginn der Staumauer Albigna</h2>Im Sommer 2015 ist es 60 Jahre her seit dem Baubeginn der Staumauer Albigna, die von 1955 bis 1961 realisiert wurde. Eine Doppelausstellung mit Werken des Künstlers Emil Zbinden und des Fotografen Urs Beyeler thematisiert die Ereignisse, die für
+							die wirtschaftliche Existenz des Bergells wegweisend wurden.<br>Das Jahr 1955 bildet einen wichtigen Meilenstein in der Geschichte der Talschaft. Die Bergeller Kraftwerke schufen direkt oder indirekt Arbeitsplätze und brachten den Gemeinden Wasserzinsen
+							und Steuereinnahmen. Die Kraftwerk-Anlagen, die 1961 eingeweiht werden konnten, gaben dem kargen Bergtal eine neue Existenzgrundlage.<br>Nebst Hunderten von Arbeitern, Kantinenfrauen und Ingenieuren wollten auch ein paar Fotografen und Künstler
+							beim Kraftwerkbau dabeisein. Einer von ihnen war der Berner Holzstecher, Zeichner und Buchillustrator Emil Zbinden (1908-1991), zu dessen Themen Arbeit, Arbeiterschaft aber auch Landschaft gehörten. 1958 und 1959 weilte er zusammen mit dem Berner
+							Künstler Eugen Jordi auf Albigna, um den Staumauerbau und die Transformation des Natürlichen zum künstlichen Berg festzuhalten. Die Ausstellung «L’Albigna di Emil Zbinden» im Museo Ciäsa Granda in Stampa vereint zahlreiche Zeichnungen, Skizzen
+							und Originalgrafik aus dieser Zeit. Sie wirft einen Blick zurück und eröffnet zugleich Zugänge zu einem bisher weniger bekannten Werkbereich Zbindens.<br>Ebenfalls im Sommer 1958 weilte auch der Berner Fotograf Urs Beyeler auf Albigna. Ähnlich
+							wie Zbinden wollte er dort nicht schöne Porträts von Menschen realisieren, sondern die Menschen bei der harten Arbeit auf den Baustellen im Hochgebirge zeigen. Von 1956 bis 1960 reiste er immer wieder an und schuf eine eindringliche Bildserie zum
+							Bau des Staudamms, die bisher weitgehend unbekannt ist. Die Galleria Il Salice in Castasegna zeigt seine Fotoreportage «Una giornata sull’Albigna».<br>Dem Publikum werden in den beiden Ausstellungen jedoch nicht nur Fotografien und Kunstwerke näher
+							gebracht. Die Grossbaustelle versammelte von 1955 bis 1961 Arbeiter und Ingenieure aus der ganzen Schweiz, dem Veltlin, der Provinz Belluno und sogar aus weiter entfernten Regionen. Die Bergeller Kulturorganisation Società culturale di Bregaglia,
+							eine Sektion von Pro Grigioni Italiano (Pgi), hat im Sommer 2014 ein aufwändiges Oral History-Projekt lanciert, um Zeitzeugen der Albigna-Bauarbeiten aufzuspüren. Die Journalisten Paola Beltrame und Andrea Tognina haben insgesamt rund 30 Interviews
+							geführt, um die Ereignisse zu rekonstruieren, die einen so wichtigen Wendepunkt in der Geschichte des Bergells darstellen. Eine reiche Auswahl von Stimmen ist in den beiden Ausstellung zu hören.</span>
+		<div class="epilog epilog_ini change_img_out" style="visibility: hidden;"><span onclick="sub_chapter(this)">Einleitung</span><br><span onclick="sub_chapter(this)">Orte und Daten</span><br><span onclick="sub_chapter(this)">Impressionen</span><br><span onclick="sub_chapter(this)">Film</span><br><span onclick="sub_chapter(this)">Ausstellungskonzept</span><br>
+			<span onclick="sub_chapter(this)">Impressum</span><br><span onclick="sub_chapter(this)">Medienberichte</span><br></div>
+		</span><span class="scroll_positioner"></span><span class="ueandtx"><span class="ue">Fernes Donnergrollen - September 2014<span class="sh"><i class="fa fa-download" aria-hidden="true" style="visibility: visible;"></i><i class="fa fa-pause" aria-hidden="true"></i><i class="fa fa-play" aria-hidden="true"></i><i class="fa fa-volume-off" aria-hidden="true"></i><i class="fa fa-volume-up" aria-hidden="true"></i><i class="fa fa-expand" aria-hidden="true"></i><i class="fa fa-eye" aria-hidden="true"></i><i class="fa fa-file-text-o" aria-hidden="true"></i></span></span>
+		<span class="tx tx_out" style="-webkit-column-count:2;-moz-column-count:2;column-count:2;">
+								<h2>Deutschschweizer Literatur und Erster Weltkrieg</h2>Die Schweiz hörte das Donnergrollen der Kanonen nur von fern. Dennoch war sie auf vielfältige Weise vom Krieg betroffen: Die Gräben zwischen Deutsch und Welsch, zwischen Besitzenden und Arbeiterschaft drohten das Land zu zerreissen.<br>Der grössere
+								Teil der Autorinnen und Autoren schrieb an diesen Problemen vorbei. In einer vermeintlichen Keller- oder Gotthelf-Nachfolge widmeten sie sich der bäurischen und kleinbürgerlichen Welt. Eine konservative Literaturkritik war sogar der Meinung, Literatur
+								dürfe nicht auf Zeitprobleme eingehen. Doch nicht alle Autoren teilten diese Auffassung.<br>Der Ausbruch des Krieges führte zuerst zu einer kriegstrunkenen Lyrik. Später, als die erste Begeisterung vorbei war, entstand der «Grenzwachtroman», der
+								die Wehrmänner vom Sinn des Grenzdienstes überzeugen wollte.<br>Das Bild des «fernen Donnergrollens» kennzeichnet auch das Verhältnis des Bürgertums zur Arbeiterschaft. Die Ansprüche der Arbeiterbewegung wurden als Bedrohung empfunden. Nur wenige
+								politisch aufmerksame Autoren waren bereit, sich mit diesen auseinanderzusetzen. Sie taten dies aus bildungsbürgerlicher Sicht, das heisst, sie appellierten an Idealismus und Versöhnung.</span>
+		<div class="epilog epilog_ini change_img_out" style="visibility: hidden;"><span onclick="sub_chapter(this)">Einleitung</span><br><span onclick="sub_chapter(this)">Orte und Daten</span><br><span onclick="sub_chapter(this)">Impressionen</span><br><span onclick="sub_chapter(this)">Impressum</span><br><span onclick="sub_chapter(this)">Medienberichte</span><br></div>
+		</span><span class="scroll_positioner"></span><span class="ueandtx"><span class="ue">Das Abenteuer Bildung - November 2013<span class="sh"><i class="fa fa-download" aria-hidden="true" style="visibility: visible;"></i><i class="fa fa-pause" aria-hidden="true"></i><i class="fa fa-play" aria-hidden="true"></i><i class="fa fa-volume-off" aria-hidden="true"></i><i class="fa fa-volume-up" aria-hidden="true"></i><i class="fa fa-expand" aria-hidden="true"></i><i class="fa fa-eye" aria-hidden="true"></i><i class="fa fa-file-text-o" aria-hidden="true"></i></span></span>
+		<span class="tx tx_out" style="-webkit-column-count:2;-moz-column-count:2;column-count:2;">
+									<h2>Kindergarten, Schule, Aus- und Weiterbildung, individuelle Interessen, Neugier und Forscherdrang - Bildung begleitet uns ein Leben lang. Sie ist das wertvollste Gut einer Gesellschaft, denn in ihr geben wir Wissen und Werte, Kompetenzen und Kreativität weiter: die Basis gesellschaftlicher Innovation.</h2>Die Ausstellung lädt ein zu einer Entdeckungsreise durch die unterschiedlichen Dimensionen von Bildung in Geschichte und Gegenwart, stellt sie auf die Probe und fragt danach, welche Bildung wir uns für die Zukunft wünschen.</span>
+		<div class="epilog epilog_ini change_img_out" style="visibility: hidden;"><span onclick="sub_chapter(this)">Einleitung</span><br><span onclick="sub_chapter(this)">Orte und Daten</span><br><span onclick="sub_chapter(this)">Impressionen</span><br><span onclick="sub_chapter(this)">Ausstellungskonzept</span><br><span onclick="sub_chapter(this)">Impressum</span><br>
+			<span onclick="sub_chapter(this)">Medienberichte</span><br></div>
+		</span><span class="scroll_positioner"></span><span class="ueandtx"><span class="ue">Die Utopie der Widerspenstigen - Oktober 2013<span class="sh"><i class="fa fa-download" aria-hidden="true" style="visibility: visible;"></i><i class="fa fa-pause" aria-hidden="true"></i><i class="fa fa-play" aria-hidden="true"></i><i class="fa fa-volume-off" aria-hidden="true"></i><i class="fa fa-volume-up" aria-hidden="true"></i><i class="fa fa-expand" aria-hidden="true"></i><i class="fa fa-eye" aria-hidden="true"></i><i class="fa fa-file-text-o" aria-hidden="true"></i></span></span>
+		<span class="tx tx_out" style="-webkit-column-count:2;-moz-column-count:2;column-count:2;">
+										<h2>40 Jahre Longo maï</h2>Unter dem Motto «Roden statt Reden» gründeten 1973 etwa dreissig Schweizer, Österreicher und Franzosen die Kooperative Longo maï in der französischen Provence und übernahmen drei verlassene Bauernhöfe. Die Landkommune wurde und wird bis heute
+										als Gegenentwurf zur kapitalistischen Ausbeutung in den Unternehmen betrieben - ohne Lohnarbeit auf Basis der Selbstverwaltung.<br>Mit der Landwirtschaft als primären Erwerbszweig ist eine einzigartige Praxis einer alternativen Lebensgestaltung
+										entstanden, der in allen ihren Aspekten und Dimensionen etwas Utopisches anhaftet. Dazu gehört die Art der Konsensfindung in der Gruppe ebenso wie das komplexe ökonomische System der selbstverwalteten Kooperativen untereinander.</span>
+		<div class="epilog epilog_ini change_img_out" style="visibility: hidden;"><span onclick="sub_chapter(this)">Einleitung</span><br><span onclick="sub_chapter(this)">Orte und Daten</span><br><span onclick="sub_chapter(this)">Impressionen</span><br><span onclick="sub_chapter(this)">Film</span><br><span onclick="sub_chapter(this)">Ausstellungskonzept</span><br>
+			<span onclick="sub_chapter(this)">Buch</span><br><span onclick="sub_chapter(this)">Impressum</span><br><span onclick="sub_chapter(this)">Medienberichte</span><br></div>
+		</span><span class="scroll_positioner"></span><span class="ueandtx"><span class="ue">Halbzeit - November 2011<span class="sh"><i class="fa fa-download" aria-hidden="true" style="visibility: visible;"></i><i class="fa fa-pause" aria-hidden="true"></i><i class="fa fa-play" aria-hidden="true"></i><i class="fa fa-volume-off" aria-hidden="true"></i><i class="fa fa-volume-up" aria-hidden="true"></i><i class="fa fa-expand" aria-hidden="true"></i><i class="fa fa-eye" aria-hidden="true"></i><i class="fa fa-file-text-o" aria-hidden="true"></i></span></span>
+		<span class="tx tx_out" style="-webkit-column-count:2;-moz-column-count:2;column-count:2;">
+											<h2>Ein Blick auf die Mitte des Lebens: Gedanken, Träume, Tatsachen</h2>Viele Menschen erleben das mittlere Alter als eine spannende, teils auch bedrängende Übergangszeit. Die Erfahrung des langsamen körperlichen Alterns, der Verlust von jugendlicher Schönheit und körperlicher Kraft zeigen an, dass die eigene Lebenszeit
+											nicht unbegrenzt ist. Damit rückt die Frage ins Zentrum, wie die verbleibende Zeit am besten zu nutzen ist. Neuorientierungen in Partnerschaft und Beruf können die Folge sein. Die individuellen Werte können sich deutlich verschieben.<br>Im
+											Gegensatz zur Jugend und dem höheren Alter hat das mittlere Alter bisher in der Öffentlichkeit weniger Beachtung gefunden. Als erste umfassende Ausstellung zur Thematik bietet die Ausstellung «Halbzeit» eine vertiefte Auseinandersetzung mit
+											der Phase des Übergangs von der Jugend zum Alter. Sie vereinigt künstlerische Positionen, Interviews mit Menschen im mittleren Alter und zahlreiche Sachexponate zu einem interaktiven Erlebnis- und Erfahrungsraum.</span>
+		<div class="epilog epilog_ini change_img_out" style="visibility: hidden;"><span onclick="sub_chapter(this)">Einleitung</span><br><span onclick="sub_chapter(this)">Orte und Daten</span><br><span onclick="sub_chapter(this)">Impressionen</span><br><span onclick="sub_chapter(this)">Film</span><br><span onclick="sub_chapter(this)">Hören</span><br>
+			<span onclick="sub_chapter(this)">Ausstellungskonzept</span><br><span onclick="sub_chapter(this)">Impressum</span><br><span onclick="sub_chapter(this)">Medienberichte</span><br></div>
+		</span><span class="scroll_positioner"></span><span class="ueandtx"><span class="ue">Mit Biss - Oktober 2010<span class="sh"><i class="fa fa-download" aria-hidden="true" style="visibility: visible;"></i><i class="fa fa-pause" aria-hidden="true"></i><i class="fa fa-play" aria-hidden="true"></i><i class="fa fa-volume-off" aria-hidden="true"></i><i class="fa fa-volume-up" aria-hidden="true"></i><i class="fa fa-expand" aria-hidden="true"></i><i class="fa fa-eye" aria-hidden="true"></i><i class="fa fa-file-text-o" aria-hidden="true"></i></span></span>
+		<span class="tx tx_out" style="-webkit-column-count:2;-moz-column-count:2;column-count:2;">
+												<h2>Geschichten zur Zahnmedizin</h2>Vom ersten Milchzahn bis zu den «Dritten»: Unsere Zähne begleiten uns ein Leben lang. Wir benutzen sie täglich zum Essen, zum Sprechen, beim Lächeln, als Werkzeuge oder – zuweilen mit Glitzerstein versehen – als Schmuckstück. Ihre Pflege erlernen
+												wir von Kindesbeinen an.<br>Doch so sehr sich in der westlichen Welt eine umfassende Mundhygiene auch etabliert haben mag, ist Karies bis heute eine häufige Krankheit geblieben. Der Gang zum Zahnarzt ist uns vertraut – dennoch empfinden viele
+												Menschen Angst vor dem Zahnarzt.<br>Die Ausstellung setzt bei diesen alltagskulturellen Erfahrungen an und stellt sie in einen Zusammenhang mit historischen Entwicklungen in der Zahnmedizin und der Mundhygiene. Die Geschichte der Zahnheilkunde
+												reicht von fahrenden Zahnbrechern bis zu akademisch geschulten Zahnärztinnen und Zahnärzten, von groben Zahnzangen bis zu modernen restaurativen und orthopädischen Massnahmen, von Zahnpulvern und Elfenbein-Zahnstochern bis zur elektrischen
+												Ultraschallzahnbürste.</span>
+		<div class="epilog epilog_ini change_img_out" style="visibility: hidden;"><span onclick="sub_chapter(this)">Einleitung</span><br><span onclick="sub_chapter(this)">Orte und Daten</span><br><span onclick="sub_chapter(this)">Impressionen</span><br><span onclick="sub_chapter(this)">Ausstellungskonzept</span><br>
+			<span onclick="sub_chapter(this)">Impressum</span><br><span onclick="sub_chapter(this)">Medienberichte</span><br></div>
+		</span><span class="scroll_positioner"></span><span class="ueandtx"><span class="ue">Stadt vor Augen - Landschaft im Kopf - Februar 2010<span class="sh"><i class="fa fa-download" aria-hidden="true" style="visibility: visible;"></i><i class="fa fa-pause" aria-hidden="true"></i><i class="fa fa-play" aria-hidden="true"></i><i class="fa fa-volume-off" aria-hidden="true"></i><i class="fa fa-volume-up" aria-hidden="true"></i><i class="fa fa-expand" aria-hidden="true"></i><i class="fa fa-eye" aria-hidden="true"></i><i class="fa fa-file-text-o" aria-hidden="true"></i></span></span>
+		<span class="tx tx_out" style="-webkit-column-count:2;-moz-column-count:2;column-count:2;">
+													<h2>Eine Ausstellung über die Verwandlung der Schweiz</h2>«Stadt vor Augen, Landschaft im Kopf» ist eine Ausstellung über das Verschwinden derjenigen Schweiz, die in Tourismusprospekten noch immer angepriesen wird und die in unseren Köpfen nach wie vor gegenwärtig ist:<br>Die Schweiz, ein Land mit
+													Bergen, Wäldern, Seen und Matten, mit Dörfern und schmucken Kleinstädten. Das Land, das sich vor unseren Augen ausbreitet, hat sich hingegen zu einer Abfolge von städtischen Quartieren verwandelt, die vom Bodensee bis an den Genfersee reichen.
+													Hier erstreckt sich ein Siedlungsteppich aus Stadt- und Ortszentren, verwoben mit dem dichtesten Strassen- und Schienennetznetz Europas - und unsere Lebensmittelpunkte liegen mitten drin.<br>Die Sonderausstellung thematisiert die Verwebung
+													von Stadt und Land im Schweizer Mittelland während der letzten 50 Jahre, den Verbrauch, aber auch den Schutz von Landschaft und Natur im Spiegel wirtschaftlicher und gesellschaftlicher Entwicklungen. Der anhaltende Bodenverbrauch, das Zurückdrängen
+													der traditionellen Kulturlandschaften, die rasant fortschreitende Zersiedelung und das stete Wachsen der Agglomerationen lösen in Teilen der Bevölkerung Unbehagen aus.<br>Welche Schweiz wollen wir? – Begleitet von zahlreichen Rahmenveranstaltungen
+													geht die Ausstellung dieser Frage nach.</span>
+		<div class="epilog epilog_ini change_img_out" style="visibility: hidden;"><span onclick="sub_chapter(this)">Einleitung</span><br><span onclick="sub_chapter(this)">Orte und Daten</span><br><span onclick="sub_chapter(this)">Impressionen</span><br><span onclick="sub_chapter(this)">Film</span><br><span onclick="sub_chapter(this)">Ausstellungskonzept</span><br>
+			<span onclick="sub_chapter(this)">Impressum</span><br><span onclick="sub_chapter(this)">Medienberichte</span><br></div>
+		</span><span class="scroll_positioner"></span><span class="ueandtx"><span class="ue">Ich schweige nicht! - Mai 2009<span class="sh"><i class="fa fa-download" aria-hidden="true" style="visibility: visible;"></i><i class="fa fa-pause" aria-hidden="true"></i><i class="fa fa-play" aria-hidden="true"></i><i class="fa fa-volume-off" aria-hidden="true"></i><i class="fa fa-volume-up" aria-hidden="true"></i><i class="fa fa-expand" aria-hidden="true"></i><i class="fa fa-eye" aria-hidden="true"></i><i class="fa fa-file-text-o" aria-hidden="true"></i></span></span>
+		<span class="tx tx_out" style="-webkit-column-count:2;-moz-column-count:2;column-count:2;">
+														<h2>Carl Albert Loosli, Schriftsteller</h2>«Ich brauche nichts umzulügen, nichts zu verbergen – ich darf alles, die volle Wahrheit sagen, weil ich nichts zu verlieren, folglich auch nichts zu fürchten habe.»<br>Carl Albert Loosli<br>«Loosli ist eine Figur, die für die Geschichte
+														unserer schweizerischen Mentalität von erstem Rang ist. Seine Schriften zu politisch-sozialen Themen nehmen sich wie ein historischer Dringlichkeitskatalog aus.»<br>Hugo Loetscher<br></span>
+		<div class="epilog epilog_ini change_img_out" style="visibility: hidden;"><span onclick="sub_chapter(this)">Einleitung</span><br><span onclick="sub_chapter(this)">Orte und Daten</span><br><span onclick="sub_chapter(this)">Impressionen</span><br><span onclick="sub_chapter(this)">Film</span><br><span onclick="sub_chapter(this)">Hören</span><br>
+			<span onclick="sub_chapter(this)">Ausstellungskonzept</span><br><span onclick="sub_chapter(this)">Impressum</span><br><span onclick="sub_chapter(this)">Medienberichte</span><br></div>
+		</span><span class="scroll_positioner"></span><span class="ueandtx"><span class="ue">Die 68er - Mai 2008<span class="sh"><i class="fa fa-download" aria-hidden="true" style="visibility: visible;"></i><i class="fa fa-pause" aria-hidden="true"></i><i class="fa fa-play" aria-hidden="true"></i><i class="fa fa-volume-off" aria-hidden="true"></i><i class="fa fa-volume-up" aria-hidden="true"></i><i class="fa fa-expand" aria-hidden="true"></i><i class="fa fa-eye" aria-hidden="true"></i><i class="fa fa-file-text-o" aria-hidden="true"></i></span></span>
+		<span class="tx tx_out" style="-webkit-column-count:2;-moz-column-count:2;column-count:2;">
+															<h2>Kurzer Sommer, lange Wirkung</h2>Als Beitrag zur heutigen politischen und gesellschaftlichen Selbstreflexion bietet die Ausstellung einen thematischen Rückblick auf das bewegte Jahr 1968 und diskutiert die seitherigen Veränderungen.<br>Mit der Ausstellung «Kurzer Sommer,
+															lange Wirkung» über die Jugendbewegungen rund um den Sommer 68 feiert das Berner Ausstellungsbüro Palma3 im deutschen Frankfurt seinen bisher grössten Erfolg: Die Ausstellung im Historischen Museum in Frankfurt am Main ist die bedeutendste
+															Ausstellung zu dem Thema im deutschsprachm deutschsprachigen Raum. Sie ist auch die einzige, die versucht, die Bewegung in einen historischen Diskurs einzuordnen. Ursprünglich bis August geplant, wird die Show bis in den November hinein
+															verlängert. Ein Gespräch mit dem Historiker <a class="line" onclick="jump_to(4,0)">Andreas Schwab</a>, der das Ausstellungsprojekt mit der Germanistin und Theaterwissenschaftlerin Beate Schappach initiiert und in Zusammenarbeit mit dem
+															Historischen Museum Frankfurt realisiert hat.</span>
+		<div class="epilog epilog_ini change_img_out" style="visibility: hidden;"><span onclick="sub_chapter(this)">Einleitung</span><br><span onclick="sub_chapter(this)">Orte und Daten</span><br><span onclick="sub_chapter(this)">Impressionen</span><br><span onclick="sub_chapter(this)">Ausstellungskonzept</span><br>
+			<span onclick="sub_chapter(this)">Impressum</span><br><span onclick="sub_chapter(this)">Medienberichte</span><br></div>
+		</span><span class="scroll_positioner"></span><span class="ueandtx"><span class="ue">Edith liebt ihn - Dezember 2006<span class="sh"><i class="fa fa-download" aria-hidden="true" style="visibility: visible;"></i><i class="fa fa-pause" aria-hidden="true"></i><i class="fa fa-play" aria-hidden="true"></i><i class="fa fa-volume-off" aria-hidden="true"></i><i class="fa fa-volume-up" aria-hidden="true"></i><i class="fa fa-expand" aria-hidden="true"></i><i class="fa fa-eye" aria-hidden="true"></i><i class="fa fa-file-text-o" aria-hidden="true"></i></span></span>
+		<span class="tx tx_out" style="-webkit-column-count:2;-moz-column-count:2;column-count:2;">
+																<h2>Eine Veranstaltung zu Robert Walsers Räuber-Roman</h2>Zum 50. Todestag Robert Walsers, der 1956 am Weihnachtstag auf einem einsamen Spaziergang starb.<br>In einer Millimeter-Handschrift entwarf Robert Walser 1925 in Bern einen autobiografischen Roman über einen nomadisierenden Schriftsteller.
+																Erst spät konnten die 24 Kunstdruckblätter Walsers entziffert werden. In einer kleinen Ausstellung werden diese Mikrogramme inszeniert und weitere Materialien zum Roman präsentiert.</span>
+		<div class="epilog epilog_ini change_img_out" style="visibility: hidden;"><span onclick="sub_chapter(this)">Einleitung</span><br><span onclick="sub_chapter(this)">Orte und Daten</span><br><span onclick="sub_chapter(this)">Impressionen</span><br><span onclick="sub_chapter(this)">Ausstellungskonzept</span><br>
+			<span onclick="sub_chapter(this)">Impressum</span><br><span onclick="sub_chapter(this)">Medienberichte</span><br></div>
+		</span><span class="scroll_positioner"></span><span class="ueandtx"><span class="ue">Hirnsturm - Mai 2005<span class="sh"><i class="fa fa-download" aria-hidden="true" style="visibility: visible;"></i><i class="fa fa-pause" aria-hidden="true"></i><i class="fa fa-play" aria-hidden="true"></i><i class="fa fa-volume-off" aria-hidden="true"></i><i class="fa fa-volume-up" aria-hidden="true"></i><i class="fa fa-expand" aria-hidden="true"></i><i class="fa fa-eye" aria-hidden="true"></i><i class="fa fa-file-text-o" aria-hidden="true"></i></span></span>
+		<span class="tx tx_out" style="-webkit-column-count:2;-moz-column-count:2;column-count:2;">
+																	<h2>Ein Kabinett verwegener Forscher</h2>Das Thema der Ausstellung ist das Stereotyp des verrückten Wissenschaftlers, der in seiner Genialität auf moralische Abwege gerät. Der Mad Scientist ist eine populäre Personifikation einer häufig anonymen Wissenschaft, die Mühe hat, ihre
+																	Ergebnisse einer grösseren Bevölkerungsschicht zu kommunizieren. Der verrückte Wissenschaftler, der geniale Tüftler und der verschrobene Erfinder sind demgegenüber leicht fassbare Klischees und Karikaturen von Wissenschaftlern, anhand
+																	derer in einer breiteren Öffentlichkeit wissenschaftliche Themen diskutiert und verarbeitet werden. Im Mad Scientist finden gesellschaftliche Ängste in Bezug auf die als unheilvoll empfundenen Möglichkeiten der technologischen Entwicklung
+																	ihren Ausdruck, und Aufklärung oder Abschreckung ist oft das Ziel der gleichnishaften Darstellungen.<br>Das Ziel der Ausstellung liegt insofern nicht darin, Wissenschaft direkt zu popularisieren, vielmehr geht es explizit darum, sich
+																	mit den bereits vorhandenen populären Bildern der Wissenschaft selbst auseinanderzusetzen, sie in einen historischen Kontext zu stellen und zu hinterfragen. Der Typus des Mad Scientist dient als visuell dankbares Mittel, sich der Frage
+																	nach der Vermittelbarkeit und «Wahrheit» von wissenschaftlichen Erkenntnissen zu nähern.</span>
+		<div class="epilog epilog_ini change_img_out" style="visibility: hidden;"><span onclick="sub_chapter(this)">Einleitung</span><br><span onclick="sub_chapter(this)">Orte und Daten</span><br><span onclick="sub_chapter(this)">Impressionen</span><br><span onclick="sub_chapter(this)">Ausstellungskonzept</span><br>
+			<span onclick="sub_chapter(this)">Impressum</span><br><span onclick="sub_chapter(this)">Medienberichte</span><br></div>
+		</span>
+	</div>
+	<div id="mp">
+	</div>
+
+</body>
+
+</html>

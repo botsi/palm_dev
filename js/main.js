@@ -877,17 +877,39 @@ var white_head = function() {
 
         for (var i = 0; i < uat.length; i++) {
 
-            //var biger = (uat[i].offsetHeight > 480) ? uat[i].offsetHeight - 480 : 0;
 
-            midpoints.push(parseInt(uat[i].offsetTop + 210 + uat[i].offsetHeight / 2));
+            var point = '';
 
-            //uat[i].previousSibling.style.height = uat[i].offsetHeight + 'px';
+            var pre_point = parseInt(uat[i].offsetTop + 210 + uat[i].offsetHeight / 2);
+
+            if (pre_point < h + 210) {
+
+                var point = uat[i].offsetTop + 210 + uat[i].offsetHeight;
+
+            }
+
+            if (pre_point > h + window.innerHeight) {
+
+                var point = uat[i].offsetTop + 210;
+
+            }
+
+            if (point == '') {
+
+                var point = pre_point;
+
+            }
+
+            midpoints.push(point);
+
+
+            //midpoints.push(parseInt(uat[i].offsetTop + 210 + uat[i].offsetHeight / 2));
 
         }
 
-        console.log('midarr: ', midpoints);
+        //console.log('midarr: ', midpoints);
 
-        console.log('mid: ', midpoints[folders[chapter].last_position]);
+        console.log('mid (new way): ', midpoints[folders[chapter].last_position]);
 
         //console.log('g: midarr,', h + window.innerHeight / 2 + 240);
 
