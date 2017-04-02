@@ -1348,20 +1348,20 @@ var hit_menue = function(t, ju) {
             old_chapter = (typeof ju === 'undefined') ? chapter : ju;
 
 
-            /*
-                        console.log(history.state);
 
-                        //var last_page_ix = folders[chapter].last_position;
+            console.log(history.state);
 
-                        history.pushState({
-                                "current_page": folders[i].data[folders[i].last_position].comp_name,
-                                "previous_page": folders[chapter].data[old_scroll_pos].comp_name
-                            }, 'Page: About me',
-                            '?' + folders[i].data[folders[i].last_position].comp_name);
+            //var last_page_ix = folders[chapter].last_position;
 
-                        console.log(history.state);
+            history.pushState({
+                    "current_page": folders[i].data[folders[i].last_position].comp_name,
+                    "previous_page": folders[chapter].data[old_scroll_pos].comp_name
+                }, 'Page: About me',
+                '?' + folders[i].data[folders[i].last_position].comp_name);
 
-             */
+            console.log(history.state);
+
+            /**/
 
 
 
@@ -2152,8 +2152,8 @@ var page_load = function() {
 
 document.addEventListener('DOMContentLoaded', text_load, false);
 
-/*
+
 window.onpopstate = function(event) {
     console.log(history.state);
 };
-*/
+/**/
