@@ -878,39 +878,38 @@ var white_head = function() {
         for (var i = 0; i < uat.length; i++) {
 
             // new way
-            //                        var point = '';
+
+
+            var point = '';
 
             var pre_point = parseInt(uat[i].offsetTop + 210 + uat[i].offsetHeight / 2);
+
+            if (pre_point < h + 210) {
+
+                var point = uat[i].offsetTop + 210 + uat[i].offsetHeight;
+
+            }
+
+            if (pre_point > h + window.innerHeight) {
+
+                var point = uat[i].offsetTop + 210;
+
+            }
+
+            if (point == '') {
+
+                var point = pre_point;
+
+            }
+
+            /*
+             */
+
+
+
             /*
 
-                        if (pre_point < h + 210) {
-
-                            var point = uat[i].offsetTop + 210 + uat[i].offsetHeight;
-
-                            var upoint = 99;
-
-                        }
-
-                        if (pre_point > h + window.innerHeight) {
-
-                            var point = uat[i].offsetTop + 210;
-
-                            var upoint = 11;switch
-
-                        }
-            */
-            /*
-            switch (true) {
-                case (count == 2):
-                    document.write("hi");
-                    break;
-                case (count > 3):
-                    document.write("bye");
-                    break;
-                case (count >= 4):
-                    document.write("lol");
-                    break;
-            }*/
+						var pre_point = parseInt(uat[i].offsetTop + 210 + uat[i].offsetHeight / 2);
 
             switch (true) {
                 case (pre_point < h + 210):
@@ -922,15 +921,6 @@ var white_head = function() {
                 default:
                     var point = pre_point;
             }
-
-
-
-            /*
-                        if (point == '') {
-
-                            var point = pre_point;
-
-                        }
 
             */
             console.log(point);
