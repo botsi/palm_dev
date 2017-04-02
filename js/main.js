@@ -323,8 +323,15 @@ var sub_chapter = function(t) {
 
                 } else {
 
+                    var act_speed = parseInt(el.offsetHeight / 60) + 's';
+
+                    console.log(act_speed);
+
                     el.style.WebkitAnimationPlayState = 'running';
                     el.style.animationPlayState = 'running';
+
+                    el.style.WebkitAnimationDuration = act_speed;
+                    el.style.animationDuration = act_speed;
 
                     el.parentNode.addEventListener('mouseup', function() {
                         toggle_imp_run(el);
@@ -344,8 +351,8 @@ var sub_chapter = function(t) {
             sh_cheese(t.parentNode.parentNode, 0);
     }
 
-    console.log(t.parentNode.parentNode.getBoundingClientRect().top);
-    console.log(t.parentNode.parentNode.offsetHeight);
+    //console.log(t.parentNode.parentNode.getBoundingClientRect().top);
+    //console.log(t.parentNode.parentNode.offsetHeight);
 
     if (t.parentNode.parentNode.getBoundingClientRect().top + t.parentNode.parentNode.offsetHeight > window.innerHeight) {
         //old_chapter = -1;
