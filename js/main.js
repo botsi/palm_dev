@@ -894,7 +894,7 @@ var white_head = function() {
         var g = getNearestNumber(midpoints, h + window.innerHeight / 2 + 240);
 
         if (folders[chapter].last_position == g && chapter == old_chapter) {
-            console.log('ireturn in middle of white_head (git)');
+            console.log('ireturn in middle of white_head (half_git)');
             return;
         }
 
