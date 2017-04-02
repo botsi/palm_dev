@@ -123,19 +123,23 @@
 
 @-moz-keyframes slidimp {
     0% {
-        transform: translateY(20%);
+        transform: translateY(0%);
+        top: 100%;
     }
     100% {
-        transform: translateY(-120%);
+        transform: translateY(-100%);
+        top: 0;
     }
 }
 
 @keyframes slidimp {
     0% {
-        transform: translateY(20%);
+        transform: translateY(0%);
+        top: 100%;
     }
     100% {
-        transform: translateY(-120%);
+        transform: translateY(-100%);
+        top: 0;
     }
 }
 
@@ -281,6 +285,10 @@ ul.orandda li span a:nth-of-type(2) p {
 .slid_imp_title {
     padding: 36px 0 0 0;
     text-shadow: 0 0 4px rgba(239, 239, 239, 0.4);
+}
+
+.slid_imp_title:nth-child(1) {
+    padding: 0;
 }
 
 .inta dd {
