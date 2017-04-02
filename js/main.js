@@ -717,12 +717,15 @@ var show_app = function(i, t) {
                         show_app(0);
 
                     }, false);
+
                     document.getElementsByClassName('app_leftside')[0].innerHTML = '<br/>zurück zu den anderen Spaziergängen';
+
                     document.getElementsByClassName('app_leftside')[0].style.display = 'inline-block';
 
                     document.getElementsByClassName('app_beside')[0].children[0].innerHTML = 'Clicken Sie auf die Stationen der Karte.';
 
                     document.getElementById('map_canvas').scrollLeft = 420;
+
                     document.getElementById('map_canvas').scrollTop = 220;
 
                     var d = document.getElementsByClassName('pri')[0].getElementsByTagName('div');
@@ -730,6 +733,7 @@ var show_app = function(i, t) {
                     for (var h = 0; h < app_display_data[app_display_data.act_app].img_ix.length; h++) {
 
                         d[h].ix = h;
+
                         d[h].addEventListener('click', function() {
 
                             do_me(app_display_data[app_display_data.act_app].img_ix[this.ix], 'maxfrisch_1_' + parseInt(this.ix + 1));
@@ -758,11 +762,8 @@ var show_app = function(i, t) {
 
                 }
 
-            } else {
-
-                //console.log('eth shit happens');
-
             }
+
         }
 
     });
