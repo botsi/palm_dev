@@ -833,9 +833,8 @@ margin: 0 30px 30px 30px;
     height: 10px;
     background: rgba(255, 0, 0, 1);
     margin-top: calc(180px - 50vh);
-    /*
     visibility: hidden;
-        */
+    /*    */
 }
 
 #chapter_content span.tx {

@@ -877,6 +877,7 @@ var white_head = function() {
 
         for (var i = 0; i < uat.length; i++) {
 
+            // new way
 
             var point = '';
 
@@ -886,13 +887,19 @@ var white_head = function() {
 
                 var point = uat[i].offsetTop + 210 + uat[i].offsetHeight;
 
+                var upoint = 99;
+
             }
 
             if (pre_point > h + window.innerHeight) {
 
                 var point = uat[i].offsetTop + 210;
 
+                var upoint = 11;
+
             }
+
+            console.log(upoint);
 
             if (point == '') {
 
@@ -902,6 +909,7 @@ var white_head = function() {
 
             midpoints.push(point);
 
+            // old way
 
             //midpoints.push(parseInt(uat[i].offsetTop + 210 + uat[i].offsetHeight / 2));
 
