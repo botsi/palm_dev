@@ -1081,7 +1081,7 @@ var preload_images = {
 
                             imageObj.src = 'images/' + dir[preload_images.gia_calls][n] + '/' + f[i];
 
-                            display_prel.innerHTML += '<img src="' + imageObj.src + '" />';
+                            display_prel.innerHTML += '<img src="' + imageObj.src + '" alt="' + f[i].replace('.jpg', '') + '" />';
                         }
 
                         // dir ist object (aufruf folders[chapter] bei toggle_menue)
