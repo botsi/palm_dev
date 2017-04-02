@@ -1347,7 +1347,7 @@ var hit_menue = function(t, ju) {
 
             old_chapter = (typeof ju === 'undefined') ? chapter : ju;
 
-
+            /*
 
             console.log(history.state);
 
@@ -1361,7 +1361,7 @@ var hit_menue = function(t, ju) {
 
             console.log(history.state);
 
-            /**/
+*/
 
 
 
@@ -2152,8 +2152,8 @@ var page_load = function() {
 
 document.addEventListener('DOMContentLoaded', text_load, false);
 
-
+/*
 window.onpopstate = function(event) {
     console.log(history.state);
 };
-/**/
+*/
