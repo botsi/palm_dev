@@ -1072,7 +1072,7 @@ var preload_images = {
 
                                             if (!display_prel.children[alx].alt) {
 
-                                                display_prel.children[alx].alt = display_prel.children[alx].title;
+                                                display_prel.children[alx].alt = display_prel.children[alx].title + ' palma3';
 
                                             }
 
@@ -1092,9 +1092,7 @@ var preload_images = {
 
                             imageObj.src = 'images/' + dir[preload_images.gia_calls][n] + '/' + f[i];
 
-                            var alt_tx = f[i].replace('.jpg', ' palma3')
-
-                            display_prel.innerHTML += '<img src="' + imageObj.src + '" title="' + alt_tx + '" />';
+                            display_prel.innerHTML += '<img src="' + imageObj.src + '" title="' + f[i].replace('.jpg', '') + '" />';
                         }
 
                         // dir ist object (aufruf folders[chapter] bei toggle_menue)
