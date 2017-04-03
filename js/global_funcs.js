@@ -1067,6 +1067,17 @@ var preload_images = {
                                         } else {
                                             hit_menue(0);
                                         }
+
+                                        for (var alx = 0; alx < display_prel.children.length; alx++) {
+
+                                            if (!display_prel.children[alx].alt) {
+
+                                                display_prel.children[alx].alt = display_prel.children[alx].title;
+
+                                            }
+
+                                        }
+
                                         //                                      )
                                         //hit_menue(0);
                                         //jump_to(2, 2);
@@ -1083,7 +1094,7 @@ var preload_images = {
 
                             var alt_tx = f[i].replace('.jpg', ' palma3')
 
-                            display_prel.innerHTML += '<img src="' + imageObj.src + '" alt="' + alt_tx + '" />';
+                            display_prel.innerHTML += '<img src="' + imageObj.src + '" title="' + alt_tx + '" />';
                         }
 
                         // dir ist object (aufruf folders[chapter] bei toggle_menue)
