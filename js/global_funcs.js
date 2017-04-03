@@ -1068,15 +1068,28 @@ var preload_images = {
                                             hit_menue(0);
                                         }
 
+                                        //	SEO stuff
+
+                                        var m_cont = '';
+
                                         for (var alx = 0; alx < display_prel.children.length; alx++) {
 
                                             if (!display_prel.children[alx].alt) {
 
                                                 display_prel.children[alx].alt = display_prel.children[alx].title + ' palma3';
 
+                                                m_cont += display_prel.children[alx].title + ' ';
+
                                             }
 
                                         }
+
+                                        //console.log(m_cont);
+
+                                        var m = document.createElement('meta');
+                                        m.name = 'description';
+                                        m.content = 'botsi code palma ' + m_cont;
+                                        document.head.appendChild(m);
 
                                         //                                      )
                                         //hit_menue(0);
