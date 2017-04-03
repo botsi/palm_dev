@@ -427,6 +427,11 @@ input {
     line-height: 34px;
 }
 
+#chapter_menu span p input {
+    width: 160px;
+    margin: 0 -12px;
+}
+
 h2 {
     font-weight: bold;
     font-size: inherit;
