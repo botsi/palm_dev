@@ -1070,6 +1070,8 @@ var preload_images = {
 
                                         //	SEO stuff
 
+                                        // add alt to images
+
                                         var m_cont = '';
 
                                         for (var alx = 0; alx < display_prel.children.length; alx++) {
@@ -1084,11 +1086,13 @@ var preload_images = {
 
                                         }
 
+                                        // create and add metatag
+
                                         //console.log(m_cont);
 
                                         var m = document.createElement('meta');
                                         m.name = 'description';
-                                        m.content = 'botsi code palma ' + m_cont;
+                                        m.content = 'botsi code palma3 bern ' + m_cont;
                                         document.head.appendChild(m);
 
                                         //                                      )
@@ -1105,7 +1109,7 @@ var preload_images = {
 
                             imageObj.src = 'images/' + dir[preload_images.gia_calls][n] + '/' + f[i];
 
-                            display_prel.innerHTML += '<img src="' + imageObj.src + '" title="' + f[i].replace('.jpg', '') + '" />';
+                            display_prel.innerHTML += (f[i] != 'default.jpg') ? '<img src="' + imageObj.src + '" title="' + f[i].replace('.jpg', '') + '" />' : '';
                         }
 
                         // dir ist object (aufruf folders[chapter] bei toggle_menue)
