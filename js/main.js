@@ -323,9 +323,7 @@ var sub_chapter = function(t) {
 
                 } else {
 
-                    var act_speed = parseInt(el.offsetHeight / 600) + 's';
-
-                    console.log(act_speed);
+                    var act_speed = parseInt(el.offsetHeight / 40) + 's';
 
                     el.style.WebkitAnimationPlayState = 'running';
                     el.style.animationPlayState = 'running';
