@@ -323,7 +323,7 @@ var sub_chapter = function(t) {
 
                 } else {
 
-                    var act_speed = parseInt(el.offsetHeight / 60) + 's';
+                    var act_speed = parseInt(el.offsetHeight / 600) + 's';
 
                     console.log(act_speed);
 
