@@ -1277,15 +1277,16 @@ fade_mov = function(over, dir) {
 size_video = function() {
 
     //vid.width = vid.height = 'auto';
-    vid.aspectRatio = parseInt(vid.offsetWidth / vid.offsetHeight);
+    vid.aspectRatio = vid.offsetWidth / vid.offsetHeight;
 
-
+    console.log('vid.aspectRatio ', vid.aspectRatio);
+    console.log('Width/Height-180 ', window.innerWidth / (window.innerHeight - 180));
     //vid.parentNode.style.left = 0;
     //vid.parentNode.style.top = 180 + 'px';
 
 
     //if (vid.aspectRatio > window.innerWidth / (window.innerHeight - parseInt(180 * window.innerWidth / window.innerHeight))) {
-    if (vid.aspectRatio > parseInt(window.innerWidth / (window.innerHeight - 180))) {
+    if (vid.aspectRatio >= window.innerWidth / (window.innerHeight - 180)) {
 
         vid.style.width = "auto";
 
