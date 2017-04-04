@@ -1195,9 +1195,9 @@ var video_controls = {
 
         this.prev_vid = [chapter, folders[chapter].last_position];
 
-        this.show();
-
         vid.play();
+
+        this.show();
 
     },
     "pause": function() {
@@ -1237,9 +1237,12 @@ var show_video = function(mov_img) {
 
     }
 
-    video_controls.run();
+    setTimeout(function() {
+        video_controls.run();
 
-    fade_mov("hg_media", "in");
+        fade_mov("hg_media", "in");
+    }, 1000);
+
 
 };
 
