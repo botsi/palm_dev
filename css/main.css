@@ -480,6 +480,8 @@ a:active {
     text-decoration: none;
 }
 
+
+/*
 #header_name {
     font-size: 48px;
     margin-top: 14px;
@@ -492,6 +494,7 @@ a:active {
     font-style: italic;
     font-weight: 700;
 }
+*/
 
 #header_palma {
     position: absolute;
@@ -860,7 +863,7 @@ margin: 0 30px 30px 30px;
 #palma_form, #palma_map {
     display: block;
     position: absolute;
-    left: calc(50vw - 192px);
+    margin-left: calc(50vw - 192px);
     width: calc(50vw - 200px);
     height: 360px;
 }
