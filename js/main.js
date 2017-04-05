@@ -2036,7 +2036,7 @@ var text_load = function() {
 
                 //page_load();
 
-                check_webp_feature('lossless', function(result) {
+                check_webp_feature('lossy', function(result) {
                     console.log(result);
                     if (!result) {} else {
                         console.log('i do hg img webp');
