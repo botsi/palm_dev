@@ -2038,7 +2038,11 @@ var text_load = function() {
 
                 check_webp_feature('lossless', function(result) {
                     console.log(result);
+                    if (!result) {} else {
+                        document.getElementById('hg').style.backgroundImage = 'images/webp/sonderausstellungen/donnergrollen_3.webp';
+                    }
                     page_load();
+
                 });
 
             } else {
