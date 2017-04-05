@@ -2034,7 +2034,12 @@ var text_load = function() {
 
                 folders = JSON.parse(xmlhttp.responseText).folders;
 
-                page_load();
+                //page_load();
+
+                check_webp_feature('lossless', function(result) {
+                    console.log(result);
+                    page_load();
+                });
 
             } else {
                 alert('inhalt shit happens');
