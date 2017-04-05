@@ -33,10 +33,10 @@ var check_webp_feature = function(feature, callback) {
     var img = new Image();
     img.onload = function() {
         var result = (img.width > 0) && (img.height > 0);
-        callback(feature, result);
+        callback(result);
     };
     img.onerror = function() {
-        callback(feature, false);
+        callback(false);
     };
     img.src = "data:image/webp;base64," + kTestImages[feature];
 };
