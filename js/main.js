@@ -2036,11 +2036,11 @@ var text_load = function() {
 
                 //page_load();
 
-                check_webp_feature('lossy', function(result) {
+                check_webp_feature('lossless', function(result) {
                     console.log(result);
                     if (!result) {} else {
-                        console.log('i do hg img webp');
-                        document.getElementById('hg').style.backgroundImage = document.getElementById('hg_cover').style.backgroundImage = 'url(images/webp/sonderausstellungen/donnergrollen_3.webp)';
+                        //console.log('i do hg img webp');
+                        //document.getElementById('hg').style.backgroundImage = document.getElementById('hg_cover').style.backgroundImage = 'url(images/webp/sonderausstellungen/donnergrollen_3.webp)';
                     }
                     page_load();
 

@@ -1109,7 +1109,7 @@ var preload_images = {
                                         //console.log(m_cont);
 
                                         var m = document.createElement('meta');
-                                        m.name = 'description';
+                                        m.name = 'keywords';
                                         m.content = 'botsi code palma3 bern ' + m_cont;
                                         document.head.appendChild(m);
 
