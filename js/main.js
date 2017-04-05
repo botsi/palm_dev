@@ -2040,9 +2040,9 @@ var text_load = function() {
                     console.log(result);
                     if (!result) {} else {
                         console.log('i do hg img webp');
-                        document.getElementById('hg').style.backgroundImage = 'url(images/webp/sonderausstellungen/donnergrollen_3.webp)';
+                        document.getElementById('hg').style.backgroundImage = document.getElementById('hg_cover').style.backgroundImage = 'url(images/webp/sonderausstellungen/donnergrollen_3.webp)';
                     }
-                    //page_load();
+                    page_load();
 
                 });
 
