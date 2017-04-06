@@ -2033,6 +2033,7 @@ var text_load = function() {
             if (xmlhttp.status == 200) {
 
                 folders = JSON.parse(xmlhttp.responseText).folders;
+                page_load();
 
                 /*
 
