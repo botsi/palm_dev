@@ -960,7 +960,18 @@ var preload_rest = function(d) {
         if (folders[chapter].data[i].bilder.length > 2) {
             for (var j = 2; j < folders[chapter].data[i].bilder.length; j++) {
                 var imageObj = new Image();
-                imageObj.src = 'images/' + d + '/' + folders[chapter].data[i].comp_name + '_' + j + '.jpg';
+
+                if (img_webp == 'webp') {
+
+                    imageObj.src = 'images/webp/' + d + '/' + folders[chapter].data[i].comp_name + '_' + j + '.webp';
+                    //console.log('i do jpg vs. webp');
+
+                } else {
+
+                    imageObj.src = 'images/' + d + '/' + folders[chapter].data[i].comp_name + '_' + j + '.jpg';
+
+                }
+
             }
 
         }
@@ -1133,7 +1144,7 @@ var preload_images = {
 
                                 display_prel.innerHTML += (f[i] != 'default.jpg') ? '<img src="' + imageObj.src + '" title="' + f[i].replace('.jpg', '') + '" />' : '';
 
-                                console.log('i do jpg vs. webp');
+                                //console.log('i do jpg vs. webp');
 
                             } else {
 
@@ -1176,7 +1187,7 @@ var preload_images = {
 
                                     imageObj.src = 'images/webp/' + dir[n] + '/' + folders[chapter].data[i].comp_name + '_1.webp';
 
-                                    console.log('i do jpg vs. webp');
+                                    //console.log('i do jpg vs. webp');
 
                                 } else {
 
@@ -1200,7 +1211,7 @@ var preload_images = {
 
                                     imageObj.src = 'images/webp/' + dir[n] + '/' + folders[chapter].data[i].comp_name + '_' + arr.length + '.webp';
 
-                                    console.log('i do jpg vs. webp');
+                                    //console.log('i do jpg vs. webp');
 
                                 } else {
 

@@ -1111,13 +1111,36 @@ var change_image = function(img) {
 
     test_imageObj.onload = function() {
 
-        document.getElementById("hg_cover").style.backgroundImage = 'url("images/' + folders[chapter].name + '/' + img + '.jpg")';
+        if (img_webp == 'webp') {
+
+            document.getElementById("hg_cover").style.backgroundImage = 'url("images/webp/' + folders[chapter].name + '/' + img + '.webp")';
+
+            //console.log('i do jpg vs. webp');
+
+        } else {
+
+            document.getElementById("hg_cover").style.backgroundImage = 'url("images/' + folders[chapter].name + '/' + img + '.jpg")';
+
+        }
+
+        //        document.getElementById("hg_cover").style.backgroundImage = 'url("images/' + folders[chapter].name + '/' + img + '.jpg")';
 
         fade_img("hg_cover", "hg");
 
     };
 
-    test_imageObj.src = 'images/' + folders[chapter].name + '/' + img + '.jpg';
+    if (img_webp == 'webp') {
+
+        test_imageObj.src = 'images/webp/' + folders[chapter].name + '/' + img + '.webp';
+        //console.log('i do jpg vs. webp');
+
+    } else {
+
+        test_imageObj.src = 'images/' + folders[chapter].name + '/' + img + '.jpg';
+
+    }
+
+    //test_imageObj.src = 'images/' + folders[chapter].name + '/' + img + '.jpg';
 
 };
 
@@ -2035,7 +2058,7 @@ var text_load = function() {
             if (xmlhttp.status == 200) {
 
                 folders = JSON.parse(xmlhttp.responseText).folders;
-                page_load();
+                //page_load();
 
 
 
