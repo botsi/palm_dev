@@ -6,6 +6,8 @@ var old_chapter = chapter = 0;
 
 var wlh, folders;
 
+var img_webp = '';
+
 var enumerateDaysBetweenDates = function(startDate, endDate) {
     var dates = [],
         currentDate = startDate,
@@ -2035,20 +2037,20 @@ var text_load = function() {
                 folders = JSON.parse(xmlhttp.responseText).folders;
                 page_load();
 
-                /*
+
 
                 check_webp_feature('lossless', function(result) {
                     console.log(result);
-                    if (!result) {} else {
-                        //console.log('i do hg img webp');
-                        //document.getElementById('hg').style.backgroundImage = document.getElementById('hg_cover').style.backgroundImage = 'url(images/webp/sonderausstellungen/donnergrollen_3.webp)';
+                    if (result) {
+                        console.log('i do hg img webp');
+                        img_webp = 'webp';
                     }
 
-                page_load();
+                    page_load();
 
-            });
+                });
 
-						*/
+
 
             } else {
                 alert('inhalt shit happens');

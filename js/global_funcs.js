@@ -1125,9 +1125,25 @@ var preload_images = {
 
                             }
 
-                            imageObj.src = 'images/' + dir[preload_images.gia_calls][n] + '/' + f[i];
+                            //f[i];
 
-                            display_prel.innerHTML += (f[i] != 'default.jpg') ? '<img src="' + imageObj.src + '" title="' + f[i].replace('.jpg', '') + '" />' : '';
+                            if (img_webp == 'webp') {
+
+                                imageObj.src = 'images/webp/' + dir[preload_images.gia_calls][n] + '/' + f[i].replace('.jpg', '.webp');
+
+                                display_prel.innerHTML += (f[i] != 'default.jpg') ? '<img src="' + imageObj.src + '" title="' + f[i].replace('.jpg', '') + '" />' : '';
+
+                                console.log('i do jpg vs. webp');
+
+                            } else {
+
+
+                                imageObj.src = 'images/' + dir[preload_images.gia_calls][n] + '/' + f[i];
+
+                                display_prel.innerHTML += (f[i] != 'default.jpg') ? '<img src="' + imageObj.src + '" title="' + f[i].replace('.jpg', '') + '" />' : '';
+
+                            }
+
                         }
 
                         // dir ist object (aufruf folders[chapter] bei toggle_menue)
@@ -1154,9 +1170,22 @@ var preload_images = {
                                         preload_images.folder_imgs = true;
                                     };
                                 }
-                                imageObj.src = 'images/' + dir[n] + '/' + folders[chapter].data[i].comp_name + '_1.jpg';
+
+
+                                if (img_webp == 'webp') {
+
+                                    imageObj.src = 'images/webp/' + dir[n] + '/' + folders[chapter].data[i].comp_name + '_1.webp';
+
+                                    console.log('i do jpg vs. webp');
+
+                                } else {
+
+                                    imageObj.src = 'images/' + dir[n] + '/' + folders[chapter].data[i].comp_name + '_1.jpg';
+
+                                }
 
                                 display_prel.innerHTML += '<img src="' + imageObj.src + '" />';
+
                             }
 
                             if (arr.length > 1) {
@@ -1166,7 +1195,18 @@ var preload_images = {
                                         preload_images.folder_imgs = true;
                                     };
                                 }
-                                imageObj.src = 'images/' + dir[n] + '/' + folders[chapter].data[i].comp_name + '_' + arr.length + '.jpg';
+
+                                if (img_webp == 'webp') {
+
+                                    imageObj.src = 'images/webp/' + dir[n] + '/' + folders[chapter].data[i].comp_name + '_' + arr.length + '.webp';
+
+                                    console.log('i do jpg vs. webp');
+
+                                } else {
+
+                                    imageObj.src = 'images/' + dir[n] + '/' + folders[chapter].data[i].comp_name + '_' + arr.length + '.jpg';
+
+                                }
 
                                 display_prel.innerHTML += '<img src="' + imageObj.src + '" />';
                             }
