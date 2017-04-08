@@ -6,7 +6,10 @@ var old_chapter = chapter = 0;
 
 var wlh, folders;
 
-var img_webp = '';
+var img_type = {
+    "path": "images/",
+    "ext": ".jpg"
+};
 
 var enumerateDaysBetweenDates = function(startDate, endDate) {
     var dates = [],
@@ -1111,36 +1114,13 @@ var change_image = function(img) {
 
     test_imageObj.onload = function() {
 
-        if (img_webp == 'webp') {
-
-            document.getElementById("hg_cover").style.backgroundImage = 'url("images/webp/' + folders[chapter].name + '/' + img + '.webp")';
-
-            //console.log('i do jpg vs. webp');
-
-        } else {
-
-            document.getElementById("hg_cover").style.backgroundImage = 'url("images/' + folders[chapter].name + '/' + img + '.jpg")';
-
-        }
-
-        //        document.getElementById("hg_cover").style.backgroundImage = 'url("images/' + folders[chapter].name + '/' + img + '.jpg")';
+        document.getElementById("hg_cover").style.backgroundImage = 'url("' + img_type.path + folders[chapter].name + '/' + img + img_type.ext + '")';
 
         fade_img("hg_cover", "hg");
 
     };
 
-    if (img_webp == 'webp') {
-
-        test_imageObj.src = 'images/webp/' + folders[chapter].name + '/' + img + '.webp';
-        //console.log('i do jpg vs. webp');
-
-    } else {
-
-        test_imageObj.src = 'images/' + folders[chapter].name + '/' + img + '.jpg';
-
-    }
-
-    //test_imageObj.src = 'images/' + folders[chapter].name + '/' + img + '.jpg';
+    test_imageObj.src = img_type.path + folders[chapter].name + '/' + img + img_type.ext;
 
 };
 
@@ -2058,15 +2038,17 @@ var text_load = function() {
             if (xmlhttp.status == 200) {
 
                 folders = JSON.parse(xmlhttp.responseText).folders;
-                //page_load();
-
-
 
                 check_webp_feature('lossless', function(result) {
+
                     console.log(result);
+
                     if (result) {
+
                         console.log('i do hg img webp');
-                        img_webp = 'webp';
+
+                        img_type.path = 'images/webp/';
+                        img_type.ext = '.webp';
                     }
 
                     page_load();
@@ -2082,7 +2064,6 @@ var text_load = function() {
     });
 
 };
-
 
 var page_load = function() {
 

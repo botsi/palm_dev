@@ -24,6 +24,7 @@ var isTouchSupported = function() {
 };
 
 var check_webp_feature = function(feature, callback) {
+
     var kTestImages = {
         lossy: "UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA",
         lossless: "UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA==",
@@ -39,6 +40,7 @@ var check_webp_feature = function(feature, callback) {
         callback(false);
     };
     img.src = "data:image/webp;base64," + kTestImages[feature];
+
 };
 
 var shop = {
@@ -959,18 +961,10 @@ var preload_rest = function(d) {
 
         if (folders[chapter].data[i].bilder.length > 2) {
             for (var j = 2; j < folders[chapter].data[i].bilder.length; j++) {
+
                 var imageObj = new Image();
 
-                if (img_webp == 'webp') {
-
-                    imageObj.src = 'images/webp/' + d + '/' + folders[chapter].data[i].comp_name + '_' + j + '.webp';
-                    //console.log('i do jpg vs. webp');
-
-                } else {
-
-                    imageObj.src = 'images/' + d + '/' + folders[chapter].data[i].comp_name + '_' + j + '.jpg';
-
-                }
+                imageObj.src = img_type.path + d + '/' + folders[chapter].data[i].comp_name + '_' + j + img_type.ext;
 
             }
 
@@ -1136,22 +1130,11 @@ var preload_images = {
 
                             }
 
-                            //f[i];
+                            imageObj.src = img_type.path + dir[preload_images.gia_calls][n] + '/' + ((img_type.ext == '.jpg') ? f[i] : f[i].replace('.jpg', img_type.ext));
 
-                            if (img_webp == 'webp') {
+                            if (f[i] != 'default.jpg') {
 
-                                imageObj.src = 'images/webp/' + dir[preload_images.gia_calls][n] + '/' + f[i].replace('.jpg', '.webp');
-
-                                display_prel.innerHTML += (f[i] != 'default.jpg') ? '<img src="' + imageObj.src + '" title="' + f[i].replace('.jpg', '') + '" />' : '';
-
-                                //console.log('i do jpg vs. webp');
-
-                            } else {
-
-
-                                imageObj.src = 'images/' + dir[preload_images.gia_calls][n] + '/' + f[i];
-
-                                display_prel.innerHTML += (f[i] != 'default.jpg') ? '<img src="' + imageObj.src + '" title="' + f[i].replace('.jpg', '') + '" />' : '';
+                                display_prel.innerHTML += '<img src="' + imageObj.src + '" title="' + f[i].replace('.jpg', '') + '" />';
 
                             }
 
@@ -1182,18 +1165,7 @@ var preload_images = {
                                     };
                                 }
 
-
-                                if (img_webp == 'webp') {
-
-                                    imageObj.src = 'images/webp/' + dir[n] + '/' + folders[chapter].data[i].comp_name + '_1.webp';
-
-                                    //console.log('i do jpg vs. webp');
-
-                                } else {
-
-                                    imageObj.src = 'images/' + dir[n] + '/' + folders[chapter].data[i].comp_name + '_1.jpg';
-
-                                }
+                                imageObj.src = img_type.path + dir[n] + '/' + folders[chapter].data[i].comp_name + '_1' + img_type.ext;
 
                                 display_prel.innerHTML += '<img src="' + imageObj.src + '" />';
 
@@ -1207,17 +1179,7 @@ var preload_images = {
                                     };
                                 }
 
-                                if (img_webp == 'webp') {
-
-                                    imageObj.src = 'images/webp/' + dir[n] + '/' + folders[chapter].data[i].comp_name + '_' + arr.length + '.webp';
-
-                                    //console.log('i do jpg vs. webp');
-
-                                } else {
-
-                                    imageObj.src = 'images/' + dir[n] + '/' + folders[chapter].data[i].comp_name + '_' + arr.length + '.jpg';
-
-                                }
+                                imageObj.src = img_type.path + dir[n] + '/' + folders[chapter].data[i].comp_name + '_' + arr.length + img_type.ext;
 
                                 display_prel.innerHTML += '<img src="' + imageObj.src + '" />';
                             }
