@@ -1453,6 +1453,17 @@ var download_pdf = function() {
                     style: 'header'
                 });
             } else {
+
+                var a = d.children[x].getElementsByTagName('a');
+
+                while (a.length) {
+                    var parent = a[0].parentNode;
+                    while (a[0].firstChild) {
+                        parent.insertBefore(a[0].firstChild, a[0]);
+                    }
+                    parent.removeChild(a[0]);
+                }
+
                 tx_arr.push({
                     text: '\n'
                 });
