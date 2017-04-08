@@ -851,13 +851,13 @@ var app_display_data = {
         "img_ix": [1, 4, 8, 12, 14, 18, 21, 27, 31, 35, 39, 41, 45],
         "plc_tx": ['Rosenhof, Brunnen', 'Bodega Española', 'Hotel Storchen', 'Kirche St. Peter', 'Elfuhrgeläute auf der Münsterbrücke', 'Café Terrasse', 'Café Odeon', 'Kronenhalle', 'Stadelhofer Passage, letzte Wohnung von Max Frisch', 'Schauspielhaus Zürich', 'Kantonales Realgymnasium', 'Universität Zürich', 'ETH Zürich'],
         "apendix": function() {
-            return '<p>Wählen sie einen Spaziergang.</p><p><img class="artwork" src="mediaguides/' + app_display_data.act_app + '/app_artwork.jpg" alt="App Artwork" height="175" width="175"></p><p>Diese  App für Smartphones bietet Ihnen:</p><ul><li>drei Stadtspaziergänge durch verschiedene Quartiere der Stadt Zürich</li><li>21 Audiostationen mit  Informationen über Leben und Werk von Max Frisch</li><li>rund 40 Minuten Audioführung</li><li>rund 68 Abbildungen</li><li>GPS-Lokalisierung Ihres Standortes</li><li>kostenlosen Download</li></ul><p>Erhältlich im App Store für iPhones und Google Play Store:</p><p><a href="https://itunes.apple.com/de/app/id573495442?mt=8" target="_blank"><img src="mediaguides/apples-app-store.png" alt="Zum download im App Store" height="70" width="70"></a> <a href="https://play.google.com/store/apps/details?id=com.tatentraeger.maxfrischapp" target="_blank"><img src="mediaguides/google_play.png" alt="Zum download im Google Play Store" height="70" width="217"></a></p>';
+            return '<p>Wählen sie einen Spaziergang.</p><p><img class="artwork" src="mediaguides/' + app_display_data.act_app + '/app_artwork.jpg" alt="App Artwork" height="175" width="175"></p><p>Die  App bietet Ihnen:</p><ul><li>drei Stadtspaziergänge durch verschiedene Quartiere der Stadt Zürich</li><li>21 Audiostationen mit  Informationen über Leben und Werk von Max Frisch</li><li>rund 40 Minuten Audioführung</li><li>rund 68 Abbildungen</li><li>GPS-Lokalisierung Ihres Standortes</li><li>kostenlosen Download</li></ul><p>Erhältlich im App Store für iPhones und Google Play Store:</p><p><a href="https://itunes.apple.com/de/app/id573495442?mt=8" target="_blank"><img src="mediaguides/apples-app-store.png" alt="Zum download im App Store" height="70" width="70"></a> <a href="https://play.google.com/store/apps/details?id=com.tatentraeger.maxfrischapp" target="_blank"><img src="mediaguides/google_play.png" alt="Zum download im Google Play Store" height="70" width="217"></a></p>';
         }
     },
     "monteverita": {
         "img_ix": [1, 3, 4, 15, 9, 18, 13],
         "apendix": function() {
-            return '<p>Wählen sie ein Thema aus der App.</p><p><img class="artwork" src="mediaguides/' + app_display_data.act_app + '/app_artwork.jpg" alt="App Artwork" height="175" width="175"></p><p>Inhalt:</p><ul><li>Audioguide mit historischen Fotografien</li><li>Videoguide von Harald Szeemann und zu Labans Ikosaeder</li><li>Geschichte, Epochen und Persönlichkeiten des Monte Verità</li><li>Der Monte Verità heute</li><li>Gästebuch: Tragen Sie sich ein!</li><li>Persönlichkeitstest: Was für ein Monteveritaner sind Sie?</li></ul><p>In vier Sprachen: ITALIANO, DEUTSCH, ENGLISH, FRANÇAIS</p><p>Erhältlich im App Store für iPhones und Google Play Store:</p><p><a href="https://itunes.apple.com/ch/app/mediaguide-monte-verita/id975156405?l=de&mt=8" target="_blank"><img src="mediaguides/apples-app-store.png" alt="Zum download im App Store" height="70" width="70"></a> <a href="https://play.google.com/store/apps/details?id=org.webatelier.monteverita" target="_blank"><img src="mediaguides/google_play.png" alt="Zum download im Google Play Store" height="70" width="217"></a></p>';
+            return '<p>Wählen sie ein Thema aus der App.</p><p><img class="artwork" src="mediaguides/' + app_display_data.act_app + '/app_artwork.jpg" alt="App Artwork" height="175" width="175"></p><p>Die  App bietet Ihnen:</p><ul><li>Audioguide mit historischen Fotografien</li><li>Videoguide von Harald Szeemann und zu Labans Ikosaeder</li><li>Geschichte, Epochen und Persönlichkeiten des Monte Verità</li><li>Der Monte Verità heute</li><li>Gästebuch</li><li>Persönlichkeitstest: Was für ein Monteveritaner sind Sie?</li><li>Sprachen: Deutsch, Italienisch, Französisch, Englisch</li></ul><p>Erhältlich im App Store für iPhones und Google Play Store:</p><p><a href="https://itunes.apple.com/ch/app/mediaguide-monte-verita/id975156405?l=de&mt=8" target="_blank"><img src="mediaguides/apples-app-store.png" alt="Zum download im App Store" height="70" width="70"></a> <a href="https://play.google.com/store/apps/details?id=org.webatelier.monteverita" target="_blank"><img src="mediaguides/google_play.png" alt="Zum download im Google Play Store" height="70" width="217"></a></p>';
         }
     }
 };
@@ -1422,5 +1422,204 @@ var calc_min_slid_height = function(ecl) {
 var page_reload = function() {
 
     window.location.href = wlh;
+
+};
+
+var base64;
+
+var download_pdf = function() {
+
+
+    var prepare_pdf = function() {
+
+        var c = folders[chapter].data[folders[chapter].last_position]
+
+        var d = document.createElement('div');
+
+        d.innerHTML = c.epilog.Ausstellungskonzept;
+
+        console.log(d.children.length);
+
+        var tx_arr = [];
+
+        for (var x = 0; x < d.children.length; x++) {
+            if (d.children[x].tagName.toLowerCase() == "h2") {
+                tx_arr.push({
+                    text: '\n',
+                    style: 'header'
+                });
+                tx_arr.push({
+                    text: d.children[x].innerHTML,
+                    style: 'header'
+                });
+            } else {
+                tx_arr.push({
+                    text: '\n'
+                });
+                tx_arr.push({
+                    text: '\n'
+                });
+                tx_arr.push({
+                    text: d.children[x].innerHTML
+                });
+                tx_arr.push({
+                    text: '\n'
+                });
+            }
+        }
+
+
+        var docDefinition = {
+            content: [{
+                    image: base64,
+                    width: 520
+                },
+                {
+                    text: tx_arr,
+                    fontSize: 16
+                }
+            ],
+            styles: {
+                header: {
+                    color: '#bc123a',
+                    fontSize: 24,
+                    bold: true
+                }
+            }
+        };
+        pdfMake.createPdf(docDefinition).download(c.comp_name + '.pdf');
+
+
+    };
+
+    if (!pdf_m) {
+
+
+        var m = document.createElement('script');
+
+        m.onload = function() {
+
+            var f = document.createElement('script');
+
+            f.onload = function() {
+
+                var i = document.createElement('script');
+
+                i.onload = function() {
+                    console.log('oki scripts');
+
+                    prepare_pdf();
+
+                };
+
+                i.src = 'images/pdf_head_base64.js';
+
+                document.head.appendChild(i);
+
+            };
+
+            f.src = 'scripts/pdfmake/vfs_fonts.js';
+
+            document.head.appendChild(f);
+        };
+
+        m.src = 'scripts/pdfmake/pdfmake.min.js';
+
+        document.head.appendChild(m);
+
+
+
+
+        pdf_m = true;
+
+    } else {
+
+        prepare_pdf();
+
+    }
+
+    /*
+
+        var c = folders[chapter].data;
+
+        var pr = (c[folders[chapter].last_position].prolog == '') ? '' : '<h2>' + c[folders[chapter].last_position].prolog + '</h2>';
+
+        var str = '<p>' + c[folders[chapter].last_position].name + '</p><p>' + pr + '</p><p>' + c[folders[chapter].last_position].text + '</p><hr/><p>Ausstellungskonzept</p>' + c[folders[chapter].last_position].epilog.Ausstellungskonzept + '<hr/><p>Ausstellungsort</p><p>' + c[folders[chapter].last_position].epilog.Ausstellungsort + '</p>';
+
+        var pre_pdf = document.createElement('div');
+
+        pre_pdf.innerHTML = str;
+
+        pre_pdf.className = 'prepdf';
+
+        document.getElementById('chapter_content').appendChild(pre_pdf);
+
+
+        var el_top = 0;
+
+        var pdf_height = (window.innerWidth < 950) ? 600 : 500;
+
+        var bo = (window.innerWidth < 950) ? 6 : 15;
+
+        var wi = (window.innerWidth < 950) ? 198 : 180;
+
+        for (var ci = 0; ci < pre_pdf.children.length; ci++) {
+
+            if (pre_pdf.children[ci].offsetTop + pre_pdf.children[ci].offsetHeight > el_top + pdf_height) {
+
+                var sp = document.createElement('span');
+
+                sp.className = 'cut';
+
+                pre_pdf.insertBefore(sp, pre_pdf.children[ci]);
+
+                //console.log(pre_pdf.children[ci].offsetTop);
+                el_top += pdf_height;
+            }
+
+        }
+
+        str = pre_pdf.innerHTML;
+
+        document.getElementById('chapter_content').removeChild(pre_pdf);
+
+        pre_pdf = null;
+
+        var str_arr = str.split('<span class="cut"></span>');
+
+        var doc = new jsPDF();
+        var elementHandler = {};
+
+        for (var ai = 0; ai < str_arr.length; ai++) {
+
+            var pre_pdf = document.createElement('div');
+
+            pre_pdf.innerHTML = str_arr[ai];
+
+            pre_pdf.className = 'prepdf';
+
+            document.getElementById('chapter_content').appendChild(pre_pdf);
+
+            if (ai > 0) {
+                doc.addPage();
+            }
+
+            doc.setPage(ai + 1);
+
+            doc.fromHTML(
+                pre_pdf,
+                bo, bo, {
+                    'width': wi,
+                    'elementHandlers': elementHandler
+                });
+
+
+            document.getElementById('chapter_content').removeChild(pre_pdf);
+
+        }
+
+        doc.output("dataurlnewwindow");
+
+    */
 
 };

@@ -1,5 +1,7 @@
 var sivId, fadeinmovId, foimId, speedId;
 
+var pdf_m = false;
+
 var imp_style;
 
 var old_chapter = chapter = 0;
@@ -773,90 +775,6 @@ var show_app = function(i, t) {
 
 };
 
-var download_pdf = function() {
-
-    var c = folders[chapter].data;
-
-    var pr = (c[folders[chapter].last_position].prolog == '') ? '' : '<h2>' + c[folders[chapter].last_position].prolog + '</h2>';
-
-    var str = '<p>' + c[folders[chapter].last_position].name + '</p><p>' + pr + '</p><p>' + c[folders[chapter].last_position].text + '</p><hr/><p>Ausstellungskonzept</p>' + c[folders[chapter].last_position].epilog.Ausstellungskonzept + '<hr/><p>Ausstellungsort</p><p>' + c[folders[chapter].last_position].epilog.Ausstellungsort + '</p>';
-
-    var pre_pdf = document.createElement('div');
-
-    pre_pdf.innerHTML = str;
-
-    pre_pdf.className = 'prepdf';
-
-    document.getElementById('chapter_content').appendChild(pre_pdf);
-
-
-    var el_top = 0;
-
-    var pdf_height = (window.innerWidth < 950) ? 600 : 500;
-
-    var bo = (window.innerWidth < 950) ? 6 : 15;
-
-    var wi = (window.innerWidth < 950) ? 198 : 180;
-
-    for (var ci = 0; ci < pre_pdf.children.length; ci++) {
-
-        if (pre_pdf.children[ci].offsetTop + pre_pdf.children[ci].offsetHeight > el_top + pdf_height) {
-
-            var sp = document.createElement('span');
-
-            sp.className = 'cut';
-
-            pre_pdf.insertBefore(sp, pre_pdf.children[ci]);
-
-            //console.log(pre_pdf.children[ci].offsetTop);
-            el_top += pdf_height;
-        }
-
-    }
-
-    str = pre_pdf.innerHTML;
-
-    document.getElementById('chapter_content').removeChild(pre_pdf);
-
-    pre_pdf = null;
-
-    var str_arr = str.split('<span class="cut"></span>');
-
-    var doc = new jsPDF();
-    var elementHandler = {};
-
-    for (var ai = 0; ai < str_arr.length; ai++) {
-
-        var pre_pdf = document.createElement('div');
-
-        pre_pdf.innerHTML = str_arr[ai];
-
-        pre_pdf.className = 'prepdf';
-
-        document.getElementById('chapter_content').appendChild(pre_pdf);
-
-        if (ai > 0) {
-            doc.addPage();
-        }
-
-        doc.setPage(ai + 1);
-
-        doc.fromHTML(
-            pre_pdf,
-            bo, bo, {
-                'width': wi,
-                'elementHandlers': elementHandler
-            });
-
-
-        document.getElementById('chapter_content').removeChild(pre_pdf);
-
-    }
-
-    doc.output("dataurlnewwindow");
-
-};
-
 var bilder = function() {
 
     var c = folders[chapter].data;
@@ -1513,7 +1431,6 @@ var hit_menue = function(t, ju) {
 
                 if (folders[chapter].last_position == old_scroll_pos) {
 
-
                     change_image(folders[chapter].data[folders[chapter].last_position].comp_name + '_' + folders[chapter].data[folders[chapter].last_position].slid_count);
 
                 }
@@ -2010,6 +1927,8 @@ var arrow = function(e) {
         e = window.event;
 
     }
+
+    console.log(e.keyCode);
 
     if (e.keyCode == 37) {
 
