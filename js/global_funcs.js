@@ -1519,13 +1519,13 @@ var download_pdf = function() {
                 },
                 {
                     text: tx_arr,
-                    fontSize: 14
+                    fontSize: 12
                 }
             ],
             styles: {
                 header: {
                     color: '#bc123a',
-                    fontSize: 22,
+                    fontSize: 20,
                     bold: true
                 }
             }
