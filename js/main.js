@@ -248,6 +248,33 @@ var sub_chapter = function(t) {
             t.parentNode.previousSibling.innerHTML = c[folders[chapter].last_position].epilog[t.innerHTML][0];
             sh_cheese(t.parentNode.parentNode, 0);
             break;
+        case 'Dossier':
+
+            var o = 'Stellen Sie den Inhalt Ihres Dossiers zusammen:<span class="sel_download">';
+
+            for (var xc = 0; xc < t.parentNode.children.length; xc++) {
+
+                if (t.parentNode.children[xc].tagName.toLowerCase() == 'span') {
+                    if (t.parentNode.children[xc].innerHTML == 'Einleitung' || t.parentNode.children[xc].innerHTML == 'Ausstellungskonzept' || t.parentNode.children[xc].innerHTML == 'Orte und Daten' || t.parentNode.children[xc].innerHTML == 'Projektort' || t.parentNode.children[xc].innerHTML == 'Impressum') {
+                        o += '<p><i class="fa fa-check form_check form_check_blue" aria-hidden="true" onclick="select_pdf.addorremove(this)"></i><i class="assign_line"></i></p>';
+
+                        if (c[folders[chapter].last_position].epilog.Dossier.indexOf(t.parentNode.children[xc].innerHTML) == -1) {
+                            c[folders[chapter].last_position].epilog.Dossier.push(t.parentNode.children[xc].innerHTML);
+                        }
+
+                    } else {
+                        o += (t.parentNode.children[xc].innerHTML != 'Dossier') ? '<p>&nbsp;</p>' : '';
+                    }
+
+                }
+            }
+
+            o += '<p><a onclick="select_pdf.collect()">PDF speichern</a></p></span>';
+
+            t.parentNode.previousSibling.innerHTML = o;
+
+            sh_cheese(t.parentNode.parentNode, 0);
+            break;
         case 'Impressum':
 
             if (imp_style == 'old') {
@@ -639,13 +666,13 @@ var inhalt = function(c, i) {
 
         r += (c[i].epilog.Hören) ? '<span onclick="sub_chapter(this)">Hören</span><br/>' : '';
 
-        r += (c[i].epilog.Download) ? '<span onclick="download_pdf()">Download</span><br/>' : '';
-
         r += (c[i].epilog.App) ? '<span onclick="show_app(0,this)">App</span><br/>' : '';
+
+        //r += (c[i].epilog.Dossier) ? '<span onclick="select_pdf(this)">Dossier</span><br/>' : '';
 
         for (var key in c[i].epilog) {
             // || key == 'Autoren'
-            r += (key == 'Film' || key == 'Hören' || key == 'Impressionen' || key == 'Download' || key == 'Info' || key == 'Ausstellungsort' || key == 'App') ? '' : '<span onclick="sub_chapter(this)">' + key + '</span><br/>';
+            r += (key == 'Film' || key == 'Hören' || key == 'Impressionen' || key == 'Info' || key == 'Ausstellungsort' || key == 'App') ? '' : '<span onclick="sub_chapter(this)">' + key + '</span><br/>';
 
         }
 
