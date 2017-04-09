@@ -2,8 +2,6 @@ var sivId, fadeinmovId, foimId, speedId;
 
 var pdf_m = false;
 
-var imp_style;
-
 var old_chapter = chapter = 0;
 
 var wlh, folders;
@@ -237,6 +235,8 @@ var sub_chapter = function(t) {
 
     folders[chapter].data[folders[chapter].last_position].imp_cheese_state = false;
 
+    t.parentNode.previousSibling.style.overflow = 'unset';
+
     switch (t.innerHTML) {
         case 'Einleitung':
         case 'Kontakt':
@@ -250,13 +250,46 @@ var sub_chapter = function(t) {
             break;
         case 'Dossier':
 
+            select_pdf.get_scr();
+
+            t.parentNode.previousSibling.style.overflow = 'visible';
+
             var o = 'Stellen Sie den Inhalt Ihres Dossiers zusammen:<span class="sel_download">';
 
             for (var xc = 0; xc < t.parentNode.children.length; xc++) {
 
                 if (t.parentNode.children[xc].tagName.toLowerCase() == 'span') {
-                    if (t.parentNode.children[xc].innerHTML == 'Einleitung' || t.parentNode.children[xc].innerHTML == 'Ausstellungskonzept' || t.parentNode.children[xc].innerHTML == 'Orte und Daten' || t.parentNode.children[xc].innerHTML == 'Projektort' || t.parentNode.children[xc].innerHTML == 'Impressum') {
-                        o += '<p><i class="fa fa-check form_check form_check_blue" aria-hidden="true" onclick="select_pdf.addorremove(this)"></i><i class="assign_line"></i></p>';
+                    //	 || t.parentNode.children[xc].innerHTML == 'Orte und Daten' || t.parentNode.children[xc].innerHTML == 'Projektort' || t.parentNode.children[xc].innerHTML == 'Impressum'
+                    if (t.parentNode.children[xc].innerHTML == 'Einleitung' || t.parentNode.children[xc].innerHTML == 'Ausstellungskonzept') {
+                        switch (t.parentNode.children[xc].innerHTML) {
+                            case 'Einleitung':
+                                var preview = c[folders[chapter].last_position].prolog.replace(/<br>/g, ' ').replace(/<br\/>/g, ' ').slice(0, 50) + ' ... ';
+                                break;
+                            case 'Ausstellungskonzept':
+                                var preview = c[folders[chapter].last_position].epilog.Ausstellungskonzept.replace(/<h2>/g, '').replace(/<\/h2>/g, ' ').replace(/<p>/g, '').replace(/<\/p>/g, ' ').slice(0, 50) + ' ... ';
+                                break;
+                            case 'Impressum':
+                                var preview = '';
+                                for (var key in c[folders[chapter].last_position].epilog.Impressum) {
+                                    preview += key + ', ';
+                                }
+                                //console.log(c[folders[chapter].last_position].epilog.Impressum);
+                                break;
+                            case 'Orte und Daten':
+                                var preview = '';
+                                //for (var key in c[folders[chapter].last_position].epilog.Impressum) {
+                                //    preview += key + ', ';
+                                //}
+                                console.log(c[folders[chapter].last_position].epilog.Ausstellungsort);
+                                break;
+                            default:
+                                var preview = '';
+                        }
+
+
+                        o += '<p><i class="fa fa-check form_check form_check_blue" aria-hidden="true" onclick="select_pdf.addorremove(this,\'' + t.parentNode.children[xc].innerHTML + '\')"></i><span class="assign_line">' +
+                            preview +
+                            '</span></p>';
 
                         if (c[folders[chapter].last_position].epilog.Dossier.indexOf(t.parentNode.children[xc].innerHTML) == -1) {
                             c[folders[chapter].last_position].epilog.Dossier.push(t.parentNode.children[xc].innerHTML);
@@ -277,103 +310,76 @@ var sub_chapter = function(t) {
             break;
         case 'Impressum':
 
-            if (imp_style == 'old') {
-                t.parentNode.previousSibling.innerHTML = '<dl>';
-                for (var key in c[folders[chapter].last_position].epilog[t.innerHTML]) {
-                    var persons = '';
-                    for (var i = 0; i < c[folders[chapter].last_position].epilog[t.innerHTML][key].length; i++) {
+            folders[chapter].data[folders[chapter].last_position].imp_cheese_state = true;
 
-                        var is_person = false;
+            var sl_ih = '<div class="imp_abs"><div class="imp_slid">';
 
-                        for (var d = 0; d < folders[0].data.length; d++) {
-                            if (folders[0].data[d].name == c[folders[chapter].last_position].epilog[t.innerHTML][key][i].replace(' (palma3)', '')) {
-                                is_person = true;
-                                break;
-                            }
+            for (var key in c[folders[chapter].last_position].epilog[t.innerHTML]) {
+                var persons = '';
+                for (var i = 0; i < c[folders[chapter].last_position].epilog[t.innerHTML][key].length; i++) {
+
+                    var is_person = false;
+
+                    for (var d = 0; d < folders[0].data.length; d++) {
+                        if (folders[0].data[d].name == c[folders[chapter].last_position].epilog[t.innerHTML][key][i].replace(' (palma3)', '')) {
+                            is_person = true;
+                            break;
                         }
-
-                        var is_linked = (is_person) ? '<a onclick="search_nostyle(this)">' + c[folders[chapter].last_position].epilog[t.innerHTML][key][i] + '</a>' : c[folders[chapter].last_position].epilog[t.innerHTML][key][i];
-
-                        persons += '<dd>' + is_linked + '</dd>';
                     }
 
-                    t.parentNode.previousSibling.innerHTML += '<span class="inta"><dt>' + key + '</dt>' + persons + '</span>';
+                    var is_linked = (is_person) ? '<a onclick="search_nostyle(this)">' + c[folders[chapter].last_position].epilog[t.innerHTML][key][i] + '</a>' : c[folders[chapter].last_position].epilog[t.innerHTML][key][i];
+
+                    persons += '<p class="slid_imp_text">' + is_linked + '</p>';
                 }
-                t.parentNode.previousSibling.innerHTML += '</dl>';
+
+                sl_ih += '<p class="slid_imp_title">' + key + '</p>' + persons;
+            }
+
+            sl_ih += '</div></div>';
+
+            var x = t.parentNode.parentNode.offsetWidth;
+            var y = calc_min_slid_height(t.parentNode.children.length);
+
+            if (t.parentNode.parentNode.getElementsByClassName('cheese').length == 1) {
+                t.parentNode.parentNode.removeChild(t.parentNode.parentNode.getElementsByClassName('cheese')[0]);
+            }
+            var ca = document.createElement('canvas');
+            ca.width = x;
+            ca.height = y;
+            ca.className = 'cheese';
+            t.parentNode.parentNode.appendChild(ca);
+
+            t.parentNode.previousSibling.innerHTML = sl_ih;
+
+            var el = t.parentNode.previousSibling.getElementsByClassName('imp_slid')[0];
+
+            el.parentNode.style.margin = '16px 0 10px 0';
+
+            el.parentNode.style.height = y - 110 + 'px';
+
+
+            if (el.offsetHeight < t.parentNode.offsetHeight) {
+                el.classList.remove('imp_slid');
+                //el.classList.add('imp_no_slid');
 
             } else {
 
-                folders[chapter].data[folders[chapter].last_position].imp_cheese_state = true;
+                var act_speed = parseInt(el.offsetHeight / 40) + 's';
 
-                var sl_ih = '<div class="imp_abs"><div class="imp_slid">';
+                el.style.WebkitAnimationPlayState = 'running';
+                el.style.animationPlayState = 'running';
 
-                for (var key in c[folders[chapter].last_position].epilog[t.innerHTML]) {
-                    var persons = '';
-                    for (var i = 0; i < c[folders[chapter].last_position].epilog[t.innerHTML][key].length; i++) {
+                el.style.WebkitAnimationDuration = act_speed;
+                el.style.animationDuration = act_speed;
 
-                        var is_person = false;
-
-                        for (var d = 0; d < folders[0].data.length; d++) {
-                            if (folders[0].data[d].name == c[folders[chapter].last_position].epilog[t.innerHTML][key][i].replace(' (palma3)', '')) {
-                                is_person = true;
-                                break;
-                            }
-                        }
-
-                        var is_linked = (is_person) ? '<a onclick="search_nostyle(this)">' + c[folders[chapter].last_position].epilog[t.innerHTML][key][i] + '</a>' : c[folders[chapter].last_position].epilog[t.innerHTML][key][i];
-
-                        persons += '<p class="slid_imp_text">' + is_linked + '</p>';
-                    }
-
-                    sl_ih += '<p class="slid_imp_title">' + key + '</p>' + persons;
-                }
-
-                sl_ih += '</div></div>';
-
-                var x = t.parentNode.parentNode.offsetWidth;
-                var y = calc_min_slid_height(t.parentNode.children.length);
-
-                if (t.parentNode.parentNode.getElementsByClassName('cheese').length == 1) {
-                    t.parentNode.parentNode.removeChild(t.parentNode.parentNode.getElementsByClassName('cheese')[0]);
-                }
-                var ca = document.createElement('canvas');
-                ca.width = x;
-                ca.height = y;
-                ca.className = 'cheese';
-                t.parentNode.parentNode.appendChild(ca);
-
-                t.parentNode.previousSibling.innerHTML = sl_ih;
-
-                var el = t.parentNode.previousSibling.getElementsByClassName('imp_slid')[0];
-
-                el.parentNode.style.margin = '16px 0 10px 0';
-
-                el.parentNode.style.height = y - 110 + 'px';
-
-
-                if (el.offsetHeight < t.parentNode.offsetHeight) {
-                    el.classList.remove('imp_slid');
-                    //el.classList.add('imp_no_slid');
-
-                } else {
-
-                    var act_speed = parseInt(el.offsetHeight / 40) + 's';
-
-                    el.style.WebkitAnimationPlayState = 'running';
-                    el.style.animationPlayState = 'running';
-
-                    el.style.WebkitAnimationDuration = act_speed;
-                    el.style.animationDuration = act_speed;
-
-                    el.parentNode.addEventListener('mouseup', function() {
-                        toggle_imp_run(el);
-                    }, false);
-
-                }
-
-                sh_cheese(t.parentNode.parentNode, 1);
+                el.parentNode.addEventListener('mouseup', function() {
+                    toggle_imp_run(el);
+                }, false);
 
             }
+
+            sh_cheese(t.parentNode.parentNode, 1);
+
             break;
         default:
 
