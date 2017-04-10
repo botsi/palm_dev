@@ -231,8 +231,8 @@
                             "Videobeiträge Lieblingsorte": ["Schülerinnen und Schüler der Kantonsschule Sarnen", "Teddy Amstad"],
                             "Flugaufnahmen": ["<a href='http://www.luftbild-drohne.ch' target='_blank'>Uwe Siedentopf, Stalden</a>"],
                             "Lektorat und Fachbegleitung": ["Victor Bieri", "Michael Blatter", "Roland Maurer"],
-                            "Ausstellungsbau": ["<a href='http://www.bossbern.ch' target='_blank'>Boss Repro, Bern</a>", "Elionora Amstutz, Ennetbürgen", "Heinz Eberli, Giswil"],
-                            "Schattenspiel": ["Elionora Amstutz, Ennetbürgen"],
+                            "Ausstellungsbau": ["<a href='http://www.bossbern.ch' target='_blank'>Boss Repro, Bern</a>", "Elionora Amstutz, Ennetbürgen", "Heinz Eberli, Giswil"],
+                            "Schattenspiel": ["Elionora Amstutz, Ennetbürgen"],
                             "Gesamtprojektleitung": ["Christian Sidler, Amt für Kultur und Sport Obwalden"]
                         },
                         "Medienberichte": true,
@@ -1014,9 +1014,9 @@
                             "Lektorat und Fachbegleitung": ["Albert Gasser", "Regula Schmid Kelling", "Roland Maurer", "Tino Steinemann"],
                             "Audiovisuelle Medien": ["X-Time Produktionen, Bern"],
                             "Sprecherinnen und Sprecher": ["Isabel Schaerer", "Hans-Peter Treichler", "Paul Day", "Martine Tchang", "Denise Tonella"],
-                            "Tontechnik Audioguide": ["Philipp Treichler, Studio Satyday, Wädenswil"],
+                            "Tontechnik Audioguide": ["Philipp Treichler, Studio Satyday, Wädenswil"],
                             "Programmierung Audioguide": ["Tonwelt Professionel Media GmbH, Berlin"],
-                            "Ausstellungsbau": ["<a href='http://www.bossbern.ch' target='_blank'>Boss Repro, Bern</a>", "Elektro Furrer AG, Sachseln", "Elionora Amstutz, Ennetbürgen", "Glas- und Siebdruck GS AG, Sarnen", "Inventron AG, Alpnach Dorf", "I+M Innenausbau + Möbel AG, Kägiswil", "Maler Hinter, Sachseln", "Neonbosco Leuchtreklamen, Brunnen", "Heinz Eberli, Giswil", "Robert Eberli, Giswil", "Werkstatt95, Sachseln"]
+                            "Ausstellungsbau": ["<a href='http://www.bossbern.ch' target='_blank'>Boss Repro, Bern</a>", "Elektro Furrer AG, Sachseln", "Elionora Amstutz, Ennetbürgen", "Glas- und Siebdruck GS AG, Sarnen", "Inventron AG, Alpnach Dorf", "I+M Innenausbau + Möbel AG, Kägiswil", "Maler Hinter, Sachseln", "Neonbosco Leuchtreklamen, Brunnen", "Heinz Eberli, Giswil", "Robert Eberli, Giswil", "Werkstatt95, Sachseln"]
                         },
                         "Dossier": []
                     }

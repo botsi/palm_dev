@@ -303,7 +303,7 @@ var sub_chapter = function(t) {
 
             }
 
-            o += '<p><a onclick="select_pdf.collect()">PDF speichern</a></p></span>';
+            o += '<p><a onclick="select_pdf.collect()">Download PDF</a></p></span>';
 
             t.parentNode.previousSibling.innerHTML = o;
 
