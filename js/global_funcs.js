@@ -1484,11 +1484,12 @@ var select_pdf = {
             }
 
         }
-        console.log(folders[chapter].data[folders[chapter].last_position].epilog.Dossier.length);
+
     },
     "collect": function() {
-        console.log(folders[chapter].data[folders[chapter].last_position].epilog.Dossier);
-        download_pdf();
+        if (folders[chapter].data[folders[chapter].last_position].epilog.Dossier.length > 0) {
+            download_pdf();
+        }
     }
 };
 
@@ -1588,6 +1589,127 @@ var download_pdf = function() {
                 });
             }
         }
+    }
+
+    if (c.epilog.Dossier.indexOf('Impressum') != -1) {
+        tx_arr.push({
+            text: '\n',
+            style: 'header'
+        }, {
+            text: ' Impressum \n',
+            style: 'header_blue'
+        }, {
+            text: '\n',
+            style: 'header'
+        });
+
+        for (var key in c.epilog.Impressum) {
+
+            var imp_arr = c.epilog.Impressum[key][0].replace(/,/g, '');
+
+            if (c.epilog.Impressum[key].length > 1) {
+                for (var i_a = 1; i_a < c.epilog.Impressum[key].length; i_a++) {
+                    imp_arr += ', ' + c.epilog.Impressum[key][i_a].replace(/,/g, '');
+                }
+            }
+
+            if (imp_arr.indexOf('</a>') != -1) {
+
+                var ia_dump = document.createElement('div');
+
+                ia_dump.innerHTML = imp_arr;
+
+
+                var a = ia_dump.getElementsByTagName('a');
+
+                while (a.length) {
+                    var parent = a[0].parentNode;
+                    while (a[0].firstChild) {
+                        parent.insertBefore(a[0].firstChild, a[0]);
+                    }
+                    parent.removeChild(a[0]);
+                }
+
+                imp_arr = ia_dump.innerHTML;
+
+            }
+
+            tx_arr.push({
+                text: '\n',
+                style: 'header'
+            }, {
+                text: key + '\n',
+                style: 'header'
+            }, {
+                text: '\n',
+                style: 'header'
+            });
+
+            tx_arr.push({
+                text: imp_arr + '\n'
+            });
+            tx_arr.push({
+                text: '\n'
+            });
+
+        }
+
+    }
+
+    if (c.epilog.Dossier.indexOf('Orte und Daten') != -1) {
+        tx_arr.push({
+            text: '\n',
+            style: 'header'
+        }, {
+            text: ' Orte und Daten \n',
+            style: 'header_blue'
+        }, {
+            text: '\n',
+            style: 'header'
+        });
+
+        var d = document.createElement('div');
+
+        d.innerHTML = c.epilog.Ausstellungsort;
+
+        var d_s = d.getElementsByTagName('span');
+
+        var prev_d = 'xyz';
+
+        for (var ds_x = 0; ds_x < d_s.length; ds_x++) {
+
+            if (d_s[ds_x].getElementsByTagName('p')[0].innerHTML != prev_d) {
+
+                tx_arr.push({
+                    text: '\n',
+                    style: 'header'
+                }, {
+                    text: d_s[ds_x].getElementsByTagName('p')[0].innerHTML + '\n',
+                    style: 'header'
+                }, {
+                    text: '\n'
+                });
+            }
+
+            prev_d = d_s[ds_x].getElementsByTagName('p')[0].innerHTML;
+
+            var d_s_p = d_s[ds_x].getElementsByTagName('p')[1].innerHTML + '\n' + d_s[ds_x].getElementsByTagName('p')[2].innerHTML + '\n' + d_s[ds_x].getElementsByTagName('p')[3].innerHTML;
+
+            var d_s_p_l = d_s[ds_x].getElementsByTagName('p')[5].innerHTML;
+
+            tx_arr.push({
+                text: d_s_p + '\n\n'
+            });
+            tx_arr.push({
+                text: d_s_p_l,
+                link: 'http://' + d_s_p_l
+            });
+            tx_arr.push({
+                text: '\n\n\n'
+            });
+
+        }
+
     }
 
     tx_arr.push({

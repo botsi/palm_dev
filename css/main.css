@@ -859,7 +859,7 @@ margin: 0 30px 30px 30px;
 }
 
 #chapter_content span.sel_download .assign_line {
-    width: 100%;
+    width: calc(100% - 68px);
     height: 20px;
     line-height: 20px;
     font-size: 16px;

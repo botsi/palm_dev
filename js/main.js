@@ -256,50 +256,51 @@ var sub_chapter = function(t) {
 
             var o = 'Stellen Sie den Inhalt Ihres Dossiers zusammen:<span class="sel_download">';
 
-            for (var xc = 0; xc < t.parentNode.children.length; xc++) {
+            var epi_chi = t.parentNode.getElementsByTagName('span');
 
-                if (t.parentNode.children[xc].tagName.toLowerCase() == 'span') {
-                    //	 || t.parentNode.children[xc].innerHTML == 'Orte und Daten' || t.parentNode.children[xc].innerHTML == 'Projektort' || t.parentNode.children[xc].innerHTML == 'Impressum'
-                    if (t.parentNode.children[xc].innerHTML == 'Einleitung' || t.parentNode.children[xc].innerHTML == 'Ausstellungskonzept' || t.parentNode.children[xc].innerHTML == 'Orte und Daten') {
-                        switch (t.parentNode.children[xc].innerHTML) {
-                            case 'Einleitung':
-                                var preview = c[folders[chapter].last_position].prolog.replace(/<br>/g, ' ').replace(/<br\/>/g, ' ').slice(0, 50) + ' ... ';
+            for (var xc = 0; xc < epi_chi.length; xc++) {
+
+                var preview = '';
+
+                switch (true) {
+                    case (epi_chi[xc].innerHTML == 'Einleitung'):
+                        preview = c[folders[chapter].last_position].prolog.replace(/<br>/g, ' ').replace(/<br\/>/g, ' ').slice(0, 50) + ' ... ';
+                        break;
+                    case (epi_chi[xc].innerHTML == 'Ausstellungskonzept'):
+                        preview = c[folders[chapter].last_position].epilog.Ausstellungskonzept.replace(/<h2>/g, '').replace(/<\/h2>/g, ' ').replace(/<p>/g, '').replace(/<\/p>/g, ' ').slice(0, 50) + ' ... ';
+                        break;
+                    case (epi_chi[xc].innerHTML == 'Impressum'):
+                        var count_p = 0;
+                        for (var key in c[folders[chapter].last_position].epilog.Impressum) {
+                            count_p++;
+                            if (count_p < 3) {
+                                preview += key + ', ';
+                            } else {
+                                preview += key + ' ... ';
                                 break;
-                            case 'Ausstellungskonzept':
-                                var preview = c[folders[chapter].last_position].epilog.Ausstellungskonzept.replace(/<h2>/g, '').replace(/<\/h2>/g, ' ').replace(/<p>/g, '').replace(/<\/p>/g, ' ').slice(0, 50) + ' ... ';
-                                break;
-                            case 'Impressum':
-                                var preview = '';
-                                for (var key in c[folders[chapter].last_position].epilog.Impressum) {
-                                    preview += key + ', ';
-                                }
-                                //console.log(c[folders[chapter].last_position].epilog.Impressum);
-                                break;
-                            case 'Orte und Daten':
-                                var preview = ' ... ';
-                                //for (var key in c[folders[chapter].last_position].epilog.Impressum) {
-                                //    preview += key + ', ';
-                                //}
-                                console.log(c[folders[chapter].last_position].epilog.Ausstellungsort);
-                                break;
-                            default:
-                                var preview = '';
+                            }
                         }
-
-
-                        o += '<p><i class="fa fa-check form_check form_check_blue" aria-hidden="true" onclick="select_pdf.addorremove(this,\'' + t.parentNode.children[xc].innerHTML + '\')"></i><span class="assign_line">' +
-                            preview +
-                            '</span></p>';
-
-                        if (c[folders[chapter].last_position].epilog.Dossier.indexOf(t.parentNode.children[xc].innerHTML) == -1) {
-                            c[folders[chapter].last_position].epilog.Dossier.push(t.parentNode.children[xc].innerHTML);
-                        }
-
-                    } else {
-                        o += (t.parentNode.children[xc].innerHTML != 'Dossier') ? '<p>&nbsp;</p>' : '';
-                    }
-
+                        break;
+                    case (epi_chi[xc].innerHTML == 'Orte und Daten'):
+                        var dp = document.createElement('div');
+                        dp.innerHTML = c[folders[chapter].last_position].epilog.Ausstellungsort;
+                        var dp_p = dp.getElementsByTagName('p');
+                        preview = dp_p[1].innerHTML + ' ' + dp_p[3].innerHTML.slice(5) + ', ' + adjustments_de.monthNames[c[folders[chapter].last_position].time.from[1] - 1] + ' ' + c[folders[chapter].last_position].time.from[2] + ' ... ';
+                        break;
                 }
+
+                if (preview != '') {
+                    o += '<p><i class="fa fa-check form_check form_check_blue" aria-hidden="true" onclick="select_pdf.addorremove(this,\'' + epi_chi[xc].innerHTML + '\')"></i><span class="assign_line">' +
+                        preview +
+                        '</span></p>';
+
+                    if (c[folders[chapter].last_position].epilog.Dossier.indexOf(epi_chi[xc].innerHTML) == -1) {
+                        c[folders[chapter].last_position].epilog.Dossier.push(epi_chi[xc].innerHTML);
+                    }
+                } else {
+                    o += (epi_chi[xc].innerHTML != 'Dossier') ? '<p>&nbsp;</p>' : '';
+                }
+
             }
 
             o += '<p><a onclick="select_pdf.collect()">PDF speichern</a></p></span>';
