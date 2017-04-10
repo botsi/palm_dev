@@ -1486,7 +1486,7 @@ var select_pdf = {
         }
 
         t.parentNode.parentNode.lastChild.style.opacity = (folders[chapter].data[folders[chapter].last_position].epilog.Dossier.length == 0) ? 0.2 : 1;
-        t.parentNode.parentNode.lastChild.style.cursor = (folders[chapter].data[folders[chapter].last_position].epilog.Dossier.length == 0) ? 'default' : 'pointer';
+        t.parentNode.parentNode.lastChild.children[0].style.cursor = (folders[chapter].data[folders[chapter].last_position].epilog.Dossier.length == 0) ? 'default' : 'pointer';
 
     },
     "collect": function() {
