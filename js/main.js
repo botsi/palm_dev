@@ -260,7 +260,7 @@ var sub_chapter = function(t) {
 
                 if (t.parentNode.children[xc].tagName.toLowerCase() == 'span') {
                     //	 || t.parentNode.children[xc].innerHTML == 'Orte und Daten' || t.parentNode.children[xc].innerHTML == 'Projektort' || t.parentNode.children[xc].innerHTML == 'Impressum'
-                    if (t.parentNode.children[xc].innerHTML == 'Einleitung' || t.parentNode.children[xc].innerHTML == 'Ausstellungskonzept') {
+                    if (t.parentNode.children[xc].innerHTML == 'Einleitung' || t.parentNode.children[xc].innerHTML == 'Ausstellungskonzept' || t.parentNode.children[xc].innerHTML == 'Orte und Daten') {
                         switch (t.parentNode.children[xc].innerHTML) {
                             case 'Einleitung':
                                 var preview = c[folders[chapter].last_position].prolog.replace(/<br>/g, ' ').replace(/<br\/>/g, ' ').slice(0, 50) + ' ... ';
@@ -276,7 +276,7 @@ var sub_chapter = function(t) {
                                 //console.log(c[folders[chapter].last_position].epilog.Impressum);
                                 break;
                             case 'Orte und Daten':
-                                var preview = '';
+                                var preview = ' ... ';
                                 //for (var key in c[folders[chapter].last_position].epilog.Impressum) {
                                 //    preview += key + ', ';
                                 //}
