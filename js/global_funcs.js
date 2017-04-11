@@ -1500,24 +1500,26 @@ var select_pdf = {
 
         dump.innerHTML = str;
 
-        var x = dump.getElementsByTagName(tag);
-
-        while (x.length) {
-            var parent = x[0].parentNode;
-            while (x[0].firstChild) {
-                parent.insertBefore(x[0].firstChild, x[0]);
-            }
-            parent.removeChild(x[0]);
-        }
-
-
         if (Array.isArray(apendix)) {
-            dump.innerHTML = (function() {
-                return dump.innerHTML.replace(/<\/strong>/g, '\n\n').replace(/<strong>/g, '\n\n').replace(/<\/p>/g, '\n');
+
+            return (function() {
+                return dump.innerHTML.replace(/<\/strong>/g, '\n\n').replace(/<strong>/g, '\n\n').replace(/<\/p>/g, '\n').split('<p>');
             }());
-            return dump.innerHTML.split('<p>');
+
         } else {
+
+            var x = dump.getElementsByTagName(tag);
+
+            while (x.length) {
+                var parent = x[0].parentNode;
+                while (x[0].firstChild) {
+                    parent.insertBefore(x[0].firstChild, x[0]);
+                }
+                parent.removeChild(x[0]);
+            }
+
             return dump.innerHTML;
+
         }
     }
 };
@@ -1589,8 +1591,6 @@ var download_pdf = function() {
 
         }
 
-
-
         tx_arr.push({
             text: ein_txt.replace(/<br>/g, '\n').replace(/<br\/>/g, '\n') + '\n'
         }, {
@@ -1651,6 +1651,7 @@ var download_pdf = function() {
                             text: dx[r] + '\n'
                         });
                     }
+
                 } else {
 
                     tx_arr.push({

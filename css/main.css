@@ -608,7 +608,7 @@ div.epilog span {
 
 #chapter_menu p {
     padding: 0 12px;
-    background: rgba(141, 170, 212, 0.9);
+    background: rgba(141, 170, 212, 1);
     cursor: pointer;
 }
 
