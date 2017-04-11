@@ -1580,7 +1580,7 @@ var select_pdf = {
         if (Array.isArray(apendix)) {
 
             return (function() {
-                return dump.innerHTML.replace(/<\/strong>/g, '\n\n').replace(/<strong>/g, '\n\n').replace(/<\/p>/g, '\n').split('<p>');
+                return dump.innerHTML.replace(/<\/strong>/g, '\n').replace(/<strong>/g, '\n\n').replace(/<\/p>/g, '\n').split('<p>');
             }());
 
         } else {
@@ -1731,7 +1731,7 @@ var download_pdf = function() {
 
                     for (var r = 0; r < dx.length; r++) {
                         tx_arr.push({
-                            text: dx[r]
+                            text: dx[r] + '\n'
                         });
                     }
 
