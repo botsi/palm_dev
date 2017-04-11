@@ -1518,6 +1518,12 @@ var select_pdf = {
                 parent.removeChild(x[0]);
             }
 
+            if (tag == 'a' && dump.innerHTML.indexOf('&amp;') != -1) {
+
+                dump.innerHTML = dump.innerHTML.replace(/\&amp\;/g, 'and');
+
+            }
+
             return dump.innerHTML;
 
         }
