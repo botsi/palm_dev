@@ -1,16 +1,4 @@
 @charset "UTF-8";
-@font-face {
-    /*
-    font-family: 'Schrift';
-	font-style: normal;
-	font-weight:lighter;
-    src: url('schrift/schrift.ttf');
-
-		<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet">
-
-*/
-}
-
 @-moz-keyframes fadein {
     0% {
         opacity: 0;
@@ -851,14 +839,16 @@ div.epilog span {
 
 #chapter_content span.sel_download .assign_line {
     width: calc(100% - 68px);
-    height: 20px;
+    max-height: 20px;
     line-height: 20px;
     font-size: 16px;
     border-bottom: #ccc 1px solid;
     margin-left: 36px;
     position: absolute;
-    /*
     overflow: hidden;
+    /*
+    height: 20px;
+    white-space: nowrap;
 */
 }
 

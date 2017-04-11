@@ -991,7 +991,7 @@ var load_media = function() {
 
                 for (var key in obj) {
 
-                    var a = (isNaN(key)) ? 'href="' + u + key + '.pdf" target="_blank"' : 'onclick="parent_media(this,' + key + ')"';
+                    var a = (isNaN(key)) ? 'href="' + u + key + '.pdf" download="' + folders[chapter].data[folders[chapter].last_position].name.replace(/\./g, "").replace(/\!/g, "").replace(/\?/g, "").replace(/\,/g, "_").replace(/ /g, "_") + '_' + obj[key][1].replace(/ /g, "_") + '_' + obj[key][2].replace(/ /g, "_") + '.pdf"' : 'onclick="parent_media(this,' + key + ')"';
 
                     switch (obj[key][3].toLowerCase()) {
                         case 'pdf':
@@ -1030,7 +1030,7 @@ var change_image = function(img) {
 
     if (folders[chapter].data[folders[chapter].last_position].epilog.Medienberichte && folders[chapter].data[folders[chapter].last_position].epilog.Medienberichte === true) {
 
-        //console.log('iload media');
+        console.log('iload media 1033');
 
         load_media();
 
