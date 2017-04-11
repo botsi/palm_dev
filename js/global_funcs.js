@@ -1,4 +1,4 @@
-var adjustments_de = {
+adjustments_de = {
 
     dayNames: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"],
     dayNamesMin: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
@@ -106,7 +106,7 @@ var shop = {
     "preSendData": function() {
         if (shop.valid) {
             console.log(shop.items, shop.order_total.replace('Meine Bestellung: ', '').replace('Versandkosten: ', '').replace('Summe: ', ''), "order_sum: " + shop.order_sum);
-            sendData(Object.assign({}, shop.fields, {
+            loadXMLDoc(Object.assign({}, shop.fields, {
                 "order_text": shop.order_total.replace('Meine Bestellung: ', '').replace('Versandkosten: ', '').replace('Summe: ', ''),
                 "order_sum": shop.order_sum
             }));
@@ -938,15 +938,60 @@ function draw_centro_mv_img(tx, bg) {
 };
 
 
-function loadXMLDoc(url, cfunc) {
+function loadXMLDoc(ud, cfunc) {
 
     xmlhttp = new XMLHttpRequest();
 
-    xmlhttp.onreadystatechange = cfunc;
+    if (typeof cfunc !== 'undefined') {
 
-    xmlhttp.open("GET", url, true);
+        xmlhttp.onreadystatechange = cfunc;
 
-    xmlhttp.send();
+        xmlhttp.open("GET", ud, true);
+
+    } else {
+
+        var urlEncodedData = "";
+        var urlEncodedDataPairs = [];
+        var name;
+
+        // Turn the data object into an array of URL-encoded key/value pairs.
+        for (name in ud) {
+            urlEncodedDataPairs.push(encodeURIComponent(name) + '=' + encodeURIComponent(ud[name]));
+        }
+
+        // Combine the pairs into a single string and replace all %-encoded spaces to
+        // the '+' character; matches the behaviour of browser form submissions.
+        urlEncodedData = urlEncodedDataPairs.join('&').replace(/%20/g, '+');
+
+        // Define what happens on successful data submission
+        xmlhttp.addEventListener('load', function(event) {
+
+            //for (l in event.target.responseText) {
+            //ih += folders[i].ud[l].name + '<br/><br/><span style="margin-left:24px;">' + folders[i].ud[l].search.toString().replace(/,/g, ' / ') + '</span><br/><br/><br/><br/>';
+            console.log(event.target.responseText);
+
+            shop.display(true);
+
+            //}
+
+
+        });
+
+        // Define what happens in case of error
+        xmlhttp.addEventListener('error', function(event) {
+            alert('Oups! Something goes wrong.');
+        });
+
+        // Set up our request
+        xmlhttp.open('POST', 'scripts/sendmail.php');
+
+        // Add the required HTTP header for form data POST requests
+        xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    }
+
+    // Finally, send our data.
+    xmlhttp.send(urlEncodedData);
 
 }
 
