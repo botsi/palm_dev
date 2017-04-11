@@ -1493,6 +1493,30 @@ var select_pdf = {
         if (folders[chapter].data[folders[chapter].last_position].epilog.Dossier.length > 0) {
             download_pdf();
         }
+    },
+    "cleanup": function(str, tag, apendix) {
+
+        var dump = document.createElement('div');
+
+        dump.innerHTML = str;
+
+        var x = dump.getElementsByTagName(tag);
+
+        while (x.length) {
+            var parent = x[0].parentNode;
+            while (x[0].firstChild) {
+                parent.insertBefore(x[0].firstChild, x[0]);
+            }
+            parent.removeChild(x[0]);
+        }
+
+
+        if (Array.isArray(apendix)) {
+            dump.innerHTML = dump.innerHTML.replace(/<\/strong>/g, '\n\n').replace(/<strong>/g, '\n\n');
+            return dump.innerHTML.replace(/<\/p>/g, '').split('<p>');
+        } else {
+            return dump.innerHTML;
+        }
     }
 };
 
@@ -1503,6 +1527,9 @@ var download_pdf = function() {
     var c = folders[chapter].data[folders[chapter].last_position]
 
     var tx_arr = [{
+            image: base64,
+            width: 520
+        }, {
             text: '\n',
             style: 'header'
         },
@@ -1518,11 +1545,13 @@ var download_pdf = function() {
     ];
 
     if (c.epilog.Dossier.indexOf('Einleitung') != -1) {
+
+
         tx_arr.push({
             text: '\n',
             style: 'header'
         }, {
-            text: ' Einleitung \n',
+            text: '  Einleitung  \n',
             style: 'header_blue'
         }, {
             text: '\n',
@@ -1533,8 +1562,35 @@ var download_pdf = function() {
         }, {
             text: '\n',
             style: 'header'
-        }, {
-            text: c.text.replace(/<br>/g, '\n').replace(/<br\/>/g, '\n') + '\n'
+        });
+
+        var ein_txt = c.text;
+
+        if (ein_txt.indexOf('</a>') != -1) {
+
+            var ia_dump = document.createElement('div');
+
+            ia_dump.innerHTML = ein_txt;
+
+
+            var a = ia_dump.getElementsByTagName('a');
+
+            while (a.length) {
+                var parent = a[0].parentNode;
+                while (a[0].firstChild) {
+                    parent.insertBefore(a[0].firstChild, a[0]);
+                }
+                parent.removeChild(a[0]);
+            }
+
+            ein_txt = ia_dump.innerHTML;
+
+        }
+
+
+
+        tx_arr.push({
+            text: ein_txt.replace(/<br>/g, '\n').replace(/<br\/>/g, '\n') + '\n'
         }, {
             text: '\n',
             style: 'header'
@@ -1545,7 +1601,7 @@ var download_pdf = function() {
             text: '\n',
             style: 'header'
         }, {
-            text: ' Ausstellungskonzept \n',
+            text: '  Ausstellungskonzept  \n',
             style: 'header_blue'
         }, {
             text: '\n',
@@ -1568,25 +1624,39 @@ var download_pdf = function() {
                 });
             } else {
 
-                var a = d.children[x].getElementsByTagName('a');
+                tx_arr.push({
+                    text: '\n\n'
+                });
 
-                while (a.length) {
-                    var parent = a[0].parentNode;
-                    while (a[0].firstChild) {
-                        parent.insertBefore(a[0].firstChild, a[0]);
+                var dx = d.children[x].innerHTML;
+
+                dx = (function() {
+                    return select_pdf.cleanup(dx, 'a');
+                }());
+
+                dx = (function() {
+                    return select_pdf.cleanup(dx, 'li');
+                }());
+
+                if (dx.indexOf('</p>') != -1) {
+
+                    dx = (function() {
+                        return select_pdf.cleanup(dx, 'p', []);
+                    }());
+
+                    for (var r = 0; r < dx.length; r++) {
+                        tx_arr.push({
+                            text: dx[r] + '\n'
+                        });
                     }
-                    parent.removeChild(a[0]);
+                } else {
+
+                    tx_arr.push({
+                        text: dx.replace(/<br>/g, '\n').replace(/<br\/>/g, '\n')
+                    });
+
                 }
 
-                tx_arr.push({
-                    text: '\n'
-                });
-                tx_arr.push({
-                    text: '\n'
-                });
-                tx_arr.push({
-                    text: d.children[x].innerHTML.replace(/<br>/g, '\n').replace(/<br\/>/g, '\n')
-                });
                 tx_arr.push({
                     text: '\n'
                 });
@@ -1599,7 +1669,7 @@ var download_pdf = function() {
             text: '\n',
             style: 'header'
         }, {
-            text: ' Impressum \n',
+            text: '  Impressum  \n',
             style: 'header_blue'
         }, {
             text: '\n',
@@ -1618,22 +1688,7 @@ var download_pdf = function() {
 
             if (imp_arr.indexOf('</a>') != -1) {
 
-                var ia_dump = document.createElement('div');
-
-                ia_dump.innerHTML = imp_arr;
-
-
-                var a = ia_dump.getElementsByTagName('a');
-
-                while (a.length) {
-                    var parent = a[0].parentNode;
-                    while (a[0].firstChild) {
-                        parent.insertBefore(a[0].firstChild, a[0]);
-                    }
-                    parent.removeChild(a[0]);
-                }
-
-                imp_arr = ia_dump.innerHTML;
+                imp_arr = select_pdf.cleanup(imp_arr, 'a');
 
             }
 
@@ -1664,7 +1719,7 @@ var download_pdf = function() {
             text: '\n',
             style: 'header'
         }, {
-            text: ' Orte und Daten \n',
+            text: '  Orte und Daten  \n',
             style: 'header_blue'
         }, {
             text: '\n',
@@ -1698,17 +1753,20 @@ var download_pdf = function() {
 
             var d_s_p = d_s[ds_x].getElementsByTagName('p')[1].innerHTML + '\n' + d_s[ds_x].getElementsByTagName('p')[2].innerHTML + '\n' + d_s[ds_x].getElementsByTagName('p')[3].innerHTML;
 
-            var d_s_p_l = d_s[ds_x].getElementsByTagName('p')[5].innerHTML;
-
             tx_arr.push({
                 text: d_s_p + '\n\n'
             });
+
+            if (d_s[ds_x].getElementsByTagName('p').length > 5) {
+                var d_s_p_l = d_s[ds_x].getElementsByTagName('p')[5].innerHTML;
+                tx_arr.push({
+                    text: d_s_p_l + '\n\n',
+                    link: 'http://' + d_s_p_l
+                });
+            }
+
             tx_arr.push({
-                text: d_s_p_l,
-                link: 'http://' + d_s_p_l
-            });
-            tx_arr.push({
-                text: '\n\n\n'
+                text: '\n'
             });
 
         }
@@ -1719,9 +1777,7 @@ var download_pdf = function() {
         text: '\n',
         style: 'header'
     }, {
-        text: '© 2017 | '
-    }, {
-        text: 'www.palma3.ch',
+        text: '© 2017 | www.palma3.ch',
         link: 'http://www.palma3.ch/new_palma/?' + c.comp_name
     }, {
         text: '\n',
@@ -1729,15 +1785,8 @@ var download_pdf = function() {
     });
 
     var docDefinition = {
-        content: [{
-                image: base64,
-                width: 520
-            },
-            {
-                text: tx_arr,
-                fontSize: 12
-            }
-        ],
+        pageSize: 'A4',
+        content: tx_arr,
         styles: {
             header: {
                 color: '#bc123a',
@@ -1747,7 +1796,7 @@ var download_pdf = function() {
             header_blue: {
                 color: '#fff',
                 background: '#8daad4',
-                alignment: 'center',
+                margin: [8, 0, 0, 0],
                 fontSize: 16
             }
         }

@@ -151,10 +151,6 @@ html, body {
 }
 
 body {
-    /*
-	font-family: 'Cormorant Garamond', Arial, Helvetica, sans-serif;
-    font-weight: lighter;
-*/
     font-family: 'Abel', 'News Cycle', Arial, Helvetica, sans-serif;
     font-size: 16px;
     color: #333;
@@ -668,7 +664,7 @@ div.epilog span {
 }
 
 #chapter_content span.ueandtx {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
     display: flex;
     font-size: 18px;
     line-height: 36px;
@@ -676,11 +672,6 @@ div.epilog span {
     padding: 12px 8px;
     width: calc(100% - 276px);
     margin: 0 130px 30px 130px;
-    /*org*/
-    /*
-width: calc(100% - 76px);
-margin: 0 30px 30px 30px;
-*/
 }
 
 #chapter_content span.ueandtx:nth-last-of-type(1) {
