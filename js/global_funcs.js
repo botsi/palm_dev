@@ -1512,8 +1512,8 @@ var select_pdf = {
 
 
         if (Array.isArray(apendix)) {
-            dump.innerHTML = dump.innerHTML.replace(/<\/strong>/g, '\n\n').replace(/<strong>/g, '\n\n');
-            return dump.innerHTML.replace(/<\/p>/g, '\n').split('<p>');
+            dump.innerHTML = dump.innerHTML.replace(/<\/strong>/g, '\n\n').replace(/<strong>/g, '\n\n').replace(/<\/p>/g, '\n');
+            return dump.innerHTML.split('<p>');
         } else {
             return dump.innerHTML;
         }
