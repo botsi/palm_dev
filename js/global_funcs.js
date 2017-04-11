@@ -1,3 +1,20 @@
+//	spaghetti turn	(for ie)
+
+var mergeObjects = function() {
+    var resObj = {};
+    for (var i = 0; i < arguments.length; i += 1) {
+        var obj = arguments[i],
+            keys = Object.keys(obj);
+        for (var j = 0; j < keys.length; j += 1) {
+            resObj[keys[j]] = obj[keys[j]];
+        }
+    }
+    return resObj;
+};
+
+//	end spaghetti turn
+
+
 adjustments_de = {
 
     dayNames: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"],
@@ -106,10 +123,25 @@ var shop = {
     "preSendData": function() {
         if (shop.valid) {
             console.log(shop.items, shop.order_total.replace('Meine Bestellung: ', '').replace('Versandkosten: ', '').replace('Summe: ', ''), "order_sum: " + shop.order_sum);
+
+            /*
+            //	modern way	(ie sucks)
+
             loadXMLDoc(Object.assign({}, shop.fields, {
                 "order_text": shop.order_total.replace('Meine Bestellung: ', '').replace('Versandkosten: ', '').replace('Summe: ', ''),
                 "order_sum": shop.order_sum
             }));
+
+            */
+            //	spaghetti turn	(ie works)
+
+            loadXMLDoc(mergeObjects(shop.fields, {
+                "order_text": shop.order_total.replace('Meine Bestellung: ', '').replace('Versandkosten: ', '').replace('Summe: ', ''),
+                "order_sum": shop.order_sum
+            }));
+
+            //	end spaghetti vs. modern
+
         }
     },
     "work": function(t) {
