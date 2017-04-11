@@ -1731,7 +1731,7 @@ var download_pdf = function() {
 
                     for (var r = 0; r < dx.length; r++) {
                         tx_arr.push({
-                            text: dx[r] + '\n'
+                            text: dx[r]
                         });
                     }
 

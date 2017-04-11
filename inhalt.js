@@ -746,7 +746,7 @@
                             "Projektleiter und Co-Kurator": ["Jürg Spichiger (palma3)"],
                             "Szenografie und Gestaltung": ["<a href='http://www.thomashirter.ch' target='_blank'>Thomas Hirter</a>", "Andrea Stebler"],
                             "Fotos": ["Christof Hirtler"],
-                            "Unterstützt von": ["Bundesamt für Raumentwicklung ARE", "Bundesamt für Umwelt BAFU", "Bundesamt für Wohnungswesen BWO", "Fonds Landschaft Schweiz", "Stiftung Landschaftsschutz Schweiz", "Sophie und Karl Binding Stiftung", "Jubiläumsstiftung der Schweizerischen Mobiliar Genossenschaft"]
+                            "Unterstützt von": ["Bundesamt für Raumentwicklung ARE", "Bundesamt für Umwelt BAFU", "Bundesamt für Wohnungswesen BWO", "Fonds Landschaft Schweiz", "Stiftung Landschaftsschutz Schweiz", "Sophie und Karl Binding Stiftung", "Jubiläumsstiftung der Schweizerischen Mobiliar Genossenschaft"]
                         },
                         "Medienberichte": true,
                         "Ausstellungsort": [
