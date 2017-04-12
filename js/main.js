@@ -303,7 +303,7 @@ var sub_chapter = function(t) {
 
             }
 
-            o += '<p><a onclick="select_pdf.collect()">Download PDF</a></p></span>';
+            o += '<p><a onclick="select_pdf.collect()">Download PDF</a><span class="alert_line"><i class="fa fa-exclamation-circle form_check form_check_alert" aria-hidden="true"></i>Dossier so bereits heruntergeladen!</span></p></span>';
 
             t.parentNode.previousSibling.innerHTML = o;
 

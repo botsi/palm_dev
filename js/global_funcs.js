@@ -1503,6 +1503,7 @@ var page_reload = function() {
 };
 
 var select_pdf = {
+    "log": [],
     "get_scr": function() {
         if (!pdf_m) {
 
@@ -1562,12 +1563,32 @@ var select_pdf = {
 
         }
 
+        var apx = folders[chapter].data[folders[chapter].last_position].comp_name;
+        if (folders[chapter].data[folders[chapter].last_position].epilog.Dossier.indexOf('Einleitung') != -1) {
+            apx += '_e'
+        }
+        if (folders[chapter].data[folders[chapter].last_position].epilog.Dossier.indexOf('Ausstellungskonzept') != -1) {
+            apx += '_a'
+        }
+        if (folders[chapter].data[folders[chapter].last_position].epilog.Dossier.indexOf('Impressum') != -1) {
+            apx += '_i'
+        }
+        if (folders[chapter].data[folders[chapter].last_position].epilog.Dossier.indexOf('Orte und Daten') != -1) {
+            apx += '_o'
+        }
+
+        //console.log(apx);
+        //console.log(select_pdf.log);
+
+        t.parentNode.parentNode.lastChild.getElementsByClassName('alert_line')[0].style.visibility = (select_pdf.log.indexOf(apx) == -1) ? 'hidden' : 'visible';
+
         t.parentNode.parentNode.lastChild.style.opacity = (folders[chapter].data[folders[chapter].last_position].epilog.Dossier.length == 0) ? 0.2 : 1;
         t.parentNode.parentNode.lastChild.children[0].style.cursor = (folders[chapter].data[folders[chapter].last_position].epilog.Dossier.length == 0) ? 'default' : 'pointer';
 
     },
     "collect": function() {
         if (folders[chapter].data[folders[chapter].last_position].epilog.Dossier.length > 0) {
+            //console.log(folders[chapter].data[folders[chapter].last_position].epilog.Dossier);
             download_pdf();
         }
     },
@@ -1595,9 +1616,9 @@ var select_pdf = {
                 parent.removeChild(x[0]);
             }
 
-            if (tag == 'a' && dump.innerHTML.indexOf('&amp;') != -1) {
+            if (tag == 'a' && dump.innerHTML.indexOf(' &amp; ') != -1) {
 
-                dump.innerHTML = dump.innerHTML.replace(/\&amp\;/g, 'and');
+                dump.innerHTML = dump.innerHTML.replace(' &amp; ', ' and ');
 
             }
 
@@ -1611,7 +1632,9 @@ var base64;
 
 var download_pdf = function() {
 
-    var c = folders[chapter].data[folders[chapter].last_position]
+    var c = folders[chapter].data[folders[chapter].last_position];
+
+    var act_log = c.comp_name;
 
     var tx_arr = [{
             image: base64,
@@ -1633,6 +1656,7 @@ var download_pdf = function() {
 
     if (c.epilog.Dossier.indexOf('Einleitung') != -1) {
 
+        act_log += '_e';
 
         tx_arr.push({
             text: '\n',
@@ -1682,6 +1706,9 @@ var download_pdf = function() {
         });
     }
     if (c.epilog.Dossier.indexOf('Ausstellungskonzept') != -1) {
+
+        act_log += '_a';
+
         tx_arr.push({
             text: '\n',
             style: 'header'
@@ -1751,6 +1778,9 @@ var download_pdf = function() {
     }
 
     if (c.epilog.Dossier.indexOf('Impressum') != -1) {
+
+        act_log += '_i';
+
         tx_arr.push({
             text: '\n',
             style: 'header'
@@ -1801,6 +1831,9 @@ var download_pdf = function() {
     }
 
     if (c.epilog.Dossier.indexOf('Orte und Daten') != -1) {
+
+        act_log += '_o';
+
         tx_arr.push({
             text: '\n',
             style: 'header'
@@ -1859,6 +1892,8 @@ var download_pdf = function() {
 
     }
 
+
+
     tx_arr.push({
         text: '\n',
         style: 'header'
@@ -1888,6 +1923,14 @@ var download_pdf = function() {
         }
     };
 
-    pdfMake.createPdf(docDefinition).download(c.comp_name + '.pdf');
+    if (select_pdf.log.indexOf(act_log) == -1) {
+
+        select_pdf.log.push(act_log);
+
+        pdfMake.createPdf(docDefinition).download(c.comp_name + '.pdf');
+
+    } else {
+        //alert('Sie haben dieses Dossier bereits heruntergeladen!');
+    }
 
 };

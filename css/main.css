@@ -753,6 +753,15 @@ div.epilog span {
     cursor: pointer;
 }
 
+.form_check_alert {
+    color: #bc123a;
+    border: 0 none;
+    padding: 0 32px 0 0;
+    background: rgba(0, 0, 0, 0);
+    margin-top: 14px;
+    cursor: default;
+}
+
 
 /*
 .fa-minus-circle {
@@ -852,6 +861,18 @@ div.epilog span {
 */
 }
 
+#chapter_content span.sel_download .alert_line {
+    width: auto;
+    max-height: 28px;
+    font-size: 16px;
+    border-bottom: #ccc 1px solid;
+    position: absolute;
+    text-align: right;
+    padding-left: 36px;
+    margin-top: -9px;
+    visibility: hidden;
+}
+
 #chapter_content span.sel_download {
     width: calc((100vw - 456px)/2);
     height: 100%;
@@ -867,7 +888,7 @@ div.epilog span {
     width: 162px;
     padding: 2px 0;
     text-align: center;
-    margin-right: -75px;
+    margin: 0;
     font-size: 16px;
 }
 
