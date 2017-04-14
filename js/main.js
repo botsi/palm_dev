@@ -258,6 +258,8 @@ var sub_chapter = function(t) {
 
             var epi_chi = t.parentNode.getElementsByTagName('span');
 
+            var apx = c[folders[chapter].last_position].comp_name;
+
             for (var xc = 0; xc < epi_chi.length; xc++) {
 
                 var preview = '';
@@ -265,9 +267,11 @@ var sub_chapter = function(t) {
                 switch (true) {
                     case (epi_chi[xc].innerHTML == 'Einleitung'):
                         preview = c[folders[chapter].last_position].prolog.replace(/<br>/g, ' ').replace(/<br\/>/g, ' ').slice(0, 50) + ' ... ';
+                        apx += '_e'
                         break;
                     case (epi_chi[xc].innerHTML == 'Ausstellungskonzept'):
                         preview = c[folders[chapter].last_position].epilog.Ausstellungskonzept.replace(/<h2>/g, '').replace(/<\/h2>/g, ' ').replace(/<p>/g, '').replace(/<\/p>/g, ' ').slice(0, 50) + ' ... ';
+                        apx += '_a'
                         break;
                     case (epi_chi[xc].innerHTML == 'Impressum'):
                         var count_p = 0;
@@ -280,12 +284,14 @@ var sub_chapter = function(t) {
                                 break;
                             }
                         }
+                        apx += '_i'
                         break;
                     case (epi_chi[xc].innerHTML == 'Orte und Daten'):
                         var dp = document.createElement('div');
                         dp.innerHTML = c[folders[chapter].last_position].epilog.Ausstellungsort;
                         var dp_p = dp.getElementsByTagName('p');
                         preview = dp_p[1].innerHTML + ' ' + dp_p[3].innerHTML.slice(5) + ', ' + adjustments_de.monthNames[c[folders[chapter].last_position].time.from[1] - 1] + ' ' + c[folders[chapter].last_position].time.from[2] + ' ... ';
+                        apx += '_o'
                         break;
                 }
 
@@ -306,6 +312,8 @@ var sub_chapter = function(t) {
             o += '<p><a onclick="select_pdf.collect()">Download PDF</a><span class="alert_line"><i class="fa fa-exclamation-circle form_check form_check_alert" aria-hidden="true"></i>Dossier so bereits heruntergeladen!</span></p></span>';
 
             t.parentNode.previousSibling.innerHTML = o;
+
+            t.parentNode.previousSibling.getElementsByClassName('alert_line')[0].style.visibility = (select_pdf.log.indexOf(apx) == -1) ? 'hidden' : 'visible';
 
             sh_cheese(t.parentNode.parentNode, 0);
             break;

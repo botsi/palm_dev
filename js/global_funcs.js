@@ -1503,10 +1503,26 @@ var page_reload = function() {
 };
 
 var select_pdf = {
+    "act_log": function(c) {
+        var r = c.comp_name;
+        if (c.epilog.Dossier.indexOf('Einleitung') != -1) {
+            r += '_e';
+        }
+        if (c.epilog.Dossier.indexOf('Orte und Daten') != -1) {
+            r += '_o';
+        }
+        if (c.epilog.Dossier.indexOf('Ausstellungskonzept') != -1) {
+            r += '_a';
+        }
+        if (c.epilog.Dossier.indexOf('Impressum') != -1) {
+            r += '_i';
+        }
+
+        return r;
+    },
     "log": [],
     "get_scr": function() {
         if (!pdf_m) {
-
 
             var m = document.createElement('script');
 
@@ -1563,24 +1579,7 @@ var select_pdf = {
 
         }
 
-        var apx = folders[chapter].data[folders[chapter].last_position].comp_name;
-        if (folders[chapter].data[folders[chapter].last_position].epilog.Dossier.indexOf('Einleitung') != -1) {
-            apx += '_e'
-        }
-        if (folders[chapter].data[folders[chapter].last_position].epilog.Dossier.indexOf('Ausstellungskonzept') != -1) {
-            apx += '_a'
-        }
-        if (folders[chapter].data[folders[chapter].last_position].epilog.Dossier.indexOf('Impressum') != -1) {
-            apx += '_i'
-        }
-        if (folders[chapter].data[folders[chapter].last_position].epilog.Dossier.indexOf('Orte und Daten') != -1) {
-            apx += '_o'
-        }
-
-        //console.log(apx);
-        //console.log(select_pdf.log);
-
-        t.parentNode.parentNode.lastChild.getElementsByClassName('alert_line')[0].style.visibility = (select_pdf.log.indexOf(apx) == -1) ? 'hidden' : 'visible';
+        t.parentNode.parentNode.lastChild.getElementsByClassName('alert_line')[0].style.visibility = (select_pdf.log.indexOf(select_pdf.act_log(folders[chapter].data[folders[chapter].last_position])) == -1) ? 'hidden' : 'visible';
 
         t.parentNode.parentNode.lastChild.style.opacity = (folders[chapter].data[folders[chapter].last_position].epilog.Dossier.length == 0) ? 0.2 : 1;
         t.parentNode.parentNode.lastChild.children[0].style.cursor = (folders[chapter].data[folders[chapter].last_position].epilog.Dossier.length == 0) ? 'default' : 'pointer';
@@ -1588,8 +1587,9 @@ var select_pdf = {
     },
     "collect": function() {
         if (folders[chapter].data[folders[chapter].last_position].epilog.Dossier.length > 0) {
-            //console.log(folders[chapter].data[folders[chapter].last_position].epilog.Dossier);
+
             download_pdf();
+
         }
     },
     "cleanup": function(str, tag, apendix) {
@@ -1634,7 +1634,7 @@ var download_pdf = function() {
 
     var c = folders[chapter].data[folders[chapter].last_position];
 
-    var act_log = c.comp_name;
+    //var act_log = c.comp_name;
 
     var tx_arr = [{
             image: base64,
@@ -1656,7 +1656,7 @@ var download_pdf = function() {
 
     if (c.epilog.Dossier.indexOf('Einleitung') != -1) {
 
-        act_log += '_e';
+        //act_log += '_e';
 
         tx_arr.push({
             text: '\n',
@@ -1707,7 +1707,7 @@ var download_pdf = function() {
     }
     if (c.epilog.Dossier.indexOf('Ausstellungskonzept') != -1) {
 
-        act_log += '_a';
+        //act_log += '_a';
 
         tx_arr.push({
             text: '\n',
@@ -1779,7 +1779,7 @@ var download_pdf = function() {
 
     if (c.epilog.Dossier.indexOf('Impressum') != -1) {
 
-        act_log += '_i';
+        //act_log += '_i';
 
         tx_arr.push({
             text: '\n',
@@ -1832,7 +1832,7 @@ var download_pdf = function() {
 
     if (c.epilog.Dossier.indexOf('Orte und Daten') != -1) {
 
-        act_log += '_o';
+        //act_log += '_o';
 
         tx_arr.push({
             text: '\n',
@@ -1923,9 +1923,11 @@ var download_pdf = function() {
         }
     };
 
-    if (select_pdf.log.indexOf(act_log) == -1) {
+    //var act_log = select_pdf.act_log(c);
 
-        select_pdf.log.push(act_log);
+    if (select_pdf.log.indexOf(select_pdf.act_log(c)) == -1) {
+
+        select_pdf.log.push(select_pdf.act_log(c));
 
         pdfMake.createPdf(docDefinition).download(c.comp_name + '.pdf');
 
