@@ -1634,8 +1634,6 @@ var download_pdf = function() {
 
     var c = folders[chapter].data[folders[chapter].last_position];
 
-    //var act_log = c.comp_name;
-
     var tx_arr = [{
             image: base64,
             width: 520
@@ -1655,8 +1653,6 @@ var download_pdf = function() {
     ];
 
     if (c.epilog.Dossier.indexOf('Einleitung') != -1) {
-
-        //act_log += '_e';
 
         tx_arr.push({
             text: '\n',
@@ -1698,16 +1694,25 @@ var download_pdf = function() {
 
         }
 
+
+
+
         tx_arr.push({
             text: ein_txt.replace(/<br>/g, '\n').replace(/<br\/>/g, '\n') + '\n'
-        }, {
-            text: '\n',
-            style: 'header'
         });
+
+
+        if (c.epilog.Dossier.indexOf('Orte und Daten') != -1 || c.epilog.Dossier.indexOf('Impressum') != -1 || c.epilog.Dossier.indexOf('Ausstellungskonzept') != -1) {
+
+            tx_arr.push({
+                text: '',
+                pageBreak: 'after'
+            });
+
+        }
+
     }
     if (c.epilog.Dossier.indexOf('Ausstellungskonzept') != -1) {
-
-        //act_log += '_a';
 
         tx_arr.push({
             text: '\n',
@@ -1775,11 +1780,19 @@ var download_pdf = function() {
                 });
             }
         }
+
+        if (c.epilog.Dossier.indexOf('Orte und Daten') != -1 || c.epilog.Dossier.indexOf('Impressum') != -1) {
+
+            tx_arr.push({
+                text: '',
+                pageBreak: 'after'
+            });
+
+        }
+
     }
 
     if (c.epilog.Dossier.indexOf('Impressum') != -1) {
-
-        //act_log += '_i';
 
         tx_arr.push({
             text: '\n',
@@ -1828,11 +1841,18 @@ var download_pdf = function() {
 
         }
 
+        if (c.epilog.Dossier.indexOf('Orte und Daten') != -1) {
+
+            tx_arr.push({
+                text: '',
+                pageBreak: 'after'
+            });
+
+        }
+
     }
 
     if (c.epilog.Dossier.indexOf('Orte und Daten') != -1) {
-
-        //act_log += '_o';
 
         tx_arr.push({
             text: '\n',
@@ -1892,20 +1912,21 @@ var download_pdf = function() {
 
     }
 
-
-
-    tx_arr.push({
-        text: '\n',
-        style: 'header'
-    }, {
-        text: '© 2017 | www.palma3.ch',
-        link: 'http://www.palma3.ch/new_palma/?' + c.comp_name
-    }, {
-        text: '\n',
-        style: 'header'
-    });
-
     var docDefinition = {
+        footer: function(currentPage, pageCount) {
+
+            if (currentPage == pageCount) {
+
+                return {
+                    text: '© 2017 | www.palma3.ch',
+                    link: 'http://www.palma3.ch/new_palma/?' + c.comp_name,
+                    margin: [40, -20, 0, 0]
+                };
+            }
+
+            return '';
+
+        },
         pageSize: 'A4',
         content: tx_arr,
         styles: {
@@ -1923,8 +1944,6 @@ var download_pdf = function() {
         }
     };
 
-    //var act_log = select_pdf.act_log(c);
-
     if (select_pdf.log.indexOf(select_pdf.act_log(c)) == -1) {
 
         select_pdf.log.push(select_pdf.act_log(c));
@@ -1932,7 +1951,7 @@ var download_pdf = function() {
         pdfMake.createPdf(docDefinition).download(c.comp_name + '.pdf');
 
     } else {
-        //alert('Sie haben dieses Dossier bereits heruntergeladen!');
+        document.getElementsByClassName('alert_line')[folders[chapter].last_position].style.visibility = 'visible';
     }
 
 };

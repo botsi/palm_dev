@@ -923,7 +923,7 @@
                             "Audio und Videoproduktion": ["<a href='http://www.josnaepflin.ch/index.html' target='_blank'>Jos Näpflin, Zürich</a>", "Jürg Spichiger (palma3)"],
                             "Videotechnik": ["<a href='http://www.videocompany.ch' target='_blank'>videocompany, Zofingen</a>"],
                             "Ausstellungsaufbau": ["Thomas Odermatt", "Jozef Lauwers"],
-                            "Vermittlung": ["Eva-Maria Knüsel", " Magdalena Bucher"],
+                            "Vermittlung": ["Eva-Maria Knüsel", " Magdalena Bucher"],
                             "Dank": ["André Holenstein", "Marcel Just", "Madeleine Kaiser-von Matt", "Kurt Messmer", "Urs Odermatt", "Peter Steiner", "Historischer Verein Nidwalden", "Staatsarchiv Nidwalden", "Kantonsbibliothek Nidwalden"]
                         },
                         "Medienberichte": true,
