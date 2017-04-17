@@ -317,9 +317,32 @@ var sub_chapter = function(t) {
 
             sh_cheese(t.parentNode.parentNode, 0);
             break;
+        case 'Medienberichte':
+            /*
+            				console.log('oooh spezialrunde ....');
+
+            				if (typeof c[folders[chapter].last_position].epilog[ih] === 'boolean') {
+
+            						setTimeout(function() {
+
+            								t.parentNode.previousSibling.innerHTML = c[folders[chapter].last_position].epilog[ih];
+            								console.log('sogar mit Timeout');
+
+            						}, 10000);
+
+            				} else {
+            */
+            t.parentNode.previousSibling.innerHTML = c[folders[chapter].last_position].epilog[t.innerHTML];
+            console.log('ohne Timeout');
+
+            //}
+
+            sh_cheese(t.parentNode.parentNode, 0);
+
+            break;
         case 'Impressum':
 
-            folders[chapter].data[folders[chapter].last_position].imp_cheese_state = true;
+            c[folders[chapter].last_position].imp_cheese_state = true;
 
             var sl_ih = '<div class="imp_abs"><div class="imp_slid">';
 
@@ -393,9 +416,14 @@ var sub_chapter = function(t) {
         default:
 
             var ih = (t.innerHTML != 'Orte und Daten') ? t.innerHTML : 'Ausstellungsort';
-            t.parentNode.previousSibling.innerHTML = c[folders[chapter].last_position].epilog[ih];
+
+
             console.log('default sh_cheese');
+
+
+            t.parentNode.previousSibling.innerHTML = c[folders[chapter].last_position].epilog[ih];
             sh_cheese(t.parentNode.parentNode, 0);
+
     }
 
     //console.log(t.parentNode.parentNode.getBoundingClientRect().top);
@@ -987,7 +1015,7 @@ var load_media = function() {
 
     var u = 'media/' + folders[chapter].name + '/' + folders[chapter].data[folders[chapter].last_position].comp_name + '/';
 
-    loadXMLDoc(u + 'media.txt?zuza' + Math.floor(Math.random() * (1000) + 1), function() {
+    (loadXMLDoc(u + 'media.txt?zuza' + Math.floor(Math.random() * (1000) + 1), function() {
 
         if (xmlhttp.readyState == 4) {
 
@@ -1030,15 +1058,23 @@ var load_media = function() {
             }
         }
 
-    });
+    }));
 
 };
 
+
+
+
+
+//folders[chapter].data[folders[chapter].last_position].epilog.Medienberichte
+var collection = (function() {}());
+
 var change_image = function(img) {
 
-    if (folders[chapter].data[folders[chapter].last_position].epilog.Medienberichte && folders[chapter].data[folders[chapter].last_position].epilog.Medienberichte === true) {
+    //    if (folders[chapter].data[folders[chapter].last_position].epilog.Medienberichte === true) {
+    if (typeof folders[chapter].data[folders[chapter].last_position].epilog.Medienberichte === 'boolean') {
 
-        console.log('iload media 1033');
+        console.log('iload media 1041');
 
         load_media();
 
@@ -2187,6 +2223,8 @@ var page_load = function() {
     if (isTouchSupported()) {
 
         get_cine_script();
+
+        returript();
 
         return;
 
