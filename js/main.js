@@ -1569,7 +1569,12 @@ var see = function(t, s, p) {
         t.parentNode.parentNode.style.fontSize = '3.6vw';
         t.parentNode.parentNode.style.textIndent = '40px';
         t.parentNode.parentNode.style.background = 'rgba(191, 191, 191, 0.6)';
-        t.parentNode.parentNode.style.marginTop = '180px';
+
+        if (window.innerWidth > 950) {
+
+            t.parentNode.parentNode.style.marginTop = '180px';
+
+        }
         t.parentNode.parentNode.style.borderTop = '18px solid rgba(0, 0, 0, 0)';
         if (t.parentNode.parentNode.nextSibling.nextSibling) {
             t.parentNode.parentNode.nextSibling.nextSibling.style.visibility = 'hidden';
