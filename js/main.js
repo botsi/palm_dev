@@ -267,11 +267,11 @@ var sub_chapter = function(t) {
                 switch (true) {
                     case (epi_chi[xc].innerHTML == 'Einleitung'):
                         preview = c[folders[chapter].last_position].prolog.replace(/<br>/g, ' ').replace(/<br\/>/g, ' ').slice(0, 50) + ' ... ';
-                        apx += '_e'
+                        apx += '_e';
                         break;
                     case (epi_chi[xc].innerHTML == 'Ausstellungskonzept'):
                         preview = c[folders[chapter].last_position].epilog.Ausstellungskonzept.replace(/<h2>/g, '').replace(/<\/h2>/g, ' ').replace(/<p>/g, '').replace(/<\/p>/g, ' ').slice(0, 50) + ' ... ';
-                        apx += '_a'
+                        apx += '_a';
                         break;
                     case (epi_chi[xc].innerHTML == 'Impressum'):
                         var count_p = 0;
@@ -284,14 +284,14 @@ var sub_chapter = function(t) {
                                 break;
                             }
                         }
-                        apx += '_i'
+                        apx += '_i';
                         break;
                     case (epi_chi[xc].innerHTML == 'Orte und Daten'):
                         var dp = document.createElement('div');
                         dp.innerHTML = c[folders[chapter].last_position].epilog.Ausstellungsort;
                         var dp_p = dp.getElementsByTagName('p');
                         preview = dp_p[1].innerHTML + ' ' + dp_p[3].innerHTML.slice(5) + ', ' + adjustments_de.monthNames[c[folders[chapter].last_position].time.from[1] - 1] + ' ' + c[folders[chapter].last_position].time.from[2] + ' ... ';
-                        apx += '_o'
+                        apx += '_o';
                         break;
                 }
 
@@ -1737,12 +1737,29 @@ var toggle_favicons = function() {
 
         fa_dol[i].addEventListener('click', function() {
 
+            select_pdf.get_scr();
+            /*
+            var mobile_dosier = ["Einleitung"];
+*/
 
-            if (confirm('Möchten Sie das PDF Datenblatt von "' + folders[chapter].data[this.ix].name + '"\n(Einleitung, Ausstellungskonzept, Ausstellungsort und Datum, ohne Bilder)\nherunterladen / speichern?')) {
-                download_pdf();
-                return;
+
+            //.Ausstellungsort
+            if (folders[chapter].data[this.ix].epilog.Dossier) {
+                if (folders[chapter].data[this.ix].epilog.Dossier.length == 0) {
+                    //alert();
+                    //folders[chapter].data[i].epilog.Dossier.push('Ausstellungsort');
+                    folders[chapter].data[this.ix].epilog.Dossier.push('Einleitung');
+                    folders[chapter].data[this.ix].epilog.Dossier.push('Orte und Daten');
+                    if (folders[chapter].data[this.ix].epilog.Impressum != '') {
+                        folders[chapter].data[this.ix].epilog.Dossier.push('Impressum');
+                    }
+                }
             }
 
+            if (confirm('Möchten Sie das PDF Dossier über "' + folders[chapter].data[this.ix].name + '"\nherunterladen und speichern?')) {
+                select_pdf.collect();
+                return;
+            }
 
 
         }, false);
@@ -2228,8 +2245,6 @@ var page_load = function() {
     if (isTouchSupported()) {
 
         get_cine_script();
-
-        returript();
 
         return;
 

@@ -1586,10 +1586,13 @@ var select_pdf = {
 
     },
     "collect": function() {
+        console.log(folders[chapter].data[folders[chapter].last_position].epilog.Dossier + 'iphone or not');
         if (folders[chapter].data[folders[chapter].last_position].epilog.Dossier.length > 0) {
 
             download_pdf();
 
+        } else {
+            alert(folders[chapter].data[folders[chapter].last_position].epilog.Dossier.length + 'iphone');
         }
     },
     "cleanup": function(str, tag, apendix) {

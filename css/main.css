@@ -1123,8 +1123,22 @@ div.epilog span {
 }
 
 @media screen and (max-width: 950px) {
-  #header {
-    font-size: 3.2vw;
+  #header, #logo {
+    display: none;
+  }
+  #content {
+    padding: 0 0 24px 0;
+    background: rgba(141, 170, 212, 1);
+    height: 180px;
+    flex-flow: row wrap;
+  }
+  #content .items:nth-child(3) {
+    /*
+    page-break-after: always;
+*/
+  }
+  #up_content {
+    display: none;
   }
   #chapter_content span.ueandtx {
     font-size: 18px;
@@ -1144,8 +1158,7 @@ div.epilog span {
     font-size: 28px !important;
     width: 100%;
     left: 0;
-    position: fixed;
-    top: 160px;
+    position: absolute;
     font-size: 28px !important;
     width: 100%;
     left: 0;
