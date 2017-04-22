@@ -1,7 +1,5 @@
 var sivId, fadeinmovId, foimId, speedId;
 
-var pdf_m = false;
-
 var old_chapter = chapter = 0;
 
 var wlh, folders;
@@ -951,7 +949,7 @@ var white_head = function() {
 
         var g = getNearestNumber(midpoints, h + window.innerHeight / 2 + 240);
 
-        if (folders[chapter].last_position == g && chapter == old_chapter) {
+        if ((folders[chapter].last_position == g && chapter == old_chapter)) {
             console.log('ireturn in middle of white_head');
             return;
         }
@@ -1641,7 +1639,12 @@ var see = function(t, s, p) {
 
         document.getElementsByClassName('scroll_positioner')[i].style.marginTop = 'calc(180px - 50vh)';
 
-        window.scrollTo(0, t.parentNode.parentNode.parentNode.previousSibling.offsetTop);
+
+        if (!isTouchSupported()) {
+
+            window.scrollTo(0, t.parentNode.parentNode.parentNode.previousSibling.offsetTop);
+
+        }
 
         document.getElementsByClassName('fa-angle-left')[0].style.display = document.getElementsByClassName('fa-angle-right')[0].style.display = 'none';
 
@@ -1733,42 +1736,39 @@ var toggle_favicons = function() {
 
         fa_dol[i].ix = fa_img[i].ix = fa_txt[i].ix = fa_mute[i].ix = fa_unmute[i].ix = i;
 
-        fa_dol[i].style.visibility = (chapter == 0) ? 'hidden' : 'visible';
+        if (chapter == 0) {
 
-        fa_dol[i].addEventListener('click', function() {
+            fa_dol[i].style.visibility = 'hidden';
 
-            select_pdf.get_scr();
-            /*
+        } else {
+
+            fa_dol[i].style.visibility = 'visible';
+
+            fa_dol[i].addEventListener('click', function() {
+
+                select_pdf.get_scr(this.ix);
+                /*
             var mobile_dosier = ["Einleitung"];
 */
 
 
-            //.Ausstellungsort
-            if (folders[chapter].data[this.ix].epilog.Dossier) {
-                if (folders[chapter].data[this.ix].epilog.Dossier.length == 0) {
-                    //alert();
-                    //folders[chapter].data[i].epilog.Dossier.push('Ausstellungsort');
-                    folders[chapter].data[this.ix].epilog.Dossier.push('Einleitung');
-                    folders[chapter].data[this.ix].epilog.Dossier.push('Orte und Daten');
-                    if (folders[chapter].data[this.ix].epilog.Impressum != '') {
-                        folders[chapter].data[this.ix].epilog.Dossier.push('Impressum');
-                    }
-                }
-            }
 
-            if (confirm('Möchten Sie das PDF Dossier über "' + folders[chapter].data[this.ix].name + '"\nherunterladen und speichern?')) {
-                select_pdf.collect();
-                return;
-            }
+                /*            if (confirm('Möchten Sie das PDF Dossier über "' + folders[chapter].data[this.ix].name + '"\nherunterladen und speichern?')) {
+                                return;
+                            }
+                */
 
+            }, false);
 
-        }, false);
+        }
 
         fa_img[i].addEventListener('click', function() {
 
             see(this, 1, -210);
 
-            window.scrollTo(0, this.parentNode.parentNode.nextSibling.offsetTop - 102);
+            if (!isTouchSupported()) {
+                window.scrollTo(0, this.parentNode.parentNode.nextSibling.offsetTop - 102);
+            }
 
         }, false);
 
@@ -1862,7 +1862,9 @@ var slide_lr = function(d, f) {
 
         see(el, 1, -210);
 
-        window.scrollTo(0, el.parentNode.parentNode.nextSibling.offsetTop - 102);
+        if (!isTouchSupported()) {
+            window.scrollTo(0, el.parentNode.parentNode.nextSibling.offsetTop - 102);
+        }
 
     }
     if (d == -1) {

@@ -1127,10 +1127,18 @@ div.epilog span {
     display: none;
   }
   #content {
-    padding: 0 0 24px 0;
+    padding: 0;
     background: rgba(141, 170, 212, 1);
     height: 180px;
     flex-flow: row wrap;
+  }
+  #content .items {
+    margin: auto !important;
+    /*
+    height: auto;
+    line-height: normal;
+    font-size: 10px;
+*/
   }
   #content .items:nth-child(3) {
     /*
@@ -1163,6 +1171,7 @@ div.epilog span {
     width: 100%;
     left: 0;
     background: rgba(141, 170, 212, 1);
+    margin-top: 30px;
   }
   .fa-download {
     display: inline-block;
