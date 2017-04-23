@@ -21,7 +21,7 @@ function get_mouse_coords(t) {
 function check_swipe(t) {
 
 
-    event.preventDefault();
+    //event.preventDefault();
 
     var new_mouse_x = event.pageX;
     var new_mouse_y = event.pageY;

@@ -112,11 +112,7 @@ var device_dimensions = function() {
 
     check_webp_feature('lossless', function(result) {
 
-        console.log(result);
-
         if (result) {
-
-            console.log('i do hg img webp');
 
             img_type.path = 'images/webp/';
             img_type.ext = '.webp';
