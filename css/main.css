@@ -1134,10 +1134,10 @@ div.epilog span {
   }
   #content .items {
     margin: auto !important;
+    font-size: 16px;
     /*
     height: auto;
     line-height: normal;
-    font-size: 10px;
 */
   }
   #content .items:nth-child(3) {
@@ -1148,6 +1148,10 @@ div.epilog span {
   #up_content {
     display: none;
   }
+  /*
+#chapter_content {
+    padding-top: 340px !important;
+  }*/
   #chapter_content span.ueandtx {
     font-size: 18px;
     margin: 0 0 30px 0;
@@ -1171,7 +1175,8 @@ div.epilog span {
     width: 100%;
     left: 0;
     background: rgba(141, 170, 212, 1);
-    margin-top: 30px;
+    /*
+    margin-top: 30px;*/
   }
   .fa-download {
     display: inline-block;
