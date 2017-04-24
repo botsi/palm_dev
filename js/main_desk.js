@@ -894,6 +894,21 @@ var show_app = function(i, t) {
 };
 
 
+var get_page_scroll_position = function() {
+
+    var h;
+
+    if (document.body.scrollTop) {
+        //console.log('dbs: ' + document.body.scrollTop);
+        h = document.body.scrollTop;
+    } else {
+        //console.log('ddEs: ' + document.documentElement.scrollTop);
+        h = document.documentElement.scrollTop;
+    }
+    return h;
+};
+
+
 var white_head = function() {
 
 
@@ -983,6 +998,9 @@ var white_head = function() {
         //console.log('g: midarr,', h + window.innerHeight / 2 + 240);
 
         var g = getNearestNumber(midpoints, h + window.innerHeight / 2 + 240);
+
+        console.log(h, midpoints);
+
 
         if (folders[chapter].last_position == g && chapter == old_chapter) {
             console.log('ireturn in middle of white_head');

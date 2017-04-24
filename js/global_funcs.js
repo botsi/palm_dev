@@ -121,9 +121,6 @@ var device_dimensions = function() {
 
     });
 
-
-
-
     var x = screen.width;
     var y = screen.height;
 
@@ -514,20 +511,6 @@ var getNearestNumber = function(a, n) {
         if (p < (p = Math.abs(a[l] - n)))
             break;
     return l + 1;
-};
-
-var get_page_scroll_position = function() {
-
-    var h;
-
-    if (document.body.scrollTop) {
-        //console.log('dbs: ' + document.body.scrollTop);
-        h = document.body.scrollTop;
-    } else {
-        //console.log('ddEs: ' + document.documentElement.scrollTop);
-        h = document.documentElement.scrollTop;
-    }
-    return h;
 };
 
 var toggleFullScreen = function() {

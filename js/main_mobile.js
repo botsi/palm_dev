@@ -325,13 +325,36 @@ var slide_lr = function(d, f) {
 
 };
 
+
+var get_page_scroll_position = function(el) {
+
+    var h;
+
+    if (document.body.scrollTop) {
+        //console.log('dbs: ' + document.body.scrollTop);
+        h = document.body.scrollTop;
+    } else {
+        //console.log('ddEs: ' + document.documentElement.scrollTop);
+        h = document.documentElement.scrollTop;
+    }
+
+
+    //console.log(h);
+    console.log(0 - el.getBoundingClientRect().top);
+    //var b = document.getElementsByTagName('body')[0];
+    //console.log(b.scrollTop, b.offsetTop, b.getBoundingClientRect().top);
+
+
+    return 0 - el.getBoundingClientRect().top;
+};
+
 var white_head = function() {
 
     clearTimeout(sivId);
 
     sivId = setTimeout(function() {
 
-        var h = get_page_scroll_position();
+        var h = get_page_scroll_position(document.getElementById('chapter_content'));
 
         var uat = document.getElementsByClassName('ueandtx');
 
@@ -358,6 +381,8 @@ var white_head = function() {
 
         var g = getNearestNumber(midpoints, h + window.innerHeight / 2 + 240);
 
+        //console.log(h, midpoints);
+
         if (folders[chapter].last_position == g && chapter == old_chapter) {
             console.log('(disabled) ireturn in middle of white_head');
             return;
@@ -371,7 +396,7 @@ var white_head = function() {
 
         change_image(folders[chapter].data[folders[chapter].last_position].comp_name + '_' + folders[chapter].data[folders[chapter].last_position].slid_count);
 
-        document.documentElement.webkitRequestFullscreen();
+        //document.documentElement.webkitRequestFullscreen();
 
     }, 100);
 
@@ -457,7 +482,7 @@ var hit_menue = function(t, ju) {
 
             }
 
-            document.getElementById('chapter_content').style.height = get_page_scroll_position() + window.innerHeight + 'px';
+            document.getElementById('chapter_content').style.height = get_page_scroll_position(document.getElementById('chapter_content')) + window.innerHeight + 'px';
 
             document.getElementById("chapter_content").innerHTML = cap_ih;
 
@@ -759,7 +784,7 @@ var page_load = function() {
 
     //window.addEventListener("resize", align_onresize, false);
 
-    window.addEventListener("scroll", white_head, false);
+    document.getElementsByTagName('body')[0].addEventListener("scroll", white_head, false);
 
     //document.getElementById('header_palma').addEventListener("click", page_reload, false);
 
