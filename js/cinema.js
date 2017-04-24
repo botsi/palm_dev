@@ -33,7 +33,6 @@ function check_swipe(t) {
     if ((new_mouse_x - mouse_x) > 100) {
 
         rc_dir = -1;
-
         //event.preventDefault();
 
     }

@@ -1,7 +1,26 @@
-html, body {
-  position: absolute;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
+@-moz-keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.change_img_in {
+  -webkit-animation: fadein 0.3s ease-in;
+  animation: fadein ease-in 0.3s 1;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
 }
 
 .preloaded_ini {
@@ -24,7 +43,13 @@ html, body {
   }
 }
 
-#hg_cover, #hg {
+html, body {
+  position: absolute;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+#hg_cover {
   background-image: url("../images/palmas_hg.jpg");
 }
 
@@ -32,7 +57,7 @@ html, body {
   display: none;
 }
 
-#hg_cover, #hg_media, #hg {
+#hg_cover, #hg_media {
   top: 180px;
   height: calc(100% - 180px);
   width: 100%;

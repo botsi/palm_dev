@@ -108,7 +108,6 @@ var inhalt = function(c, i) {
 
 var change_image = function(img) {
 
-
     img = img.replace('_0', '');
 
     var test_imageObj = new Image();
@@ -123,9 +122,7 @@ var change_image = function(img) {
 
     test_imageObj.onload = function() {
 
-        document.getElementById("hg_cover").style.backgroundImage = 'url("' + img_type.path + folders[chapter].name + '/' + img + img_type.ext + '")';
-
-        fade_img("hg_cover", "hg");
+        fade_img("hg_cover", 'url("' + img_type.path + folders[chapter].name + '/' + img + img_type.ext + '")');
 
     };
 
@@ -328,21 +325,21 @@ var slide_lr = function(d, f) {
 
 var get_page_scroll_position = function(el) {
 
-    var h;
+    /*
 
-    if (document.body.scrollTop) {
-        //console.log('dbs: ' + document.body.scrollTop);
-        h = document.body.scrollTop;
-    } else {
-        //console.log('ddEs: ' + document.documentElement.scrollTop);
-        h = document.documentElement.scrollTop;
-    }
+        var h;
 
+        if (document.body.scrollTop) {
+            //console.log('dbs: ' + document.body.scrollTop);
+            h = document.body.scrollTop;
+        } else {
+            //console.log('ddEs: ' + document.documentElement.scrollTop);
+            h = document.documentElement.scrollTop;
+        }
 
-    //console.log(h);
+    */
+
     console.log(0 - el.getBoundingClientRect().top);
-    //var b = document.getElementsByTagName('body')[0];
-    //console.log(b.scrollTop, b.offsetTop, b.getBoundingClientRect().top);
 
 
     return 0 - el.getBoundingClientRect().top;
@@ -396,21 +393,19 @@ var white_head = function() {
 
         change_image(folders[chapter].data[folders[chapter].last_position].comp_name + '_' + folders[chapter].data[folders[chapter].last_position].slid_count);
 
-        //document.documentElement.webkitRequestFullscreen();
-
     }, 100);
 
 };
 
-var fade_img = function(over, under) {
+var fade_img = function(over, ni) {
 
     var over = document.getElementById(over);
 
     over.classList.add('change_img_in');
 
-    setTimeout(function() {
+    over.style.backgroundImage = ni;
 
-        document.getElementById(under).style.backgroundImage = over.style.backgroundImage;
+    setTimeout(function() {
 
         over.classList.remove('change_img_in');
 
@@ -471,8 +466,6 @@ var hit_menue = function(t, ju) {
 
             a[chapter].style.color = '#bc123a';
 
-            //if (typeof ju === 'undefined') {
-
             var cap_ih = '';
 
 
@@ -486,9 +479,6 @@ var hit_menue = function(t, ju) {
 
             document.getElementById("chapter_content").innerHTML = cap_ih;
 
-            //doc = new jsPDF();
-
-            //}
 
         }
     }
@@ -618,7 +608,6 @@ var get_cine_script = function() {
 
                     preload_images.get_arrays('kind', folders, 'name');
 
-
                 };
 
                 s.src = 'js/cinema.js';
@@ -647,28 +636,13 @@ var page_load = function() {
 
     document.body.removeChild(document.getElementsByClassName('fa-angle-left')[0]);
     document.body.removeChild(document.getElementsByClassName('fa-angle-right')[0]);
+    document.body.removeChild(document.getElementById('hg'));
 
 
 
     for (var f = 0; f < folders.length; f++) {
 
         for (var s = 0; s < folders[f].data.length; s++) {
-
-            /*
-
-                        folders[f].data[s].video = {
-                            "time": 0,
-                            "playstate": "closed",
-                            "mutestate": "unmuted",
-                            "src": ""
-                        };
-
-                        folders[f].data[s].audio = {
-                            "time": 0,
-                            "src": ""
-                        };
-
-            */
 
             //		push only comp_name
 
@@ -765,34 +739,12 @@ var page_load = function() {
 
     }
 
-    /*
-        document.getElementById("chapter_menu").addEventListener('mouseout', function(event) {
-
-            e = event.toElement || event.relatedTarget;
-
-            if (e == null || e.parentNode.parentNode.parentNode == this || e.parentNode.parentNode == this || e.parentNode == this || e == this) {
-
-                return;
-
-            }
-
-            this.style.display = 'none';
-
-        }, false);
-
-    */
-
     //window.addEventListener("resize", align_onresize, false);
 
     document.getElementsByTagName('body')[0].addEventListener("scroll", white_head, false);
 
     //document.getElementById('header_palma').addEventListener("click", page_reload, false);
 
-
-
     get_cine_script();
-
-
-    //preload_images.get_arrays('kind', folders, 'name');
 
 };
