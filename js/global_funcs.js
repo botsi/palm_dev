@@ -191,13 +191,9 @@ function loadXMLDoc(ud, cfunc) {
         // Define what happens on successful data submission
         xmlhttp.addEventListener('load', function(event) {
 
-            //for (l in event.target.responseText) {
-            //ih += folders[i].ud[l].name + '<br/><br/><span style="margin-left:24px;">' + folders[i].ud[l].search.toString().replace(/,/g, ' / ') + '</span><br/><br/><br/><br/>';
             console.log(event.target.responseText);
 
             shop.display(true);
-
-            //}
 
 
         });
@@ -310,7 +306,6 @@ var preload_images = {
 
                     // dir ist array (aufruf folders bei page_load)
 
-
                     if (Array.isArray(dir)) {
 
                         for (var i = 0; i < f.length; i++) {
@@ -333,14 +328,12 @@ var preload_images = {
 
                                         preload_images.gia_calls = 0;
 
-                                        //console.log(window.location.search.substring(1), folders.length);
-
                                         var taxi = decodeURI(window.location.search.substring(1));
-                                        //                                       (
+
                                         if (taxi.length > 0 && taxi != ' ') {
-                                            //search_nostyle(taxi);
+
                                             var found_gates = search_nostyle(taxi);
-                                            //console.log(found_gates[0], found_gates[1]);
+
                                             if (found_gates.length == 1) {
                                                 hit_menue(0);
                                             } else {
@@ -379,16 +372,10 @@ var preload_images = {
 
                                         // create and add metatag
 
-                                        //console.log(m_cont);
-
                                         var m = document.createElement('meta');
                                         m.name = 'keywords';
                                         m.content = 'botsi code palma3 bern ' + m_cont;
                                         document.head.appendChild(m);
-
-                                        //                                      )
-                                        //hit_menue(0);
-                                        //jump_to(2, 2);
 
                                         //console.log('img preload loop complete');
 
@@ -553,6 +540,60 @@ var calc_min_slid_height = function(ecl) {
     }
 
     return (window.innerHeight - 300) / 2 + 24;
+
+};
+
+var search_nostyle = function(t) {
+
+    var ini = false;
+
+    if (typeof t == 'string') {
+
+        var toSearch = t.toLowerCase().replace(/ /g, '');
+
+        ini = true;
+
+    } else {
+
+        var toSearch = t.innerHTML.toLowerCase().replace(/ /g, '').replace('(palma3)', '');
+
+    }
+
+    top_loop: for (var f = 0; f < folders.length; f++) {
+
+        for (var i = 0; i < folders[f].data.length; i++) {
+
+            for (key in folders[f].data[i]) {
+
+                if (folders[f].data[i].search.indexOf(toSearch) != -1) {
+
+                    if (ini) {
+
+                        ini = false;
+
+                        var a = [i, f];
+
+                        return a;
+
+                    } else {
+
+                        jump_to(i, f);
+
+                    }
+
+                    break top_loop;
+
+                }
+            }
+        }
+
+    }
+
+    if (ini) {
+
+        return [0];
+
+    }
 
 };
 

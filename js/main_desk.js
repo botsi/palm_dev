@@ -376,24 +376,8 @@ var sub_chapter = function(t) {
             sh_cheese(t.parentNode.parentNode, 0);
             break;
         case 'Medienberichte':
-            /*
-            				console.log('oooh spezialrunde ....');
 
-            				if (typeof c[folders[chapter].last_position].epilog[ih] === 'boolean') {
-
-            						setTimeout(function() {
-
-            								t.parentNode.previousSibling.innerHTML = c[folders[chapter].last_position].epilog[ih];
-            								console.log('sogar mit Timeout');
-
-            						}, 10000);
-
-            				} else {
-            */
             t.parentNode.previousSibling.innerHTML = c[folders[chapter].last_position].epilog[t.innerHTML];
-            console.log('ohne Timeout');
-
-            //}
 
             sh_cheese(t.parentNode.parentNode, 0);
 
@@ -484,11 +468,8 @@ var sub_chapter = function(t) {
 
     }
 
-    //console.log(t.parentNode.parentNode.getBoundingClientRect().top);
-    //console.log(t.parentNode.parentNode.offsetHeight);
-
     if (t.parentNode.parentNode.getBoundingClientRect().top + t.parentNode.parentNode.offsetHeight > window.innerHeight) {
-        //old_chapter = -1;
+
         window.scrollTo(0, t.parentNode.parentNode.offsetTop - 210);
     }
 
@@ -515,7 +496,6 @@ var draw_cheese_canvas = function(canvas, x, y) {
 
 };
 
-
 var set_epi_menu_color = function(t) {
 
     t.parentNode.children[0].style.visibility = 'inherit';
@@ -529,8 +509,6 @@ var set_epi_menu_color = function(t) {
     t.style.color = '#bc123a';
 
 };
-
-
 
 var get_column_count = function(c, n) {
 
@@ -696,7 +674,7 @@ var inhalt = function(c, i) {
         var shop_content = '';
 
         shop_content += '<span><i class="fa fa-check form_check form_check_white" aria-hidden="true" onclick="sh_dat.check(this)"></i><span style="margin: 0;">' + timemachine + '<input placeholder="Terminvorschlag" type="text"/></span></span>';
-        //
+
         var shop_arr = [
             [5, 0],
             [5, 1],
@@ -744,8 +722,6 @@ var inhalt = function(c, i) {
 
 
         var einl = (chapter == 0 && i > 4) ? 'Kontakt' : 'Einleitung';
-
-        //				var einl = (chapter > 0) ? 'Einleitung' : (c[i].comp_name != 'bestellen') ? 'Kontakt' : 'Bestellung';	// || key == 'Bestellung'
 
         r += '<div class="epilog epilog_ini"><span onclick="sub_chapter(this)">' + einl + '</span><br/>';
 
@@ -810,11 +786,10 @@ var sh_me = function(sh, ih, t) {
 
 var show_app = function(i, t) {
 
-    console.log('show_app z663: app_display_data.act_app ', app_display_data.act_app);
-
     if (typeof t !== 'undefined') {
+
         set_epi_menu_color(t);
-        console.log('sh_cheese');
+
         sh_cheese(t.parentNode.parentNode, 0);
 
     }
@@ -899,18 +874,19 @@ var get_page_scroll_position = function() {
     var h;
 
     if (document.body.scrollTop) {
-        //console.log('dbs: ' + document.body.scrollTop);
+
         h = document.body.scrollTop;
     } else {
-        //console.log('ddEs: ' + document.documentElement.scrollTop);
+
         h = document.documentElement.scrollTop;
     }
+
     return h;
+
 };
 
 
 var white_head = function() {
-
 
     clearTimeout(sivId);
 
@@ -923,44 +899,6 @@ var white_head = function() {
         var midpoints = [];
 
         for (var i = 0; i < uat.length; i++) {
-
-            // new way
-
-            /*
-
-            var point = '';
-
-            var pre_point = parseInt(uat[i].offsetTop + 210 + uat[i].offsetHeight / 2);
-
-            if (pre_point < h + 210) {
-
-                var point = uat[i].offsetTop + uat[i].offsetHeight;
-
-                console.log('overflow up');
-
-
-            }
-
-            if (pre_point > h + 210 + window.innerHeight) {
-
-                var point = uat[i].offsetTop;
-
-                console.log('overflow down');
-
-            }
-
-            if (point == '') {
-
-                var point = pre_point;
-
-                console.log('overflow normal');
-
-            }
-
-             */
-
-
-
 
             var pre_point = parseInt(uat[i].offsetTop + 210 + uat[i].offsetHeight / 2);
 
@@ -1025,7 +963,7 @@ var white_head = function() {
 
             if (folders[chapter].last_position > 0) {
                 sh_cheese(uat[folders[chapter].last_position - 1], 0);
-                //console.log('prev');
+
                 if (folders[chapter].data[folders[chapter].last_position - 1].see_read_state == 1) {
                     uat[folders[chapter].last_position - 1].style.background = 'rgba(255,255,255,0)';
                 }
@@ -1034,7 +972,7 @@ var white_head = function() {
             sh_cheese(uat[folders[chapter].last_position], 1);
 
             if (folders[chapter].last_position < uat.length - 1) {
-                //console.log('next');
+
                 sh_cheese(uat[folders[chapter].last_position + 1], 0);
                 if (folders[chapter].data[folders[chapter].last_position + 1].see_read_state == 1) {
                     uat[folders[chapter].last_position + 1].style.background = 'rgba(255,255,255,0)';
@@ -1882,8 +1820,6 @@ var toggle_favicons = function() {
 
 var slide_lr = function(d, f) {
 
-    //console.log(folders[chapter].data[folders[chapter].last_position].bilder);
-
     if (folders[chapter].data[folders[chapter].last_position].video.playstate != 'closed' || folders[chapter].data[folders[chapter].last_position].comp_name == 'bestellen') {
         return;
     }
@@ -1939,61 +1875,6 @@ var slide_lr = function(d, f) {
 
 };
 
-var search_nostyle = function(t) {
-
-    var ini = false;
-
-    if (typeof t == 'string') {
-
-        var toSearch = t.toLowerCase().replace(/ /g, '');
-
-        ini = true;
-
-    } else {
-
-        var toSearch = t.innerHTML.toLowerCase().replace(/ /g, '').replace('(palma3)', '');
-
-    }
-
-    top_loop: for (var f = 0; f < folders.length; f++) {
-
-        for (var i = 0; i < folders[f].data.length; i++) {
-
-            for (key in folders[f].data[i]) {
-
-                if (folders[f].data[i].search.indexOf(toSearch) != -1) {
-
-                    if (ini) {
-
-                        ini = false;
-
-                        var a = [i, f];
-
-                        return a;
-
-                    } else {
-
-                        jump_to(i, f);
-
-                    }
-
-                    break top_loop;
-
-                }
-            }
-        }
-
-    }
-
-    if (ini) {
-
-        //console.log('here i am with nothing in my hands');
-        var a = [0];
-        return a;
-
-    }
-
-};
 
 var search = function(t) {
 

@@ -559,7 +559,7 @@ var start_cine = function() {
 
     cc.addEventListener('touchstart', function() {
         if (disable_cine == false) {
-            get_mouse_coords(t);
+            get_mouse_coords(t, this);
         }
     }, false);
 

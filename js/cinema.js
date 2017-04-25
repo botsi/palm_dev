@@ -10,6 +10,7 @@ var rc_dir = 0;
 var randomId, sendoutId;
 
 function get_mouse_coords(t) {
+    //alert(c);
 
     mouse_x = event.pageX;
     mouse_y = event.pageY;
@@ -34,6 +35,7 @@ function check_swipe(t) {
 
         rc_dir = -1;
         //event.preventDefault();
+        cc.style.position = 'fixed';
 
     }
 
@@ -42,6 +44,7 @@ function check_swipe(t) {
         rc_dir = 1;
 
         //event.preventDefault();
+        cc.style.position = 'fixed';
 
 
     }
@@ -75,6 +78,7 @@ function swap_now(t) {
         t.style.left = 0 + 'px';
 
         //return true;
+        cc.style.position = 'absolute';
 
 
     };
@@ -102,6 +106,7 @@ function swap_now(t) {
         t.style.left = 0 + 'px';
 
         //return true;
+        cc.style.position = 'absolute';
 
 
     }

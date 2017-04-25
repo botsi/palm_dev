@@ -29,7 +29,7 @@
                     "name": "Referenzen und Partner",
                     "search": ["referenzen"],
                     "prolog": "",
-                    "text": "<span><ul><li><a href='http://www.bmm-charite.de' target='_blank'>Berliner Medizinhistorisches Museum der Charité, Berlin (D)</a></li><li><a href='http://www.carl-albert-loosli.ch' target='_blank'>Carl Albert Loosli-Gesellschaft, Bern</a></li><li><a href='http://www.monteverita.org' target='_blank'>Fondazione Monte Verità, Ascona</a></li><li><a href='http://www.forumschlossplatz.ch/' target='_blank'>Forum Schlossplatz, Aarau</a></li><li><a href='http://www.museum.baden.ch' target='_blank'>Historisches Museum, Baden</a></li><li><a href='http://www.historisches-museum.frankfurt.de' target='_blank'>Historisches Museum, Frankfurt am Main</a></li><li><a href='http://www.kornhausforum.ch' target='_blank'>Kornhausforum, Bern</a></li><li><a href='http://www.mfa.ethz.ch' target='_blank'>Max Frisch-Archiv, Zürich</a></li><li><a href='http://www.med-hist.uni-kiel.de' target='_blank'>Medizin- und Pharmaziehhistorisches Museum der Universität, Kiel (D)</a></li><li><a href='http://www.ruhr-uni-bochum.de/mhs/dauerausstellung.html' target='_blank'>Medizinhistorische Sammlung der Ruhr-Universität im Malakowturm, Bochum (D)</a></li><li>Medizinhistorisches Institut und Museum der Universität, Zürich</li><li><a href='http://www.museumbruderklaus.ch' target='_blank'>Museum Bruder Klaus, Sachseln</a></li><li><a hrefhttp://www.naturama.ch target='_blank'>Naturama Aarau</a></li><li><a href='http://www.nidwaldner-museum.ch' target='_blank'>Nidwaldner Museum, Stans</a></li><li><a href='http://www.prolongomai.ch' target='_blank'>Pro Longo maï</a></li><li><a href='http://www.nb.admin.ch' target='_blank'>Schweizerische Nationalbibliothek, Bern</a></li><li><a href='http://www.blindenschule.ch' target='_blank'>Stiftung für blinde und sehbehinderte Kinder, Zollikofen</a></li><li><a href='http://www.science-et-cite.ch' target='_blank'>Stiftung Science et Cité, Bern</a></li><li><a href='http://www.strauhof.ch' target='_blank'>Strauhof, Zürich</a></li><li><a href='http://www.unibe.ch/universitaet/dienstleistungen/universitaetsbibliothek/service/ausstellungen_und_veranstaltungen/ausstellungen/index_ger.html' target='_blank'>Universitätsbibliothek Bern</a></li><li><a href='http://www.stattland.ch' target='_blank'>Verein StattLand, Bern</a></li><li><a href='http://www.voegelekultur.ch' target='_blank'>Vögele Kultur Zentrum, Pfäffikon SZ</a></li><li><a href='http://www.wilhelm-fabry-museum.de' target='_blank'>Wilhelm-Fabry-Museum, Hilden (D)</a></li></ul></span><br/><span class='inta'><ul><li><a href='http://www.barbieribucher.ch' target='_blank'>Barbieri Bucher, Markus Bucher, Zürich</a></li><li><a href='http://www.josnaepflin.ch/index.html' target='_blank'>Jos Näpflin, Zürich</a></li><li><a href='http://www.thomashirter.ch' target='_blank'>Thomas Hirter, Bern</a></li></ul></span>",
+                    "text": "<span>Referenzen<ul><li><a href='http://www.bmm-charite.de' target='_blank'>Berliner Medizinhistorisches Museum der Charité, Berlin (D)</a></li><li><a href='http://www.carl-albert-loosli.ch' target='_blank'>Carl Albert Loosli-Gesellschaft, Bern</a></li><li><a href='http://www.monteverita.org' target='_blank'>Fondazione Monte Verità, Ascona</a></li><li><a href='http://www.forumschlossplatz.ch/' target='_blank'>Forum Schlossplatz, Aarau</a></li><li><a href='http://www.museum.baden.ch' target='_blank'>Historisches Museum, Baden</a></li><li><a href='http://www.historisches-museum.frankfurt.de' target='_blank'>Historisches Museum, Frankfurt am Main (D)</a></li><li><a href='http://www.kornhausforum.ch' target='_blank'>Kornhausforum, Bern</a></li><li><a href='http://www.mfa.ethz.ch' target='_blank'>Max Frisch-Archiv, Zürich</a></li><li><a href='http://www.med-hist.uni-kiel.de' target='_blank'>Medizin- und Pharmaziehhistorisches Museum der Universität, Kiel (D)</a></li><li><a href='http://www.ruhr-uni-bochum.de/mhs/dauerausstellung.html' target='_blank'>Medizinhistorische Sammlung der Ruhr-Universität, Bochum (D)</a></li><li>Medizinhistorisches Institut und Museum der Universität, Zürich</li><li><a href='http://www.museumbruderklaus.ch' target='_blank'>Museum Bruder Klaus, Sachseln</a></li><li><a hrefhttp://www.naturama.ch target='_blank'>Naturama, Aarau</a></li><li><a href='http://www.nidwaldner-museum.ch' target='_blank'>Nidwaldner Museum, Stans</a></li><li><a href='http://www.prolongomai.ch' target='_blank'>Pro Longo maï, Basel</a></li><li><a href='http://www.nb.admin.ch' target='_blank'>Schweizerische Nationalbibliothek, Bern</a></li><li><a href='http://www.blindenschule.ch' target='_blank'>Stiftung für blinde und sehbehinderte Kinder, Zollikofen</a></li><li><a href='http://www.science-et-cite.ch' target='_blank'>Stiftung Science et Cité, Bern</a></li><li><a href='http://www.strauhof.ch' target='_blank'>Strauhof, Zürich</a></li><li><a href='http://www.unibe.ch/universitaet/dienstleistungen/universitaetsbibliothek/service/ausstellungen_und_veranstaltungen/ausstellungen/index_ger.html' target='_blank'>Universitätsbibliothek Bern</a></li><li><a href='http://www.stattland.ch' target='_blank'>Verein StattLand, Bern</a></li><li><a href='http://www.voegelekultur.ch' target='_blank'>Vögele Kultur Zentrum, Pfäffikon</a></li><li><a href='http://www.wilhelm-fabry-museum.de' target='_blank'>Wilhelm-Fabry-Museum, Hilden (D)</a></li></ul></span><br/><span class='inta'>Partner<ul><li><a href='http://www.barbieribucher.ch' target='_blank'>Barbieri Bucher, Markus Bucher, Zürich</a></li><li><a href='http://www.josnaepflin.ch/index.html' target='_blank'>Jos Näpflin, Zürich</a></li><li><a href='http://www.thomashirter.ch' target='_blank'>Thomas Hirter, Bern</a></li><li><a href='http://www.treichler-data.ch' target='_blank'>Hans-Peter Treichler, Zürich</a></li></ul></span>",
                     "epilog": {
                         "Info": ""
                     }
@@ -178,7 +178,7 @@
                     "prolog": "html, javascript, css",
                     "text": "<span><br/>Programmierung von altgriechisch prógramma - öffentlich und schriftlich bekannt gemachte Nachricht, Befehl - bezeichnet die Tätigkeit, Computerprogramme zu erstellen.</span><span class='inta'>David Abotsi<br/>Untereyfeldweg 7<br/>3063 Ittigen - Bern<br/><a href='http://david.abotsi.com' target='_blank'>david.abotsi.com</a><br/><a href='mailto:david@abotsi.com'>david@abotsi.com</a><br/>031 921 24 52</span>",
                     "epilog": {
-                        "Info": ""
+                        "Rechte": "Für diese Webseite wurden Bilder von <a href='mailto:hutrachsel@gmx.ch'>Hansueli Trachsel</a> und <a href='mailto:mwichary@aresluna.org'>Marcin Wichary</a> verwendet."
                     }
                 }
 
@@ -227,7 +227,7 @@
                             "Drucksachen": ["Jürg Spichiger (palma3)", "<a href='http://www.barbieribucher.ch' target='_blank'>Barbieri Bucher, Markus Bucher, Zürich</a>"],
                             "Texte": ["Jürg Spichiger (palma3)"],
                             "Audiovisuelle Medien": ["<a href='http://www.josnaepflin.ch/index.html' target='_blank'>Jos Näpflin, Zürich</a>", "Jürg Spichiger (palma3)"],
-                            "Sprecher": ["Hans-Peter Treichler"],
+                            "Sprecher": ["<a href='http://www.treichler-data.ch' target='_blank'>Hans-Peter Treichler</a>"],
                             "Videobeiträge Lieblingsorte": ["Schülerinnen und Schüler der Kantonsschule Sarnen", "Teddy Amstad"],
                             "Flugaufnahmen": ["<a href='http://www.luftbild-drohne.ch' target='_blank'>Uwe Siedentopf, Stalden</a>"],
                             "Lektorat und Fachbegleitung": ["Victor Bieri", "Michael Blatter", "Roland Maurer"],
@@ -691,7 +691,7 @@
                             "Kurator und Projektleitung": ["Jürg Spichiger (palma3)"],
                             "Architektur und Grafik": ["<a href='http://www.barbieribucher.ch' target='_blank'>Barbieri Bucher, Markus Bucher, Zürich</a>"],
                             "Audio und Videoproduktion": ["<a href='http://www.josnaepflin.ch/index.html' target='_blank'>Jos Näpflin, Zürich</a>", "Jürg Spichiger (palma3)"],
-                            "Sprecher Hörstationen": ["Isabel Schaerer", "Hans-Peter Treichler"],
+                            "Sprecher Hörstationen": ["Isabel Schaerer", "<a href='http://www.treichler-data.ch' target='_blank'>Hans-Peter Treichler</a>"],
                             "Texte und Redaktion": ["Carol Nater Cartier", "Jürg Spichiger (palma3)"],
                             "Fachbegleitung": ["Bruno Meier", "Tobias Wildi"],
                             "Fotos": ["<a href='http://vsa-aas.ch/archive/historisches-archiv-abb-schweiz' target='_blank'>Historisches Archiv ABB Schweiz</a>", "<a href='http://www.museum.baden.ch' target='_blank'>Historisches Museum, Baden</a>", "Stadtarchiv Baden", "<a href='http://www.langmatt.ch' target='_blank'>Stiftung Langmatt</a>", "und andere"],
@@ -1013,7 +1013,7 @@
                             "Grafik": ["<a href='http://www.barbieribucher.ch' target='_blank'>Markus Bucher, Zürich</a>"],
                             "Lektorat und Fachbegleitung": ["Albert Gasser", "Regula Schmid Kelling", "Roland Maurer", "Tino Steinemann"],
                             "Audiovisuelle Medien": ["X-Time Produktionen, Bern"],
-                            "Sprecherinnen und Sprecher": ["Isabel Schaerer", "Hans-Peter Treichler", "Paul Day", "Martine Tchang", "Denise Tonella"],
+                            "Sprecherinnen und Sprecher": ["Isabel Schaerer", "<a href='http://www.treichler-data.ch' target='_blank'>Hans-Peter Treichler</a>", "Paul Day", "Martine Tchang", "Denise Tonella"],
                             "Tontechnik Audioguide": ["Philipp Treichler, Studio Satyday, Wädenswil"],
                             "Programmierung Audioguide": ["Tonwelt Professionel Media GmbH, Berlin"],
                             "Ausstellungsbau": ["<a href='http://www.bossbern.ch' target='_blank'>Boss Repro, Bern</a>", "Elektro Furrer AG, Sachseln", "Elionora Amstutz, Ennetbürgen", "Glas- und Siebdruck GS AG, Sarnen", "Inventron AG, Alpnach Dorf", "I+M Innenausbau + Möbel AG, Kägiswil", "Maler Hinter, Sachseln", "Neonbosco Leuchtreklamen, Brunnen", "Heinz Eberli, Giswil", "Robert Eberli, Giswil", "Werkstatt95, Sachseln"]
@@ -1184,7 +1184,7 @@
                             "Drehbuch und Dramaturgie": ["Jürg Spichiger (palma3)"],
                             "Projektmitarbeit": ["<a href='http://www.josnaepflin.ch/index.html' target='_blank'>Jos Näpflin, Zürich</a>"],
                             "Videoaufnahmen und Schnitt": ["<a href='http://www.christoph-schreiber.com' target='_blank'>Christoph Schreiber, Zürich</a>"],
-                            "Textmoderation und Sprecher": ["Isabel Schaerer", "Hans-Peter Treichler"],
+                            "Textmoderation und Sprecher": ["Isabel Schaerer", "<a href='http://www.treichler-data.ch' target='_blank'>Hans-Peter Treichler</a>"],
                             "Fotos": ["<a href='http://www.museumbruderklaus.ch' target='_blank'>Archiv Museum Bruder Klaus, Sachseln</a>", "und andere"],
                             "Musik": ["Roland von Flüe", "und andere"],
                             "Cover und Screendesign": ["<a href='http://www.atelier-nordfoehn.ch' target='_blank'>Angela Reinhard, Nordföhn, Zürich</a>"],
@@ -1220,7 +1220,7 @@
                             "Herausgeber": ["<a href='http://www.mfa.ethz.ch' target='_blank'>Max Frisch-Archiv an der ETH-Bibliothek Zürich</a>"],
                             "Produktion": ["Andreas Schwab (palma3)", "Jürg Spichiger (palma3)", "Olivier Rosenfeld"],
                             "Redaktion": ["Dr. Margit Unser", "Liliane Wihler"],
-                            "Textmoderationen": ["Isabel Schaerer", "Hans-Peter Treichler"],
+                            "Textmoderationen": ["Isabel Schaerer", "<a href='http://www.treichler-data.ch' target='_blank'>Hans-Peter Treichler</a>"],
                             "Tontechnik": ["Philipp Treichler, Studio Satyday, Wädenswil"],
                             "Programmierung": ["<a href='http://tatentraeger.ch' target='_blank'>Rafael Freuler, Tatenträger, Zürich</a>"],
                             "Design": ["<a href='http://resortstudio.ch' target='_blank'>Michael Häne, Resortstudio, Zürich</a>"],
