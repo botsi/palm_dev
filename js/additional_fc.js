@@ -475,12 +475,6 @@ var loadForm = function() {
 
     }
 
-    /******************************************
-    https://www.html5rocks.com/de/tutorials/forms/html5forms/
-
-		https://www.wufoo.com/html5/types/4-date.html?date=&time=03%3A15&week=2016-W07
-    ******************************************/
-
     var f_ih = '<form>' +
 
         '<div id="order_sum"></div>' +

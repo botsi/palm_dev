@@ -6,7 +6,7 @@ var align_onresize = function() {
 
     //		imediate
 
-    var cm = document.getElementById("chapter_menu");
+    var cm = document.getElementById('chapter_menu');
 
     if (cm && cm.style.display == 'block') {
 
@@ -976,31 +976,11 @@ var white_head = function() {
                 default:
                     midpoints.push(pre_point);
 
-                    //var point = pre_point;
             }
-
-            /*
-            console.log(point);
-            */
-
-            //midpoints.push(point);
-
-            // old way
-
-            //midpoints.push(parseInt(uat[i].offsetTop + 210 + uat[i].offsetHeight / 2));
 
         }
 
-        //console.log('midarr: ', midpoints);
-
-        //console.log('mid (ultra new way): ', midpoints[folders[chapter].last_position]);
-
-        //console.log('g: midarr,', h + window.innerHeight / 2 + 240);
-
         var g = getNearestNumber(midpoints, h + window.innerHeight / 2 + 240);
-
-        console.log(h, midpoints);
-
 
         if (folders[chapter].last_position == g && chapter == old_chapter) {
             console.log('ireturn in middle of white_head');
@@ -1011,7 +991,7 @@ var white_head = function() {
 
         folders[chapter].last_position = g;
 
-        document.getElementById('chapter_content').style.height = 'auto';
+        cc.style.height = 'auto';
 
         change_image(folders[chapter].data[folders[chapter].last_position].comp_name + '_' + folders[chapter].data[folders[chapter].last_position].slid_count);
 
@@ -1425,7 +1405,7 @@ hear_audio = function(f, aud_img) {
 
 var jump_to = function(j, i) {
     jump_destination = false;
-    document.getElementById("chapter_menu").style.display = 'none';
+    document.getElementById('chapter_menu').style.display = 'none';
 
     folders[i].last_position = j;
 
@@ -1505,11 +1485,9 @@ var hit_menue = function(t, ju) {
 
                 }
 
-                document.getElementById('chapter_content').style.height = get_page_scroll_position() + window.innerHeight + 'px';
+                cc.style.height = get_page_scroll_position() + window.innerHeight + 'px';
 
-                document.getElementById("chapter_content").innerHTML = cap_ih;
-
-                //doc = new jsPDF();
+                cc.innerHTML = cap_ih;
 
             }
 
@@ -1904,6 +1882,8 @@ var toggle_favicons = function() {
 
 var slide_lr = function(d, f) {
 
+    //console.log(folders[chapter].data[folders[chapter].last_position].bilder);
+
     if (folders[chapter].data[folders[chapter].last_position].video.playstate != 'closed' || folders[chapter].data[folders[chapter].last_position].comp_name == 'bestellen') {
         return;
     }
@@ -2075,7 +2055,7 @@ var jump_destination = false;
 
 var arrow = function(e) {
 
-    if (document.getElementById("chapter_menu").style.display != 'none') {
+    if (document.getElementById('chapter_menu').style.display != 'none') {
         //return;
     }
 
@@ -2109,6 +2089,9 @@ var arrow = function(e) {
 
 var page_load = function() {
 
+    /******************************************************************************************
+    						definitions
+    ******************************************************************************************/
 
     wlh = window.location.href;
 
@@ -2116,7 +2099,11 @@ var page_load = function() {
 
     found = document.getElementById('found');
 
+    cc = document.getElementById('chapter_content');
 
+    /******************************************************************************************
+    						end definitions
+    ******************************************************************************************/
 
     for (var f = 0; f < folders.length; f++) {
 
@@ -2185,7 +2172,7 @@ var page_load = function() {
 
         a.addEventListener('mouseover', function() {
 
-            var cm = document.getElementById("chapter_menu");
+            var cm = document.getElementById('chapter_menu');
 
             cm.innerHTML = folders[this.ix].menu_ih;
 
@@ -2216,9 +2203,9 @@ var page_load = function() {
 
         document.getElementById('content').appendChild(a);
 
-        document.getElementById('chapter_content').addEventListener('mouseover', function() {
+        cc.addEventListener('mouseover', function() {
 
-            document.getElementById("chapter_menu").style.display = 'none';
+            document.getElementById('chapter_menu').style.display = 'none';
 
         }, false);
 
@@ -2227,7 +2214,7 @@ var page_load = function() {
     }
 
 
-    document.getElementById("chapter_menu").addEventListener('mouseout', function(event) {
+    document.getElementById('chapter_menu').addEventListener('mouseout', function(event) {
 
         e = event.toElement || event.relatedTarget;
 

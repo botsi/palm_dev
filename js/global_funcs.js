@@ -1,4 +1,17 @@
+/******************************************************************************************
+						predefinitions
+******************************************************************************************/
+
 var resizeId;
+
+
+var display_prel, cc;
+
+/******************************************************************************************
+						end predefinitions
+******************************************************************************************/
+
+
 
 var old_chapter = chapter = 0;
 
@@ -60,7 +73,7 @@ var attach_script = function(apx) {
 
         };
 
-        s.src = 'js/additional_fc.js';
+        s.src = 'js/additional_fc.min.js';
         s.charset = 'utf-8';
 
         document.head.appendChild(s);
@@ -207,8 +220,6 @@ function loadXMLDoc(ud, cfunc) {
 
 }
 
-
-var display_prel;
 
 var preload_rest = function(d) {
     for (var i = 0; i < folders[chapter].data.length; i++) {

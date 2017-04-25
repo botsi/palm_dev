@@ -9,7 +9,7 @@ var align_onresize = function() {
 
     //		imediate
 
-    var cm = document.getElementById("chapter_menu");
+    var cm = document.getElementById('chapter_menu');
 
     if (cm && cm.style.display == 'block') {
 
@@ -351,7 +351,7 @@ var white_head = function() {
 
     sivId = setTimeout(function() {
 
-        var h = get_page_scroll_position(document.getElementById('chapter_content'));
+        var h = get_page_scroll_position(cc);
 
         var uat = document.getElementsByClassName('ueandtx');
 
@@ -389,9 +389,11 @@ var white_head = function() {
 
         folders[chapter].last_position = g;
 
-        document.getElementById('chapter_content').style.height = 'auto';
+        cc.style.height = 'auto';
 
         change_image(folders[chapter].data[folders[chapter].last_position].comp_name + '_' + folders[chapter].data[folders[chapter].last_position].slid_count);
+
+        disable_cine = (folders[chapter].data[folders[chapter].last_position].bilder.length == 0);
 
     }, 100);
 
@@ -415,8 +417,10 @@ var fade_img = function(over, ni) {
 
 
 var jump_to = function(j, i) {
+
     jump_destination = false;
-    document.getElementById("chapter_menu").style.display = 'none';
+
+    document.getElementById('chapter_menu').style.display = 'none';
 
     folders[i].last_position = j;
 
@@ -427,17 +431,14 @@ var jump_to = function(j, i) {
 
     hit_menue(i);
 
-
 };
 
 
 var hit_menue = function(t, ju) {
 
-
     found.classList.remove('found_in_out');
 
     found.style.display = 'none';
-
 
     var old_scroll_pos = folders[chapter].last_position;
 
@@ -458,16 +459,11 @@ var hit_menue = function(t, ju) {
 
             old_chapter = (typeof ju === 'undefined') ? chapter : ju;
 
-
-
-
             chapter = i;
-
 
             a[chapter].style.color = '#bc123a';
 
             var cap_ih = '';
-
 
             for (var aus = 0; aus < folders[chapter].data.length; aus++) {
 
@@ -475,10 +471,9 @@ var hit_menue = function(t, ju) {
 
             }
 
-            document.getElementById('chapter_content').style.height = get_page_scroll_position(document.getElementById('chapter_content')) + window.innerHeight + 'px';
+            cc.style.height = get_page_scroll_position(cc) + window.innerHeight + 'px';
 
-            document.getElementById("chapter_content").innerHTML = cap_ih;
-
+            cc.innerHTML = cap_ih;
 
         }
     }
@@ -503,7 +498,6 @@ var hit_menue = function(t, ju) {
     //	preload_images
 
     if (typeof folders[chapter].data[0].bilder === 'undefined') {
-
 
         for (var i = 0; i < uat.length; i++) {
             folders[chapter].data[i].bilder = [];
@@ -553,8 +547,7 @@ var hit_menue = function(t, ju) {
         }
     }
 
-    document.getElementById("header_txt").innerHTML = folders[chapter].intro;
-
+    //document.getElementById("header_txt").innerHTML = folders[chapter].intro;
 
 };
 
@@ -564,19 +557,19 @@ var start_cine = function() {
     var t = document.getElementById('hg_cover');
 
 
-    window.addEventListener('touchstart', function() {
+    cc.addEventListener('touchstart', function() {
         if (disable_cine == false) {
             get_mouse_coords(t);
         }
     }, false);
 
-    window.addEventListener('touchmove', function() {
+    cc.addEventListener('touchmove', function() {
         if (disable_cine == false) {
             check_swipe(t);
         }
     }, false);
 
-    window.addEventListener('touchend', function() {
+    cc.addEventListener('touchend', function() {
         if (disable_cine == false) {
             swap_now(t);
         }
@@ -588,45 +581,32 @@ var start_cine = function() {
 
 var get_cine_script = function() {
 
-    loadXMLDoc('js/cinema.js', function() {
+    var s = document.createElement('script');
 
-        if (xmlhttp.readyState == 4) {
+    s.setAttribute("type", "text/javascript");
 
-            if (xmlhttp.status == 200) {
+    s.setAttribute("charset", "utf-8");
 
-                var s = document.createElement('script');
+    s.onload = function() {
 
-                s.setAttribute("type", "text/javascript");
+        start_cine();
 
-                s.setAttribute("charset", "utf-8");
+        preload_images.get_arrays('kind', folders, 'name');
 
-                s.innerHTML = xmlhttp.responseText;
+    };
 
-                s.onload = function() {
+    s.src = 'js/cinema.min.js';
 
-                    start_cine();
-
-                    preload_images.get_arrays('kind', folders, 'name');
-
-                };
-
-                s.src = 'js/cinema.js';
-
-                document.getElementsByTagName('head')[0].appendChild(s);
-
-
-            } else {
-
-                console.log('get_cine_script shit happens');
-
-            }
-        }
-
-    });
+    document.getElementsByTagName('head')[0].appendChild(s);
 
 };
 
 var page_load = function() {
+
+
+    /******************************************************************************************
+    						definitions
+    ******************************************************************************************/
 
     wlh = window.location.href;
 
@@ -634,9 +614,24 @@ var page_load = function() {
 
     found = document.getElementById('found');
 
+    cc = document.getElementById('chapter_content');
+
+    /******************************************************************************************
+    						end definitions
+    ******************************************************************************************/
+
+
+    /******************************************************************************************
+    						remove unused elements (mobile version)
+    ******************************************************************************************/
+
     document.body.removeChild(document.getElementsByClassName('fa-angle-left')[0]);
     document.body.removeChild(document.getElementsByClassName('fa-angle-right')[0]);
     document.body.removeChild(document.getElementById('hg'));
+
+    /******************************************************************************************
+    						end remove unused elements
+    ******************************************************************************************/
 
 
 
@@ -697,7 +692,7 @@ var page_load = function() {
 
                 a.addEventListener('mouseover', function() {
 
-                    var cm = document.getElementById("chapter_menu");
+                    var cm = document.getElementById('chapter_menu');
 
                     cm.innerHTML = folders[this.ix].menu_ih;
 
@@ -729,11 +724,15 @@ var page_load = function() {
 
         document.getElementById('content').appendChild(a);
 
-        document.getElementById('chapter_content').addEventListener('mouseover', function() {
+        /*
 
-            document.getElementById("chapter_menu").style.display = 'none';
+                cc.addEventListener('mouseover', function() {
 
-        }, false);
+                    document.getElementById('chapter_menu').style.display = 'none';
+
+                }, false);
+
+        */
 
         folders[f].last_position = 0;
 
