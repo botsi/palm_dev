@@ -744,6 +744,7 @@
                         "Impressum": {
                             "Veranstalter": ["<a href='http://www.naturama.ch' target='_blank'>Naturama Aargau, Aarau</a>"],
                             "Projektleiter und Co-Kurator": ["Jürg Spichiger (palma3)"],
+                            "Mitarbeit": ["Ronny Trachsel (palma3)"],
                             "Szenografie und Gestaltung": ["<a href='http://www.thomashirter.ch' target='_blank'>Thomas Hirter</a>", "Andrea Stebler"],
                             "Fotos": ["Christof Hirtler"],
                             "Unterstützt von": ["Bundesamt für Raumentwicklung ARE", "Bundesamt für Umwelt BAFU", "Bundesamt für Wohnungswesen BWO", "Fonds Landschaft Schweiz", "Stiftung Landschaftsschutz Schweiz", "Sophie und Karl Binding Stiftung", "Jubiläumsstiftung der Schweizerischen Mobiliar Genossenschaft"]
@@ -1276,7 +1277,7 @@
                         "at": ""
                     },
                     "prolog": "",
-                    "text": "«Im Land des Unbehagens» lautet der Titel der Publikation mit ausgewählten Reportagen in Bild und Text, welche die beiden Journalisten Daniel di Falco und <a href='http://www.adrianmoser.ch' target='_blank'>Adrian Moser</a> über die Jahre im Kleinen Bund publiziert haben.<br/>In der Verdichtung im Buchformat und in der konzeptuellen Anordnung erkennbar, stecken die Reportagen die Koordinaten unseres heutigen Selbstverständnisses ab. Zwischen Verheissungen der Konsumwelt, dem Erbe des kriegerischen 20. Jahrhunderts, zerronnenen Zukunftsperspektiven und der Suche nach Verwurzelung stellt sich ein Bild des Unbehagens in unserer heutigen Zivilisation ein.Mit Sprachwitz von hoher literarischer Qualität und ausdrucksstarken Bildreportagen, die nicht das Schöne suchen, in der Düsternis aber ausgesprochen schöne Bilder entstehen lassen, laden die Reportagen ein zu unerwarteten und überraschenden Lokalterminen mit der Geschichte.",
+                    "text": "«Im Land des Unbehagens» lautet der Titel der Publikation mit ausgewählten Reportagen in Bild und Text, welche die beiden Journalisten Daniel di Falco und <a href='http://www.adrianmoser.ch' target='_blank'>Adrian Moser</a> über die Jahre im Kleinen Bund publiziert haben.<br/>In der Verdichtung im Buchformat und in der konzeptuellen Anordnung erkennbar, stecken die Reportagen die Koordinaten unseres heutigen Selbstverständnisses ab. Zwischen Verheissungen der Konsumwelt, dem Erbe des kriegerischen 20. Jahrhunderts, zerronnenen Zukunftsperspektiven und der Suche nach Verwurzelung stellt sich ein Bild des Unbehagens in unserer heutigen Zivilisation ein. Mit Sprachwitz von hoher literarischer Qualität und ausdrucksstarken Bildreportagen, die nicht das Schöne suchen, in der Düsternis aber ausgesprochen schöne Bilder entstehen lassen, laden die Reportagen ein zu unerwarteten und überraschenden Lokalterminen mit der Geschichte.",
                     "epilog": {
                         "Inhaltsverzeichnis": "",
                         "Autoren": [
@@ -1328,6 +1329,34 @@
                             "Copyright": ["© Palma3 Verlag, Bern 2003"]
                         },
                         "Bestellung": ["Das Buch kostet 20.00 CHF + Versandkosten und kann <a class='line' onclick='shop.remote_add(this)'>hier im Shop</a> bestellt werden.", "Buch", 20, "", true]
+                    }
+                },
+                {
+                    "name": "Anderberg",
+                    "comp_name": "anderberg",
+                    "search": [
+                        "hotelbau",
+                        "kasimirfürst",
+                        "kasimirfuerst",
+                        "kasimirfurst",
+                        "albrechthaering",
+                        "albrechthering",
+                        "albrechtharing",
+                        "albrechthäring",
+                        "immobilienunternehmer"
+                    ],
+                    "published": {
+                        "year": 2017,
+                        "at": ""
+                    },
+                    "prolog": "Ein leichtfüssiger Roman über einen grössenwahnsinnigen Hotelbau, über Freundschaft und Verrat, über das unbedingte Erfolgsstreben als Merkmal unserer Zeit – und den Preis, den Einzelne dafür zahlen. Die bissige Gesellschaftssatire ist ein grosses Lesevergnügen.",
+                    "text": "Das Buch ist im <a href='http://www.offizin.ch/vorschau.php' target='_blank'>Offizin Verlag</a> erschienen und kann <a class='line' onclick='shop.remote_add(this)'>hier im Shop</a> bestellt werden.",
+                    "epilog": {
+                        "Inhalt": "Als gescheiterter Immobilienunternehmer will Kasimir Fürst jetzt erst recht allen beweisen, was in ihm steckt. Nach einem Treffen mit seinem alten Internatskollegen Albrecht Haering, dem reichen Erben einer Kassenschrankfirma, werden die beiden zu Geschäftspartnern: Sie beschliessen, in Anderberg das spektakulärste Hotel zu bauen, das die Welt je gesehen hat. Doch genau an Kasimir Fürsts vierzigstem Geburtstag steht die Polizei mit einem Durchsuchungsbefehl vor dessen Haus. Ihm werden Betrügereien in Millionenhöhe vorgeworfen. Angezeigt hat ihn sein Freund Albrecht Haering.",
+                        "Autor": [
+                            ["Andreas Schwab", "Historiker und Gemeinderat", "1971", "Bern", "Bremgarten bei Bern", true, ""]
+                        ],
+                        "Bestellung": ["Das Buch kostet 26.00 CHF + Versandkosten und kann <a class='line' onclick='shop.remote_add(this)'>hier im Shop</a> bestellt werden.", "Buch", 26, "", true]
                     }
                 }
             ]

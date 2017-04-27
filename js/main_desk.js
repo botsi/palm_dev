@@ -679,7 +679,8 @@ var inhalt = function(c, i) {
             [5, 0],
             [5, 1],
             [5, 2],
-            [4, 2]
+            [4, 2],
+            [5, 3]
         ];
 
         for (var sai = 0; sai < shop_arr.length; sai++) {
@@ -718,6 +719,10 @@ var inhalt = function(c, i) {
 
         if (c[i].epilog.Autorinnen && Array.isArray(c[i].epilog.Autorinnen)) {
             c[i].epilog.Autorinnen = aut(c[i].epilog.Autorinnen);
+        }
+
+        if (c[i].epilog.Autor && Array.isArray(c[i].epilog.Autor)) {
+            c[i].epilog.Autor = aut(c[i].epilog.Autor);
         }
 
 
@@ -893,6 +898,7 @@ var white_head = function() {
     sivId = setTimeout(function() {
 
         var h = get_page_scroll_position();
+        //console.log(h);
 
         var uat = document.getElementsByClassName('ueandtx');
 

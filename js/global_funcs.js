@@ -47,7 +47,7 @@ var attach_script = function(apx) {
 
             };
 
-            l.href = 'css/main' + apx + '.css';
+            l.href = 'css/main' + apx + '.css?zuza' + Math.floor(Math.random() * (1000) + 1);
             l.rel = 'stylesheet';
             //l.charset = 'utf-8';
 
