@@ -26,6 +26,11 @@ function get_mouse_coords(t) {
 
 function check_swipe(t) {
 
+    if (event.touches.length > 1) {
+        event.preventDefault();
+        return false;
+    }
+
     var touchobj = event.changedTouches[0];
     dist = Math.abs(touchobj.pageX - mouse_x);
 

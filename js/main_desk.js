@@ -1,5 +1,7 @@
 var sivId, fadeinmovId, foimId, speedId;
 
+var jump_destination = false;
+
 var wlh, folders;
 
 var align_onresize = function() {
@@ -1363,6 +1365,8 @@ var jump_to = function(j, i) {
 
 };
 
+
+
 var hit_menue = function(t, ju) {
 
 
@@ -1938,8 +1942,6 @@ var search = function(t) {
     }
 };
 
-var jump_destination = false;
-
 var arrow = function(e) {
 
     if (document.getElementById('chapter_menu').style.display != 'none') {
@@ -2090,15 +2092,15 @@ var page_load = function() {
 
         document.getElementById('content').appendChild(a);
 
-        cc.addEventListener('mouseover', function() {
-
-            document.getElementById('chapter_menu').style.display = 'none';
-
-        }, false);
-
         folders[f].last_position = 0;
 
     }
+
+    cc.addEventListener('mouseover', function() {
+
+        document.getElementById('chapter_menu').style.display = 'none';
+
+    }, false);
 
 
     document.getElementById('chapter_menu').addEventListener('mouseout', function(event) {

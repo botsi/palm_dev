@@ -1,5 +1,7 @@
 var disable_cine = true;
 
+var jump_destination = false;
+
 var sivId, fadeinmovId, foimId, speedId;
 
 var wlh, folders, hg;
@@ -407,7 +409,7 @@ var jump_to = function(j, i) {
 
     jump_destination = false;
 
-    document.getElementById('chapter_menu').style.display = 'none';
+    found.style.display = 'none';
 
     folders[i].last_position = j;
 
@@ -534,8 +536,67 @@ var hit_menue = function(t, ju) {
         }
     }
 
-    //document.getElementById("header_txt").innerHTML = folders[chapter].intro;
+};
 
+var search = function(t) {
+
+    t.style.color = '#fff';
+    //t.parentNode.style.border = '2px solid #bc123a';
+
+    t.nextSibling.nextSibling.style.display = 'none';
+    t.nextSibling.style.display = 'none';
+
+    //found.classList.remove('found_in_out');
+
+    //found.style.display = 'none';
+
+    var toSearch = t.value.toLowerCase().replace(/ /g, '');
+
+    top_loop: for (var f = 0; f < folders.length; f++) {
+
+        for (var i = 0; i < folders[f].data.length; i++) {
+
+            for (key in folders[f].data[i]) {
+
+                if (folders[f].data[i].search.indexOf(toSearch) != -1) {
+
+                    t.style.color = '#bc123a';
+                    //t.parentNode.style.border = '2px solid #abb7c7';
+
+                    t.nextSibling.nextSibling.style.display = 'inline-block';
+                    t.nextSibling.style.display = 'inline-block';
+                    t.nextSibling.nextSibling.ix = i;
+                    t.nextSibling.nextSibling.fx = f;
+                    t.nextSibling.nextSibling.onclick = function() {
+                        jump_to(this.ix, this.fx);
+                    };
+
+                    jump_destination = [i, f];
+
+                    break top_loop;
+
+                }
+            }
+        }
+
+    }
+};
+
+var arrow = function(e) {
+
+    if (!e) {
+
+        e = window.event;
+
+    }
+
+    if (jump_destination && e.keyCode == 13) {
+
+        found.children[0].children[0].blur();
+
+        jump_to(jump_destination[0], jump_destination[1]);
+
+    }
 };
 
 
@@ -622,7 +683,6 @@ var page_load = function() {
     ******************************************************************************************/
 
 
-
     for (var f = 0; f < folders.length; f++) {
 
         for (var s = 0; s < folders[f].data.length; s++) {
@@ -663,64 +723,7 @@ var page_load = function() {
 
         }, false);
 
-        folders[f].menu_ih = '<span style="display:inline-block;">';
-
-        folders[f].menu_ih += (f == 0) ? '<p><input type="text" onkeyup="search(this)" placeholder=" ... in Palma3 suchen" /><i class="fa fa-check search_check" aria-hidden="true"></i><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></p>' : '';
-
-
-        for (var mi = 0; mi < folders[f].data.length; mi++) {
-
-            folders[f].menu_ih += '<p onclick="jump_to(' + mi + ',' + f + ')">' + folders[f].data[mi].name + '</p>';
-
-        }
-
-        folders[f].menu_ih += '</span>';
-
-        /*
-
-                a.addEventListener('mouseover', function() {
-
-                    var cm = document.getElementById('chapter_menu');
-
-                    cm.innerHTML = folders[this.ix].menu_ih;
-
-                    if (folders[this.ix].menu_ih != '') {
-
-                        cm.style.display = 'block';
-
-                        var last_p_bottom = cm.children[0].lastElementChild.getBoundingClientRect().bottom;
-
-                        if (last_p_bottom > window.innerHeight - 210) {
-
-                            cm.children[0].style.maxHeight = window.innerHeight - 210 + 'px';
-                            cm.children[0].style.overflowY = 'scroll';
-
-                        }
-
-                        var ml = parseInt(this.getBoundingClientRect().left - cm.offsetWidth / 2 + this.offsetWidth / 2);
-
-                        cm.style.marginLeft = (ml > 0) ? ml + 'px' : '0';
-
-                    }
-
-                    if (this.ix == 0) {
-                        cm.children[0].children[0].children[0].focus();
-                    }
-
-                }, false);
-                */
-
         document.getElementById('content').appendChild(a);
-
-        /*
-
-                cc.addEventListener('mouseover', function() {
-
-                    document.getElementById('chapter_menu').style.display = 'none';
-
-                }, false);
-
-        */
 
         folders[f].last_position = 0;
 
@@ -728,18 +731,28 @@ var page_load = function() {
 
     var s = document.createElement('div');
 
-    s.className = 'items';
-
-    //a.ix = f;
+    s.className = 'item_search';
 
     s.innerHTML = '<i class="fa fa-search" aria-hidden="true"></i>';
 
-    document.getElementById('content').appendChild(s);
+    s.addEventListener('click', function() {
 
+        found.style.display = 'block';
+        found.children[0].children[0].value = '';
+        found.children[0].children[0].focus();
+
+    }, false);
+
+    document.getElementById('content').insertBefore(s, document.getElementById('content').children[3]);
+
+    found.innerHTML = '<p><input type="text" onkeyup="search(this)" placeholder=" ... in Palma3 suchen" /><i class="fa fa-check search_check" aria-hidden="true"></i><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></p>';
 
     //window.addEventListener("resize", align_onresize, false);
 
     cc.addEventListener("scroll", white_head, false);
+
+    window.addEventListener("keydown", arrow, false);
+
 
     //document.getElementById('header_palma').addEventListener("click", page_reload, false);
 

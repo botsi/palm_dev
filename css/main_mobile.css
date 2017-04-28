@@ -124,22 +124,56 @@ a:visited, a:hover, a:active {
   display: none;
 }
 
-#content .items {
+#content .items, #content .item_search {
   padding: 6px 12px;
   width: auto;
   border: 0 none;
   text-align: center;
-  cursor: pointer;
   color: #333;
   margin: auto !important;
   font-size: 16px;
+}
+
+#content .item_search {
+  font-weight: 800;
+}
+
+#found {
+  position: absolute;
+  left: 0;
+  top: 100px;
+  background: #abb7c7;
+  display: none;
+}
+
+#found_ini {}
+
+#found p {
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  line-height: 82px;
+}
+
+#found p input {
+  -webkit-appearance: none;
+  vertical-align: middle;
+  padding: 0;
+  margin: 8px;
+  font-size: 28px;
+  width: 100%;
+  max-width: calc(100vw - 120px);
+  border: 0 none;
+  border-radius: 0;
+  color: #bc123a;
+  background: rgba(0, 0, 0, 0);
 }
 
 #chapter_menu, .fa-pause, .fa-play, .fa-volume-off, .fa-volume-up, .fa-expand, .fa-angle-left, .fa-angle-right {
   display: none;
 }
 
-.fa-download, .fa-eye, .fa-file-text-o, .fa-check, .fa-minus-circle, .fa-arrow-circle-right, .items, .ue {
+.fa-download, .fa-eye, .fa-file-text-o, .fa-check, .fa-minus-circle, .fa-arrow-circle-right, .items, .item_search, .ue {
   -webkit-touch-callout: none;
   /* iOS Safari */
   -webkit-user-select: none;
@@ -153,16 +187,34 @@ a:visited, a:hover, a:active {
   user-select: none;
 }
 
-.fa-download, .fa-eye, .fa-file-text-o {
-  width: 18px;
-  margin-left: 24px;
-  display: none;
+.fa-search, .fa-download, .fa-eye, .fa-file-text-o, .fa-check, .fa-arrow-circle-right {
   padding: 8px 10px;
   background: rgba(255, 255, 255, 0.3);
   border-radius: 98px;
   border: 2px solid rgba(127, 127, 127, 0.2);
   box-shadow: 8px 8px 4px rgba(127, 127, 127, 0.2);
+}
+
+.fa-search {
+  width: 16px;
+  margin-left: 0px;
+  font-size: 18px;
+  color: #bc123a;
+}
+
+.fa-download, .fa-eye, .fa-file-text-o {
+  width: 18px;
+  margin-left: 24px;
+  display: none;
   /**/
+}
+
+.fa-check, .fa-arrow-circle-right {
+  width: 18px;
+  color: #bc123a;
+  font-weight: 800;
+  font-size: 22px;
+  display: none;
 }
 
 .fa-eye, .fa-download {
@@ -242,6 +294,10 @@ a:visited, a:hover, a:active {
   left: 0;
   position: absolute;
   margin-top: -108px;
+  font-weight: 800;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 #chapter_content span.ue span.mo_ye {
@@ -254,7 +310,6 @@ a:visited, a:hover, a:active {
   font-size: 22px;
   position: absolute;
   margin-top: -44px;
-  cursor: pointer;
   text-indent: 0;
   right: 12px;
   font-weight: 800;
