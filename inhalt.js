@@ -1239,6 +1239,34 @@
             "name": "publikationen",
             "intro": "",
             "data": [{
+                    "name": "Anderberg",
+                    "comp_name": "anderberg",
+                    "search": [
+                        "hotelbau",
+                        "kasimirfürst",
+                        "kasimirfuerst",
+                        "kasimirfurst",
+                        "albrechthaering",
+                        "albrechthering",
+                        "albrechtharing",
+                        "albrechthäring",
+                        "immobilienunternehmer"
+                    ],
+                    "published": {
+                        "year": 2017,
+                        "at": ""
+                    },
+                    "prolog": "Ein leichtfüssiger Roman über einen grössenwahnsinnigen Hotelbau, über Freundschaft und Verrat, über das unbedingte Erfolgsstreben als Merkmal unserer Zeit – und den Preis, den Einzelne dafür zahlen. Die bissige Gesellschaftssatire ist ein grosses Lesevergnügen.",
+                    "text": "Das Buch ist im <a href='http://www.offizin.ch/vorschau.php' target='_blank'>Offizin Verlag</a> erschienen und kann <a class='line' onclick='shop.remote_add(this)'>hier im Shop</a> bestellt werden.",
+                    "epilog": {
+                        "Inhalt": "Als gescheiterter Immobilienunternehmer will Kasimir Fürst jetzt erst recht allen beweisen, was in ihm steckt. Nach einem Treffen mit seinem alten Internatskollegen Albrecht Haering, dem reichen Erben einer Kassenschrankfirma, werden die beiden zu Geschäftspartnern: Sie beschliessen, in Anderberg das spektakulärste Hotel zu bauen, das die Welt je gesehen hat. Doch genau an Kasimir Fürsts vierzigstem Geburtstag steht die Polizei mit einem Durchsuchungsbefehl vor dessen Haus. Ihm werden Betrügereien in Millionenhöhe vorgeworfen. Angezeigt hat ihn sein Freund Albrecht Haering.",
+                        "Autor": [
+                            ["Andreas Schwab", "Historiker und Gemeinderat", "1971", "Bern", "Bremgarten bei Bern", true, ""]
+                        ],
+                        "Bestellung": ["Das Buch kostet 26.00 CHF + Versandkosten und kann <a class='line' onclick='shop.remote_add(this)'>hier im Shop</a> bestellt werden.", "Buch", 26, "", true]
+                    }
+                },
+                {
                     "comp_name": "bernstattfern",
                     "name": "Bern statt fern",
                     "search": [
@@ -1273,7 +1301,7 @@
                         "adrianmoser"
                     ],
                     "published": {
-                        "year": 2010,
+                        "year": 2009,
                         "at": ""
                     },
                     "prolog": "",
@@ -1329,34 +1357,6 @@
                             "Copyright": ["© Palma3 Verlag, Bern 2003"]
                         },
                         "Bestellung": ["Das Buch kostet 20.00 CHF + Versandkosten und kann <a class='line' onclick='shop.remote_add(this)'>hier im Shop</a> bestellt werden.", "Buch", 20, "", true]
-                    }
-                },
-                {
-                    "name": "Anderberg",
-                    "comp_name": "anderberg",
-                    "search": [
-                        "hotelbau",
-                        "kasimirfürst",
-                        "kasimirfuerst",
-                        "kasimirfurst",
-                        "albrechthaering",
-                        "albrechthering",
-                        "albrechtharing",
-                        "albrechthäring",
-                        "immobilienunternehmer"
-                    ],
-                    "published": {
-                        "year": 2017,
-                        "at": ""
-                    },
-                    "prolog": "Ein leichtfüssiger Roman über einen grössenwahnsinnigen Hotelbau, über Freundschaft und Verrat, über das unbedingte Erfolgsstreben als Merkmal unserer Zeit – und den Preis, den Einzelne dafür zahlen. Die bissige Gesellschaftssatire ist ein grosses Lesevergnügen.",
-                    "text": "Das Buch ist im <a href='http://www.offizin.ch/vorschau.php' target='_blank'>Offizin Verlag</a> erschienen und kann <a class='line' onclick='shop.remote_add(this)'>hier im Shop</a> bestellt werden.",
-                    "epilog": {
-                        "Inhalt": "Als gescheiterter Immobilienunternehmer will Kasimir Fürst jetzt erst recht allen beweisen, was in ihm steckt. Nach einem Treffen mit seinem alten Internatskollegen Albrecht Haering, dem reichen Erben einer Kassenschrankfirma, werden die beiden zu Geschäftspartnern: Sie beschliessen, in Anderberg das spektakulärste Hotel zu bauen, das die Welt je gesehen hat. Doch genau an Kasimir Fürsts vierzigstem Geburtstag steht die Polizei mit einem Durchsuchungsbefehl vor dessen Haus. Ihm werden Betrügereien in Millionenhöhe vorgeworfen. Angezeigt hat ihn sein Freund Albrecht Haering.",
-                        "Autor": [
-                            ["Andreas Schwab", "Historiker und Gemeinderat", "1971", "Bern", "Bremgarten bei Bern", true, ""]
-                        ],
-                        "Bestellung": ["Das Buch kostet 26.00 CHF + Versandkosten und kann <a class='line' onclick='shop.remote_add(this)'>hier im Shop</a> bestellt werden.", "Buch", 26, "", true]
                     }
                 }
             ]

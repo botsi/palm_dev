@@ -37,6 +37,8 @@ function check_swipe(t) {
         var new_mouse_x = touchobj.pageX;
         var new_mouse_y = touchobj.pageY;
 
+        preset_new_bg(mouse_x - new_mouse_x);
+
         t.style.left = old_img_pos + (new_mouse_x - mouse_x) + 'px';
 
 
@@ -57,8 +59,7 @@ function check_swipe(t) {
             rc_dir = 0;
 
         }
-    } else {
-        //white_head();
+
     }
 
 }

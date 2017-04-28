@@ -2,7 +2,7 @@ var disable_cine = true;
 
 var sivId, fadeinmovId, foimId, speedId;
 
-var wlh, folders;
+var wlh, folders, hg;
 
 
 var align_onresize = function() {
@@ -51,8 +51,9 @@ var inhalt = function(c, i) {
     var r = '';
 
     r += '<span class="scroll_positioner"></span><span class="ueandtx">' + '<span class="ue">' + c[i].name;
-    r += (c[i].time) ? ' - ' + adjustments_de.monthNames[c[i].time.from[1] - 1] + ' ' + c[i].time.from[2] : '';
-    r += (c[i].published) ? ' - ' + c[i].published.year : '';
+    r += (c[i].time) ? '<span class="mo_ye"><br/>' + adjustments_de.monthNames[c[i].time.from[1] - 1] + ' ' + c[i].time.from[2] + '</span>' : '';
+    r += (c[i].published) ? '<span class="mo_ye"><br/>' + c[i].published.year + '</span>' : '';
+    r += (!c[i].time && !c[i].published) ? '<span class="mo_ye"><br/>&nbsp;</span>' : '';
 
     var cs = get_column_count();
 
@@ -145,69 +146,26 @@ var see = function(t, s, p) {
 
 
         t.style.display = 'none';
+
         t.nextSibling.style.display = 'inline-block';
-        //t.parentNode.style.marginTop = '-42px';
-        //t.parentNode.parentNode.style.fontSize = '3.6vw';
-        //t.parentNode.parentNode.style.textIndent = '40px';
-        t.parentNode.parentNode.style.background = 'rgba(191, 191, 191, 0.6)';
 
-        //t.parentNode.parentNode.style.borderTop = '18px solid rgba(0, 0, 0, 0)';
-        //if (t.parentNode.parentNode.nextSibling.nextSibling) {
-        //t.parentNode.parentNode.nextSibling.nextSibling.style.visibility = 'hidden';
-        //}
+        //t.parentNode.parentNode.style.background = 'rgba(191, 191, 191, 0.6)';
+
         t.parentNode.parentNode.nextSibling.style.visibility = 'hidden';
-        //t.parentNode.parentNode.parentNode.style.background = 'rgba(255,255,255,0)';
-
-        //t.parentNode.parentNode.parentNode.style.height = parseInt(window.innerHeight - 180) + 'px';
-        //t.parentNode.parentNode.parentNode.style.marginTop = '0px';
-        //document.getElementsByClassName('scroll_positioner')[i].style.marginTop = p + 'px';
-
-
-
-
 
     } else {
 
         //	text commes
 
-
         disable_cine = true;
 
-
         t.style.display = 'none';
+
         t.previousSibling.style.display = 'inline-block';
-        //t.parentNode.style.marginTop = '-36px';
-        //t.parentNode.parentNode.style.fontSize = '28px';
-        //t.parentNode.parentNode.style.textIndent = 0;
-        //t.parentNode.parentNode.style.background = 'rgba(141, 170, 212, 1)';
-        //t.parentNode.parentNode.style.marginTop = '0';
-        //t.parentNode.parentNode.style.borderTop = '0 none';
 
         t.parentNode.parentNode.nextSibling.style.visibility = 'visible';
 
-        //t.parentNode.parentNode.nextSibling.style.filter = 'none';
-        //t.parentNode.parentNode.nextSibling.style.color = '#333';
-
-        //if (t.parentNode.parentNode.nextSibling.nextSibling) {
-        //t.parentNode.parentNode.nextSibling.nextSibling.style.visibility = 'visible';
-        //}
-
-        //t.parentNode.parentNode.parentNode.style.background = 'rgba(255,255,255,0.9)';
-
-        //t.parentNode.parentNode.parentNode.style.height = 'auto';
-        //t.parentNode.parentNode.parentNode.style.minHeight = parseInt(window.innerHeight - 180) + 'px';
-
-        //if (t.parentNode.parentNode.parentNode.offsetHeight < parseInt((window.innerHeight - 300) / 2)) {
-        //t.parentNode.parentNode.parentNode.style.height = parseInt((window.innerHeight - 300) / 2) + 'px';
-        //}
-
-        //document.getElementsByClassName('scroll_positioner')[i].style.marginTop = 'calc(180px - 50vh)';
-
-
-
     }
-
-
 
 };
 
@@ -321,40 +279,14 @@ var slide_lr = function(d, f) {
 
 var get_page_scroll_position = function(el) {
 
-    /*
-
-        var h;
-
-        if (document.body.scrollTop) {
-            //console.log('dbs: ' + document.body.scrollTop);
-            h = document.body.scrollTop;
-        } else {
-            //console.log('ddEs: ' + document.documentElement.scrollTop);
-            h = document.documentElement.scrollTop;
-        }
-
-    */
-
-    console.log(0 - el.getBoundingClientRect().top);
-
-
     return 0 - el.getBoundingClientRect().top;
 };
 
 var white_head = function() {
-    /*
-        if (snap) {
-            return;
-        }
-        clearTimeout(sivId);
-    */
-
-    //alert(h);
-
-    //    document.getElementById('header_txt').innerHTML = 'oki, lastpos: ' + h;
 
 
     var uat = document.getElementsByClassName('ueandtx');
+
     var h = get_page_scroll_position(uat[0]);
 
     var midpoints = [];
@@ -377,27 +309,14 @@ var white_head = function() {
 
     }
 
-
     var g = getNearestNumber(midpoints, h + window.innerHeight / 2 + 240);
-    //document.getElementById('header_txt').innerHTML = 'oki, uat: ' + uat[0] + ' oki, h: ' + h;
-
-    /*
-        clearTimeout(sivId);
-
-        sivId = setTimeout(function() {
-            document.getElementById('header_txt').innerHTML = 'oki, lastpos: ' + g + ' oki, lastpos: ' + document.getElementsByClassName('scroll_positioner')[g];
-            document.getElementsByClassName('scroll_positioner')[g].scrollIntoView({
-                block: "start",
-                behavior: "smooth"
-            });
-        }, 5000);
-    */
 
     if (folders[chapter].last_position == g && chapter == old_chapter) {
-        console.log('(disabled) ireturn in middle of white_head');
+        //console.log('(disabled) ireturn in middle of white_head');
         //clearTimeout(sivId);
         return;
     }
+
     document.getElementById('header_txt').innerHTML = 'pos: ' + h;
 
     old_chapter = chapter;
@@ -409,10 +328,6 @@ var white_head = function() {
     disable_cine = (folders[chapter].data[folders[chapter].last_position].bilder.length == 0);
 
     change_image(folders[chapter].data[folders[chapter].last_position].comp_name + '_' + folders[chapter].data[folders[chapter].last_position].slid_count);
-
-
-    //snap_in(folders[chapter].last_position);
-
 
 };
 
@@ -433,6 +348,40 @@ var snap_in = function(ix) {
 
 };
 
+var preset_new_bg = function(n) {
+
+    if (hg.set) {
+
+        return;
+
+    }
+
+    hg.set = true;
+
+    var ni = folders[chapter].data[folders[chapter].last_position].slid_count + n / Math.abs(n);
+
+    if (ni > bilder()[folders[chapter].last_position].length || ni == 0) {
+
+        ni = '';
+
+    } else {
+
+        if (ni < 0) {
+
+            ni = '_' + bilder()[folders[chapter].last_position].length;
+
+        } else {
+
+            ni = '_' + ni;
+
+        }
+
+    }
+
+    hg.style.backgroundImage = 'url("' + img_type.path + folders[chapter].name + '/' + folders[chapter].data[folders[chapter].last_position].comp_name + ni + img_type.ext + '")';
+
+};
+
 var fade_img = function(over, ni) {
 
     var over = document.getElementById(over);
@@ -443,9 +392,13 @@ var fade_img = function(over, ni) {
 
     setTimeout(function() {
 
+        hg.style.backgroundImage = ni;
+
         over.classList.remove('change_img_in');
 
     }, 400);
+
+    hg.set = false;
 
 };
 
@@ -648,6 +601,9 @@ var page_load = function() {
 
     cc = document.getElementById('chapter_content');
 
+    hg = document.getElementById('hg');
+    hg.set = false;
+
     /******************************************************************************************
     						end definitions
     ******************************************************************************************/
@@ -659,7 +615,7 @@ var page_load = function() {
 
     document.body.removeChild(document.getElementsByClassName('fa-angle-left')[0]);
     document.body.removeChild(document.getElementsByClassName('fa-angle-right')[0]);
-    document.body.removeChild(document.getElementById('hg'));
+    document.body.removeChild(document.getElementById('hg_audio'));
 
     /******************************************************************************************
     						end remove unused elements
@@ -769,6 +725,17 @@ var page_load = function() {
         folders[f].last_position = 0;
 
     }
+
+    var s = document.createElement('div');
+
+    s.className = 'items';
+
+    //a.ix = f;
+
+    s.innerHTML = '<i class="fa fa-search" aria-hidden="true"></i>';
+
+    document.getElementById('content').appendChild(s);
+
 
     //window.addEventListener("resize", align_onresize, false);
 
