@@ -188,9 +188,14 @@ ul.author li span, ul.orandda li span {
 }
 
 ul.orandda li span a i {
+  /*
   position: absolute;
   margin: 20px auto 18px 0;
   font-size: 32px;
+*/
+  margin: 20px auto -54px 0;
+  font-size: 32px;
+  display: block;
 }
 
 ul.orandda li span p:nth-child(1) {

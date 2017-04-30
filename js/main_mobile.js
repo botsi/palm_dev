@@ -1,10 +1,15 @@
+var sivId, fadeinmovId, foimId, speedId;
+
+var wlh, folders, hg;
+
 var disable_cine = true;
 
 var jump_destination = false;
 
-var sivId, fadeinmovId, foimId, speedId;
+var google_pad_map_url = 'comgooglemaps://?q=Dammweg+41,+3013+Bern';
 
-var wlh, folders, hg;
+var google_map_link = 'https://www.google.ch/maps/place/Dammweg+41,+3013+Bern/@46.9586655,7.4438403,17z/data=!3m1!4b1!4m5!3m4!1s0x478e39ecbecd9651:0x3ae88eac744bae78!8m2!3d46.9586655!4d7.446029';
+
 
 
 var align_onresize = function() {
@@ -85,15 +90,22 @@ var inhalt = function(c, i) {
 
     var insert = ['', ''];
 
+    if (typeof c[i].epilog.App !== 'undefined') {
+        //alert('app');
+
+        insert = ['<div></div>', '<div class="palma_app"></div>'];
+
+    }
+
     if (typeof c[i].map !== 'undefined') {
-        insert = ['<div id="palma_map"></div>', '<div style="height:400px;"></div>'];
+
+        insert = ['<div></div>', '<div id="palma_map"></div>'];
+
     }
 
     if (typeof c[i].form !== 'undefined') {
 
-
         insert = ['<div id="palma_form"></div>', '<div></div>'];
-
 
     }
 
@@ -286,7 +298,6 @@ var get_page_scroll_position = function(el) {
 
 var white_head = function() {
 
-
     var uat = document.getElementsByClassName('ueandtx');
 
     var h = get_page_scroll_position(uat[0]);
@@ -309,6 +320,14 @@ var white_head = function() {
 
         }
 
+        if (typeof folders[chapter].data[i].epilog.App !== 'undefined') {
+
+            app_display_data.act_app = folders[chapter].data[i].comp_name;
+
+            document.getElementsByClassName('palma_app')[i].innerHTML = app_display_data[folders[chapter].data[i].comp_name].apendix();
+
+        }
+
     }
 
     var g = getNearestNumber(midpoints, h + window.innerHeight / 2 + 240);
@@ -319,7 +338,7 @@ var white_head = function() {
         return;
     }
 
-    document.getElementById('header_txt').innerHTML = 'pos: ' + h;
+    //document.getElementById('header_txt').innerHTML = 'pos: ' + h;
 
     old_chapter = chapter;
 
@@ -330,6 +349,17 @@ var white_head = function() {
     disable_cine = (folders[chapter].data[folders[chapter].last_position].bilder.length == 0);
 
     change_image(folders[chapter].data[folders[chapter].last_position].comp_name + '_' + folders[chapter].data[folders[chapter].last_position].slid_count);
+
+    if (typeof folders[chapter].data[g].map !== 'undefined') {
+
+        document.getElementById('palma_map').innerHTML = '<img src="images/gog.png" />';
+
+        document.getElementById('palma_map').addEventListener('click', function() {
+            window.location = (window.navigator.userAgent.indexOf("iPad") != -1 || window.navigator.userAgent.indexOf("iPhone") != -1) ? google_pad_map_url : google_map_link;
+        });
+
+    }
+
 
 };
 
@@ -540,11 +570,12 @@ var hit_menue = function(t, ju) {
 
 var search = function(t) {
 
+    jump_destination = false;
+
     t.style.color = '#fff';
     //t.parentNode.style.border = '2px solid #bc123a';
 
-    t.nextSibling.nextSibling.style.display = 'none';
-    t.nextSibling.style.display = 'none';
+    t.previousSibling.style.display = t.nextSibling.style.display = 'none';
 
     //found.classList.remove('found_in_out');
 
@@ -563,11 +594,11 @@ var search = function(t) {
                     t.style.color = '#bc123a';
                     //t.parentNode.style.border = '2px solid #abb7c7';
 
-                    t.nextSibling.nextSibling.style.display = 'inline-block';
+                    t.previousSibling.style.display = t.nextSibling.style.display = 'inline-block';
                     t.nextSibling.style.display = 'inline-block';
-                    t.nextSibling.nextSibling.ix = i;
-                    t.nextSibling.nextSibling.fx = f;
-                    t.nextSibling.nextSibling.onclick = function() {
+                    t.nextSibling.ix = i;
+                    t.nextSibling.fx = f;
+                    t.nextSibling.onclick = function() {
                         jump_to(this.ix, this.fx);
                     };
 
@@ -590,11 +621,18 @@ var arrow = function(e) {
 
     }
 
+    //if (e.keyCode == 13) {
     if (jump_destination && e.keyCode == 13) {
 
-        found.children[0].children[0].blur();
+        found.children[0].children[1].blur();
 
         jump_to(jump_destination[0], jump_destination[1]);
+
+        //this.value = '';
+        found.style.display = 'none';
+        //} else {
+        //return false;
+        //}
 
     }
 };
@@ -736,16 +774,25 @@ var page_load = function() {
     s.innerHTML = '<i class="fa fa-search" aria-hidden="true"></i>';
 
     s.addEventListener('click', function() {
-
-        found.style.display = 'block';
-        found.children[0].children[0].value = '';
-        found.children[0].children[0].focus();
+        found.children[0].children[1].value = '';
+        if (found.style.display == 'block') {
+            found.style.display = 'none';
+        } else {
+            found.style.display = 'block';
+            found.children[0].children[1].focus();
+        }
 
     }, false);
 
     document.getElementById('content').insertBefore(s, document.getElementById('content').children[3]);
 
-    found.innerHTML = '<p><input type="text" onkeyup="search(this)" placeholder=" ... in Palma3 suchen" /><i class="fa fa-check search_check" aria-hidden="true"></i><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></p>';
+    found.innerHTML = '<p><i class="fa fa-check search_check" aria-hidden="true"></i><input type="text" onkeyup="search(this)" placeholder=" ... suchen" /><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></p>';
+
+    //found.children[0].children[1].addEventListener("blur", function() {
+    //this.value = '';
+    //found.style.display = 'none';
+    //}, false);
+
 
     //window.addEventListener("resize", align_onresize, false);
 

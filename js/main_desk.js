@@ -811,7 +811,7 @@ var show_app = function(i, t) {
 
             if (xmlhttp.status == 200) {
 
-                document.getElementsByClassName('epilog')[folders[chapter].last_position].previousSibling.innerHTML = '<span id="map_place_title"></span>' + xmlhttp.responseText + '<div class="app_leftside"></div><div class="app_beside">' + app_display_data[app_display_data.act_app].apendix() + '</div>';
+                document.getElementsByClassName('epilog')[folders[chapter].last_position].previousSibling.innerHTML = ('<span id="map_place_title"></span>' + xmlhttp.responseText + '<div class="app_leftside"></div><div class="app_beside">' + app_display_data[app_display_data.act_app].apendix() + '</div>');
 
                 mpt = document.getElementById('map_place_title');
 
@@ -1887,6 +1887,8 @@ var slide_lr = function(d, f) {
 
 
 var search = function(t) {
+
+    jump_destination = false;
 
     t.parentNode.style.border = '2px solid #bc123a';
 

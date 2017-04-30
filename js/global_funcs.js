@@ -30,6 +30,54 @@ var img_type = {
     "ext": ".jpg"
 };
 
+var app_display_data = {
+    "act_app": "",
+    "maxfrisch": {
+        "img_ix": [1, 4, 8, 12, 14, 18, 21, 27, 31, 35, 39, 41, 45],
+        "plc_tx": ['Rosenhof, Brunnen', 'Bodega Española', 'Hotel Storchen', 'Kirche St. Peter', 'Elfuhrgeläute auf der Münsterbrücke', 'Café Terrasse', 'Café Odeon', 'Kronenhalle', 'Stadelhofer Passage, letzte Wohnung von Max Frisch', 'Schauspielhaus Zürich', 'Kantonales Realgymnasium', 'Universität Zürich', 'ETH Zürich'],
+        "apendix": function() {
+
+            var a = ['Erhältlich im App Store:', '<a href="https://itunes.apple.com/de/app/id573495442?mt=8" target="_blank"><img src="mediaguides/apples-app-store.png" alt="Zum download im App Store" height="70" width="70"></a>'];
+
+            var g = ['Erhältlich im Google Play Store:', '<a href="https://play.google.com/store/apps/details?id=com.tatentraeger.maxfrischapp" target="_blank"><img src="mediaguides/google_play.png" alt="Zum download im Google Play Store" height="70" width="217"></a>'];
+
+            if (isTouchSupported()) {
+
+                var ag = (window.navigator.userAgent.indexOf("iPad") != -1 || window.navigator.userAgent.indexOf("iPhone") != -1) ? a : g;
+
+            } else {
+
+                var ag = ['Erhältlich im App Store für iPhones und Google Play Store:', a[1] + ' ' + g[1]];
+
+            }
+
+            return '<p>Wählen sie einen Spaziergang.</p><p><img class="artwork" src="mediaguides/' + app_display_data.act_app + '/app_artwork.jpg" alt="App Artwork" height="175" width="175"></p><p>Die  App bietet Ihnen:</p><ul><li>drei Stadtspaziergänge durch verschiedene Quartiere der Stadt Zürich</li><li>21 Audiostationen mit  Informationen über Leben und Werk von Max Frisch</li><li>rund 40 Minuten Audioführung</li><li>rund 68 Abbildungen</li><li>GPS-Lokalisierung Ihres Standortes</li><li>kostenlosen Download</li></ul><p>' + ag[0] + '</p><p>' + ag[1] + '</p>';
+        }
+    },
+    "monteverita": {
+        "img_ix": [1, 3, 4, 15, 9, 18, 13],
+        "apendix": function() {
+
+            var a = ['Erhältlich im App Store:', '<a href="https://itunes.apple.com/ch/app/mediaguide-monte-verita/id975156405?l=de&mt=8" target="_blank"><img src="mediaguides/apples-app-store.png" alt="Zum download im App Store" height="70" width="70"></a>'];
+
+            var g = ['Erhältlich im Google Play Store:', '<a href="https://play.google.com/store/apps/details?id=org.webatelier.monteverita" target="_blank"><img src="mediaguides/google_play.png" alt="Zum download im Google Play Store" height="70" width="217"></a>'];
+
+            if (isTouchSupported()) {
+
+                var ag = (window.navigator.userAgent.indexOf("iPad") != -1 || window.navigator.userAgent.indexOf("iPhone") != -1) ? a : g;
+
+            } else {
+
+                var ag = ['Erhältlich im App Store für iPhones und Google Play Store:', a[1] + ' ' + g[1]];
+
+            }
+
+            return '<p>Wählen sie ein Thema aus der App.</p><p><img class="artwork" src="mediaguides/' + app_display_data.act_app + '/app_artwork.jpg" alt="App Artwork" height="175" width="175"></p><p>Die  App bietet Ihnen:</p><ul><li>Audioguide mit historischen Fotografien</li><li>Videoguide von Harald Szeemann und zu Labans Ikosaeder</li><li>Geschichte, Epochen und Persönlichkeiten des Monte Verità</li><li>Der Monte Verità heute</li><li>Gästebuch</li><li>Persönlichkeitstest: Was für ein Monteveritaner sind Sie?</li><li>Sprachen: Deutsch, Italienisch, Französisch, Englisch</li></ul><p>' + ag[0] + '</p><p>' + ag[1] + '</p>';
+        }
+    }
+};
+
+
 var attach_script = function(apx) {
 
     var work = function(apx) {
@@ -56,7 +104,7 @@ var attach_script = function(apx) {
 
         };
 
-        s.src = 'js/main' + apx + '.js';
+        s.src = 'js/main' + apx + '.min.js';
         s.charset = 'utf-8';
 
         document.head.appendChild(s);

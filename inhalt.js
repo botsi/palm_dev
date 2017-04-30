@@ -72,7 +72,7 @@
                     "epilog": {
                         "Projektliste": "<ul><li><a onclick='search_nostyle(this)'>Schreibrausch</a></li><li><a onclick='search_nostyle(this)'>Den Körper im Blick</a></li><li><a onclick='search_nostyle(this)'>Fernes Donnergrollen</a></li><li><a onclick='search_nostyle(this)'>Die Utopie der Widerspenstigen</a></li><li><a onclick='search_nostyle(this)'>Das Abenteuer Bildung</a></li><li><a onclick='search_nostyle(this)'>Halbzeit</a></li><li><a onclick='search_nostyle(this)'>Die 68er</a></li><li><a onclick='search_nostyle(this)'>Hirnsturm</a></li><li><a onclick='search_nostyle(this)'>Monte Verità</a></li><li><a onclick='search_nostyle(this)'>anders sehen</a></li><li><a onclick='search_nostyle(this)'>Sasso San Gottardo</a></li><li><a onclick='search_nostyle(this)'>Auf den Spuren von Max Frisch</a></li><li><a onclick='search_nostyle(this)'>Mediaguide Monte Verità</a></li><li><a onclick='search_nostyle(this)'>Fitness. Schönheit kommt von aussen</a></li></ul>",
                         "weitere Tätigkeiten": "<ul><li>Historiker, Dr. phil.</li><li>Diplom Management culturel et social</li><li>Gemeinderat Ressort Bildung, Bremgarten bei Bern 2012 - 2017, <a href='http://www.andreasschwab.ch' target='_blank'>www.andreasschwab.ch</a></li><li>Mitarbeit bei der Ausstellung «Zuflucht Monte Verità» im Museo Hermann Hesse, Montagnola (23.9. 2006 – 15.2.2007), <a href='http://www.hessemontagnola.ch' target='_blank'>www.hessemontagnola.ch</a></li><li>Kurator der Ausstellung «Am Anfang ist das Wort. Lexika in der Schweiz». Eine Koproduktion der Schweizerischen Nationalbibliothek und des Historischen Lexikons der Schweiz (7.11.2008 – 29.3.2009)</li></ul>",
-                        "Veröffentlichungen": "<ul><li>«Monte Verità – Sanatorium der Sehnsucht», Orell Füssli Verlag, Zürich 2003, 286 Seiten</li><li>«Landkooperativen Longo maï – Pioniere einer gelebten Utopie», <a href='https://rotpunktverlag.ch/titel/landkooperativen-longo-mai' target='_blank'>Rotpunktverlag, Zürich</a> 2013, 228 Seiten</li><li>«Lei non può lamentarsi di aver passato il suo tempo annoiandosi.» Harald Szeemann e l’esposizione sul Monte Verità, in: Claudia Lafranchi Cattaneo / Andreas Schwab, Dalla visione al chiodo. Dal chiodo alla visione. Il Fonde Harald Szeemann dell’Archivio Fondazione Monte Verità, Bellinzona 2013, Seiten 173 bis 220. (Übersetzung aus dem Deutschen, Originaltext: <a href='http://www.palma3.ch/fileadmin/user_upload/Palma3_Daten_allgemein/Presserartikel_Andreas_Schwab/Szeemann_MV_def.pdf' target='_blank'>Harald Szeemann und der Monte Verità PDF</a>)</li></ul>",
+                        "Veröffentlichungen": "<ul><li>«Monte Verità – Sanatorium der Sehnsucht», Orell Füssli Verlag, Zürich 2003, 286 Seiten</li><li>«Landkooperativen Longo maï – Pioniere einer gelebten Utopie», <a href='https://rotpunktverlag.ch/titel/landkooperativen-longo-mai' target='_blank'>Rotpunktverlag, Zürich</a> 2013, 228 Seiten</li><li>«Lei non può lamentarsi di aver passato il suo tempo annoiandosi.» Harald Szeemann e l’esposizione sul Monte Verità, in: Claudia Lafranchi Cattaneo / Andreas Schwab, Dalla visione al chiodo. Dal chiodo alla visione. Il Fonde Harald Szeemann dell’Archivio Fondazione Monte Verità, Bellinzona 2013, Seiten 173 bis 220. (Übersetzung aus dem Deutschen, Originaltext: <a href='http://old.palma3.ch/fileadmin/user_upload/Palma3_Daten_allgemein/Presserartikel_Andreas_Schwab/Szeemann_MV_def.pdf' target='_blank'>Harald Szeemann und der Monte Verità PDF</a>)</li></ul>",
                         "Info": ""
                     }
                 },
@@ -793,6 +793,12 @@
                     "name": "L’albigna di Emil Zbinden",
                     "search": [
                         "zbinden",
+                        "emil",
+                        "beyeler",
+                        "ursbeyeler",
+                        "bregaglia",
+                        "castasegna",
+                        "unagiornatasullalbigna",
                         "lalbigna",
                         "albigna",
                         "bergell",
@@ -944,7 +950,7 @@
                     "text": "Das Ziel des Projekts besteht in der Attraktivitätssteigerung des Monte Verità: Seine regionale, nationale und internationale Visibilität soll gesteigert werden, um aus ihm ein anerkanntes kulturelles Zentrum zu machen. Dabei werden alle drei historischen Hauptphasen gleichermassen berücksichtigt: Die «utopische Phase» der Vegetarier, die Ära das Barons von der Heydt sowie der Monte Verità von Harald Szeemann mit seiner Ausstellung/Installation «Le mammelle della verità». Als viertes Element kommt die Wissenschaft hinzu, die seit der Gründung des Centro Stefano Franscini auf dem Monte Verità 1989 heimisch geworden ist. Mit modernen Mitteln des 21. Jahrhundert soll – ohne die Tradition zu verleugnen – diese Geschichte für die Besucherinnen und Besucher des Monte Verità vermittelt werden. ...",
                     "epilog": {
                         "Ausstellungskonzept": "<h2>Le verità di una montagna. Harald Szeemann und der Monte Verità</h2><p>Zusätzlich zur Ausstellung «Le mammelle della verità»  von Harald Szeemann wird in vier Räumen in der Casa Anatta die Begleitausstellung «Le verità di una montagna» eröffnet, welche die Szeemann-Ausstellung in einen Kontext stellt. In einer sinnlichen Präsentation wird Harald Szeemanns Biografie, seine Arbeitsweise, sein «Fabbrica» genanntes Archiv in Maggia und die Entstehung seiner Monte Verità-Ausstellung verdeutlicht. In Filmen und Hörstationen geben Familienmitglieder und frühere Arbeitskollegen Harald Szeemann einen Einblick in sein faszinierendes Werk.</p>",
-                        "Mediaguide": "Den Mediaguide zum Monte Verità finden Sie <a class='line' onclick='jump_to(2,4)'>hier unter Audio und Video</a>.",
+                        "Mediaguide": "Den Mediaguide zum Monte Verità finden Sie <a class='line' onclick='jump_to(1,4)'>hier unter Audio und Video</a>.",
                         "Impressum": {
                             "Kurator": ["Andreas Schwab (palma3)"],
                             "Szenografie": ["<a href='http://www.ccrz.ch' target='_blank'>CCRZ, Balerna</a>", "Eugenio Castiglioni", "Ludovica Niero"],
@@ -1021,6 +1027,7 @@
                     "name": "Innovation For Better Lives",
                     "search": [
                         "betterlives",
+                        "betterlife",
                         "innovation",
                         "internationalday",
                         "technopark",
@@ -1178,7 +1185,7 @@
                             "Musik": ["Roland von Flüe", "und andere"],
                             "Cover und Screendesign": ["<a href='http://www.atelier-nordfoehn.ch' target='_blank'>Angela Reinhard, Nordföhn, Zürich</a>"],
                             "Unterstützt von": ["Swisslos", "Kulturförderung Kanton Obwalden", "Migros Kulturprozent", "Genossenschaft Migros Luzern", "Katholische Kirche in Kanton Zürich", "Verband der röm.-kath. Kirchgemeinden des Kantons Obwalden", "Kirchgemeinde Sachseln", "<a href='http://www.bruderklaus.com/?id=189' target='_blank'>Bruder-Klausen-Stiftung, Sachseln</a>"],
-                            "Copyright": ["<a href='http://www.museumbruderklaus.ch' target='_blank'>Museum Bruder Klaus, Sachseln 2013</a>"]
+                            "Copyright": ["<a href='http://www.museumbruderklaus.ch' target='_blank'>Museum Bruder Klaus, Sachseln 2013</a>umbruderklaus.ch' target='_blank'>Museum Bruder Klaus, Sachseln 2013</a>"]
                         },
                         "Medienberichte": true,
                         "Impressionen": "",

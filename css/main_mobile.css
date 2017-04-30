@@ -153,16 +153,31 @@ a:visited, a:hover, a:active {
   margin: 0;
   width: 100vw;
   line-height: 82px;
+  text-align: center;
+}
+
+:-moz-placeholder, ::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #fff;
+  opacity: 1;
+}
+
+::-webkit-input-placeholder, :-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #fff;
+}
+
+:focus::-webkit-input-placeholder {
+  color: #fff;
 }
 
 #found p input {
   -webkit-appearance: none;
   vertical-align: middle;
-  padding: 0;
+  padding: 0 12px;
   margin: 8px;
-  font-size: 28px;
-  width: 100%;
-  max-width: calc(100vw - 120px);
+  font-size: 24px;
+  width: calc(100vw - 152px);
   border: 0 none;
   border-radius: 0;
   color: #bc123a;
@@ -329,4 +344,14 @@ a:visited, a:hover, a:active {
 
 #chapter_content span.tx a.line {
   background: rgba(141, 170, 212, 1);
+}
+
+#palma_map {
+  margin-top: -160px;
+  float: right;
+  display: block;
+}
+
+.palma_app a {
+  background: rgba(0, 0, 0, 0);
 }
