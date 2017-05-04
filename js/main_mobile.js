@@ -482,17 +482,25 @@ var hit_menue = function(t, ju) {
 
             a[chapter].style.color = '#bc123a';
 
-            var cap_ih = '';
+            //console.log('ju: ' + ju);
 
-            for (var aus = 0; aus < folders[chapter].data.length; aus++) {
+            if (typeof ju === 'undefined') {
 
-                cap_ih += inhalt(folders[chapter].data, aus);
+                cc.scrollTop = 0;
+
+                var cap_ih = '';
+
+                for (var aus = 0; aus < folders[chapter].data.length; aus++) {
+
+                    cap_ih += inhalt(folders[chapter].data, aus);
+
+                }
+
+                cc.innerHTML = cap_ih;
+
+                //cc.style.height = 0;
 
             }
-
-            //cc.style.height = get_page_scroll_position(cc) + window.innerHeight + 'px';
-
-            cc.innerHTML = cap_ih;
 
         }
     }
@@ -542,6 +550,7 @@ var hit_menue = function(t, ju) {
                 if (folders[chapter].last_position == old_scroll_pos) {
 
                     change_image(folders[chapter].data[folders[chapter].last_position].comp_name + '_' + folders[chapter].data[folders[chapter].last_position].slid_count);
+                    white_head();
 
                 }
 
@@ -562,6 +571,7 @@ var hit_menue = function(t, ju) {
         if (folders[chapter].last_position == old_scroll_pos) {
 
             change_image(folders[chapter].data[folders[chapter].last_position].comp_name + '_' + folders[chapter].data[folders[chapter].last_position].slid_count);
+            white_head();
 
         }
     }

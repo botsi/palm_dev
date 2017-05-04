@@ -141,7 +141,7 @@ var shop = {
 
         }
 
-        //console.log('items: ', shop.items);
+        shop.info(t, 0);
         shop.display();
 
     },
@@ -439,6 +439,53 @@ var shop = {
                 shop.inner_fields.style.display = 'block';
 
             }
+
+        }
+
+    },
+    "info_bioutId": "",
+    "info_ih": {
+        "0": function(empty) {
+            if (empty) {
+                return 'hinzufügen'
+            }
+            return 'entfernen';
+        },
+        "3": function() {
+            return 'Anzahl';
+        },
+        "4": function() {
+            return 'Link zur Buchbeschreibung';
+        }
+    },
+    "info": function(t, ih) {
+
+        var si = document.getElementById('found');
+
+        if (ih == 0) {
+
+            si.classList.add('bask_info_out');
+
+            shop.info_bioutId = setTimeout(function() {
+                si.classList.remove('change_img_in');
+                si.classList.remove('found_over');
+                si.classList.remove('bask_info_out');
+
+                si.style.top = 198 + 'px';
+            }, 300);
+
+        } else {
+
+            clearTimeout(shop.info_bioutId);
+
+            si.innerHTML = '<a>' + shop.info_ih[getchildindex(t)](t.classList.contains('form_check_white')) + '</a>';
+            si.classList.remove('bask_info_out');
+            si.classList.add('change_img_in');
+            si.classList.add('found_over');
+
+            var el_gb = t.getBoundingClientRect();
+            si.style.left = ((el_gb.left + el_gb.right) - si.offsetWidth) / 2 + 'px';
+            si.style.top = el_gb.top - 40 + 'px';
 
         }
 

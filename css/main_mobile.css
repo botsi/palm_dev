@@ -131,7 +131,19 @@ a:visited, a:hover, a:active {
   text-align: center;
   color: #333;
   margin: auto !important;
+}
+
+#content .items {
   font-size: 16px;
+}
+
+@media screen and (min-width: 700px) {
+  #content .items {
+    font-size: 3vw;
+  }
+  #content .items, #content .item_search {
+    padding: 6px 5.2vw;
+  }
 }
 
 #content .item_search {
@@ -245,6 +257,7 @@ a:visited, a:hover, a:active {
   margin-top: 0;
   visibility: hidden;
   /*
+  z-index: 2000;
 */
 }
 
@@ -343,13 +356,24 @@ a:visited, a:hover, a:active {
 }
 
 #chapter_content span.tx a.line {
+  white-space: nowrap;
   background: rgba(141, 170, 212, 1);
+}
+
+#chapter_content span.tx h2 a.line {
+  white-space: normal;
 }
 
 #palma_map {
   margin-top: -160px;
   float: right;
   display: block;
+}
+
+#palma_map img, .palma_app img {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
 }
 
 .palma_app a {

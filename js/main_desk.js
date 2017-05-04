@@ -66,10 +66,6 @@ var align_onresize = function() {
 
 };
 
-var img_type = {
-    "path": "images/",
-    "ext": ".jpg"
-};
 
 var enumerateDaysBetweenDates = function(startDate, endDate) {
     var dates = [],
@@ -239,7 +235,7 @@ var sub_chapter = function(t) {
 
         fa_eye.ix = folders[chapter].last_position;
 
-        see(fa_eye, 1, -210);
+        see(fa_eye, 1, -zweizehn);
 
         window.scrollTo(0, fa_eye.parentNode.parentNode.nextSibling.offsetTop - 102);
 
@@ -253,7 +249,7 @@ var sub_chapter = function(t) {
 
         fa_eye.ix = folders[chapter].last_position;
 
-        see(fa_eye, 1, -210);
+        see(fa_eye, 1, -zweizehn);
 
         window.scrollTo(0, fa_eye.parentNode.parentNode.nextSibling.offsetTop - 102);
 
@@ -300,8 +296,9 @@ var sub_chapter = function(t) {
     switch (t.innerHTML) {
         case 'Einleitung':
         case 'Kontakt':
-            var pr = (c[folders[chapter].last_position].prolog == '') ? '' : '<h2>' + c[folders[chapter].last_position].prolog + '</h2><br/><br/>';
+            var pr = (c[folders[chapter].last_position].prolog == '') ? '' : '<h2>' + c[folders[chapter].last_position].prolog + '</h2>';
             t.parentNode.previousSibling.innerHTML = pr + c[folders[chapter].last_position].text;
+            remove_tel_link(t.parentNode.previousSibling);
             sh_cheese(t.parentNode.parentNode, 0);
             break;
         case 'Bestellung':
@@ -472,7 +469,7 @@ var sub_chapter = function(t) {
 
     if (t.parentNode.parentNode.getBoundingClientRect().top + t.parentNode.parentNode.offsetHeight > window.innerHeight) {
 
-        window.scrollTo(0, t.parentNode.parentNode.offsetTop - 210);
+        window.scrollTo(0, t.parentNode.parentNode.offsetTop - zweizehn);
     }
 
 
@@ -689,11 +686,11 @@ var inhalt = function(c, i) {
 
             var fol = folders[shop_arr[sai][0]].data[shop_arr[sai][1]];
 
-            shop_content += '<span><i class="fa fa-check form_check form_check_white" aria-hidden="true" onclick="shop.work(this)"></i><span style="width:180px;">' + fol.name + '</span><span id="pr' + fol.epilog.Bestellung[2] + '">CHF ' + fol.epilog.Bestellung[2] + '.00</span><input onchange="shop.calc(this)" onkeyup="shop.calc(this)" type="number" name="quantity" style="width:36px;" value="' + fol.epilog.Bestellung[3] + '" /><img src="shop/' + fol.comp_name + '.jpg" onclick="jump_to(' + shop_arr[sai][1] + ',' + shop_arr[sai][0] + ')" /></span>';
+            shop_content += '<span><i class="fa fa-check form_check form_check_white" aria-hidden="true" onclick="shop.work(this)" onmouseout="shop.info(this,0)" onmouseover="shop.info(this,1)"></i><span style="width:180px;">' + fol.name + '</span><span id="pr' + fol.epilog.Bestellung[2] + '">CHF ' + fol.epilog.Bestellung[2] + '.00</span><input onmouseout="shop.info(this,0)" onmouseover="shop.info(this,1)" onchange="shop.calc(this)" onkeyup="shop.calc(this)" type="number" name="quantity" style="width:36px;" value="' + fol.epilog.Bestellung[3] + '" /><img src="shop/' + fol.comp_name + '.jpg" onmouseout="shop.info(this,0)" onmouseover="shop.info(this,1)" onclick="jump_to(' + shop_arr[sai][1] + ',' + shop_arr[sai][0] + ')" /></span>';
 
         }
 
-        insert = ['<div id="palma_form"></div>', '<div id="palma_shop" class="palma_shop_ini">' + shop_content + '</div>', ' style="height:2px;"', '<h2 style="position:absolute;margin-top:176px;">Wollen Sie eine unserer Publikationen bestellen?</h2>'];
+        insert = ['<div id="palma_form"></div>', '<div id="palma_shop" class="palma_shop_ini">' + shop_content + '<div id="basket_info"></div></div>', ' style="height:2px;"', '<h2 style="position:absolute;margin-top:176px;">Wollen Sie eine unserer Publikationen bestellen?</h2>'];
 
 
     }
@@ -892,6 +889,7 @@ var get_page_scroll_position = function() {
 
 };
 
+var zweizehn = 210;
 
 var white_head = function() {
 
@@ -908,15 +906,15 @@ var white_head = function() {
 
         for (var i = 0; i < uat.length; i++) {
 
-            var pre_point = parseInt(uat[i].offsetTop + 210 + uat[i].offsetHeight / 2);
+            var pre_point = parseInt(uat[i].offsetTop + zweizehn + uat[i].offsetHeight / 2);
 
             switch (true) {
-                case (pre_point < h + 210):
+                case (pre_point < h + zweizehn):
                     midpoints.push(uat[i].offsetTop + uat[i].offsetHeight);
                     //var point = uat[i].offsetTop + uat[i].offsetHeight;
                     break;
-                case (pre_point > h + 210 + window.innerHeight):
-                    midpoints.push(uat[i].offsetTop + parseInt((window.innerHeight - 210) / 2));
+                case (pre_point > h + zweizehn + window.innerHeight):
+                    midpoints.push(uat[i].offsetTop + parseInt((window.innerHeight - zweizehn) / 2));
                     //var point = uat[i].offsetTop;
                     break;
                 default:
@@ -926,7 +924,7 @@ var white_head = function() {
 
         }
 
-        var g = getNearestNumber(midpoints, h + window.innerHeight / 2 + 240);
+        var g = getNearestNumber(midpoints, h + window.innerHeight / 2 + (30 + zweizehn));
 
         if (folders[chapter].last_position == g && chapter == old_chapter) {
             console.log('ireturn in middle of white_head');
@@ -943,10 +941,6 @@ var white_head = function() {
 
         document.getElementsByClassName('fa-angle-left')[0].style.display = document.getElementsByClassName('fa-angle-right')[0].style.display = (uat[folders[chapter].last_position].children[1].style.visibility == 'hidden' && folders[chapter].data[folders[chapter].last_position].epilog.Impressionen && !isTouchSupported() && folders[chapter].data[folders[chapter].last_position].video.playstate == 'closed') ? 'block' : 'none';
 
-        if (isTouchSupported()) {
-            console.log('ireturn in middle of white_head');
-            return;
-        }
 
         if (typeof folders[chapter].data[g].form !== 'undefined') {
 
@@ -1116,6 +1110,8 @@ var sh_epi = function() {
             ep[i].classList.add('change_img_out');
             ep[i].style.visibility = 'hidden';
 
+            //ep[i].parentNode.classList.remove('change_img_in');
+            //ep[i].parentNode.classList.add('change_img_out');
         } else {
 
             //	the actual epilogue
@@ -1128,6 +1124,8 @@ var sh_epi = function() {
             ep[i].classList.remove('change_img_out');
             ep[i].classList.add('change_img_in');
 
+            //ep[i].parentNode.classList.remove('change_img_out');
+            //ep[i].parentNode.classList.add('change_img_in');
         }
 
     }
@@ -1367,6 +1365,21 @@ var jump_to = function(j, i) {
 
 
 
+var remove_tel_link = function(p_el) {
+
+    var tl = p_el.getElementsByClassName('tel_link');
+
+    for (var ti = 0; ti < tl.length; ti++) {
+
+        tl[ti].removeAttribute('href');
+        tl[ti].classList.add('unlink');
+
+    }
+
+};
+
+
+
 var hit_menue = function(t, ju) {
 
 
@@ -1422,6 +1435,8 @@ var hit_menue = function(t, ju) {
 
             a[chapter].style.color = '#bc123a';
 
+            console.log('ju: ' + ju);
+
             if (typeof ju === 'undefined') {
 
                 var cap_ih = '';
@@ -1436,6 +1451,8 @@ var hit_menue = function(t, ju) {
                 cc.style.height = get_page_scroll_position() + window.innerHeight + 'px';
 
                 cc.innerHTML = cap_ih;
+
+                remove_tel_link(cc);
 
             }
 
@@ -1549,11 +1566,9 @@ var see = function(t, s, p) {
         t.parentNode.parentNode.style.textIndent = '40px';
         t.parentNode.parentNode.style.background = 'rgba(191, 191, 191, 0.6)';
 
-        //if (window.innerWidth > 950) {
 
         t.parentNode.parentNode.style.marginTop = '180px';
 
-        //}
         t.parentNode.parentNode.style.borderTop = '18px solid rgba(0, 0, 0, 0)';
         if (t.parentNode.parentNode.nextSibling.nextSibling) {
             t.parentNode.parentNode.nextSibling.nextSibling.style.visibility = 'hidden';
@@ -1562,7 +1577,7 @@ var see = function(t, s, p) {
         t.parentNode.parentNode.parentNode.style.background = 'rgba(255,255,255,0)';
 
         t.parentNode.parentNode.parentNode.style.height = parseInt(window.innerHeight - 60) + 'px';
-        //t.parentNode.parentNode.parentNode.style.marginTop = '0px';
+
         document.getElementsByClassName('scroll_positioner')[i].style.marginTop = p + 'px';
 
         if (folders[chapter].data[i].video) {
@@ -1621,11 +1636,8 @@ var see = function(t, s, p) {
         document.getElementsByClassName('scroll_positioner')[i].style.marginTop = 'calc(180px - 50vh)';
 
 
-        if (!isTouchSupported()) {
+        window.scrollTo(0, t.parentNode.parentNode.parentNode.previousSibling.offsetTop);
 
-            window.scrollTo(0, t.parentNode.parentNode.parentNode.previousSibling.offsetTop);
-
-        }
 
         document.getElementsByClassName('fa-angle-left')[0].style.display = document.getElementsByClassName('fa-angle-right')[0].style.display = 'none';
 
@@ -1640,13 +1652,6 @@ var see = function(t, s, p) {
 
         }
 
-        /*
-
-        console.log(folders[chapter].data[i]);
-
-        sh_cheese(t.parentNode.parentNode.parentNode, 1);
-        */
-
     }
 
 
@@ -1656,11 +1661,8 @@ var see = function(t, s, p) {
 
 
 var sh_cheese = function(t, sh) {
-    //console.log(sh);
 
     if (!t.getElementsByClassName('cheese')[0]) {
-        //t.style.background = 'rgba(255,255,255,0.9)';
-        //console.log('ireturn from cheese');
         return;
     }
 
@@ -1745,7 +1747,7 @@ var toggle_favicons = function() {
 
         fa_img[i].addEventListener('click', function() {
 
-            see(this, 1, -210);
+            see(this, 1, -zweizehn);
 
             if (!isTouchSupported()) {
                 window.scrollTo(0, this.parentNode.parentNode.nextSibling.offsetTop - 102);
@@ -1841,7 +1843,7 @@ var slide_lr = function(d, f) {
 
         ////console.log('error? ' + d + ' error? ' + f + ' error? ' + el);
 
-        see(el, 1, -210);
+        see(el, 1, -zweizehn);
 
         if (!isTouchSupported()) {
             window.scrollTo(0, el.parentNode.parentNode.nextSibling.offsetTop - 102);

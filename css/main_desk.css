@@ -385,6 +385,7 @@ input {
   -webkit-appearance: none;
   background: rgba(255, 255, 255, 0.9);
   line-height: 34px;
+  height: 32px;
 }
 
 #chapter_menu span p input {
@@ -412,6 +413,7 @@ a:link {
   color: inherit;
   text-decoration: none;
   outline: 0 none;
+  background: rgba(0, 0, 0, 0);
 }
 
 a:visited {
@@ -422,6 +424,11 @@ a:visited {
 a:hover {
   text-decoration: none;
   background: rgba(141, 170, 212, 0.9);
+}
+
+a.unlink:hover {
+  background: rgba(0, 0, 0, 0);
+  cursor: default;
 }
 
 a:active {
@@ -1020,6 +1027,7 @@ div.epilog span {
     overflow: hidden;
   }
   #chapter_content span.tx a.line {
+    white-space: nowrap;
     text-decoration: underline;
   }
 }
@@ -1175,6 +1183,36 @@ div.epilog span {
   100% {
     opacity: 0;
     visibility: hidden;
+  }
+}
+
+@-moz-keyframes fadeoutbaskinfo {
+  0% {
+    opacity: 1;
+    display: block !important;
+  }
+  99% {
+    opacity: 0;
+    display: block !important;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+@keyframes fadeoutbaskinfo {
+  0% {
+    opacity: 1;
+    display: block !important;
+  }
+  99% {
+    opacity: 0;
+    display: block !important;
+  }
+  100% {
+    opacity: 0;
+    display: none;
   }
 }
 
@@ -1483,15 +1521,20 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 
 .timemachine {
   /* display: none; */
-  display: inline-table;
   width: 182px;
   max-width: 182px;
-  height: 36px;
-  line-height: 24px;
   overflow: hidden;
   opacity: 0;
   position: absolute;
   z-index: 1;
+  line-height: 24px;
+  /*
+  height: 36px;
+  display: inline;
+*/
+  height: 156px;
+  display: inline-table;
+  vertical-align: middle;
 }
 
 .timemachine span:nth-child(1) {
@@ -1529,4 +1572,15 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
   width: 85%;
   bottom: 124px;
   color: transparent;
+}
+
+.bask_info_out {
+  -webkit-animation: fadeoutbaskinfo 0.3s ease-in;
+  animation: fadeoutbaskinfo ease-in 0.3s 1;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+.found_over {
+  display: block !important;
 }

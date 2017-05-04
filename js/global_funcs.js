@@ -41,6 +41,8 @@ var app_display_data = {
 
             var g = ['Erhältlich im Google Play Store:', '<a href="https://play.google.com/store/apps/details?id=com.tatentraeger.maxfrischapp" target="_blank"><img src="mediaguides/google_play.png" alt="Zum download im Google Play Store" height="70" width="217"></a>'];
 
+            var leed = '';
+
             if (isTouchSupported()) {
 
                 var ag = (window.navigator.userAgent.indexOf("iPad") != -1 || window.navigator.userAgent.indexOf("iPhone") != -1) ? a : g;
@@ -49,9 +51,11 @@ var app_display_data = {
 
                 var ag = ['Erhältlich im App Store für iPhones und Google Play Store:', a[1] + ' ' + g[1]];
 
+                leed = '<p>Wählen sie einen Spaziergang.</p>';
+
             }
 
-            return '<p>Wählen sie einen Spaziergang.</p><p><img class="artwork" src="mediaguides/' + app_display_data.act_app + '/app_artwork.jpg" alt="App Artwork" height="175" width="175"></p><p>Die  App bietet Ihnen:</p><ul><li>drei Stadtspaziergänge durch verschiedene Quartiere der Stadt Zürich</li><li>21 Audiostationen mit  Informationen über Leben und Werk von Max Frisch</li><li>rund 40 Minuten Audioführung</li><li>rund 68 Abbildungen</li><li>GPS-Lokalisierung Ihres Standortes</li><li>kostenlosen Download</li></ul><p>' + ag[0] + '</p><p>' + ag[1] + '</p>';
+            return leed + '<p><img class="artwork" src="mediaguides/' + app_display_data.act_app + '/app_artwork.jpg" alt="App Artwork" height="175" width="175"></p><p>Die  App bietet Ihnen:</p><ul><li>drei Stadtspaziergänge durch verschiedene Quartiere der Stadt Zürich</li><li>21 Audiostationen mit  Informationen über Leben und Werk von Max Frisch</li><li>rund 40 Minuten Audioführung</li><li>rund 68 Abbildungen</li><li>GPS-Lokalisierung Ihres Standortes</li><li>kostenlosen Download</li></ul><p>' + ag[0] + '</p><p>' + ag[1] + '</p>';
         }
     },
     "monteverita": {
@@ -62,6 +66,8 @@ var app_display_data = {
 
             var g = ['Erhältlich im Google Play Store:', '<a href="https://play.google.com/store/apps/details?id=org.webatelier.monteverita" target="_blank"><img src="mediaguides/google_play.png" alt="Zum download im Google Play Store" height="70" width="217"></a>'];
 
+            var leed = '';
+
             if (isTouchSupported()) {
 
                 var ag = (window.navigator.userAgent.indexOf("iPad") != -1 || window.navigator.userAgent.indexOf("iPhone") != -1) ? a : g;
@@ -70,9 +76,11 @@ var app_display_data = {
 
                 var ag = ['Erhältlich im App Store für iPhones und Google Play Store:', a[1] + ' ' + g[1]];
 
+                leed = '<p>Wählen sie ein Thema aus der App.</p>';
+
             }
 
-            return '<p>Wählen sie ein Thema aus der App.</p><p><img class="artwork" src="mediaguides/' + app_display_data.act_app + '/app_artwork.jpg" alt="App Artwork" height="175" width="175"></p><p>Die  App bietet Ihnen:</p><ul><li>Audioguide mit historischen Fotografien</li><li>Videoguide von Harald Szeemann und zu Labans Ikosaeder</li><li>Geschichte, Epochen und Persönlichkeiten des Monte Verità</li><li>Der Monte Verità heute</li><li>Gästebuch</li><li>Persönlichkeitstest: Was für ein Monteveritaner sind Sie?</li><li>Sprachen: Deutsch, Italienisch, Französisch, Englisch</li></ul><p>' + ag[0] + '</p><p>' + ag[1] + '</p>';
+            return leed + '<p><img class="artwork" src="mediaguides/' + app_display_data.act_app + '/app_artwork.jpg" alt="App Artwork" height="175" width="175"></p><p>Die  App bietet Ihnen:</p><ul><li>Audioguide mit historischen Fotografien</li><li>Videoguide von Harald Szeemann und zu Labans Ikosaeder</li><li>Geschichte, Epochen und Persönlichkeiten des Monte Verità</li><li>Der Monte Verità heute</li><li>Gästebuch</li><li>Persönlichkeitstest: Was für ein Monteveritaner sind Sie?</li><li>Sprachen: Deutsch, Italienisch, Französisch, Englisch</li></ul><p>' + ag[0] + '</p><p>' + ag[1] + '</p>';
         }
     }
 };
@@ -104,7 +112,7 @@ var attach_script = function(apx) {
 
         };
 
-        s.src = 'js/main' + apx + '.min.js';
+        s.src = 'js/main' + apx + '.js';
         s.charset = 'utf-8';
 
         document.head.appendChild(s);
@@ -170,6 +178,22 @@ var check_webp_feature = function(feature, callback) {
 
 var device_dimensions = function() {
 
+    /*
+    	(function(i, s, o, g, r, a, m) {
+    		i['GoogleAnalyticsObject'] = r;
+    		i[r] = i[r] || function() {
+    			(i[r].q = i[r].q || []).push(arguments)
+    		}, i[r].l = 1 * new Date();
+    		a = s.createElement(o),
+    			m = s.getElementsByTagName(o)[0];
+    		a.async = 1;
+    		a.src = g;
+    		m.parentNode.insertBefore(a, m)
+    	})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    */
+
+
+
 
     check_webp_feature('lossless', function(result) {
 
@@ -177,34 +201,36 @@ var device_dimensions = function() {
 
             img_type.path = 'images/webp/';
             img_type.ext = '.webp';
+
         }
 
+        var x = screen.width;
+        var y = screen.height;
+
+        var source_apx = '';
+
+        switch (true) {
+            case (x < 401 && isTouchSupported()):
+                img_type.path = 'images/mobile/';
+                img_type.ext = '.jpg';
+                source_apx = '_mobile';
+                //alert(' ' + x + ' x ' + y);
+                break;
+            case ((x > 400 && x < 951) && isTouchSupported()):
+                img_type.path = 'images/mobile/';
+                img_type.ext = '.jpg';
+                source_apx = '_mobile';
+                //source_apx = '_pad';
+                //alert('pad ' + x + ' x ' + y);
+                break;
+            default:
+                source_apx = '_desk';
+                //alert(x + ' x ' + y);
+        }
+
+        attach_script(source_apx);
 
     });
-
-    var x = screen.width;
-    var y = screen.height;
-
-    var source_apx = '';
-
-    switch (true) {
-        case (x < 401 && isTouchSupported()):
-            img_type.path = 'images/mobile/';
-            img_type.ext = '.jpg';
-            source_apx = '_mobile';
-            //alert(' ' + x + ' x ' + y);
-            break;
-        case ((x > 400 && x < 951) && isTouchSupported()):
-            source_apx = '_mobile';
-            //source_apx = '_pad';
-            //alert('pad ' + x + ' x ' + y);
-            break;
-        default:
-            source_apx = '_desk';
-            //alert(x + ' x ' + y);
-    }
-
-    attach_script(source_apx);
 
 };
 
@@ -650,6 +676,29 @@ var page_reload = function() {
     window.location.href = wlh;
 
 };
+
+var text_load = function() {
+
+    loadXMLDoc('inhalt.js', function() {
+
+        if (xmlhttp.readyState == 4) {
+            if (xmlhttp.status == 200) {
+
+                folders = JSON.parse(xmlhttp.responseText).folders;
+
+                device_dimensions();
+
+            } else {
+                alert('inhalt shit happens');
+            }
+        }
+    });
+
+};
+
+
+document.addEventListener('DOMContentLoaded', text_load, false);
+
 
 var pdf_m = false;
 
