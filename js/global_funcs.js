@@ -1160,7 +1160,7 @@ var download_pdf = function() {
 
                 return {
                     text: '© 2017 | www.palma3.ch',
-                    link: 'http://www.palma3.ch/new_palma/?' + c.comp_name,
+                    link: 'http://www.palma3.ch/?' + c.comp_name,
                     margin: [40, -20, 0, 0]
                 };
             }

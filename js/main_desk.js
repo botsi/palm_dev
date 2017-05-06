@@ -686,11 +686,11 @@ var inhalt = function(c, i) {
 
             var fol = folders[shop_arr[sai][0]].data[shop_arr[sai][1]];
 
-            shop_content += '<span><i class="fa fa-check form_check form_check_white" aria-hidden="true" onclick="shop.work(this)" onmouseout="shop.info(this,0)" onmouseover="shop.info(this,1)"></i><span style="width:180px;">' + fol.name + '</span><span id="pr' + fol.epilog.Bestellung[2] + '">CHF ' + fol.epilog.Bestellung[2] + '.00</span><input onmouseout="shop.info(this,0)" onmouseover="shop.info(this,1)" onchange="shop.calc(this)" onkeyup="shop.calc(this)" type="number" name="quantity" style="width:36px;" value="' + fol.epilog.Bestellung[3] + '" /><img src="shop/' + fol.comp_name + '.jpg" onmouseout="shop.info(this,0)" onmouseover="shop.info(this,1)" onclick="jump_to(' + shop_arr[sai][1] + ',' + shop_arr[sai][0] + ')" /></span>';
+            shop_content += '<span><i class="fa fa-check form_check form_check_white" aria-hidden="true" onclick="shop.work(this)" onmouseout="shop.info(this,0)" onmouseover="shop.info(this,1)"></i><span style="width:180px;">' + fol.name + '</span><span id="pr' + fol.epilog.Bestellung[2] + '">CHF ' + fol.epilog.Bestellung[2] + '.00</span><input onmouseout="shop.info(this,0)" onmouseover="shop.info(this,1)" onchange="shop.calc(this)" onkeyup="shop.calc(this)" type="number" name="quantity" style="width:36px;" value="' + fol.epilog.Bestellung[3] + '" /><img src="shop/' + fol.comp_name + '.jpg" onmouseout="shop.info(this,0)" onmouseover="shop.info(this,1)" onclick="shop.info(this,0);jump_to(' + shop_arr[sai][1] + ',' + shop_arr[sai][0] + ');" /></span>';
 
         }
 
-        insert = ['<div id="palma_form"></div>', '<div id="palma_shop" class="palma_shop_ini">' + shop_content + '<div id="basket_info"></div></div>', ' style="height:2px;"', '<h2 style="position:absolute;margin-top:176px;">Wollen Sie eine unserer Publikationen bestellen?</h2>'];
+        insert = ['<div id="palma_form"></div>', '<div id="palma_shop" class="palma_shop_ini">' + shop_content + '</div>', ' style="height:2px;"', '<h2 style="position:absolute;margin-top:176px;">Wollen Sie eine unserer Publikationen bestellen?</h2>'];
 
 
     }
