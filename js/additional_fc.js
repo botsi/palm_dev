@@ -25,6 +25,49 @@ var mergeObjects = function() {
 //	end spaghetti turn
 
 
+var toggleFullScreen = function() {
+    console.log('vid: ' + vid);
+
+    if (vid.requestFullscreen) {
+        vid.requestFullscreen();
+    } else if (vid.mozRequestFullScreen) {
+        vid.mozRequestFullScreen(); // Firefox
+    } else if (vid.webkitRequestFullScreen) {
+        /*
+                console.log('webkit vid.parentNode: ' + vid.parentNode);
+                vid.parentNode.style.width = '100vw !important';
+                vid.parentNode.style.height = 'auto !important';
+                vid.parentNode.style.top = '0px !important';
+                vid.parentNode.style.position = 'fixed !important';
+                vid.parentNode.style.zIndex = '20000 !important';
+                vid.parentNode.style.display = 'block !important';
+        */
+
+        vid.webkitRequestFullScreen(); // Chrome and Safari
+    }
+    /*
+
+    // Note: FF nightly needs about:config full-screen-api.enabled set to true.
+    //function enterFullscreen() {
+    console.log("enterFullscreen()");
+    //vid.onwebkitfullscreenchange = onFullScreenEnter;
+    //vid.onmozfullscreenchange = onFullScreenEnter;
+    //vid.onfullscreenchange = onFullScreenEnter;
+    if (vid.webkitRequestFullscreen) {
+        vid.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+    } else {
+        if (vid.mozRequestFullScreen) {
+            vid.mozRequestFullScreen();
+        } else {
+            vid.requestFullscreen();
+        }
+    }
+    //document.getElementById('enter-exit-fs').onclick = exitFullscreen;
+    //}
+    */
+
+};
+
 
 var shop = {
     "fields": {

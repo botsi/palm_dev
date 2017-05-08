@@ -585,17 +585,6 @@ var getNearestNumber = function(a, n) {
     return l + 1;
 };
 
-var toggleFullScreen = function() {
-
-    if (vid.requestFullscreen) {
-        vid.requestFullscreen();
-    } else if (vid.mozRequestFullScreen) {
-        vid.mozRequestFullScreen(); // Firefox
-    } else if (vid.webkitRequestFullscreen) {
-        vid.webkitRequestFullscreen(); // Chrome and Safari
-    }
-};
-
 var getchildindex = function(el) {
     var i = 0;
     while ((el = el.previousSibling) != null) {
