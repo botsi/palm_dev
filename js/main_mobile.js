@@ -123,6 +123,32 @@ var inhalt = function(c, i) {
 
 var change_image = function(img) {
 
+
+	/*------------------	pushState stuff	------------------*/
+
+	//	if call dosent come from history buttons and project is realy fresh
+
+	if (hist_push == true && history.state != img.slice(0, img.indexOf('_'))) {
+
+		//	disable any position storage
+
+		if ('scrollRestoration' in history) {
+			history.scrollRestoration = 'manual';
+		}
+
+		//	and make a new history entry
+
+		history.pushState(img.slice(0, img.indexOf('_')), '', '');
+
+	}
+
+	hist_push = true;
+
+	//console.log('history ', history);
+
+	/*------------------	end pushState	------------------*/
+
+
 	img = img.replace('_0', '');
 
 	var test_imageObj = new Image();
@@ -342,30 +368,6 @@ var white_head = function() {
 
 	folders[chapter].last_position = g;
 
-
-	/*------------------	pushState stuff	------------------*/
-
-	//	if call dosent come from history buttons and project is realy fresh
-
-	if (hist_push == true && history.state != folders[chapter].data[folders[chapter].last_position].comp_name) {
-
-		//	disable any position storage
-
-		if ('scrollRestoration' in history) {
-			history.scrollRestoration = 'manual';
-		}
-
-		//	and make a new history entry
-
-		history.pushState(folders[chapter].data[folders[chapter].last_position].comp_name, '', '');
-
-	}
-
-	hist_push = true;
-
-	/*------------------	end pushState	------------------*/
-
-
 	cc.style.height = 'auto';
 
 	disable_cine = (folders[chapter].data[folders[chapter].last_position].bilder.length == 0);
@@ -385,6 +387,8 @@ var white_head = function() {
 
 };
 
+/*
+
 var snap = false;
 
 var snap_in = function(ix) {
@@ -401,6 +405,8 @@ var snap_in = function(ix) {
 	}, 5000);
 
 };
+
+*/
 
 var preset_new_bg = function(n) {
 
@@ -624,7 +630,6 @@ var search = function(t) {
 				if (folders[f].data[i].search.indexOf(toSearch) != -1) {
 
 					t.style.color = '#bc123a';
-					//t.parentNode.style.border = '2px solid #abb7c7';
 
 					t.previousSibling.style.display = t.nextSibling.style.display = 'inline-block';
 					t.nextSibling.style.display = 'inline-block';
@@ -653,18 +658,13 @@ var arrow = function(e) {
 
 	}
 
-	//if (e.keyCode == 13) {
 	if (jump_destination && e.keyCode == 13) {
 
 		found.children[0].children[1].blur();
 
 		jump_to(jump_destination[0], jump_destination[1]);
 
-		//this.value = '';
 		found.style.display = 'none';
-		//} else {
-		//return false;
-		//}
 
 	}
 };
@@ -799,6 +799,8 @@ var page_load = function() {
 
 	}
 
+
+
 	var s = document.createElement('div');
 
 	s.className = 'item_search';
@@ -822,19 +824,14 @@ var page_load = function() {
 
 	//window.addEventListener("resize", align_onresize, false);
 
+
 	cc.addEventListener("scroll", white_head, false);
 
 	window.addEventListener("keydown", arrow, false);
 
 	window.addEventListener('popstate', function(e) {
 
-		e.preventDefault();
-
-		var a = search_nostyle(e.state);
-
-		hist_push = false;
-
-		jump_to(a[0], a[1]);
+		botsi_history(e);
 
 	});
 

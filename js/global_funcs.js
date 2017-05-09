@@ -666,6 +666,22 @@ var page_reload = function() {
 
 };
 
+var botsi_history = function(e) {
+
+	if (e != null) {
+
+		e.preventDefault();
+
+		var a = search_nostyle(e.state);
+
+		hist_push = false;
+
+		jump_to(a[0], a[1]);
+
+	}
+
+};
+
 var text_load = function() {
 
 	loadXMLDoc('inhalt.js', function() {
@@ -687,7 +703,6 @@ var text_load = function() {
 
 
 document.addEventListener('DOMContentLoaded', text_load, false);
-
 
 var pdf_m = false;
 

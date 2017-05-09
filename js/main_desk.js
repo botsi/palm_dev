@@ -936,30 +936,6 @@ var white_head = function() {
 
 		folders[chapter].last_position = g;
 
-		/*------------------	pushState stuff	------------------*/
-
-		//	if call dosent come from history buttons and project is realy fresh
-
-		if (hist_push == true && history.state != folders[chapter].data[folders[chapter].last_position].comp_name) {
-
-			//	disable any position storage
-
-			if ('scrollRestoration' in history) {
-				history.scrollRestoration = 'manual';
-			}
-
-			//	and make a new history entry
-
-			history.pushState(folders[chapter].data[folders[chapter].last_position].comp_name, '', '');
-
-		}
-
-		hist_push = true;
-
-		//console.log('history ', history);
-
-		/*------------------	end pushState	------------------*/
-
 		cc.style.height = 'auto';
 
 		change_image(folders[chapter].data[folders[chapter].last_position].comp_name + '_' + folders[chapter].data[folders[chapter].last_position].slid_count);
@@ -1069,6 +1045,33 @@ var load_media = function() {
 
 
 var change_image = function(img) {
+
+
+
+	/*------------------	pushState stuff	------------------*/
+
+	//	if call dosent come from history buttons and project is realy fresh
+
+	if (hist_push == true && history.state != img.slice(0, img.indexOf('_'))) {
+
+		//	disable any position storage
+
+		if ('scrollRestoration' in history) {
+			history.scrollRestoration = 'manual';
+		}
+
+		//	and make a new history entry
+
+		history.pushState(img.slice(0, img.indexOf('_')), '', '');
+
+	}
+
+	hist_push = true;
+
+	//console.log('history ', history);
+
+	/*------------------	end pushState	------------------*/
+
 
 	if (typeof folders[chapter].data[folders[chapter].last_position].epilog.Medienberichte === 'boolean') {
 
@@ -2133,6 +2136,15 @@ var page_load = function() {
 
 	window.addEventListener("scroll", white_head, false);
 
+	window.addEventListener("keydown", arrow, false);
+
+	window.addEventListener('popstate', function(e) {
+
+		botsi_history(e);
+
+	});
+
+
 	document.getElementById('header_palma').addEventListener("click", page_reload, false);
 
 	document.getElementsByClassName('fa-angle-left')[0].addEventListener('click', function() {
@@ -2146,20 +2158,6 @@ var page_load = function() {
 		slide_lr(1);
 
 	}, false);
-
-	window.addEventListener("keydown", arrow, false);
-
-	window.addEventListener('popstate', function(e) {
-
-		e.preventDefault();
-
-		var a = search_nostyle(e.state);
-
-		hist_push = false;
-
-		jump_to(a[0], a[1]);
-
-	});
 
 	preload_images.get_arrays('kind', folders, 'name');
 
