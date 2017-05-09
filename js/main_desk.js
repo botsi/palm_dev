@@ -931,9 +931,34 @@ var white_head = function() {
 			return;
 		}
 
+
 		old_chapter = chapter;
 
 		folders[chapter].last_position = g;
+
+		/*------------------	pushState stuff	------------------*/
+
+		//	if call dosent come from history buttons and project is realy fresh
+
+		if (hist_push == true && history.state != folders[chapter].data[folders[chapter].last_position].comp_name) {
+
+			//	disable any position storage
+
+			if ('scrollRestoration' in history) {
+				history.scrollRestoration = 'manual';
+			}
+
+			//	and make a new history entry
+
+			history.pushState(folders[chapter].data[folders[chapter].last_position].comp_name, '', '');
+
+		}
+
+		hist_push = true;
+
+		//console.log('history ', history);
+
+		/*------------------	end pushState	------------------*/
 
 		cc.style.height = 'auto';
 
@@ -1379,7 +1404,6 @@ var remove_tel_link = function(p_el) {
 };
 
 
-
 var hit_menue = function(t, ju) {
 
 
@@ -1410,25 +1434,6 @@ var hit_menue = function(t, ju) {
 			}
 
 			old_chapter = (typeof ju === 'undefined') ? chapter : ju;
-
-			/*
-
-            console.log(history.state);
-
-            //var last_page_ix = folders[chapter].last_position;
-
-            history.pushState({
-                    "current_page": folders[i].data[folders[i].last_position].comp_name,
-                    "previous_page": folders[chapter].data[old_scroll_pos].comp_name
-                }, 'Page: About me',
-                '?' + folders[i].data[folders[i].last_position].comp_name);
-
-            console.log(history.state);
-
-*/
-
-
-
 
 			chapter = i;
 
@@ -1461,28 +1466,7 @@ var hit_menue = function(t, ju) {
 
 	document.getElementById("hg_cover").style.display = 'block';
 
-	//var uat = document.getElementsByClassName('ueandtx');
-	/*
-	    for (var i = 0; i < uat.length; i++) {
-
-	        if (typeof folders[chapter].data[i].slid_count === 'undefined') {
-	            folders[chapter].data[i].slid_count = 0;
-	        }
-
-	        if (typeof folders[chapter].data[i].see_read_state === 'undefined') {
-	            folders[chapter].data[i].see_read_state = 0;
-	        }
-
-	    }
-	*/
-
-	//demoP = document.getElementById("demo");
-	//var uat = Array.from(document.getElementsByClassName('ueandtx'));
 	var uat = Array.prototype.slice.call(document.getElementsByClassName('ueandtx'));
-
-
-
-	//var myFunction = ;
 
 	uat.forEach(function(item, i) {
 		if (typeof folders[chapter].data[i].slid_count === 'undefined') {
@@ -1493,21 +1477,13 @@ var hit_menue = function(t, ju) {
 			folders[chapter].data[i].see_read_state = 0;
 		}
 
-		//		    demoP.innerHTML = demoP.innerHTML + "index[" + index + "]: " + item + "<br>";
 	});
-	/**/
 
 	toggle_favicons();
 
 	//	preload_images
 
 	if (typeof folders[chapter].data[0].bilder === 'undefined') {
-
-		/*
-		        for (var i = 0; i < uat.length; i++) {
-		            folders[chapter].data[i].bilder = [];
-		        }
-		*/
 
 		uat.forEach(function(item, i) {
 			folders[chapter].data[i].bilder = [];
@@ -1621,8 +1597,6 @@ var see = function(t, s, p) {
 		}
 
 		if (folders[chapter].data[i].epilog.Impressionen && !isTouchSupported() && folders[chapter].data[i].video.playstate == 'closed') {
-
-			//console.log('oki block');
 
 			document.getElementsByClassName('fa-angle-left')[0].style.display = document.getElementsByClassName('fa-angle-right')[0].style.display = 'block';
 
@@ -2174,6 +2148,18 @@ var page_load = function() {
 	}, false);
 
 	window.addEventListener("keydown", arrow, false);
+
+	window.addEventListener('popstate', function(e) {
+
+		e.preventDefault();
+
+		var a = search_nostyle(e.state);
+
+		hist_push = false;
+
+		jump_to(a[0], a[1]);
+
+	});
 
 	preload_images.get_arrays('kind', folders, 'name');
 

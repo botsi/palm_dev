@@ -755,7 +755,6 @@ div.epilog span {
 }
 
 .fa-angle-left, .fa-angle-right {
-	display: none;
 	position: fixed;
 	top: calc(50vh + 54px);
 	font-size: 72px;
