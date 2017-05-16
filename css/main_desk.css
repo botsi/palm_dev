@@ -867,7 +867,7 @@ div.epilog span {
 
 #map_canvas {
 	width: calc(50vw - 238px);
-	margin-left: 0 25%;
+	margin-left: 0vw;
 	overflow: hidden;
 	position: absolute;
 }
@@ -876,8 +876,6 @@ div.epilog span {
 	-moz-user-select: none;
 	border: 0px none;
 	padding: 0px;
-	margin: 0px;
-	max-width: none;
 }
 
 #map_canvas .pri {
@@ -912,6 +910,9 @@ div.epilog span {
 	padding: 2px 8px;
 	opacity: 0.8;
 	z-index: 1000;
+	left: inherit;
+	top: inherit;
+	display: block;
 }
 
 .app_beside {
@@ -1594,6 +1595,46 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 .found_over {
 	display: block !important;
 }
+
+.frisch_map_div {}
+
+.fmd_left0 {
+	left: 0;
+}
+
+.fmd_left1 {
+	left: 256px;
+}
+
+.fmd_left2 {
+	left: 512px;
+}
+
+.fmd_left3 {
+	left: 768px;
+}
+
+.fmd_left4 {
+	left: 1024px;
+}
+
+.fmd_left5 {
+	left: 1280px;
+}
+
+.fmd_left6 {
+	left: 1536px;
+}
+
+
+/*
+
+.fmd_left0 {}
+
+.fmd_left0 {}
+
+.fmd_left0 {}
+*/
 
 
 /*

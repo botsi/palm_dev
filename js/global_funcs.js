@@ -31,10 +31,54 @@ var img_type = {
 };
 
 var app_display_data = {
+	"state": 0,
 	"act_app": "",
 	"maxfrisch": {
-		"img_ix": [1, 4, 8, 12, 14, 18, 21, 27, 31, 35, 39, 41, 45],
-		"plc_tx": ['Rosenhof, Brunnen', 'Bodega Española', 'Hotel Storchen', 'Kirche St. Peter', 'Elfuhrgeläute auf der Münsterbrücke', 'Café Terrasse', 'Café Odeon', 'Kronenhalle', 'Stadelhofer Passage, letzte Wohnung von Max Frisch', 'Schauspielhaus Zürich', 'Kantonales Realgymnasium', 'Universität Zürich', 'ETH Zürich'],
+		"walk": [{
+				"left": -180,
+				"top": -180,
+				"img_ix": [1, 4, 8, 12, 14, 18, 21, 27, 31, 35, 39, 41, 45],
+				"needle": [
+					[380, 454],
+					[414, 564],
+					[312, 556],
+					[258, 572],
+					[340, 654],
+					[438, 804],
+					[466, 800],
+					[492, 816],
+					[558, 824],
+					[656, 630],
+					[696, 502],
+					[644, 330],
+					[602, 200]
+				],
+				"plc_tx": ['Rosenhof, Brunnen', 'Bodega Española', 'Hotel Storchen', 'Kirche St. Peter', 'Elfuhrgeläute auf der Münsterbrücke', 'Café Terrasse', 'Café Odeon', 'Kronenhalle', 'Stadelhofer Passage, letzte Wohnung von Max Frisch', 'Schauspielhaus Zürich', 'Kantonales Realgymnasium', 'Universität Zürich', 'ETH Zürich']
+			},
+			{
+				"left": -160,
+				"top": -210,
+				"img_ix": [48, 52, 58, 61, 63],
+				"needle": [
+					[264, 458],
+					[304, 534],
+					[450, 540],
+					[568, 544],
+					[636, 634]
+				],
+				"plc_tx": ['Freibad Letzigraben', 'Friedhof Sihlfeld', 'Lochergut', 'Buchhandlung am Helvetiaplatz, Volkshaus', 'Ehemaliges Architekturbüro']
+			}, {
+				"left": -160,
+				"top": -220,
+				"img_ix": [67, 4, 8],
+				"needle": [
+					[712, 454],
+					[584, 678],
+					[214, 586]
+				],
+				"plc_tx": ['Coninx Museum', 'Geburtshaus Max Frisch', 'Zürichsee']
+			}
+		],
 		"apendix": function() {
 
 			var a = ['Erhältlich im App Store:', '<a href="https://itunes.apple.com/de/app/id573495442?mt=8" target="_blank"><img src="mediaguides/apples-app-store.png" alt="Zum download im App Store" height="70" width="70"></a>'];

@@ -62,6 +62,8 @@ var align_onresize = function() {
 
 	}, 200);
 
+
+
 	do_cords(centro_mv.status);
 
 };
@@ -758,6 +760,7 @@ var inhalt = function(c, i) {
 };
 
 var do_me = function(i, a) {
+	//console.log(a);
 	slide_lr(i, true);
 	sh_me(0);
 	if (typeof a !== 'undefined') {
@@ -780,9 +783,20 @@ var sh_me = function(sh, ih, t) {
 	mpt.innerHTML = ih;
 	mpt.style.visibility = 'visible';
 
-	mpt.style.marginLeft = t.offsetLeft - mpt.offsetWidth / 2 - 412 + 'px';
+	if (Array.isArray(t)) {
 
-	mpt.style.marginTop = t.offsetTop - 278 + 'px';
+		var minus = window.getComputedStyle(mpt.nextSibling.children[0], null);
+
+		//var theCSSprop = window.getComputedStyle(elem, null);
+
+
+		console.log('minus (left): ', minus.getPropertyValue('margin-left'), ' minus (top): ', minus.getPropertyValue('margin-top'));
+
+		mpt.style.marginLeft = t[0] - mpt.offsetWidth / 2 + parseInt(minus.getPropertyValue('margin-left')) + 'px';
+
+		mpt.style.marginTop = t[1] - 70 + parseInt(minus.getPropertyValue('margin-top')) + 'px';
+
+	}
 
 };
 
@@ -826,35 +840,9 @@ var show_app = function(i, t) {
 
 					document.getElementsByClassName('app_beside')[0].children[0].innerHTML = 'Clicken Sie auf die Stationen der Karte.';
 
-					document.getElementById('map_canvas').scrollLeft = 420;
+					app_display_data[app_display_data.act_app].state = parseInt(i.replace('_', '')) - 1;
 
-					document.getElementById('map_canvas').scrollTop = 220;
-
-					var d = document.getElementsByClassName('pri')[0].getElementsByTagName('div');
-
-					for (var h = 0; h < app_display_data[app_display_data.act_app].img_ix.length; h++) {
-
-						d[h].ix = h;
-
-						d[h].addEventListener('click', function() {
-
-							do_me(app_display_data[app_display_data.act_app].img_ix[this.ix], 'maxfrisch_1_' + parseInt(this.ix + 1));
-
-						}, false);
-
-						d[h].addEventListener('mouseover', function() {
-
-							sh_me(1, app_display_data[app_display_data.act_app].plc_tx[this.ix], this);
-
-						}, false);
-
-						d[h].addEventListener('mouseout', function() {
-
-							sh_me(0);
-
-						}, false);
-
-					}
+					do_cords();
 
 				}
 

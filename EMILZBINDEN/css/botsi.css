@@ -144,7 +144,9 @@ a {
 
 .content-item {
 	margin: 8px;
+	/*
 	min-height: 320px;
+*/
 	border: #ccc 1px solid;
 	padding: 6px;
 }

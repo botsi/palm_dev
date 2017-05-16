@@ -1151,7 +1151,7 @@
 						]
 					},
 					"prolog": "Entdecken Sie die Geschichte des Monte Verità mit dem Mediaguide.",
-					"text": "Vom Sanatorium und der Vegetarier-Kolonie zu Beginn des 20. Jahrhunderts über das Bauhaus des Barons Eduard von der Heydt bis zum Harald Szeemann-Museum und dem Kongresszentrum der ETH Zürich. Mit dem neuen Multimedia-Guide können Sie jetzt eine reichhaltige Geschichte von Personen und Bewegungen entdecken, direkt vor Ort oder auch gemütlich zu Hause.",
+					"text": "Vom Sanatorium und der Vegetarier-Kolonie zu Beginn des 20. Jahrhunderts über das Bauhaus des Barons Eduard von der Heydt bis zum Harald Szeemann-Museum und dem Kongresszentrum der ETH Zürich. Mit dem neuen Multimedia-Guide können Sie jetzt eine reichhaltige Geschichte von Personen und Bewegungen entdecken, direkt vor Ort oder auch gemütlich zu Hause.<br/>Mehr über die Ausstellung auf dem Monte Verità finden Sie <a class='line' onclick='jump_to(0,2)'>hier unter Dauerausstellungen</a>.",
 					"epilog": {
 						"App": " ... "
 					}
