@@ -232,9 +232,9 @@ var toggle_favicons = function() {
 
 			fa_dol[i].addEventListener('touchend', function() {
 
-				if (confirm('Möchten Sie das PDF Dossier über "' + folders[chapter].data[this.ix].name + '"\nherunterladen und speichern?')) {
-					select_pdf.get_scr(this.ix);
-				}
+				//if (confirm('Möchten Sie das PDF Dossier über "' + folders[chapter].data[this.ix].name + '"\nherunterladen und speichern?')) {
+				select_pdf.get_scr(this.ix);
+				//}
 
 			}, false);
 

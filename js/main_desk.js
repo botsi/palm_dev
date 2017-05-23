@@ -277,16 +277,6 @@ var sub_chapter = function(t) {
 
 	}
 
-	/*
-	    if (t.innerHTML.toLowerCase().indexOf('bestellung') != -1 && folders[chapter].data[folders[chapter].last_position].comp_name == 'bestellen') {
-
-	        loadForm();
-
-	        return;
-
-	    }
-	*/
-
 	set_epi_menu_color(t);
 
 	var c = folders[chapter].data;
@@ -434,8 +424,8 @@ var sub_chapter = function(t) {
 
 
 			if (el.offsetHeight < t.parentNode.offsetHeight) {
+
 				el.classList.remove('imp_slid');
-				//el.classList.add('imp_no_slid');
 
 			} else {
 
@@ -741,10 +731,8 @@ var inhalt = function(c, i) {
 
 		r += (c[i].epilog.App) ? '<span onclick="show_app(0,this)">App</span><br/>' : '';
 
-		//r += (c[i].epilog.Dossier) ? '<span onclick="select_pdf(this)">Dossier</span><br/>' : '';
-
 		for (var key in c[i].epilog) {
-			// || key == 'Autoren'
+
 			r += (key == 'Film' || key == 'Hören' || key == 'Impressionen' || key == 'Info' || key == 'Ausstellungsort' || key == 'App') ? '' : '<span onclick="sub_chapter(this)">' + key + '</span><br/>';
 
 		}
@@ -760,7 +748,6 @@ var inhalt = function(c, i) {
 };
 
 var do_me = function(i, a) {
-	//console.log(a);
 	slide_lr(i, true);
 	sh_me(0);
 	if (typeof a !== 'undefined') {
@@ -787,10 +774,7 @@ var sh_me = function(sh, ih, t) {
 
 		var minus = window.getComputedStyle(mpt.nextSibling.children[0], null);
 
-		//var theCSSprop = window.getComputedStyle(elem, null);
-
-
-		console.log('minus (left): ', minus.getPropertyValue('margin-left'), ' minus (top): ', minus.getPropertyValue('margin-top'));
+		//		console.log('minus (left): ', minus.getPropertyValue('margin-left'), ' minus (top): ', minus.getPropertyValue('margin-top'));
 
 		mpt.style.marginLeft = t[0] - mpt.offsetWidth / 2 + parseInt(minus.getPropertyValue('margin-left')) + 'px';
 
@@ -886,7 +870,6 @@ var white_head = function() {
 	sivId = setTimeout(function() {
 
 		var h = get_page_scroll_position();
-		//console.log(h);
 
 		var uat = document.getElementsByClassName('ueandtx');
 
@@ -1018,7 +1001,7 @@ var load_media = function() {
 
 			} else {
 
-				//console.log('get_media_array shit happens');
+				console.log('get_media_array shit happens');
 
 			}
 		}
@@ -1056,14 +1039,12 @@ var change_image = function(img) {
 
 	hist_push = true;
 
-	//console.log('history ', history);
-
 	/*------------------	end pushState	------------------*/
 
 
 	if (typeof folders[chapter].data[folders[chapter].last_position].epilog.Medienberichte === 'boolean') {
 
-		console.log('iload media 1041');
+		//	console.log('iload media 1041');
 
 		load_media();
 
@@ -1221,20 +1202,32 @@ var show_video = function(mov_img) {
 
 		folders[chapter].data[folders[chapter].last_position].video.src = video_controls.act_src = mov_img;
 
-		document.getElementById("hg_media").innerHTML = '<video width="100%" id="actual_video"><source src="images/' + folders[chapter].name + '/' + mov_img + '.mp4" type="video/mp4"></video>';
+		document.getElementById("hg_media").innerHTML = '<video id="actual_video"><source src="images/' + folders[chapter].name + '/' + mov_img + '.mp4" type="video/mp4"></video>';
 
 		vid = document.getElementById("actual_video");
 
 		vid.autoplay = false;
 
+		vid.onloadedmetadata = function() {
+
+			video_controls.run();
+
+			fade_mov("hg_media", "in");
+
+		};
+
+	} else {
+
+		setTimeout(function() {
+			//vid.onloadedmetadata = function() {
+			video_controls.run();
+
+			fade_mov("hg_media", "in");
+
+			//};
+		}, 500);
+
 	}
-
-	setTimeout(function() {
-		video_controls.run();
-
-		fade_mov("hg_media", "in");
-	}, 1000);
-
 
 };
 
@@ -1270,12 +1263,14 @@ fade_mov = function(over, dir) {
 
 
 size_video = function() {
+	//console.log('vid.videoWidth ', vid.videoWidth);
+	//console.log('vid.videoHeight ', vid.videoHeight);
 
 	//vid.width = vid.height = 'auto';
 	vid.aspectRatio = vid.videoWidth / vid.videoHeight;
 
-	console.log('vid.aspectRatio ', vid.aspectRatio);
-	console.log('Width/Height-180 ', window.innerWidth / (window.innerHeight - 180));
+	//console.log('vid.aspectRatio ', vid.aspectRatio);
+	//console.log('Width/Height-180 ', window.innerWidth / (window.innerHeight - 180));
 	//vid.parentNode.style.left = 0;
 	//vid.parentNode.style.top = 180 + 'px';
 
@@ -1431,7 +1426,7 @@ var hit_menue = function(t, ju) {
 
 			a[chapter].style.color = '#bc123a';
 
-			console.log('ju: ' + ju);
+			//		console.log('ju: ' + ju);
 
 			if (typeof ju === 'undefined') {
 

@@ -70,7 +70,7 @@
 					"prolog": "Kurator und Projektleiter",
 					"text": "<span class='inta'>Qfaktur<br/>Dammweg 41<br/>3013 Bern<br/><a href='mailto:andreas.schwab@palma3.ch'>andreas.schwab@palma3.ch</a><br/><a class='tel_link' href='tel:+41313335902'>031 333 59 02</a></span>",
 					"epilog": {
-						"Projektliste": "<ul><li><a onclick='search_nostyle(this)'>Schreibrausch</a></li><li><a onclick='search_nostyle(this)'>Den Körper im Blick</a></li><li><a onclick='search_nostyle(this)'>Fernes Donnergrollen</a></li><li><a onclick='search_nostyle(this)'>Die Utopie der Widerspenstigen</a></li><li><a onclick='search_nostyle(this)'>Das Abenteuer Bildung</a></li><li><a onclick='search_nostyle(this)'>Halbzeit</a></li><li><a onclick='search_nostyle(this)'>Die 68er</a></li><li><a onclick='search_nostyle(this)'>Hirnsturm</a></li><li><a onclick='search_nostyle(this)'>Monte Verità</a></li><li><a onclick='search_nostyle(this)'>anders sehen</a></li><li><a onclick='search_nostyle(this)'>Sasso San Gottardo</a></li><li><a onclick='search_nostyle(this)'>Auf den Spuren von Max Frisch</a></li><li><a onclick='search_nostyle(this)'>Mediaguide Monte Verità</a></li><li><a onclick='search_nostyle(this)'>Fitness</a></li></ul>",
+						"Projektliste": "<ul><li><a onclick='search_nostyle(this)'>Schreibrausch</a></li><li><a onclick='search_nostyle(this)'>Den Körper im Blick</a></li><li><a onclick='search_nostyle(this)'>Barryland</a></li><li><a onclick='search_nostyle(this)'>Fernes Donnergrollen</a></li><li><a onclick='search_nostyle(this)'>Die Utopie der Widerspenstigen</a></li><li><a onclick='search_nostyle(this)'>Das Abenteuer Bildung</a></li><li><a onclick='search_nostyle(this)'>Halbzeit</a></li><li><a onclick='search_nostyle(this)'>Die 68er</a></li><li><a onclick='search_nostyle(this)'>Hirnsturm</a></li><li><a onclick='search_nostyle(this)'>Monte Verità</a></li><li><a onclick='search_nostyle(this)'>anders sehen</a></li><li><a onclick='search_nostyle(this)'>Sasso San Gottardo</a></li><li><a onclick='search_nostyle(this)'>Auf den Spuren von Max Frisch</a></li><li><a onclick='search_nostyle(this)'>Mediaguide Monte Verità</a></li><li><a onclick='search_nostyle(this)'>Fitness</a></li></ul>",
 						"weitere Tätigkeiten": "<ul><li>Historiker, Dr. phil.</li><li>Diplom Management culturel et social</li><li>Gemeinderat Ressort Bildung, Bremgarten bei Bern 2012 - 2017, <a href='http://www.andreasschwab.ch' target='_blank'>www.andreasschwab.ch</a></li><li>Mitarbeit bei der Ausstellung «Zuflucht Monte Verità» im Museo Hermann Hesse, Montagnola (23.9. 2006 – 15.2.2007), <a href='http://www.hessemontagnola.ch' target='_blank'>www.hessemontagnola.ch</a></li><li>Kurator der Ausstellung «Am Anfang ist das Wort. Lexika in der Schweiz». Eine Koproduktion der Schweizerischen Nationalbibliothek und des Historischen Lexikons der Schweiz (7.11.2008 – 29.3.2009)</li></ul>",
 						"Veröffentlichungen": "<ul><li>«Monte Verità – Sanatorium der Sehnsucht», Orell Füssli Verlag, Zürich 2003, 286 Seiten</li><li>«Landkooperativen Longo maï – Pioniere einer gelebten Utopie», <a href='https://rotpunktverlag.ch/titel/landkooperativen-longo-mai' target='_blank'>Rotpunktverlag, Zürich</a> 2013, 228 Seiten</li><li>«Lei non può lamentarsi di aver passato il suo tempo annoiandosi.» Harald Szeemann e l’esposizione sul Monte Verità, in: Claudia Lafranchi Cattaneo / Andreas Schwab, Dalla visione al chiodo. Dal chiodo alla visione. Il Fonde Harald Szeemann dell’Archivio Fondazione Monte Verità, Bellinzona 2013, Seiten 173 bis 220. (Übersetzung aus dem Deutschen, Originaltext: <a href='http://old.palma3.ch/fileadmin/user_upload/Palma3_Daten_allgemein/Presserartikel_Andreas_Schwab/Szeemann_MV_def.pdf' target='_blank'>Harald Szeemann und der Monte Verità PDF</a>)</li></ul>",
 						"Info": ""
@@ -119,7 +119,7 @@
 					"prolog": "Beirat",
 					"text": "<span class='inta'>Qfaktur<br/>Dammweg 41<br/>3013 Bern<br/><a href='mailto:ronny.trachsel@palma3.ch'>ronny.trachsel@palma3.ch</a><br/>&nbsp;</span>",
 					"epilog": {
-						"Projektliste": "<ul><li><a onclick='search_nostyle(this)'>Fernes Donnergrollen</a></li><li><a onclick='search_nostyle(this)'>Mit Biss</a></li><li><a onclick='search_nostyle(this)'>Stadt vor Augen - Landschaft im Kopf</a></li><li><a onclick='search_nostyle(this)'>Ich schweige nicht!</a></li><li><a onclick='search_nostyle(this)'>Edith liebt ihn</a></li><li><a onclick='search_nostyle(this)'>Hirnsturm</a></li><li>Fitness</li></ul>",
+						"Projektliste": "<ul><li><a onclick='search_nostyle(this)'>Fernes Donnergrollen</a></li><li><a onclick='search_nostyle(this)'>Mit Biss</a></li><li><a onclick='search_nostyle(this)'>Stadt vor Augen - Landschaft im Kopf</a></li><li><a onclick='search_nostyle(this)'>Ich schweige nicht!</a></li><li><a onclick='search_nostyle(this)'>Edith liebt ihn</a></li><li><a onclick='search_nostyle(this)'>Hirnsturm</a></li><li><a onclick='search_nostyle(this)'>Fitness</a></li></ul>",
 						"weitere Tätigkeiten": "<ul><li>Historiker, lic.phil.hist., I+D-Spezialist (NDS FH)</li><li>ETH Zürich, ETH-Bibliothek, Teamleiter</li></ul>",
 						"Info": ""
 					}
@@ -807,7 +807,7 @@
 						]
 					},
 					"prolog": "Schönheit kommt von aussen",
-					"text": "Die Ausstellung wirft einen ironischen, aber gleichzeitig auch wohlgesinnten Blick auf die Fitnessbewegung.",
+					"text": "Die Ausstellung wirft einen ironischen, aber gleichzeitig auch wohlgesinnten Blick auf die Fitnessbewegung.<br/>Fitness boomt und das seit über hundert Jahren. Offenbar entspricht die individualisierte, von den Vereinen losgelöste Möglichkeit der sportlichen Betätigung einem gesellschaftlichen Bedürfnis. Auch vom öffentlichen Raum hat die Fitnessbewegung Besitz ergriffen. In Zeitungen und Zeitschriften, im Fernsehen und besonders in der Werbung wird das Bild von jugendlichen und sportlichen Körpern häufig verwendet. Zur Diskussion steht eine Gesellschaft, die ihren Fitnesskult in der Werbung und den Hochglanzmagazinen zelebriert.<br/>Die Auseinandersetzung mit diesem Thema will die Ausstellung «Fitness. Schönheit kommt von aussen» leisten. Wie der Titel der Ausstellung nahelegt, möchten wir einen ironischen, kritischen, aber gleichzeitig auch wieder wohlgesinnten Blick auf die Fitnessbewegung werfen. Besucherinnnen und Besucher können sich auf dem Rundgang durch die vier Räume über verschiedene Aspekte des Fitnessphänomens kundig machen und auf mehreren Geräten sogar aktiv ihre Muskeln spielen lassen.",
 					"epilog": {
 						"Ausstellungskonzept": "<h2>Garderobe</h2><p>Fast jede sportliche Betätigung beginnt in einer Garderobe. So auch hier: Zum Auftakt können sich die Besucherinnen und Besucher mit Fotografien von Yoki van de Cream spielerisch auf die Ausstellung einstimmen lassen.</p><h2>Ästhetistierung</h2><p>Die Geschichte der Fitnessbewegung von 1900 bis heute</p><p>Fitness und Körperkult sind gesellschaftliche Phänomene mit langer Tradition und vielschichtiger Wirkung. Im historischen Überblick über die Körperästhetik seit den Anfängen der modernen Fitnessbewegung werden die Entwicklungen des idealen Körpers und die Fitnesspraxis dargestellt. Von der Reformbewegung über den Nationalsozialismus bis hin zum Fitnessboom ab den 1970er Jahren wird anhand vieler Beispiele ein Bogen geschlagen, um die historischen Wurzeln unseres heutigen Umgangs mit dem Körper zu beleuchten.</p><h2>Praxis</h2><p>Braune Haut, Schlankheit, Trainingssysteme</p><p>In diesem Raum geht es um unseren alltäglichen Umgang mit dem Körper. Behandelte Themenbereiche sind dabei Fitnessgeräte und -hilfsmittel, der menschliche Körper und das Ideal der braunen Haut, die Disziplinierung durch die Ernährung und verschiedene Trainingssysteme, sowie einige statistische Aspekte der Fitnessindustrie, die das Phänomen soziologisch erfassbar machen.</p><h2>Glückserwartung</h2><p>Weshalb treiben Personen Fitness?</p><p>Jede Woche ein- oder mehrmals ins Fitnesscenter: eine Stunde schwitzen, duschen, nach Hause fahren. Nicht gerade spektakulär. Trotzdem investieren viele Menschen viel Zeit und Geld in diese Freizeitbetätigung. Weshalb tun sie dies? Einzig der Schönheit wegen? Die Aussagen der hier dokumentierten fünf Personen legen etwas anderes nahe. Wichtig sind für sie gesundheitliche Beweggründe, das «Abschalten», das Pflegen sozialer Kontakte und die Abwechslung zum Berufsalltag.</p><h2>Dusche</h2><p>Entspannung bei den Körperbildern</p><p>Yoki van de Cream hat siebzehn Personen vor einem neutralen Hintergrund fotografiert. Daraus sind faszinierende Ganzkörperporträts entstanden. Achten Sie auf die Körperhaltung und Mimik der fotografierten Personen: Die Leute fühlen sich gut vor der Kamera! Das ist ein Hinweis dafür, dass immer noch eine Selbstverständlichkeit im Umgang mit dem eigenen Körper existiert. Die ungeschönten - und im Gegensatz zu den Fitnessmagazinen auch unretuschierten - Porträts, die gerade deswegen um Einiges eindringlicher und auch anziehender wirken als die Idealkörper der Hochglanzmagazine, lassen das Selbstbewusstsein der Fotografierten erkennen.</p>",
 						"Impressum": {
@@ -865,7 +865,6 @@
 							"Kurator": ["Etienne Wismer"],
 							"Projektleiter und Co-Kurator": ["Jürg Spichiger (palma3)"],
 							"Unterstützt von": ["Ernst Göhner Stiftung", "Vontobel Stiftung", "Schweizerischer Gewerkschaftsbund Kulturstiftung", "SWISSLOS / Promozione della cultura Cantone dei Grigioni", "Jubiläumsstiftung Mobiliar Versicherung", "Kraftwerke Oberhasli KWO", "P. Herzog-Stiftung", "Syndicom", "Stadt Bern", "Stanley-Thomas-Johnson-Stiftung", "Comune di Bregaglia", "ewz", "Banca cantonale dei Grigioni", "Fondazione Niarchos", "Pro Helvetia", "Oertli-Stiftung", "Winterhalter Stiftung", "Stiftung Jacques Bischofsberger", "Oscar Neher Stiftung", "Biblioteca Engiadinaisa", "Fondazione Svizzera per la Radio e la Cultura"]
-
 						},
 						"Medienberichte": true,
 						"Ausstellungsort": [
@@ -922,6 +921,44 @@
 						],
 						"Dossier": []
 					}
+				},
+				{
+				  "name": "Barryland",
+				  "comp_name": "barry",
+				  "search": [
+				    "barrylandmartigny",
+						"barrychildren",
+						"barrypark",
+						"bernhardiner",
+						"bernhardinerhunde",
+						"bernhardinermuseum",
+						"saintbernard",
+						"stbernard",
+						"st.bernard",
+						"st.bernhard",
+						"grosserst.bernhard"
+				  ],
+				  "time": {
+				    "from": [
+				      1,
+				      11,
+				      2016
+				    ]
+				  },
+				  "prolog": "Barry - die Rettung eines Schweizer Kulturgutes",
+				  "text": "Das «Barryland - Musée et Chiens du Saint Bernard» ist die Schatztruhe der Barry-Geschichte. Es verbindet die Geschichte des Grossen St. Bernhard Passes, dem Hospiz und seiner Hundezucht mit der Gegenwart.<br/>Ein Begegnungszentrum, welches die Menschen mit den Bernhardinern zusammenbringt. Die Bekanntheit der legendären Bernhardiner vom Grossen Sankt Bernhard und die Verankerung als Schweizer Kulturgut in der Region schaffen eine hervorragende Voraussetzung, die Wirkung in der Öffentlichkeit zu verstärken.<br/>Ab 2015 erarbeitete Palma3 eine integrierte museale Gesamtstrategie für die Fondation Barry in Martigny und entwickelte einen Massnahmenplan 2016 - 2020.<br/>Als erster Realisierungsschritt konnte im November 2016 die Kinderausstellung «Barry Family» im zweiten Stock des Museumsgebäudes in Martigny eröffnet werden.",
+				  "epilog": {
+						"Ausstellungskonzept": "<h2>Vision Barryland</h2><p>Im Laufe der letzten Jahre wurden in der Fondation Barry Visionen entwickelt für die Verbesserung des Wohls ihrer Bernhardiner-Hunde sowie die Erhöhung der Attraktivität der Zuchtstätte und des Museums in Martigny für Besucher. Seit Mitte 2014 wird das Bernhardiner-Museum unter der Leitung der Fondation Barry weiter geführt und anlässlich der Jubiläumsveranstaltung der Stiftung anfangs Juni 2015 wurde es «Barryland - Musée et Chiens du Saint Bernard» umbenannt. Seither verfügt die Fondation Barry über einen Publikumsstandort und ein Begegnungszentrum, welches Menschen mit den Bernhardinern und der Geschichte vom Grossen St. Bernhard zusammenbringt und welches gemäss Strategie 2016-2019 nun etappenweise den zusätzlichen Bedürfnissen, insbesondere für Kinder und Familien entsprechend, ausgebaut werden soll.</p><h2>Barry Children</h2><p>Die Fondation Barry ist bestrebt, vielen Menschen, insbesondere Kindern und Jugendlichen, durch eine Begegnung mit ihren Bernhardinern eine Freude zu bereiten, die Möglichkeit zu persönlichen Erlebnissen mit Bernhardinern zu bieten und dadurch zu einer besseren Mensch-Hund-Beziehung beizutragen. Deshalb soll im Rahmen der Erweiterung Barryland 2016 im zweiten Obergeschoss neu eine permanente Kinderausstellung entstehen, mit emotionalen und didaktischen Angeboten insbesondere für Kinder von 4 bis 12 Jahren. Die Ausstellung ist eng mit der Geschichte und dem Mythos Barry verknüpft und bietet nicht blosses Konsumieren, sondern die Möglichkeit, aktiv zu werden.  Die Kinderausstellung bietet Raum für Gruppen- respektive Klassenunterricht, in welchen auch echte Bernhardiner einbezogen werden. Damit hat das Barryland eine wichtige Funktion im Bereich Pädagogik und leistet mit den tiergestützten Interaktionen einen bedeutenden Beitrag zur Erhaltung des Erbes und der Zucht.</p><h2>Barry Park</h2><p>Die rund 30 Bernhardiner der Fondation Barry sollen mit grosszügigen Freigehegen mehr Bewegungs- und Beschäftigungsmöglichkeit bekommen. Im Barryland können Besucher Bernhardiner beim Spielen in den Freigehegen und zu vorgegebenen Zeiten beim Training in der Barryschule drinnen oder draussen beobachten. Beim Training gibt es zusätzlich die Gelegenheit, Hunde unter Anleitung des Personals anzufassen, beispielsweise, um sie zu streicheln, zu bürsten und zu führen. Unter Anleitung können sich Besucher und Bernhardiner auch beim Lösen von Geschicklichkeitsaufgaben oder beim Seilziehen messen.</p><p>Am Rundweg um die Freigehege finden die Besucher Ruhe- und Beschäftigungsmöglichkeiten vor, die jene der Hunde widerspiegeln oder unterstützen. So können beispielsweise Ruheplätze in Hütten oder auf Nestschaukeln genutzt werden. Hunde und Besucher können nebeneinander – durch Glasscheiben getrennt - im Sand oder Wasser spielen. Wagen- beziehungsweise im Winter Schlittenfahrten müssen vorgebucht werden.</p><p>Zusätzlich zur Unterbringung von Bernhardinerhunden ist ein Streichelzoo mit weiteren Tieren wie Kaninchen, Hängebauchschweinen, Ziegen oder Schafen geplant. Auch hier bieten sich zahlreiche Aktivitäten, die für Jung und Alt ein bleibendes Erlebnis schaffen.</p><p>Als weiteres Element soll eine Schlittelpiste auf dem Gelände des Barry Parks realisiert werden, um auch in der Wintersaison Gäste anzuziehen. Diese passt sehr gut zur Ambiance, wie sie auf dem Grossen St. Bernhard herrscht. Solche, im urbanen Raum erbaute Freizeitangebote sind im Trend und können ein zusätzliches Besuchersegment anziehen.</p>",
+				    "Impressum": {
+				      "Kurator": ["Andreas Schwab (palma3)"],
+				      "Illustrationen": ["<a href='http://www.andreapeter.ch' target='_blank'>Andrea Peter, Bern</a>"],
+				      "Realisierung": ["<a href='http://www.creactif.ch' target='_blank'>Créactif, Gaël Papilloud, Martigny</a>"]
+				    },
+				    "Ausstellungsort": [
+				      ["", "Fondation Barry du Grand-St-Bernard", "34, rue du Levant", "1920 Martigny", "", "www.fondation-barry.ch", "B7ECfshnBGA2"]
+				    ],
+				    "Dossier": []
+				  }
 				},
 				{
 					"comp_name": "nidwaldner",
@@ -1212,7 +1249,7 @@
 						]
 					},
 					"prolog": "Ein aktuelles Porträt auf DVD<br/>Die aktuelle Videoproduktion «Bruder Klaus – Bauer, Vermittler, Heiliger» schliesst diese Lücke. In die DVD ist Video-, Foto- und Textmaterial aus der neuen Grundausstellung einbezogen. ",
-					"text": "Das halbstündige Videoporträt gibt Einblick in die Lebensverhältnisse des 15. Jahrhunderts und zeigt die wichtigsten Stationen aus dem Leben Niklaus von Flües auf. Ebenso wird die Wirkungsgeschichte von Bruder Klaus bis in die heutige Zeit präsentiert. Ein zentraler Aspekt ist dabei seine Fähigkeit, als Vermittler zwischen verschiedenen Welten zu wirken.<br/>Mehr über die Ausstellung zu Niklaus von Flüe finden Sie <a class='line' onclick='jump_to(3,2)'>hier unter Dauerausstellungen</a>.",
+					"text": "Das halbstündige Videoporträt gibt Einblick in die Lebensverhältnisse des 15. Jahrhunderts und zeigt die wichtigsten Stationen aus dem Leben Niklaus von Flües auf. Ebenso wird die Wirkungsgeschichte von Bruder Klaus bis in die heutige Zeit präsentiert. Ein zentraler Aspekt ist dabei seine Fähigkeit, als Vermittler zwischen verschiedenen Welten zu wirken.<br/>Mehr über die Ausstellung zu Niklaus von Flüe finden Sie <a class='line' onclick='jump_to(4,2)'>hier unter Dauerausstellungen</a>.",
 					"epilog": {
 						"Impressum": {
 							"Auftrag und Vertrieb": ["<a href='http://www.museumbruderklaus.ch' target='_blank'>Museum Bruder Klaus, Sachseln</a>"],

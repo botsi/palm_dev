@@ -156,7 +156,7 @@ var attach_script = function(apx) {
 
 		};
 
-		s.src = 'js/main' + apx + '.js';
+		s.src = 'js/main' + apx + '.min.js';
 		s.charset = 'utf-8';
 
 		document.head.appendChild(s);
@@ -258,18 +258,14 @@ var device_dimensions = function() {
 				img_type.path = 'images/mobile/';
 				img_type.ext = '.jpg';
 				source_apx = '_mobile';
-				//alert(' ' + x + ' x ' + y);
 				break;
 			case ((x > 400 && x < 951) && isTouchSupported()):
 				img_type.path = 'images/mobile/';
 				img_type.ext = '.jpg';
 				source_apx = '_mobile';
-				//source_apx = '_pad';
-				//alert('pad ' + x + ' x ' + y);
 				break;
 			default:
 				source_apx = '_desk';
-				//alert(x + ' x ' + y);
 		}
 
 		attach_script(source_apx);
@@ -1237,10 +1233,16 @@ var download_pdf = function() {
 
 		select_pdf.log.push(select_pdf.act_log(c));
 
+		//setTimeout(function() {
+
 		pdfMake.createPdf(docDefinition).download(c.comp_name + '.pdf');
 
+		//}, 1000);
+
 	} else {
-		document.getElementsByClassName('alert_line')[folders[chapter].last_position].style.visibility = 'visible';
+		if (document.getElementsByClassName('alert_line')[folders[chapter].last_position]) {
+			document.getElementsByClassName('alert_line')[folders[chapter].last_position].style.visibility = 'visible';
+		}
 	}
 
 };
