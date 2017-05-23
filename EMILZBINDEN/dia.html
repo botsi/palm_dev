@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<meta charset="utf-8" />
+
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<meta name="viewport" id="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+		<meta name="mobile-web-app-capable" content="yes" />
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+
+		<meta name="apple-mobile-web-app-status-bar-style" content="white" />
+
+		<title>Emil Zbinden Panorama</title>
+
+		<link rel="shortcut icon" href="images/favicon.ico" />
+
+		<style>
+			html,
+			body {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+			}
+
+			a {
+				color: #bc123a;
+				text-decoration: underline;
+			}
+
+			#panorama {
+				position: absolute;
+				top: 0;
+				height: 100%;
+				display: inline-block;
+			}
+
+			#panorama img {
+				width: auto;
+				height: 100%;
+				border: 0 none;
+				margin: 0;
+				padding: 0;
+				top: 0;
+				display: block;
+			}
+
+			#panorama video {
+				width: 100vw;
+			}
+		</style>
+
+		<script type="text/javascript">
+			var dimensionFunction = function() {
+
+				var i = document.getElementsByTagName('video')[0];
+				i.controls = "controls";
+				i.play();
+
+			};
+
+			var img_load = function() {
+
+				var q = window.location.search.substring(1);
+
+				var obj = {};
+				var pairs = q.split('&');
+				for (a in pairs) {
+					var split = pairs[a].split('=');
+					obj[decodeURIComponent(split[0])] = decodeURIComponent(split[1]);
+				}
+
+				if (obj.type == 'mp4') {
+
+					var i = document.createElement('video');
+
+					i.innerHTML = '<source src="images/' + obj.name + '.mp4" type="video/mp4">Your browser does not support the video tag.';
+
+					document.getElementById('panorama').appendChild(i);
+
+					//i.onloadedmetadata = function(){
+
+					//};
+
+
+					i.addEventListener("canplaythrough", dimensionFunction, false);
+
+				} else {
+
+
+					var i = document.createElement('img');
+
+					i.src = 'images/' + obj.name + '.' + obj.type;
+
+					i.addEventListener('click', function() {
+
+					}, false);
+
+					document.getElementById('panorama').appendChild(i);
+
+				}
+
+			};
+
+			document.addEventListener('DOMContentLoaded', img_load, false);
+		</script>
+
+
+	</head>
+
+	<body>
+		<div id="panorama"></div>
+	</body>
+
+</html>

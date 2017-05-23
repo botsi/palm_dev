@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Palma3 Editor</title>
+
+	<link rel='stylesheet' id='theme_stylesheet' href='//cdn.jsdelivr.net/foundation/5.0.2/css/foundation.min.css'>
+	<link rel='stylesheet' id='icon_stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.css'>
+
+	<style>
+		[class*="foundicon-"] {
+			font-family: GeneralFoundicons;
+			font-style: normal;
+		}
+
+		#work,
+		#work_label {
+			display: none;
+		}
+
+
+		select option {
+			font-size: 24px;
+		}
+
+		select,
+		select:hover {
+			padding: 10px;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			-webkit-padding-start: 8px;
+			-webkit-padding-before: 12px;
+			-webkit-padding-after: 12px;
+			background-image: url("../images/sel_arrow.png");
+			background-position: 97% center;
+			background-repeat: no-repeat;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			text-transform: none;
+			/*
+		color: #333;
+*/
+			outline: 0 none;
+			border: 0 none;
+			background-color: #fafafa;
+			color: #000;
+			color: rgba(0, 0, 0, 0);
+			text-shadow: 0 0 0 #000;
+			cursor: pointer;
+		}
+
+		#schema,
+		th {
+			display: none !important;
+		}
+
+		#getvalue,
+		#validation {
+			position: fixed;
+			margin: 48px 0;
+			max-width: 280px;
+		}
+
+		#validation {
+			top: 280px;
+		}
+
+		h3:first-letter,
+		label::first-letter {
+			text-transform: capitalize;
+		}
+
+		label {
+			font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+			font-weight: 300 !important;
+			font-style: normal;
+			color: #222;
+			text-rendering: optimizeLegibility;
+			margin-top: 0.2rem;
+			margin-bottom: 0.5rem;
+			line-height: 1.4;
+			font-size: 1.6875rem;
+			cursor: default;
+		}
+
+		input[type="text"]:disabled,
+ 		input[type="text"]:disabled + p{
+		    display: none;
+		}
+
+		.button-group .json-editor-btn-delete+.json-editor-btn-delete,
+		.button-group .json-editor-btn-add+.json-editor-btn-delete {
+			display: none;
+		}
+	</style>
+	<script type="text/javascript" charset="utf-8" src='jsoneditor.min.js'></script>
+	<script type="text/javascript" charset="utf-8" src='editor_defs.js'></script>
+
+	<script>
+		/*
+																								if (typeof module !== "undefined" && module != null) {
+																						console.log('LZString');
+																									module.exports = LZString
+																								}
+																						*/
+	</script>
+</head>
+
+<body>
+	<div class='container'>
+		<div class='row'>
+			<div class='span8 col-md-8 columns eight large-8'>
+				<h2>Editor</h2>
+				<p>Below is the editor generated from the JSON Schema.</p>
+				<p><label>Kategorie</label><select id="chapter" class="form-control"></select></p>
+				<p><label id="work_label">Projekt</label><select id="work" class="form-control"></select></p>
+
+				<div id='editor'></div>
+			</div>
+			<div class='span4 col-md-4 columns four large-4'>
+
+				<p><button class='btn btn-primary' id='getvalue'>speichern</button></p>
+
+				<div id='validation'>
+					<p>Validation</p>
+					<p>This will update whenever the form changes to show validation errors if there are any.</p>
+					<textarea id='validate' style='width: 100%; height: 100px; font-family: monospace;' readonly disabled class='form-control'></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<script type="text/javascript">
+		//		end botsi
+
+		// Divs/Selects/textareas on the page
+		var $editor = document.getElementById('editor');
+		var $validate = document.getElementById('validate');
+		var $chapter = document.getElementById('chapter');
+		var $work = document.getElementById('work');
+
+		// Buttons
+		var $get_value_button = document.getElementById('getvalue');
+
+		var folders;
+
+		var page_load = function() {
+
+			console.log('i loaded');
+			/*
+						var startval = (jsoneditor && keep_value) ? jsoneditor.getValue() : window.startval;
+						window.startval = undefined;
+			*/
+			do_editor();
+			refresh();
+
+		};
+
+
+
+		var refresh = function(clear_sel) {
+
+			if (jsoneditor) {
+				jsoneditor.destroy();
+			}
+
+			// load the folders array
+
+			loadXMLDoc('../inhalt.js', function() {
+
+				if (xmlhttp.readyState == 4) {
+					if (xmlhttp.status == 200) {
+
+						folders = JSON.parse(xmlhttp.responseText).folders;
+
+						//console.log('oki, done: ' + folders);
+
+						if (!clear_sel) {
+
+							$chapter.innerHTML = '<option value="-1">auswählen</option>';
+
+							for (var i = 0; i < folders.length; i++) {
+								$chapter.innerHTML += '<option value="' + i + '">' + folders[i].menu_name + '</option>';
+							}
+
+						}
+
+						//window.jsoneditor = jsoneditor;
+
+						// When the value of the editor changes, update the JSON output and validation message
+
+
+
+
+					} else {
+						alert('inhalt shit happens');
+					}
+				}
+			});
+
+		}
+
+
+		var do_editor = function() {
+
+
+
+
+
+
+
+
+
+			// switch chapter by botsi
+
+			$chapter.addEventListener('change', function() {
+				if (jsoneditor) {
+					jsoneditor.destroy();
+				}
+
+				//	"Kategorie auswählen" entfernen
+				if (this.children[0].value == -1) {
+
+					this.removeChild(this.children[0]);
+
+				}
+
+
+				$work.style.display = $work.previousSibling.style.display = 'block';
+
+				$work.innerHTML = '<option value="-1">auswählen</option>';
+
+				for (var i = 0; i < folders[this.value].data.length; i++) {
+
+					$work.innerHTML += '<option value="' + i + '">' + folders[this.value].data[i].name + '</option>';
+
+				}
+
+				$work.innerHTML += '<option value="' + i + '"> ... oder neues Projekt erstellen</option>';
+
+				processed_folder = this.value;
+				//console.log(processed_folder);
+
+
+			});
+
+
+			// export by botsi	-> reload
+
+			$get_value_button.addEventListener('click', function() {
+
+
+				var json = jsoneditor.getValue();
+
+				if (typeof json.time !== 'undefined') {
+
+					json.time.from = JSON.parse("[" + json.time.from.date + "]");
+
+
+					if (typeof json.time.till !== 'undefined') {
+
+						json.time.till = JSON.parse("[" + json.time.till.date + "]");
+
+					}
+
+				}
+
+				//console.log(json.epilog.Ausstellungsort + 'Ausstellungsort');
+
+				if (typeof json.epilog.Impressum !== 'undefined') {
+
+					json.epilog.Impressum = json.epilog.Impressum.replace(reg_br_out, '<br/>');
+
+				}
+
+				if (typeof json.Ausstellungsort !== 'undefined') {
+
+					var temp = json.epilog.Ausstellungsort;
+
+					json.epilog.Ausstellungsort = [];
+
+					json.epilog.Ausstellungsort[0] = temp;
+
+				}
+
+				delete json.epilog.haus;
+				delete json.epilog.strasse_nr;
+				delete json.epilog.plz_ort;
+				delete json.epilog.land;
+				delete json.epilog.url;
+
+				folders[processed_folder].data[processed_work] = json;
+
+				loadXMLDoc('new_e.php', function() { // call entry creator machine on server
+
+					if (xmlhttp.readyState == 4) {
+						if (xmlhttp.status == 200) {
+
+							//console.log('oki, done' + xmlhttp.responseText); // output php echo for control
+
+							refresh(true);
+
+							$work.innerHTML = '<option value="-1">auswählen</option>';
+
+							for (var i = 0; i < folders[$chapter.value].data.length; i++) {
+
+								$work.innerHTML += '<option value="' + i + '">' + folders[$chapter.value].data[i].name + '</option>';
+
+							}
+
+							$work.innerHTML += '<option value="' + i + '"> ... oder neues Projekt erstellen</option>';
+
+						} else {
+							alert('new_e shit happens');
+						}
+					}
+				}, 'inx=' + encodeURIComponent(JSON.stringify({"folders": folders}, null, 2)));
+
+			});
+
+			$work.addEventListener('change', function() {
+
+				//	kapitel existiert nicht, raus fertig!
+				if ($chapter.value >= folders.length) {
+					alert('Invalid folder');
+					return;
+				}
+				//	"Projekt auswählen" entfernen
+				if (this.children[0].value == -1) {
+					this.removeChild(this.children[0]);
+				}
+				//	arbeit existiert nicht! Neue arbeit erstellen?
+				if (this.value >= folders[$chapter.value].data.length) {
+					alert('new work?');
+
+				} else {
+
+					processed_work = this.value;
+
+					//	kapitel existiert nicht, raus fertig!
+					if (this.value == -1 || processed_work == -1) {
+						alert('frage:');
+						return;
+					}
+
+					if (jsoneditor) {
+						jsoneditor.destroy();
+					}
+
+					//schema = myschema;
+
+					schema = JSON.parse(JSON.stringify(myschema));
+
+
+
+					schema.properties.name.default = folders[processed_folder].data[processed_work].name;
+					schema.properties.comp_name.default = folders[processed_folder].data[processed_work].comp_name;
+					schema.properties.search.default = folders[processed_folder].data[processed_work].search;
+
+					if (typeof folders[processed_folder].data[processed_work].time !== 'undefined') {
+
+						schema.properties.time.properties.from.properties.day.default = folders[processed_folder].data[processed_work].time.from[0];
+						schema.properties.time.properties.from.properties.month.default = folders[processed_folder].data[processed_work].time.from[1];
+						schema.properties.time.properties.from.properties.year.default = folders[processed_folder].data[processed_work].time.from[2];
+
+
+						if (typeof folders[processed_folder].data[processed_work].time.till !== 'undefined') {
+
+							schema.properties.time.properties.till.properties.day.default = folders[processed_folder].data[processed_work].time.till[0];
+							schema.properties.time.properties.till.properties.month.default = folders[processed_folder].data[processed_work].time.till[1];
+							schema.properties.time.properties.till.properties.year.default = folders[processed_folder].data[processed_work].time.till[2];
+
+						} else {
+							delete schema.properties.time.properties.till;
+						}
+
+					} else {
+						delete schema.properties.time;
+					}
+
+					if (typeof folders[processed_folder].data[processed_work].published !== 'undefined') {
+
+						schema.properties.published.properties.year.default = folders[processed_folder].data[processed_work].published.year;
+						schema.properties.published.properties.at.default = folders[processed_folder].data[processed_work].published.at;
+
+					} else {
+						delete schema.properties.published;
+					}
+
+					schema.properties.prolog.default = folders[processed_folder].data[processed_work].prolog.replace(reg_br_in, '\n');
+
+					schema.properties.text.default = folders[processed_folder].data[processed_work].text.replace(reg_br_in, '\n');
+
+					if (typeof folders[processed_folder].data[processed_work].epilog.Ausstellungsort !== 'undefined') {
+
+						//console.log(folders[processed_folder].data[processed_work].epilog.Ausstellungsort[0]);
+						console.log(folders[processed_folder].data[processed_work].epilog.Ausstellungsort[0]);
+
+						var d = (Array.isArray(folders[processed_folder].data[processed_work].epilog.Ausstellungsort)) ? folders[processed_folder].data[processed_work].epilog.Ausstellungsort[0] : folders[processed_folder].data[processed_work].epilog.Ausstellungsort;
+
+						d = d.split('<br/>');
+
+						schema.properties.epilog.properties.haus.default = d[0];
+						schema.properties.epilog.properties.strasse_nr.default = d[1];
+						schema.properties.epilog.properties.plz_ort.default = d[2];
+						schema.properties.epilog.properties.land.default = d[3];
+						schema.properties.epilog.properties.url.default = d[4];
+
+					} else {
+						schema.properties.epilog.properties = {};
+					}
+
+					for (key in folders[processed_folder].data[processed_work].epilog) {
+						if (key != 'Ausstellungsort') {
+
+							schema.properties.epilog.properties[key] = {};
+
+							schema.properties.epilog.properties[key].type = "string";
+
+							schema.properties.epilog.properties[key].format = "html";
+
+							//schema.properties.epilog.properties[key].maxLength = 20;
+
+
+							schema.properties.epilog.properties[key].default = folders[processed_folder].data[processed_work].epilog[key].replace(reg_br_in, '\n');
+
+						}
+					}
+
+
+					// Set language
+
+					//JSONEditor.defaults.language = "de";
+					//JSONEditor.defaults.default_language = "de";
+					//console.log(JSONEditor.defaults);
+
+					jsoneditor = new JSONEditor($editor, {
+						schema: schema,
+						theme: 'foundation5',
+						iconlib: 'fontawesome3'
+					});
+					//console.log(jsoneditor);
+
+
+
+					jsoneditor.on('change', function() {
+
+
+						//var json = jsoneditor.getValue();
+
+						var els = document.getElementsByClassName('json-editor-btn-add');
+						for (var r = 0; r < els.length; r++) {
+							//console.log(els[r].innerHTML);
+							els[r].innerHTML = els[r].innerHTML.replace(' row', '');
+						}
+
+						var validation_errors = jsoneditor.validate();
+						// Show validation errors if there are any
+						if (validation_errors.length) {
+							$validate.value = JSON.stringify(validation_errors, null, 2);
+						} else {
+							$validate.value = 'valid';
+						}
+
+					});
+
+
+				}
+			});
+
+
+		};
+
+		document.addEventListener('DOMContentLoaded', page_load, false);
+	</script>
+</body>
+
+</html>

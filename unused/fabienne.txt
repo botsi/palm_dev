@@ -1,0 +1,16 @@
+                {
+                    "comp_name": "fabiennebarras",
+                    "name": "Fabienne Barras",
+                    "search": [
+                        "fabienne",
+                        "barras",
+                        "barra"
+                    ],
+                    "prolog": "Kuratorin und Projektmitarbeiterin",
+                    "text": "<span class='inta'>Qfaktur<br/>Dammweg 41<br/>3013 Bern<br/><a href='mailto:fabienne.barras@palma3.ch'>fabienne.barras@palma3.ch</a><br/>076 470 70 18</span>",
+                    "epilog": {
+                        "Projektliste": "<ul><li>Konzeption und Kreation für diverse Ausstellungen, Pavillons und Veranstaltungen.</li><li>Storytelling, Inszenierungen im Raum, Dramaturgie und szenische Abläufe, Vermittlung von Botschaften</li></ul>",
+                        "weitere Tätigkeiten": "<ul><li>Designpreis Schweiz: Entwicklung und Umsetzung von Wanderausstellungen und Programmgestaltung international (Kooperation mit Pro Helvetia, Swissnex, Präsenz Schweiz)</li><li>Forschung Live (200 Jahre Akademie der Naturwissenschaften): Wanderausstellung und Programmgestaltung in der Schweiz</li></ul>",
+                        "Info": ""
+                    }
+                },

@@ -48,8 +48,9 @@ var illuminate = function() {
 
 	var grep = (function() {
 		var filtered;
+		var swap_position = (window.location.href.indexOf('index') == -1) ? 160 : 110;
 		for (var i = 0; i < $divs.length; i++) {
-			var elTop = 64 - ($divs[i].getBoundingClientRect().top - 200);
+			var elTop = 64 - ($divs[i].getBoundingClientRect().top - swap_position);
 			if (elTop < $divs[i].offsetHeight) {
 				filtered = i;
 				break;
@@ -65,7 +66,7 @@ var illuminate = function() {
 	document.getElementsByClassName('header-year')[0].innerHTML = $divs[grep].getAttribute('year', 0);
 	//}
 
-	if (window.location.href.indexOf('ausstellungen') == -1) {
+	if (window.location.href.indexOf('ausstellungen.html') == -1) {
 		return;
 	}
 
@@ -167,6 +168,25 @@ var illuminate = function() {
 
 		document.getElementsByClassName('header-logo')[0].style.background = document.getElementsByClassName('footer')[0].style.background = 'linear-gradient(to right, ' + nc + ', #363539 calc(50% - 480px), #363539 calc(50% + 480px), ' + nc + ')';
 	*/
+
+};
+
+var toggle_img_view = function(t) {
+
+	if (t.parentNode.classList.contains('height_image')) {
+
+		t.parentNode.classList.remove('height_image');
+
+		t.parentNode.nextElementSibling.classList.add('hide_text');
+
+		t.parentNode.nextElementSibling.nextElementSibling.classList.add('hide_text');
+
+	} else {
+
+		t.parentNode.nextElementSibling.classList.remove('hide_text');
+		t.parentNode.nextElementSibling.nextElementSibling.classList.remove('hide_text');
+		t.parentNode.classList.add('height_image');
+	}
 
 };
 

@@ -29,7 +29,7 @@
 					"name": "Referenzen und Partner",
 					"search": ["referenzen"],
 					"prolog": "",
-					"text": "<span>Referenzen<ul><li><a href='http://www.bmm-charite.de' target='_blank'>Berliner Medizinhistorisches Museum der Charité, Berlin (D)</a></li><li><a href='http://www.carl-albert-loosli.ch' target='_blank'>Carl Albert Loosli-Gesellschaft, Bern</a></li><li><a href='http://www.monteverita.org' target='_blank'>Fondazione Monte Verità, Ascona</a></li><li><a href='http://www.forumschlossplatz.ch/' target='_blank'>Forum Schlossplatz, Aarau</a></li><li><a href='http://www.museum.baden.ch' target='_blank'>Historisches Museum, Baden</a></li><li><a href='http://www.historisches-museum.frankfurt.de' target='_blank'>Historisches Museum, Frankfurt am Main (D)</a></li><li><a href='http://www.kornhausforum.ch' target='_blank'>Kornhausforum, Bern</a></li><li><a href='http://www.mfa.ethz.ch' target='_blank'>Max Frisch-Archiv, Zürich</a></li><li><a href='http://www.med-hist.uni-kiel.de' target='_blank'>Medizin- und Pharmaziehhistorisches Museum der Universität, Kiel (D)</a></li><li><a href='http://www.ruhr-uni-bochum.de/mhs/dauerausstellung.html' target='_blank'>Medizinhistorische Sammlung der Ruhr-Universität, Bochum (D)</a></li><li>Medizinhistorisches Institut und Museum der Universität, Zürich</li><li><a href='http://www.museumbruderklaus.ch' target='_blank'>Museum Bruder Klaus, Sachseln</a></li><li><a hrefhttp://www.naturama.ch target='_blank'>Naturama, Aarau</a></li><li><a href='http://www.nidwaldner-museum.ch' target='_blank'>Nidwaldner Museum, Stans</a></li><li><a href='http://www.prolongomai.ch' target='_blank'>Pro Longo maï, Basel</a></li><li><a href='http://www.nb.admin.ch' target='_blank'>Schweizerische Nationalbibliothek, Bern</a></li><li><a href='http://www.blindenschule.ch' target='_blank'>Stiftung für blinde und sehbehinderte Kinder, Zollikofen</a></li><li><a href='http://www.science-et-cite.ch' target='_blank'>Stiftung Science et Cité, Bern</a></li><li><a href='http://www.strauhof.ch' target='_blank'>Strauhof, Zürich</a></li><li><a href='http://www.unibe.ch/universitaet/dienstleistungen/universitaetsbibliothek/service/ausstellungen_und_veranstaltungen/ausstellungen/index_ger.html' target='_blank'>Universitätsbibliothek Bern</a></li><li><a href='http://www.stattland.ch' target='_blank'>Verein StattLand, Bern</a></li><li><a href='http://www.voegelekultur.ch' target='_blank'>Vögele Kultur Zentrum, Pfäffikon</a></li><li><a href='http://www.wilhelm-fabry-museum.de' target='_blank'>Wilhelm-Fabry-Museum, Hilden (D)</a></li></ul></span><br/><span class='inta'>Partner<ul><li><a href='http://www.barbieribucher.ch' target='_blank'>Barbieri Bucher, Markus Bucher, Zürich</a></li><li><a href='http://www.josnaepflin.ch/index.html' target='_blank'>Jos Näpflin, Zürich</a></li><li><a href='http://www.thomashirter.ch' target='_blank'>Thomas Hirter, Bern</a></li><li><a href='http://www.treichler-data.ch' target='_blank'>Hans-Peter Treichler, Zürich</a></li><li><a href='https://www.art-tv.ch' target='_blank'>art-tv.ch, Zürich</a></li></ul></span>",
+					"text": "<span>Referenzen<ul><li><a href='http://www.bmm-charite.de' target='_blank'>Medizinhistorisches Museum der Charité, Berlin (D)</a></li><li><a href='http://www.carl-albert-loosli.ch' target='_blank'>Carl Albert Loosli-Gesellschaft, Bern</a></li><li><a href='http://www.monteverita.org' target='_blank'>Fondazione Monte Verità, Ascona</a></li><li><a href='http://www.forumschlossplatz.ch/' target='_blank'>Forum Schlossplatz, Aarau</a></li><li><a href='http://www.museum.baden.ch' target='_blank'>Historisches Museum, Baden</a></li><li><a href='http://www.historisches-museum.frankfurt.de' target='_blank'>Historisches Museum, Frankfurt am Main (D)</a></li><li><a href='http://www.kornhausforum.ch' target='_blank'>Kornhausforum, Bern</a></li><li><a href='http://www.mfa.ethz.ch' target='_blank'>Max Frisch-Archiv, Zürich</a></li><li><a href='http://www.med-hist.uni-kiel.de' target='_blank'>Medizin- und Pharmaziehhistorisches Museum der Universität, Kiel (D)</a></li><li><a href='http://www.ruhr-uni-bochum.de/mhs/dauerausstellung.html' target='_blank'>Medizinhistorische Sammlung der Ruhr-Universität, Bochum (D)</a></li><li>Medizinhistorisches Institut und Museum der Universität, Zürich</li><li><a href='http://www.museumbruderklaus.ch' target='_blank'>Museum Bruder Klaus, Sachseln</a></li><li><a hrefhttp://www.naturama.ch target='_blank'>Naturama, Aarau</a></li><li><a href='http://www.nidwaldner-museum.ch' target='_blank'>Nidwaldner Museum, Stans</a></li><li><a href='http://www.prolongomai.ch' target='_blank'>Pro Longo maï, Basel</a></li><li><a href='http://www.nb.admin.ch' target='_blank'>Schweizerische Nationalbibliothek, Bern</a></li><li><a href='http://www.blindenschule.ch' target='_blank'>Stiftung für blinde und sehbehinderte Kinder, Zollikofen</a></li><li><a href='http://www.science-et-cite.ch' target='_blank'>Stiftung Science et Cité, Bern</a></li><li><a href='http://www.strauhof.ch' target='_blank'>Strauhof, Zürich</a></li><li><a href='http://www.unibe.ch/universitaet/dienstleistungen/universitaetsbibliothek/service/ausstellungen_und_veranstaltungen/ausstellungen/index_ger.html' target='_blank'>Universitätsbibliothek Bern</a></li><li><a href='http://www.stattland.ch' target='_blank'>Verein StattLand, Bern</a></li><li><a href='http://www.voegelekultur.ch' target='_blank'>Vögele Kultur Zentrum, Pfäffikon</a></li><li><a href='http://www.wilhelm-fabry-museum.de' target='_blank'>Wilhelm-Fabry-Museum, Hilden (D)</a></li></ul></span><br/><span class='inta'>Partner<ul><li><a href='http://www.barbieribucher.ch' target='_blank'>Barbieri Bucher, Markus Bucher, Zürich</a></li><li><a href='http://www.josnaepflin.ch/index.html' target='_blank'>Jos Näpflin, Zürich</a></li><li><a href='http://www.thomashirter.ch' target='_blank'>Thomas Hirter, Bern</a></li><li><a href='http://www.treichler-data.ch' target='_blank'>Hans-Peter Treichler, Zürich</a></li><li><a href='https://www.art-tv.ch' target='_blank'>art-tv.ch, Zürich</a></li></ul></span>",
 					"epilog": {
 						"Info": ""
 					}
@@ -70,7 +70,7 @@
 					"prolog": "Kurator und Projektleiter",
 					"text": "<span class='inta'>Qfaktur<br/>Dammweg 41<br/>3013 Bern<br/><a href='mailto:andreas.schwab@palma3.ch'>andreas.schwab@palma3.ch</a><br/><a class='tel_link' href='tel:+41313335902'>031 333 59 02</a></span>",
 					"epilog": {
-						"Projektliste": "<ul><li><a onclick='search_nostyle(this)'>Schreibrausch</a></li><li><a onclick='search_nostyle(this)'>Den Körper im Blick</a></li><li><a onclick='search_nostyle(this)'>Fernes Donnergrollen</a></li><li><a onclick='search_nostyle(this)'>Die Utopie der Widerspenstigen</a></li><li><a onclick='search_nostyle(this)'>Das Abenteuer Bildung</a></li><li><a onclick='search_nostyle(this)'>Halbzeit</a></li><li><a onclick='search_nostyle(this)'>Die 68er</a></li><li><a onclick='search_nostyle(this)'>Hirnsturm</a></li><li><a onclick='search_nostyle(this)'>Monte Verità</a></li><li><a onclick='search_nostyle(this)'>anders sehen</a></li><li><a onclick='search_nostyle(this)'>Sasso San Gottardo</a></li><li><a onclick='search_nostyle(this)'>Auf den Spuren von Max Frisch</a></li><li><a onclick='search_nostyle(this)'>Mediaguide Monte Verità</a></li><li><a onclick='search_nostyle(this)'>Fitness. Schönheit kommt von aussen</a></li></ul>",
+						"Projektliste": "<ul><li><a onclick='search_nostyle(this)'>Schreibrausch</a></li><li><a onclick='search_nostyle(this)'>Den Körper im Blick</a></li><li><a onclick='search_nostyle(this)'>Fernes Donnergrollen</a></li><li><a onclick='search_nostyle(this)'>Die Utopie der Widerspenstigen</a></li><li><a onclick='search_nostyle(this)'>Das Abenteuer Bildung</a></li><li><a onclick='search_nostyle(this)'>Halbzeit</a></li><li><a onclick='search_nostyle(this)'>Die 68er</a></li><li><a onclick='search_nostyle(this)'>Hirnsturm</a></li><li><a onclick='search_nostyle(this)'>Monte Verità</a></li><li><a onclick='search_nostyle(this)'>anders sehen</a></li><li><a onclick='search_nostyle(this)'>Sasso San Gottardo</a></li><li><a onclick='search_nostyle(this)'>Auf den Spuren von Max Frisch</a></li><li><a onclick='search_nostyle(this)'>Mediaguide Monte Verità</a></li><li><a onclick='search_nostyle(this)'>Fitness</a></li></ul>",
 						"weitere Tätigkeiten": "<ul><li>Historiker, Dr. phil.</li><li>Diplom Management culturel et social</li><li>Gemeinderat Ressort Bildung, Bremgarten bei Bern 2012 - 2017, <a href='http://www.andreasschwab.ch' target='_blank'>www.andreasschwab.ch</a></li><li>Mitarbeit bei der Ausstellung «Zuflucht Monte Verità» im Museo Hermann Hesse, Montagnola (23.9. 2006 – 15.2.2007), <a href='http://www.hessemontagnola.ch' target='_blank'>www.hessemontagnola.ch</a></li><li>Kurator der Ausstellung «Am Anfang ist das Wort. Lexika in der Schweiz». Eine Koproduktion der Schweizerischen Nationalbibliothek und des Historischen Lexikons der Schweiz (7.11.2008 – 29.3.2009)</li></ul>",
 						"Veröffentlichungen": "<ul><li>«Monte Verità – Sanatorium der Sehnsucht», Orell Füssli Verlag, Zürich 2003, 286 Seiten</li><li>«Landkooperativen Longo maï – Pioniere einer gelebten Utopie», <a href='https://rotpunktverlag.ch/titel/landkooperativen-longo-mai' target='_blank'>Rotpunktverlag, Zürich</a> 2013, 228 Seiten</li><li>«Lei non può lamentarsi di aver passato il suo tempo annoiandosi.» Harald Szeemann e l’esposizione sul Monte Verità, in: Claudia Lafranchi Cattaneo / Andreas Schwab, Dalla visione al chiodo. Dal chiodo alla visione. Il Fonde Harald Szeemann dell’Archivio Fondazione Monte Verità, Bellinzona 2013, Seiten 173 bis 220. (Übersetzung aus dem Deutschen, Originaltext: <a href='http://old.palma3.ch/fileadmin/user_upload/Palma3_Daten_allgemein/Presserartikel_Andreas_Schwab/Szeemann_MV_def.pdf' target='_blank'>Harald Szeemann und der Monte Verità PDF</a>)</li></ul>",
 						"Info": ""
@@ -789,6 +789,44 @@
 					}
 				},
 				{
+					"name": "Fitness",
+					"comp_name": "fitness",
+					"search": [
+						"schönheitkommtvonaussen"
+					],
+					"time": {
+						"from": [
+							28,
+							8,
+							2003
+						],
+						"till": [
+							21,
+							8,
+							2005
+						]
+					},
+					"prolog": "Schönheit kommt von aussen",
+					"text": "Die Ausstellung wirft einen ironischen, aber gleichzeitig auch wohlgesinnten Blick auf die Fitnessbewegung.",
+					"epilog": {
+						"Ausstellungskonzept": "<h2>Garderobe</h2><p>Fast jede sportliche Betätigung beginnt in einer Garderobe. So auch hier: Zum Auftakt können sich die Besucherinnen und Besucher mit Fotografien von Yoki van de Cream spielerisch auf die Ausstellung einstimmen lassen.</p><h2>Ästhetistierung</h2><p>Die Geschichte der Fitnessbewegung von 1900 bis heute</p><p>Fitness und Körperkult sind gesellschaftliche Phänomene mit langer Tradition und vielschichtiger Wirkung. Im historischen Überblick über die Körperästhetik seit den Anfängen der modernen Fitnessbewegung werden die Entwicklungen des idealen Körpers und die Fitnesspraxis dargestellt. Von der Reformbewegung über den Nationalsozialismus bis hin zum Fitnessboom ab den 1970er Jahren wird anhand vieler Beispiele ein Bogen geschlagen, um die historischen Wurzeln unseres heutigen Umgangs mit dem Körper zu beleuchten.</p><h2>Praxis</h2><p>Braune Haut, Schlankheit, Trainingssysteme</p><p>In diesem Raum geht es um unseren alltäglichen Umgang mit dem Körper. Behandelte Themenbereiche sind dabei Fitnessgeräte und -hilfsmittel, der menschliche Körper und das Ideal der braunen Haut, die Disziplinierung durch die Ernährung und verschiedene Trainingssysteme, sowie einige statistische Aspekte der Fitnessindustrie, die das Phänomen soziologisch erfassbar machen.</p><h2>Glückserwartung</h2><p>Weshalb treiben Personen Fitness?</p><p>Jede Woche ein- oder mehrmals ins Fitnesscenter: eine Stunde schwitzen, duschen, nach Hause fahren. Nicht gerade spektakulär. Trotzdem investieren viele Menschen viel Zeit und Geld in diese Freizeitbetätigung. Weshalb tun sie dies? Einzig der Schönheit wegen? Die Aussagen der hier dokumentierten fünf Personen legen etwas anderes nahe. Wichtig sind für sie gesundheitliche Beweggründe, das «Abschalten», das Pflegen sozialer Kontakte und die Abwechslung zum Berufsalltag.</p><h2>Dusche</h2><p>Entspannung bei den Körperbildern</p><p>Yoki van de Cream hat siebzehn Personen vor einem neutralen Hintergrund fotografiert. Daraus sind faszinierende Ganzkörperporträts entstanden. Achten Sie auf die Körperhaltung und Mimik der fotografierten Personen: Die Leute fühlen sich gut vor der Kamera! Das ist ein Hinweis dafür, dass immer noch eine Selbstverständlichkeit im Umgang mit dem eigenen Körper existiert. Die ungeschönten - und im Gegensatz zu den Fitnessmagazinen auch unretuschierten - Porträts, die gerade deswegen um Einiges eindringlicher und auch anziehender wirken als die Idealkörper der Hochglanzmagazine, lassen das Selbstbewusstsein der Fotografierten erkennen.</p>",
+						"Impressum": {
+							"Kuratoren und Projektleitung": ["Andreas Schwab (palma3)", "Ronny Trachsel (palma3)"],
+							"Grafik und Produktion": ["Marc Lüthi"],
+							"Fotos": ["Yoki van de Cream, Zürich"],
+							"Plakatgestaltung": ["Michelle Weber"],
+							"Mitarbeit": ["Philipp Burkard (palma3)", "Katharina Arpagaus", "Andreas Budliger", "Maren Möhring", "Elio Pellin", "Hannes Reichen", "Ingo Starz"]
+						},
+						"Ausstellungsort": [
+							["bis November 2003", "Forum Schlossplatz", "Schlossplatz 4", "5000 Aarau", "", "www.forumschlossplatz.ch", "vjUjv9b4MHm"],
+							["November 2004 bis März 2005", "Medizinhistorisches Museum der Charité", "Charitéplatz 1", "10117 Berlin", "Deutschland", "www.bmm-charite.de", "tki1nBxa2Sq"],
+							["Juni bis Juli 2005", "Medizinhistorische Sammlung der Ruhr-Universität", "Markstrasse 258a", "44799 Bochum", "Deutschland", "www.ruhr-uni-bochum.de/mhs", "iKPiu2Yxk7s"],
+							["ab Juli 2005", "Wilhelm-Fabry-Museum", "Benrather Strasse 32a", "40721 Hilden", "Deutschland", "www.wilhelm-fabry-museum.de", "z7NuiUzXmxR2"]
+						],
+						"Dossier": []
+					}
+				},
+				{
 					"comp_name": "emilzbinden",
 					"name": "L’albigna di Emil Zbinden",
 					"search": [
@@ -1319,8 +1357,8 @@
 					}
 				},
 				{
-					"name": "Fitness. Schönheit kommt von aussen",
-					"comp_name": "fitness",
+					"name": "Katalog Fitness",
+					"comp_name": "fitnesskatalog",
 					"search": [
 						"schönheit",
 						"fit"
@@ -1343,7 +1381,7 @@
 							["Andreas Schwab", "Historiker und Gemeinderat", "1971", "Bern", "Bremgarten bei Bern", true, "«Theoretisch habe ich ein neugierig-interessiertes Verhältnis zu Fitness, praktisch ist es mir ein wenig zu anstrengend. Ich habe aber schon Feldforschung im Unifitness durch sporadische Teilnahme unternommen. Eher Spaziergänger und Fahrrad-(Touren)-Fahrer.»"],
 							["Ingo Starz", "Kulturwissenschaftler und Journalist", "1969", "Heilbronn", "Athen", "", "«Ich halte es mit dem sportscheuen Nietzsche und beschränke mich weitgehend auf (geistige) Höhenflüge.»"],
 							["Ronny Trachsel", "Historiker", "1971", "", "Bern", true, "«Als viel versierter Breitensportler habe ich meine ausgeübten Sportarten oft gewechselt und über manche von ihnen auch parallel aus. Eine sportliche Konstante liegt seit 1990 beim Rudern.»"],
-							["Bernd Wedemeyer-Kolwe", "Sportwissenschaftler und Volkskundler", "1961", "Kassel", "Göttingen", "", "«Als Sportwissenschaftler zur Praxis geradezu verpflichtet, betreibe ich neben Laufen, Wandern und Kanufahren regelmässig Bodybuilding, um lustvoll an meiner Selbstdisziplinierung zu arbeiten. Bei einem Körpergewicht von 68 kg, ist meine Bestleistung im Bankdrücken 6 x 100 kg.»"]
+							["Bernd Wedemeyer-Kolwe", "Sportwissenschaftler und Volkskundler", "1961", "Kassel", "Göttingen", "", "«Als Sportwissenschaftler zur Praxis geradezu verpflichtet, betreibe ich neben Laufen, Wandern und Kanufahren regelmässig Bodybuilding, um lustvoll an meiner Selbstdisziplinierungg zu arbeiten. Bei einem Körpergewicht von 68 kg, ist meine Bestleistung im Bankdrücken 6 x 100 kg.»"]
 						],
 						"Impressum": {
 							"Herausgeber": ["Andreas Schwab (palma3)", "Ronny Trachsel (palma3)"],

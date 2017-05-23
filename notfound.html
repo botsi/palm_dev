@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<meta charset="utf-8" />
+
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+		<meta name="mobile-web-app-capable" content="yes" />
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+
+		<meta name="apple-mobile-web-app-status-bar-style" content="white" />
+
+		<title>Palma 3 Datei nicht gefunden</title>
+
+		<link rel="shortcut icon" href="images/favicon.ico" />
+
+		<link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet" />
+
+		<link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css" />
+
+		<style>
+			html,
+			body {
+				height: 100%;
+				padding: 0;
+			}
+
+			a {
+				color: #bc123a;
+				text-decoration: underline;
+			}
+
+			body {
+				width: 92vw;
+				margin: 0 4vw;
+				font-family: 'Abel', 'News Cycle', Arial, Helvetica, sans-serif;
+				background: rgba(141, 170, 212, 1);
+				text-align: center;
+				color: #bc123a;
+				font-size: 2.4vw;
+			}
+
+			img {
+				margin-top: 100px;
+				width: 240px;
+				height: auto;
+			}
+
+			#time {
+				width: 2.4vw;
+				text-align: center;
+				display: inline-block;
+			}
+
+			#content {
+				margin-top: 180px;
+			}
+		</style>
+
+		<script type="text/javascript" charset="utf-8">
+			var relations = {
+				"22": "profil",
+				"98": "kontakt",
+				"106": "andreasschwab",
+"261":"emilzbinden",
+				"60": "ichschweigenicht",
+				"265": "korperimblick",
+				"157": "utopie",
+				"277": "schreibrausch",
+				"252": "donnergrollen",
+				"229": "abenteuerbildung",
+				"209": "landdesunbehagens"
+			};
+
+			var countId;
+			var wlh = 'http://www.palma3.ch';
+
+			var text_display = function() {
+
+				var a = '';
+
+				if (typeof relations[window.location.search.substring(4)] !== 'undefined') {
+					a = '/?' + relations[window.location.search.substring(4)];
+				}
+
+
+
+
+				document.getElementById('content').innerHTML =
+					'Oha, sie haben die Seite von Palma3 seit dem 1. Mai 2017 nicht mehr besucht. Egal, wir haben mitlerweile ein bischen umgebaut und Sie werden in <span id="time">20</span> Sekunden auf unsere neue Seite weitergeleitet. (Oder sofort wenn Sie <a href="' +
+					wlh + a + '" target="_self">hier</a> clicken.)<br/><br/>Bitte passen Sie nach der Weiterleitung Ihre gespeicherten Lesezeichen (Favoriten / Bookmarks) an.';
+
+				clearInterval(countId);
+
+				var i = 20;
+
+				countId = setInterval(function() {
+
+					i--;
+
+					document.getElementById('time').innerHTML = i;
+
+					if (i < 1) {
+						window.location.href = wlh + a;
+					}
+
+				}, 1000);
+
+
+			};
+
+
+			document.addEventListener('DOMContentLoaded', text_display, false);
+		</script>
+
+	</head>
+
+	<body>
+		<img id="logo" src="http://www.palma3.ch/images/logo_out_white_rotated.png">
+		<div id="content">
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+	</body>
+
+</html>

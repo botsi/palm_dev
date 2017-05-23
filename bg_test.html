@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#example1 {
+    border: 10px dotted black;
+    padding: 35px;
+    background: yellow;
+}
+
+#example2 {
+	padding: 40px;
+	background: linear-gradient(transparent,transparent), linear-gradient(#f00,#f00), linear-gradient(#000,#000);
+	background-clip: content-box, padding-box, content-box;
+	background-blend-mode: difference, hue, exclusion;
+	mix-blend-mode: screen;
+}
+
+#example3 {
+	padding: 40px;
+	background: linear-gradient(#ffff,#fff), linear-gradient(#000,#000);
+	background-clip: padding-box, content-box;
+	background-blend-mode: hue, exclusion;
+	mix-blend-mode: screen;
+}
+
+#example4 {
+
+
+	padding: 40px;
+	background:
+	linear-gradient(transparent,transparent),
+linear-gradient(#f00,#f00),
+linear-gradient(#000,#000)
+;
+	background-clip:
+content-box,
+padding-box,
+content-box
+;
+	background-blend-mode:
+screen,
+exclusion,
+exclusion
+;
+mix-blend-mode:screen;
+}
+
+
+
+body{
+background: url('images/palmas_hg.jpg');
+}
+</style>
+</head>
+<body>
+
+<p><strong>Note:</strong> The background-clip property is not supported in Internet Explorer 8 and earlier versions.</p>
+
+<p>No background-clip (border-box is default):</p>
+<div id="example1">
+<h2>Lorem Ipsum Dolor</h2>
+<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+</div>
+
+<p>background-clip: padding-box:</p>
+<div id="example2">
+<h2>Lorem Ipsum Dolor</h2>
+<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+</div>
+
+<p>background-clip: content-box:</p>
+<div id="example3">
+<h2>Lorem Ipsum Dolor</h2>
+<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+</div>
+
+<p>org</p>
+<div id="example4">
+<h2>Lorem Ipsum Dolor</h2>
+<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+</div>
+
+<iframe src='//tp.srgssr.ch/p/srf/embed?urn=urn:srf:ais:video:decad582-3013-43f8-be89-0649a2b0be9e&start=' width='624' height='351' frameborder='0' name='Der Biss der Panik'></iframe>
+
+</body>
+</html>
