@@ -1007,6 +1007,7 @@
 					"comp_name": "fondazionemonteverita",
 					"name": "Monte Verità",
 					"search": [
+"ikosaeder",
 						"monteverità",
 						"ascona",
 						"verita",

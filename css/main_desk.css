@@ -137,6 +137,21 @@ body {
 	color: #333;
 }
 
+#chapter_menu span::-webkit-scrollbar {
+	width: 0px;
+	display: none;
+}
+
+
+/*
+
+#chapter_menu span {
+	overflow-y: -moz-scrollbars-none;
+}
+
+
+*/
+
 .actual_tx {
 	cursor: pointer;
 	width: 100%;

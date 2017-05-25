@@ -32,9 +32,11 @@ var align_onresize = function() {
 
 		jump_to(folders[chapter].last_position, chapter);
 
-		if (typeof vid != 'undefined' && vid != '') {
+		/*
+	if (typeof vid != 'undefined' && vid != '') {
 			//    size_video();
 		}
+*/
 
 		if (document.getElementsByClassName('cheese').length > 0) {
 			var uat = document.getElementsByClassName('ueandtx');
@@ -909,6 +911,8 @@ var white_head = function() {
 
 		cc.style.height = 'auto';
 
+		document.title = 'Palma 3 | ' + folders[chapter].data[folders[chapter].last_position].name;
+
 		change_image(folders[chapter].data[folders[chapter].last_position].comp_name + '_' + folders[chapter].data[folders[chapter].last_position].slid_count);
 
 		document.getElementsByClassName('fa-angle-left')[0].style.display = document.getElementsByClassName('fa-angle-right')[0].style.display = (uat[folders[chapter].last_position].children[1].style.visibility == 'hidden' && folders[chapter].data[folders[chapter].last_position].epilog.Impressionen && !isTouchSupported() && folders[chapter].data[folders[chapter].last_position].video.playstate == 'closed') ? 'block' : 'none';
@@ -1423,7 +1427,6 @@ var hit_menue = function(t, ju) {
 
 			chapter = i;
 
-
 			a[chapter].style.color = '#bc123a';
 
 			//		console.log('ju: ' + ju);
@@ -1448,6 +1451,7 @@ var hit_menue = function(t, ju) {
 			}
 
 		}
+
 	}
 
 	document.getElementById("hg_cover").style.display = 'block';
