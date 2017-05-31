@@ -437,9 +437,10 @@ var shop = {
 				}
 			}
 
-			shop.order_total += (shop.order_sum > 0) ? 'Versandkosten: CHF 8.00<br/><hr/>' : '<br/><hr/>';
+			shop.order_total += '<hr/>';
 
-			shop.order_total += (shop.order_sum > 0) ? 'Summe: CHF ' + parseInt(shop.order_sum + 8) + '.00<br/><hr/>' : '<br/><hr/>';
+			shop.order_total += (shop.order_sum > 0) ? 'Versandkosten: CHF 8.00<span style="float:right;text-align:right;line-height:inherit;margin-right: 4px;">Summe: CHF ' + parseInt(shop.order_sum + 8) + '.00</span><br/>' : '<br/>';
+
 		}
 
 		shop.order_div.innerHTML = shop.order_total;

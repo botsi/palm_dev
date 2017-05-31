@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<meta charset="utf-8" />
+
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+
+		<title>get_json</title>
+
+		<link rel="shortcut icon" href="images/favicon.ico" />
+
+		<link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">
+
+		<style>
+			body {
+				line-height: 12px;
+				font-family: 'Futura';
+				margin: 0;
+				padding: 0;
+			}
+
+			span {
+				margin-left: 24px;
+				display: block;
+				line-height: 24px;
+			}
+
+			th,
+			td {
+				border-bottom: 1px #000 solid;
+				border-left: 1px #000 solid;
+				padding: 8px;
+				height: 24px;
+				width: 16vw;
+			}
+
+			th:nth-child(1),
+			td:nth-child(1) {
+				border-left: 0 none;
+			}
+
+			td.lk {
+				cursor: pointer;
+			}
+
+			#all_cells {
+				table-layout: fixed;
+				border-collapse: collapse;
+				margin: auto 2vw;
+			}
+
+			.editor_fields {
+				width: 96vw;
+				margin: 6px 2vw;
+				background: #ccc;
+			}
+
+			.editor_fields label, .editor_fields button {
+display: block;
+			}
+
+			.fa-plus-circle,
+			.fa-minus-circle {
+				float: right;
+				cursor: pointer;
+			}
+		</style>
+
+
+		<script type="text/javascript" charset="utf-8">
+			var folders, to_edit;
+
+			var loadXMLDoc = function(url, cfunc, val) {
+
+				xmlhttp = new XMLHttpRequest();
+
+				xmlhttp.onreadystatechange = cfunc;
+
+				if (url.search('new_e') != -1) {
+
+					xmlhttp.open("POST", url, true);
+
+					xmlhttp.setRequestHeader("expires", "0");
+
+					xmlhttp.setRequestHeader("Content-type", "application/json");
+
+					xmlhttp.send(val);
+
+				} else {
+
+					xmlhttp.open("GET", url, true);
+
+					xmlhttp.send();
+
+				}
+
+			};
+
+
+			/******           remove entry           ******/
+
+			var remove_entry = function(t) {
+				alert('remove_entry: ');
+			};
+
+
+			/******           new entry           ******/
+
+			var new_entry = function(t) {
+				alert('new_entry: ');
+			};
+
+
+			/******           replace entry           ******/
+
+			var save_existing = function(t) {
+
+
+				to_edit[t.previousSibling.id.replace('_display', '')] = t.previousSibling.value.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+
+				var newtext = JSON.stringify({
+					"folders": folders
+				});
+
+				//console.log(newtext);
+
+				loadXMLDoc('scripts/new_e.php', function() { // save changed json data to server
+
+					if (xmlhttp.readyState == 4) {
+						if (xmlhttp.status == 200) {
+
+							console.log('oki, done', xmlhttp.responseText); // output php echo for control
+
+						} else {
+							alert('new_e shit happens');
+						}
+					}
+				}, newtext);
+
+			};
+
+			/******         end replace entry         ******/
+
+
+
+			var edit = function(t) {
+
+				var ac = document.getElementById('all_cells').getElementsByTagName('td');
+
+				for (var i = 0; i < ac.length; i++) {
+
+					ac[i].style.background = 'rgba(0,0,0,0)';
+
+					if (ac[i].children.length > 0) {
+						ac[i].removeChild(ac[i].children[0]);
+					}
+
+				}
+
+				t.style.background = 'rgba(141, 170, 212, 0.9)';
+
+				t.innerHTML += '<i class="fa fa-minus-circle" aria-hidden="true" onclick="remove_entry(this)"></i>';
+
+				to_edit = folders[t.getAttribute('f', 0)].data[t.getAttribute('d', 0)];
+
+				/******           main data           ******/
+
+				document.getElementById('name_display').value = to_edit.name;
+
+				document.getElementById('prolog_display').value = to_edit.prolog.replace(/<br\s*\/?>/mg, "\n");
+
+				if (to_edit.search && Array.isArray(to_edit.search)) {
+					document.getElementById('search_display').innerHTML = '';
+					for (var j = 0; j < to_edit.search.length; j++) {
+						document.getElementById('search_display').innerHTML += '<input type="text" value="' + to_edit.search[j] + '" />';
+					}
+				}
+
+				document.getElementById('text_display').value = to_edit.text.replace(/<br\s*\/?>/mg, "\n");
+
+				document.getElementById('time_display').innerHTML = '';
+				if (typeof to_edit.time !== 'undefined') {
+					document.getElementById('time_display').innerHTML = '<input type="text" value="' + to_edit.time.from[0] + '" />' + '<input type="text" value="' + to_edit.time.from[1] + '" />' + '<input type="text" value="' + to_edit.time.from[2] + '" />';
+					if (typeof to_edit.time.till !== 'undefined') {
+						document.getElementById('time_display').innerHTML += ' bis ' + '<input type="text" value="' + to_edit.time.till[0] + '" />' + '<input type="text" value="' + to_edit.time.till[1] + '" />' + '<input type="text" value="' + to_edit.time.till[2] +
+							'" />';
+					}
+				} else {
+					document.getElementById('time_display').value = '';
+				}
+
+				/******           epilog data           ******/
+
+				document.getElementById('Ausstellungsort_display').innerHTML = '';
+				if (to_edit.epilog && to_edit.epilog.Ausstellungsort && Array.isArray(to_edit.epilog.Ausstellungsort)) {
+					for (var j = 0; j < to_edit.epilog.Ausstellungsort.length; j++) {
+						document.getElementById('Ausstellungsort_display').innerHTML += '<input type="text" value="' + to_edit.epilog.Ausstellungsort[j].toString() + '" />';
+					}
+
+				} else {
+
+					if (to_edit.epilog && to_edit.epilog.Projektort && Array.isArray(to_edit.epilog.Projektort)) {
+						for (var j = 0; j < to_edit.epilog.Projektort.length; j++) {
+							document.getElementById('Ausstellungsort_display').innerHTML += '<input type="text" value="' + to_edit.epilog.Projektort[j].toString() + '" />';
+						}
+					}
+				}
+
+			};
+
+			var getvals = function() {
+
+
+				//loadXMLDoc('inhalt.js', function() { // org (inhalt.js)
+				loadXMLDoc('inhalt2.js', function() { // get json data on load
+
+					if (xmlhttp.readyState == 4) {
+						if (xmlhttp.status == 200) {
+
+							folders = JSON.parse(xmlhttp.responseText).folders;
+
+							var largest = 0;
+
+							for (var i = 0; i < folders.length; i++) {
+
+								document.getElementById('basis').innerHTML += '<th>' + folders[i].menu_name + '<i class="fa fa-plus-circle" aria-hidden="true" onclick="new_entry(this)"></i></th>';
+
+								if (largest < folders[i].data.length) {
+									largest = folders[i].data.length;
+								}
+
+							}
+
+							var p = -1;
+							var cycle = function(c) {
+								p++;
+								var ih = '';
+								for (var i = 0; i < folders.length; i++) {
+									ih += (typeof folders[i].data[p] !== 'undefined') ? '<td class="lk" onclick="edit(this)" f="' + i + '" d="' + p + '">' + folders[i].data[p].name + '</td>' : '<td></td>';
+								}
+
+								return ih;
+							};
+
+
+							var new_raw = '<tr>';
+
+							for (var j = 0; j < largest; j++) {
+								//console.log('cycle ',);
+								new_raw += cycle(j) + '</tr><tr>';
+							}
+
+							new_raw += '</tr>';
+
+							document.getElementById('basis').parentNode.innerHTML += new_raw;
+
+							//page_load();
+
+
+
+
+
+
+						} else {
+							alert('inhalt shit happens');
+						}
+					}
+				});
+			};
+		</script>
+
+
+	</head>
+
+	<body onload="getvals()">
+
+		<table border="0" id="all_cells">
+			<tbody>
+				<tr id="basis"></tr>
+			</tbody>
+		</table>
+		<div>
+			<div class="editor_fields"><label>Name / Titel</label><textarea rows="4" cols="50" autocomplete="off" id="name_display"></textarea><button type="button" onclick="save_existing(this)">speichern</button></div>
+			<div class="editor_fields"><label>Untertitel</label><textarea rows="4" cols="50" autocomplete="off" id="prolog_display"></textarea><button type="button" onclick="save_existing(this)">speichern</button></div>
+			<div class="editor_fields"><label>Stichworte</label>
+				<div id="search_display"></div><button type="button" onclick="save_existing(this)">speichern</button></div>
+			<div class="editor_fields"><label>Einleitungstext</label><textarea rows="4" cols="50" autocomplete="off" id="text_display"></textarea><button type="button" onclick="save_existing(this)">speichern</button></div>
+			<div class="editor_fields"><label>Daten</label>
+				<div id="time_display"></div><button type="button" onclick="save_existing(this)">speichern</button></div>
+			<div class="editor_fields"><label>Orte</label>
+				<div id="Ausstellungsort_display"></div><button type="button" onclick="save_existing(this)">speichern</button></div>
+		</div>
+
+	</body>
+
+</html>

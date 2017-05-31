@@ -1593,10 +1593,11 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	height: 0;
 	background: none;
 	position: absolute;
-	/* margin: -18px 5% 0 auto; */
+	/* margin: -18px 5% 0 auto;
+	bottom: 124px; */
+	margin-top: -2px;
 	border-bottom: 1px #ccc solid;
 	width: 85%;
-	bottom: 124px;
 	color: transparent;
 }
 
