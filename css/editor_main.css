@@ -1,0 +1,321 @@
+      body {
+      	line-height: 12px;
+      	margin: 0;
+      	padding: 0;
+      }
+
+      body, input {
+      	font-family: 'Futura', Arial;
+      }
+
+      input[type="text"] {
+      	font-size: 12px;
+      	font-weight: lighter;
+      }
+
+      input[type="file"] {
+      	height: 100%;
+      	font-weight: lighter;
+      	position: absolute;
+      	width: 100%;
+      	z-index: 1;
+      	opacity: 0;
+      }
+
+      #encoderInputCanvas {
+      	display: none;
+      }
+
+      #header {
+      	width: 100%;
+      	line-height: 24px;
+      	vertical-align: middle;
+      	text-align: center;
+      	font-size: 18px;
+      	background: rgba(141, 170, 212, 0.9);
+      	position: fixed;
+      	top: 0;
+      }
+
+      #header span {
+      	margin-left: 12px;
+      	/*
+				margin-left: 24px;
+				display: block;
+				line-height: 24px;
+				background: red;
+*/
+      }
+
+      th, td {
+      	border-bottom: 1px #000 solid;
+      	border-left: 1px #000 solid;
+      	padding: 8px;
+      	height: 24px;
+      	width: 16vw;
+      }
+
+      th:nth-child(1), td:nth-child(1) {
+      	border-left: 0 none;
+      }
+
+      td.lk {
+      	cursor: pointer;
+      }
+
+      #all_cells {
+      	table-layout: fixed;
+      	border-collapse: collapse;
+      	margin: 24px 2vw;
+      }
+
+      #process_overlay {
+      	position: fixed;
+      	left: 0;
+      	top: 0;
+      	width: 100vw;
+      	height: 100vh;
+      	background: rgba(0, 0, 0, 0.85);
+      	display: none;
+      }
+
+      .process_overlay_dark {
+      	display: block !important;
+      }
+
+      .editor_fields {
+      	width: 96vw;
+      	margin: 6px 2vw;
+      	background: #ccc;
+      }
+
+      #editor_fields_container {
+      	display: none;
+      }
+
+      .editor_fields label, .editor_fields button {
+      	display: block;
+      }
+
+      .editor_fields button {
+      	visibility: hidden;
+      }
+
+      .button_valid {
+      	visibility: visible !important;
+      }
+
+      #all_cells .fa-plus-circle, #all_cells .fa-minus-circle {
+      	float: right;
+      }
+
+      .fa-plus-circle, .fa-minus-circle, .fa-times-circle, .fa-pencil-square-o, .fa-arrows-h {
+      	cursor: pointer;
+      }
+
+      #name_display {
+      	width: 12vw;
+      }
+
+      #prolog_display {
+      	width: calc(48vw - 8px);
+      }
+
+      #name_display, #prolog_display {
+      	text-align: center;
+      	border: 0 none;
+      	margin: 6px calc(6vw / 8);
+      }
+
+      #search_display input[type="text"], #search_display span {
+      	width: 12vw;
+      	text-align: center;
+      	border: 0 none;
+      	margin: 6px calc(6vw / 8);
+      }
+
+      #search_display span {
+      	width: auto;
+      	display: inline-block;
+      	font-size: 14px;
+      }
+
+      #text_display, #Ausstellungskonzept_display {
+      	font-family: 'Futura', Arial;
+      	font-size: 12px;
+      	font-weight: lighter;
+      	display: block;
+      	width: calc(100% - 12px);
+      	border: 0 none;
+      	margin: 6px;
+      	padding: 0;
+      	background: #fff;
+      }
+
+      #text_display h2, #Ausstellungskonzept_display h2 {
+      	font-size: 14px;
+      	font-weight: lighter;
+      	line-height: 16px;
+      	background: rgba(141, 170, 212, 0.4);
+      }
+
+      #text_display a, #Ausstellungskonzept_display a {
+      	background: rgba(191, 231, 153, 0.9);
+      }
+
+      #Ausstellungsort_display input[type="text"], #Ausstellungsort_display span {
+      	width: 12vw;
+      	text-align: center;
+      	border: 0 none;
+      	margin: 6px calc(6vw / 8);
+      }
+
+      #Ausstellungsort_display span {
+      	display: inline-block;
+      	font-size: 14px;
+      }
+
+      #Impressum_display .keyfield, #Impressum_display span {
+      	width: 12vw;
+      	text-align: center;
+      	border: 0 none;
+      	margin: 6px calc(6vw / 8);
+      	display: block;
+      }
+      /*
+			#Impressum_display input[type="text"],
+			#Impressum_display span {
+				width: 12vw;
+				text-align: center;
+				border: 0 none;
+				margin: 6px calc(6vw / 8);
+			}
+
+			#Impressum_display span {
+				display: inline-block;
+				font-size: 14px;
+			}
+*/
+
+      #Images_display {
+      	/*
+	position: fixed;
+	width: 100vw;
+	z-index: 100;
+	margin: 0;
+	bottom: 0;
+*/
+      	height: auto;
+      	flex-wrap: wrap-reverse;
+      	justify-content: end;
+      	align-items: flex-end;
+      }
+
+      #Images_display .add_image_but {
+      	font-size: 2vw;
+      	float: none !important;
+      	width: 2vw !important;
+      	height: 2vw !important;
+      	margin: 3vw !important;
+      	line-height: 8vw;
+      	vertical-align: bottom;
+      	display: inline;
+      }
+
+      #Images_display .add_image_but, #Images_display img {
+      	object-fit: none;
+      	object-position: center;
+      	width: 8vw;
+      	height: 8vw;
+      }
+
+      #image_selector {
+      	position: absolute;
+      	width: 8vw;
+      	height: 8vw;
+      	display: none;
+      	flex-wrap: wrap;
+      	justify-content: space-around;
+      	align-items: center;
+      	font-size: 2vw;
+      	background: rgba(255, 255, 255, 0.4);
+      	background-position: center;
+      }
+
+      #image_selector .fa {
+      	padding: 0 3vw;
+      }
+
+      #image_editor {
+      	display: none;
+      	width: 560px;
+      	height: 560px;
+      	left: calc(50vw - 304px);
+      	top: calc(50vh - 304px);
+      	position: fixed;
+      	border: 24px rgba(141, 170, 212, 0.9) solid;
+      	background: #ccc;
+      	overflow: hidden;
+      }
+
+      #image_editor img {
+      	height: 100%;
+      }
+
+      #image_editor p {
+      	position: absolute;
+      	width: 100%;
+      	line-height: 24px;
+      	z-index: 2;
+      }
+
+      #image_editor p:nth-child(1) {
+      	margin: 4px 0 0 -4px;
+      	font-size: 2vw;
+      	text-align: right;
+      }
+
+      #image_editor p:nth-last-child(1) {
+      	margin: -24px 0 0 0;
+      	/*
+*/
+      	background: rgba(207, 207, 207, 0.68);
+      	bottom: 0;
+      }
+
+      @-webkit-keyframes fill_lr {
+      	0% {
+      		background-position: -280px 50%;
+      	}
+      	100% {
+      		background-position: 280px 50%;
+      	}
+      }
+
+      @-moz-keyframes fill_lr {
+      	0% {
+      		background-position: -280px 50%;
+      	}
+      	100% {
+      		background-position: 280px 50%;
+      	}
+      }
+
+      @keyframes fill_lr {
+      	0% {
+      		background-position: -280px 50%;
+      	}
+      	100% {
+      		background-position: 280px 50%;
+      	}
+      }
+
+      .img_uploader_active {
+      	width: 560px !important;
+      	background-image: linear-gradient(to right, rgba(207, 207, 207, 0), rgba(207, 207, 207, 0) 260px, rgba(207, 207, 207, 0.68) 300px, rgba(207, 207, 207, 0.68)) !important;
+      	background-repeat: no-repeat !important;
+      	background-size: 1120px auto !important;
+      	-webkit-animation: fill_lr 6s ease-out forwards;
+      	-moz-animation: fill_lr 6s ease-out forwards;
+      	animation: fill_lr 6s ease-out forwards;
+      }

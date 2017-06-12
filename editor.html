@@ -8,291 +8,64 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 
-		<title>get_json</title>
+		<title>PALMA EDITOR</title>
 
 		<link rel="shortcut icon" href="images/favicon.ico" />
 
 		<link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">
 
-		<style>
-			body {
-				line-height: 12px;
-				font-family: 'Futura';
-				margin: 0;
-				padding: 0;
-			}
+		<link rel="stylesheet" href="css/editor_main.css">
 
-			span {
-				margin-left: 24px;
-				display: block;
-				line-height: 24px;
-			}
+<!-- javascript files for the demo page; json for old webbrowser-->
+<script type="text/javascript" src="../../scripts/lib/js/base64.min.js" ></script>
+<!-- file that contains the functions to use drag/drop and the file api (you need HTML5) -->
+<script type="text/javascript" src="../../scripts/lib/js/script.js" ></script>
 
-			th,
-			td {
-				border-bottom: 1px #000 solid;
-				border-left: 1px #000 solid;
-				padding: 8px;
-				height: 24px;
-				width: 16vw;
-			}
+<!-- libwebp javascript by Dominik Homberger (Dominikhlbg) -->
+<script type="text/javascript" src="../../scripts/lib/js/libwebp-0.1.min.js"></script>
 
-			th:nth-child(1),
-			td:nth-child(1) {
-				border-left: 0 none;
-			}
 
-			td.lk {
-				cursor: pointer;
-			}
 
-			#all_cells {
-				table-layout: fixed;
-				border-collapse: collapse;
-				margin: auto 2vw;
-			}
+<script type="text/javascript" charset="utf-8" src="js/editor_main.js"></script>
 
-			.editor_fields {
-				width: 96vw;
-				margin: 6px 2vw;
-				background: #ccc;
-			}
-
-			.editor_fields label, .editor_fields button {
-display: block;
-			}
-
-			.fa-plus-circle,
-			.fa-minus-circle {
-				float: right;
-				cursor: pointer;
-			}
-		</style>
-
-
-		<script type="text/javascript" charset="utf-8">
-			var folders, to_edit;
-
-			var loadXMLDoc = function(url, cfunc, val) {
-
-				xmlhttp = new XMLHttpRequest();
-
-				xmlhttp.onreadystatechange = cfunc;
-
-				if (url.search('new_e') != -1) {
-
-					xmlhttp.open("POST", url, true);
-
-					xmlhttp.setRequestHeader("expires", "0");
-
-					xmlhttp.setRequestHeader("Content-type", "application/json");
-
-					xmlhttp.send(val);
-
-				} else {
-
-					xmlhttp.open("GET", url, true);
-
-					xmlhttp.send();
-
-				}
-
-			};
-
-
-			/******           remove entry           ******/
-
-			var remove_entry = function(t) {
-				alert('remove_entry: ');
-			};
-
-
-			/******           new entry           ******/
-
-			var new_entry = function(t) {
-				alert('new_entry: ');
-			};
-
-
-			/******           replace entry           ******/
-
-			var save_existing = function(t) {
-
-
-				to_edit[t.previousSibling.id.replace('_display', '')] = t.previousSibling.value.replace(/(?:\r\n|\r|\n)/g, '<br/>');
-
-				var newtext = JSON.stringify({
-					"folders": folders
-				});
-
-				//console.log(newtext);
-
-				loadXMLDoc('scripts/new_e.php', function() { // save changed json data to server
-
-					if (xmlhttp.readyState == 4) {
-						if (xmlhttp.status == 200) {
-
-							console.log('oki, done', xmlhttp.responseText); // output php echo for control
-
-						} else {
-							alert('new_e shit happens');
-						}
-					}
-				}, newtext);
-
-			};
-
-			/******         end replace entry         ******/
-
-
-
-			var edit = function(t) {
-
-				var ac = document.getElementById('all_cells').getElementsByTagName('td');
-
-				for (var i = 0; i < ac.length; i++) {
-
-					ac[i].style.background = 'rgba(0,0,0,0)';
-
-					if (ac[i].children.length > 0) {
-						ac[i].removeChild(ac[i].children[0]);
-					}
-
-				}
-
-				t.style.background = 'rgba(141, 170, 212, 0.9)';
-
-				t.innerHTML += '<i class="fa fa-minus-circle" aria-hidden="true" onclick="remove_entry(this)"></i>';
-
-				to_edit = folders[t.getAttribute('f', 0)].data[t.getAttribute('d', 0)];
-
-				/******           main data           ******/
-
-				document.getElementById('name_display').value = to_edit.name;
-
-				document.getElementById('prolog_display').value = to_edit.prolog.replace(/<br\s*\/?>/mg, "\n");
-
-				if (to_edit.search && Array.isArray(to_edit.search)) {
-					document.getElementById('search_display').innerHTML = '';
-					for (var j = 0; j < to_edit.search.length; j++) {
-						document.getElementById('search_display').innerHTML += '<input type="text" value="' + to_edit.search[j] + '" />';
-					}
-				}
-
-				document.getElementById('text_display').value = to_edit.text.replace(/<br\s*\/?>/mg, "\n");
-
-				document.getElementById('time_display').innerHTML = '';
-				if (typeof to_edit.time !== 'undefined') {
-					document.getElementById('time_display').innerHTML = '<input type="text" value="' + to_edit.time.from[0] + '" />' + '<input type="text" value="' + to_edit.time.from[1] + '" />' + '<input type="text" value="' + to_edit.time.from[2] + '" />';
-					if (typeof to_edit.time.till !== 'undefined') {
-						document.getElementById('time_display').innerHTML += ' bis ' + '<input type="text" value="' + to_edit.time.till[0] + '" />' + '<input type="text" value="' + to_edit.time.till[1] + '" />' + '<input type="text" value="' + to_edit.time.till[2] +
-							'" />';
-					}
-				} else {
-					document.getElementById('time_display').value = '';
-				}
-
-				/******           epilog data           ******/
-
-				document.getElementById('Ausstellungsort_display').innerHTML = '';
-				if (to_edit.epilog && to_edit.epilog.Ausstellungsort && Array.isArray(to_edit.epilog.Ausstellungsort)) {
-					for (var j = 0; j < to_edit.epilog.Ausstellungsort.length; j++) {
-						document.getElementById('Ausstellungsort_display').innerHTML += '<input type="text" value="' + to_edit.epilog.Ausstellungsort[j].toString() + '" />';
-					}
-
-				} else {
-
-					if (to_edit.epilog && to_edit.epilog.Projektort && Array.isArray(to_edit.epilog.Projektort)) {
-						for (var j = 0; j < to_edit.epilog.Projektort.length; j++) {
-							document.getElementById('Ausstellungsort_display').innerHTML += '<input type="text" value="' + to_edit.epilog.Projektort[j].toString() + '" />';
-						}
-					}
-				}
-
-			};
-
-			var getvals = function() {
-
-
-				//loadXMLDoc('inhalt.js', function() { // org (inhalt.js)
-				loadXMLDoc('inhalt2.js', function() { // get json data on load
-
-					if (xmlhttp.readyState == 4) {
-						if (xmlhttp.status == 200) {
-
-							folders = JSON.parse(xmlhttp.responseText).folders;
-
-							var largest = 0;
-
-							for (var i = 0; i < folders.length; i++) {
-
-								document.getElementById('basis').innerHTML += '<th>' + folders[i].menu_name + '<i class="fa fa-plus-circle" aria-hidden="true" onclick="new_entry(this)"></i></th>';
-
-								if (largest < folders[i].data.length) {
-									largest = folders[i].data.length;
-								}
-
-							}
-
-							var p = -1;
-							var cycle = function(c) {
-								p++;
-								var ih = '';
-								for (var i = 0; i < folders.length; i++) {
-									ih += (typeof folders[i].data[p] !== 'undefined') ? '<td class="lk" onclick="edit(this)" f="' + i + '" d="' + p + '">' + folders[i].data[p].name + '</td>' : '<td></td>';
-								}
-
-								return ih;
-							};
-
-
-							var new_raw = '<tr>';
-
-							for (var j = 0; j < largest; j++) {
-								//console.log('cycle ',);
-								new_raw += cycle(j) + '</tr><tr>';
-							}
-
-							new_raw += '</tr>';
-
-							document.getElementById('basis').parentNode.innerHTML += new_raw;
-
-							//page_load();
-
-
-
-
-
-
-						} else {
-							alert('inhalt shit happens');
-						}
-					}
-				});
-			};
-		</script>
 
 
 	</head>
 
 	<body onload="getvals()">
 
+<canvas id="encoderInputCanvas">
+	Your Browser cannot show canvas
+</canvas>
+
+		<div id="header">Palma3 Editor<span id="actual_chapter"></span>
+		</div>
 		<table border="0" id="all_cells">
 			<tbody>
 				<tr id="basis"></tr>
 			</tbody>
 		</table>
-		<div>
-			<div class="editor_fields"><label>Name / Titel</label><textarea rows="4" cols="50" autocomplete="off" id="name_display"></textarea><button type="button" onclick="save_existing(this)">speichern</button></div>
-			<div class="editor_fields"><label>Untertitel</label><textarea rows="4" cols="50" autocomplete="off" id="prolog_display"></textarea><button type="button" onclick="save_existing(this)">speichern</button></div>
+		<div id="editor_fields_container">
+			<div class="editor_fields"><label>Name / Titel</label><input autocomplete="off" id="name_display" onkeyup="validate(this,this.nextSibling)" /><button type="button" onclick="save_existing(this)">speichern</button></div>
+			<div class="editor_fields"><label>Untertitel</label><input autocomplete="off" id="prolog_display" onkeyup="validate(this,this.nextSibling)" /><button type="button" onclick="save_existing(this)">speichern</button></div>
 			<div class="editor_fields"><label>Stichworte</label>
 				<div id="search_display"></div><button type="button" onclick="save_existing(this)">speichern</button></div>
-			<div class="editor_fields"><label>Einleitungstext</label><textarea rows="4" cols="50" autocomplete="off" id="text_display"></textarea><button type="button" onclick="save_existing(this)">speichern</button></div>
+			<div class="editor_fields"><label>Einleitungstext</label><div contenteditable="true" id="text_display" onkeyup="validate(this,this.nextSibling)"></div><button type="button" onclick="save_existing(this)">speichern</button></div>
 			<div class="editor_fields"><label>Daten</label>
 				<div id="time_display"></div><button type="button" onclick="save_existing(this)">speichern</button></div>
+
 			<div class="editor_fields"><label>Orte</label>
-				<div id="Ausstellungsort_display"></div><button type="button" onclick="save_existing(this)">speichern</button></div>
+				<div id="Ausstellungsort_display"></div><button type="button" onclick="">speichern</button></div>
+			<div class="editor_fields"><label>Impressum</label>
+				<div id="Impressum_display"></div><button type="button" onclick="save_existing(this)">speichern</button></div>
+			<div class="editor_fields"><label>Ausstellungskonzept</label><div contenteditable="true" id="Ausstellungskonzept_display" onkeyup="validate(this,this.nextSibling)"></div><button type="button" onclick="save_existing(this)">speichern</button></div>
+			<div class="editor_fields"><label>Bilder</label>
+				<div id="Images_display"></div><button type="button" onclick="">speichern</button></div>
 		</div>
+
+		<div id="image_selector" draggable="true" ondragstart="drag(event)"><i class="fa fa-minus-circle" aria-hidden="true" onclick="remove_image()"></i><i class="fa fa-arrows-h" aria-hidden="true"></i><i class="fa fa-pencil-square-o" aria-hidden="true" onclick="edit_image()"></i></div>
+		<div id="image_editor"></div>
+		<div id="process_overlay"></div>
 
 	</body>
 

@@ -1,0 +1,283 @@
+@charset "UTF-8";
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Lora', serif;
+	font-size: 18px;
+	background: #ccc;
+}
+
+a:link {
+	color: inherit;
+	text-decoration: none;
+	outline: 0 none;
+}
+
+a:visited {
+	text-decoration: none;
+	color: inherit;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #999;
+}
+
+a:active {
+	text-decoration: none;
+}
+
+.header-logo, .header-menu, .header-year, .year_gap, .content-item h2, .content-item a, .content-item .addr {
+	font-family: 'Lato', sans-serif;
+	font-weight: 300;
+}
+
+.header, .content {
+	width: calc(100vw - 400px);
+	left: 200px;
+}
+
+.header {
+	position: fixed;
+	z-index: 9;
+	background: linear-gradient(to right, #042e8d, #275056);
+}
+
+.header-logo {
+	font-family: 'Lato', sans-serif;
+	top: 0;
+	height: 120px;
+	background: #363539;
+	/*
+*/
+	color: #fff;
+	font-size: 48px;
+}
+
+.header-logo span {
+	/*
+	border: rgba(0, 0, 0, 0) 0 solid;
+	border-radius: 6px;
+	border-bottom-left-radius: 12% 6%;
+	border-bottom-right-radius: 6% 12%;
+	border-top-left-radius: 12% 6%;
+	border-top-right-radius: 12% 6%;
+*/
+	width: calc(50vw - 200px - 72px);
+	line-height: 100px;
+	display: inline-block;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.header-logo .logo {
+	margin: 0 24px 20px 48px;
+	background: #efebe5 no-repeat center center;
+	background-image: url("../images/sys/logo_buempliz.png");
+	background-size: cover;
+}
+
+.header-menu {
+	border: rgba(0, 0, 0, 0) 0 solid;
+	border-left: #363539 48px solid;
+	border-right: #363539 48px solid;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	align-items: center;
+	height: 30px;
+	color: #fff;
+	/*
+	top: 120px;
+*/
+}
+
+.header-menu a {
+	cursor: pointer;
+	padding: 4px;
+}
+
+.header-menu div a {}
+
+.header-year {
+	top: 200px;
+	background: #363539;
+	color: #fff;
+	/*
+	border-top: #eee 8px solid
+;*/
+	font-size: 18px;
+	line-height: 48px;
+	padding: 0;
+	text-indent: 48px;
+}
+
+.gradient {
+	margin: 0 48px 20px 24px;
+	background: linear-gradient(to right, #163f72, #275056);
+}
+
+.content {
+	position: absolute;
+	margin-top: 150px;
+	background: #efebe5;
+}
+
+.active {
+	background-color: #336699;
+}
+
+.diy-resizable:nth-last-child(1) {
+	margin-bottom: 72px;
+}
+
+.content-item .ext_link {
+	text-align: right;
+	float: right;
+}
+
+.content-item .addr {
+	/*
+	margin-top: -12%;
+	margin-bottom: 12%;
+*/
+}
+
+.content-item {
+	min-height: 320px;
+	border-left: #363539 48px solid;
+	border-right: #363539 48px solid;
+	/*
+	border: 0 none;
+	margin: 8px;
+	padding: 6px;
+*/
+}
+
+.cc2 {
+	column-count: 2;
+	column-gap: 48px;
+}
+
+.content-text {
+	padding: 12px;
+	display: grid;
+}
+
+.content-textoverimage {
+	width: calc(50vw - 200px - 96px);
+	height: 500px;
+	position: absolute;
+	background: #efebe5;
+}
+
+.height_image {
+	height: 524px;
+	position: absolute;
+}
+
+.height_image img[onclick] {
+	cursor: zoom-in !important;
+}
+
+.hide_text {
+	display: none;
+}
+
+.content-multiple-expo {
+	border-bottom: #363539 12px solid;
+}
+
+.content-image {
+	overflow: hidden;
+	width: calc(100vw - 496px);
+}
+
+.content-image img[onclick] {
+	cursor: zoom-out;
+}
+
+.content-image img {
+	width: 100%;
+	display: block;
+}
+
+.content-overlay {
+	height: 500px;
+}
+
+.content-item h2 {
+	font-size: 22px;
+	margin: 0 0;
+	font-weight: 800;
+}
+
+.content-item h2 .right {
+	/*
+	font-weight: initial;
+	font-size: 18px;
+*/
+}
+
+.content-item .right {
+	float: right;
+}
+
+.year_gap {
+	font-size: 18px;
+	/*
+	margin: 8px 0;
+*/
+	background: #363539;
+	color: #fff;
+	line-height: 48px;
+	padding: 0 48px;
+}
+
+.body_float_cont {
+	height: 100%;
+	position: fixed;
+	top: 0;
+	/*
+	display: flex;
+*/
+	display: none;
+	align-items: center;
+}
+
+.body_float {
+	position: fixed;
+	width: calc(50% - 600px);
+	height: auto;
+	margin-top: 68px;
+	opacity: 0;
+	/*
+	display: none;
+*/
+}
+
+.preloaded_ini {
+	display: none;
+}
+
+.body_float:nth-of-type(1) {
+	left: 60px;
+}
+
+.body_float:nth-of-type(2) {
+	right: 60px;
+}
+
+.fadein_float {
+	-webkit-animation: fadein 0.3s ease-in;
+	animation: fadein ease-in 0.3s 1;
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}
+
+.fadeout_float {
+	-webkit-animation: fadeout 0.3s ease-in;
+	animation: fadeout ease-in 0.3s 1;
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}

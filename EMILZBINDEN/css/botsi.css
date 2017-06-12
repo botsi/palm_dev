@@ -85,6 +85,11 @@ a:active {
 	font-size: 48px;
 }
 
+.header-logo img {
+	border: #363539 2px solid;
+	height: 48px;
+}
+
 .header-menu {
 	/*
 	top: 140px;
@@ -163,7 +168,7 @@ a:active {
 
 .content-item {
 	margin: 8px;
-	min-height: 320px;
+	min-height: 240px;
 	border: #ccc 1px solid;
 	padding: 6px;
 }
@@ -188,6 +193,8 @@ a:active {
 	flex-wrap: nowrap;
 	justify-content: space-between;
 	align-items: center;
+	margin-top: -9px !important;
+	border-top-color: #fff;
 }
 
 .year_gap {
@@ -242,4 +249,17 @@ a:active {
 	animation: fadeout ease-in 0.3s 1;
 	-webkit-animation-fill-mode: forwards;
 	animation-fill-mode: forwards;
+}
+
+.content-item button {
+	width: auto;
+	padding: 0 24px;
+	text-align: center;
+	margin: 4px 8px;
+	background: #00a4cf;
+	border: 0 none;
+	height: 40px;
+	font-size: 14px;
+	color: #fff;
+	cursor: pointer;
 }

@@ -190,4 +190,13 @@ var toggle_img_view = function(t) {
 
 };
 
-window.addEventListener('scroll', illuminate, false);
+var outer_link = function(site) {
+					window.open(site, '_blank');
+
+};
+
+var inner_link = function(site,position) {
+	        window.location = site.toLowerCase() + '.html';
+};
+
+//window.addEventListener('scroll', illuminate, false);
