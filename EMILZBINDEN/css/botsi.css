@@ -252,7 +252,7 @@ a:active {
 }
 
 .content-item button {
-	width: auto;
+	min-width: 200px;
 	padding: 0 24px;
 	text-align: center;
 	margin: 4px 8px;

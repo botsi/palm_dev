@@ -1,4 +1,4 @@
-			var folders, to_edit, to_edit_folder, to_edit_image, swap, save_image_presets;
+			var folders, to_edit, to_edit_folder, to_edit_image, swap, save_image_presets, TextEditor;
 
 			/*
 						var uploadtimerId, upseconds = 0;
@@ -519,6 +519,7 @@
 				/******           text           ******/
 
 				document.getElementById('text_display').innerHTML = to_edit.text; //.replace(/<br\s*\/?>/mg, "\n");
+				add_text_editor_funcs(document.getElementById('text_display'));
 
 				/******           time           ******/
 
@@ -589,6 +590,7 @@
 				document.getElementById('Ausstellungskonzept_display').innerHTML = '';
 				if (to_edit.epilog && to_edit.epilog.Ausstellungskonzept) {
 					document.getElementById('Ausstellungskonzept_display').innerHTML = to_edit.epilog.Ausstellungskonzept;
+					add_text_editor_funcs(document.getElementById('Ausstellungskonzept_display'));
 				}
 
 				/******           Images           ******/
@@ -602,6 +604,87 @@
 				document.getElementById('editor_fields_container').style.display = 'block';
 
 			};
+
+			/*******    textpart editor functions   *******/
+
+			var add_text_editor_funcs = function(el) {
+
+				console.log(el.id);
+
+				//if (el.id == 'Ausstellungskonzept_display') {
+				console.log('a s length: ', el.querySelectorAll('a').length);
+
+				var as = el.querySelectorAll('a');
+				for (var i = 0; i < as.length; i++) {
+					console.log(as[i].onclick);
+
+					// exclude textparts who have allready onclick
+
+					//					if (as[i].onclick == null) {
+
+					as[i].addEventListener("click", function(event) {
+						sh_link_editor(this);
+					}, false);
+					/*
+										}else{
+
+											as[i].addEventListener("click", function(event) {
+												sh_link_editor(this);
+											}, false);
+
+										}
+					*/
+				}
+				//}
+
+			};
+
+			/*******    textparts who have allready onclick   *******/
+
+
+			var jump_to = function(f, s) {
+				TextEditor.ih_preset = f + ' und ' + s;
+			};
+
+			var slide_lr = function(f, s) {
+				TextEditor.ih_preset = f + ' und ' + s;
+			};
+
+			var search_nostyle = function(t) {
+				TextEditor.ih_preset = t.innerHTML + ' (this)';
+			};
+
+			var sh_link_editor = function(t) {
+				var link_target = (TextEditor.ih_preset != '') ? TextEditor.ih_preset : t.onclick;
+				var ih = '<label>Link Text</label><label>Link Ziel</label><br/><input value="' + t.innerHTML + '"/><input value="' + link_target + '"/><i class="fa fa-times-circle" aria-hidden="true" onclick="go_TextEditor()"></i>';
+				TextEditor.ih_preset = '';
+				come_TextEditor(ih, t, [t.parentNode.offsetLeft, t.parentNode.offsetTop - 132]);
+			};
+
+			var go_TextEditor = function(tx, t, p) {
+				TextEditor.style.display = 'none';
+				TextEditor.innerHTML = '';
+				document.getElementById('process_overlay').classList.remove('process_overlay_dark');
+			};
+
+			var come_TextEditor = function(tx, t, p) {
+				if (TextEditor.style.display != 'block' || TextEditor.origin != t) {
+					//TextEditor.style.left = p[0] + 'px';
+					TextEditor.innerHTML = tx;
+					TextEditor.style.display = 'block';
+					TextEditor.style.left = (window.innerWidth - TextEditor.offsetWidth) / 2 + 'px';
+					TextEditor.style.top = p[1] + 'px';
+					TextEditor.children[4].focus();
+					TextEditor.origin = t;
+					document.getElementById('process_overlay').classList.add('process_overlay_dark');
+
+				} else {
+					go_TextEditor();
+				}
+			};
+
+			/*******    end textpart editor functions   *******/
+
 
 			var load_additional_images = function(c) {
 				var try_img = new Image();
@@ -681,6 +764,8 @@
 							document.getElementById('basis').parentNode.innerHTML += new_raw;
 
 							document.getElementById('process_overlay').classList.remove('process_overlay_dark');
+
+							TextEditor = document.getElementById('text_editor');
 
 
 							//page_load();

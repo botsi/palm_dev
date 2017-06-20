@@ -923,10 +923,10 @@
 					}
 				},
 				{
-				  "name": "Barryland",
-				  "comp_name": "barry",
-				  "search": [
-				    "barrylandmartigny",
+					"name": "Barryland",
+					"comp_name": "barry",
+					"search": [
+						"barrylandmartigny",
 						"barrychildren",
 						"barrypark",
 						"bernhardiner",
@@ -937,28 +937,28 @@
 						"st.bernard",
 						"st.bernhard",
 						"grosserst.bernhard"
-				  ],
-				  "time": {
-				    "from": [
-				      1,
-				      11,
-				      2016
-				    ]
-				  },
-				  "prolog": "Barry - die Rettung eines Schweizer Kulturgutes",
-				  "text": "Das «Barryland - Musée et Chiens du Saint Bernard» ist die Schatztruhe der Barry-Geschichte. Es verbindet die Geschichte des Grossen St. Bernhard Passes, dem Hospiz und seiner Hundezucht mit der Gegenwart.<br/>Ein Begegnungszentrum, welches die Menschen mit den Bernhardinern zusammenbringt. Die Bekanntheit der legendären Bernhardiner vom Grossen Sankt Bernhard und die Verankerung als Schweizer Kulturgut in der Region schaffen eine hervorragende Voraussetzung, die Wirkung in der Öffentlichkeit zu verstärken.<br/>Ab 2015 erarbeitete Palma3 eine integrierte museale Gesamtstrategie für die Fondation Barry in Martigny und entwickelte einen Massnahmenplan 2016 - 2020.<br/>Als erster Realisierungsschritt konnte im November 2016 die Kinderausstellung «Barry Family» im zweiten Stock des Museumsgebäudes in Martigny eröffnet werden.",
-				  "epilog": {
-						"Ausstellungskonzept": "<h2>Vision Barryland</h2><p>Im Laufe der letzten Jahre wurden in der Fondation Barry Visionen entwickelt für die Verbesserung des Wohls ihrer Bernhardiner-Hunde sowie die Erhöhung der Attraktivität der Zuchtstätte und des Museums in Martigny für Besucher. Seit Mitte 2014 wird das Bernhardiner-Museum unter der Leitung der Fondation Barry weiter geführt und anlässlich der Jubiläumsveranstaltung der Stiftung anfangs Juni 2015 wurde es «Barryland - Musée et Chiens du Saint Bernard» umbenannt. Seither verfügt die Fondation Barry über einen Publikumsstandort und ein Begegnungszentrum, welches Menschen mit den Bernhardinern und der Geschichte vom Grossen St. Bernhard zusammenbringt und welches gemäss Strategie 2016-2019 nun etappenweise den zusätzlichen Bedürfnissen, insbesondere für Kinder und Familien entsprechend, ausgebaut werden soll.</p><h2>Barry Children</h2><p>Die Fondation Barry ist bestrebt, vielen Menschen, insbesondere Kindern und Jugendlichen, durch eine Begegnung mit ihren Bernhardinern eine Freude zu bereiten, die Möglichkeit zu persönlichen Erlebnissen mit Bernhardinern zu bieten und dadurch zu einer besseren Mensch-Hund-Beziehung beizutragen. Deshalb soll im Rahmen der Erweiterung Barryland 2016 im zweiten Obergeschoss neu eine permanente Kinderausstellung entstehen, mit emotionalen und didaktischen Angeboten insbesondere für Kinder von 4 bis 12 Jahren. Die Ausstellung ist eng mit der Geschichte und dem Mythos Barry verknüpft und bietet nicht blosses Konsumieren, sondern die Möglichkeit, aktiv zu werden.  Die Kinderausstellung bietet Raum für Gruppen- respektive Klassenunterricht, in welchen auch echte Bernhardiner einbezogen werden. Damit hat das Barryland eine wichtige Funktion im Bereich Pädagogik und leistet mit den tiergestützten Interaktionen einen bedeutenden Beitrag zur Erhaltung des Erbes und der Zucht.</p><h2>Barry Park</h2><p>Die rund 30 Bernhardiner der Fondation Barry sollen mit grosszügigen Freigehegen mehr Bewegungs- und Beschäftigungsmöglichkeit bekommen. Im Barryland können Besucher Bernhardiner beim Spielen in den Freigehegen und zu vorgegebenen Zeiten beim Training in der Barryschule drinnen oder draussen beobachten. Beim Training gibt es zusätzlich die Gelegenheit, Hunde unter Anleitung des Personals anzufassen, beispielsweise, um sie zu streicheln, zu bürsten und zu führen. Unter Anleitung können sich Besucher und Bernhardiner auch beim Lösen von Geschicklichkeitsaufgaben oder beim Seilziehen messen.</p><p>Am Rundweg um die Freigehege finden die Besucher Ruhe- und Beschäftigungsmöglichkeiten vor, die jene der Hunde widerspiegeln oder unterstützen. So können beispielsweise Ruheplätze in Hütten oder auf Nestschaukeln genutzt werden. Hunde und Besucher können nebeneinander – durch Glasscheiben getrennt - im Sand oder Wasser spielen. Wagen- beziehungsweise im Winter Schlittenfahrten müssen vorgebucht werden.</p><p>Zusätzlich zur Unterbringung von Bernhardinerhunden ist ein Streichelzoo mit weiteren Tieren wie Kaninchen, Hängebauchschweinen, Ziegen oder Schafen geplant. Auch hier bieten sich zahlreiche Aktivitäten, die für Jung und Alt ein bleibendes Erlebnis schaffen.</p><p>Als weiteres Element soll eine Schlittelpiste auf dem Gelände des Barry Parks realisiert werden, um auch in der Wintersaison Gäste anzuziehen. Diese passt sehr gut zur Ambiance, wie sie auf dem Grossen St. Bernhard herrscht. Solche, im urbanen Raum erbaute Freizeitangebote sind im Trend und können ein zusätzliches Besuchersegment anziehen.</p>",
-				    "Impressum": {
-				      "Kurator": ["Andreas Schwab (palma3)"],
-				      "Illustrationen": ["<a href='http://www.andreapeter.ch' target='_blank'>Andrea Peter, Bern</a>"],
-				      "Realisierung": ["<a href='http://www.creactif.ch' target='_blank'>Créactif, Gaël Papilloud, Martigny</a>"]
-				    },
-				    "Ausstellungsort": [
-				      ["", "Fondation Barry du Grand-St-Bernard", "34, rue du Levant", "1920 Martigny", "", "www.fondation-barry.ch", "B7ECfshnBGA2"]
-				    ],
-				    "Dossier": []
-				  }
+					],
+					"time": {
+						"from": [
+							1,
+							11,
+							2016
+						]
+					},
+					"prolog": "Barry - die Rettung eines Schweizer Kulturgutes",
+					"text": "Das «Barryland - Musée et Chiens du Saint Bernard» ist die Schatztruhe der Barry-Geschichte. Es verbindet die Geschichte des Grossen St. Bernhard Passes, dem Hospiz und seiner Hundezucht mit der Gegenwart.<br/>Ein Begegnungszentrum, welches die Menschen mit den Bernhardinern zusammenbringt. Die Bekanntheit der legendären Bernhardiner vom Grossen Sankt Bernhard und die Verankerung als Schweizer Kulturgut in der Region schaffen eine hervorragende Voraussetzung, die Wirkung in der Öffentlichkeit zu verstärken.<br/>Ab 2015 erarbeitete Palma3 eine integrierte museale Gesamtstrategie für die Fondation Barry in Martigny und entwickelte einen Massnahmenplan 2016 - 2020.<br/>Als erster Realisierungsschritt konnte im November 2016 die Kinderausstellung «Barry Family» im zweiten Stock des Museumsgebäudes in Martigny eröffnet werden.",
+					"epilog": {
+						"Ausstellungskonzept": "<h2>Vision Barryland</h2><p>Im Laufe der letzten Jahre wurden in der Fondation Barry Visionen entwickelt für die Verbesserung des Wohls ihrer Bernhardiner-Hunde sowie die Erhöhung der Attraktivität der Zuchtstätte und des Museums in Martigny für Besucher. Seit Mitte 2014 wird das Bernhardiner-Museum unter der Leitung der Fondation Barry weiter geführt und anlässlich der Jubiläumsveranstaltung der Stiftung anfangs Juni 2015 wurde es «Barryland - Musée et Chiens du Saint Bernard» umbenannt. Seither verfügt die Fondation Barry über einen Publikumsstandort und ein Begegnungszentrum, welches Menschen mit den Bernhardinern und der Geschichte vom Grossen St. Bernhard zusammenbringt und welches gemäss Strategie 2016-2019 nun etappenweise den zusätzlichen Bedürfnissen, insbesondere für Kinder und Familien entsprechend, ausgebaut werden soll.</p><h2>Barry Children</h2><p>Die Fondation Barry ist bestrebt, vielen Menschen, insbesondere Kindern und Jugendlichen, durch eine Begegnung mit ihren Bernhardinern eine Freude zu bereiten, die Möglichkeit zu persönlichen Erlebnissen mit Bernhardinern zu bieten und dadurch zu einer besseren Mensch-Hund-Beziehung beizutragen. Deshalb soll im Rahmen der Erweiterung Barryland 2016 im zweiten Obergeschoss neu eine permanente Kinderausstellung entstehen, mit emotionalen und didaktischen Angeboten insbesondere für Kinder von 4 bis 12 Jahren. Die Ausstellung ist eng mit der Geschichte und dem Mythos Barry verknüpft und bietet nicht blosses Konsumieren, sondern die Möglichkeit, aktiv zu werden. Die Kinderausstellung bietet Raum für Gruppen - respektive Klassenunterricht, in welchen auch echte Bernhardiner einbezogen werden.Damit hat das Barryland eine wichtige Funktion im Bereich Pädagogik und leistet mit den tiergestützten Interaktionen einen bedeutenden Beitrag zur Erhaltung des Erbes und der Zucht.</p><h2>Barry Park</h2><p>Die rund 30 Bernhardiner der Fondation Barry sollen mit grosszügigen Freigehegen mehr Bewegungs - und Beschäftigungsmöglichkeit bekommen. Im Barryland können Besucher Bernhardiner beim Spielen in den Freigehegen und zu vorgegebenen Zeiten beim Training in der Barryschule drinnen oder draussen beobachten.Beim Training gibt es zusätzlich die Gelegenheit, Hunde unter Anleitung des Personals anzufassen, beispielsweise, um sie zu streicheln, zu bürsten und zu führen.Unter Anleitung können sich Besucher und Bernhardiner auch beim Lösen von Geschicklichkeitsaufgaben oder beim Seilziehen messen.</p><p>Am Rundweg um die Freigehege finden die Besucher Ruhe- und Beschäftigungsmöglichkeiten vor, die jene der Hunde widerspiegeln oder unterstützen. So können beispielsweise Ruheplätze in Hütten oder auf Nestschaukeln genutzt werden. Hunde und Besucher können nebeneinander - durch Glasscheiben getrennt - im Sand oder Wasser spielen. Wagen- beziehungsweise im Winter Schlittenfahrten müssen vorgebucht werden.</p><p>Zusätzlich zur Unterbringung von Bernhardinerhunden ist ein Streichelzoo mit weiteren Tieren wie Kaninchen, Hängebauchschweinen, Ziegen oder Schafen geplant.Auch hier bieten sich zahlreiche Aktivitäten, die für Jung und Alt ein bleibendes Erlebnis schaffen.</p><p>Als weiteres Element soll eine Schlittelpiste auf dem Gelände des Barry Parks realisiert werden, um auch in der Wintersaison Gäste anzuziehen. Diese passt sehr gut zur Ambiance, wie sie auf dem Grossen St. Bernhard herrscht. Solche, im urbanen Raum erbaute Freizeitangebote sind im Trend und können ein zusätzliches Besuchersegment anziehen.</p>",
+						"Impressum": {
+							"Kurator": ["Andreas Schwab (palma3)"],
+							"Illustrationen": ["<a href='http://www.andreapeter.ch' target='_blank'>Andrea Peter, Bern</a>"],
+							"Realisierung": ["<a href='http://www.creactif.ch' target='_blank'>Créactif, Gaël Papilloud, Martigny</a>"]
+						},
+						"Ausstellungsort": [
+							["", "Fondation Barry du Grand-St-Bernard", "34, rue du Levant", "1920 Martigny", "", "www.fondation-barry.ch", "B7ECfshnBGA2"]
+						],
+						"Dossier": []
+					}
 				},
 				{
 					"comp_name": "nidwaldner",
@@ -1007,7 +1007,7 @@
 					"comp_name": "fondazionemonteverita",
 					"name": "Monte Verità",
 					"search": [
-"ikosaeder",
+						"ikosaeder",
 						"monteverità",
 						"ascona",
 						"verita",
@@ -1409,7 +1409,7 @@
 					"prolog": "Sind Sie sportlich? Bewegen Sie sich aus Vergnügen, trainieren Sie gewohnheitsmässig oder quälen Sie sich aus Vernunft?",
 					"text": "Sechs Einzelbeiträge und drei Porträts von sportlichen Personen geben einen weiten Einblick in die verschiedenen Aspekte von Fitness: Das Spektrum reicht von den frühen Kraftsportlern zu Arnold Schwarzenegger und anderen «Mister Universum», von den Ausdruckstänzerinnen, der Barbie-Puppe und Jane Fonda bis hin zu den namenlosen durchtrainierten Modellen in den Fitnessmagazinen von heute. Fitness zwischen dem «arischen Übermenschen» und gesunder Ertüchtigung, Fitness zwischen disziplinierender Alltagspraxis und befreiender Körperlichkeit, Fitness zwischen Schönheitswahn und Schönheitsstreben – solche Spannungsfelder stehen im Zentrum dieses Buches.",
 					"epilog": {
-						"Inhalt": "<ul><li>Vorwort und Einleitung</li><li>Fitness und Körperkult. Entwicklungen des Körperbewusstseins im 20. Jahrhundert</li><li>Zwischen «Beruf» und «Berufung». Zur Geschichte der kommerziellen Fitnessanbieter </li><li><h2>Ausser Konkurrenz. Der Freizeitsportler Daniel Müller</h2><p><a href='media/publikationen/fitness/ausser_konkurenz.pdf' target='_blank'>Johannes Reichen</a></p></li><li></li></ul>",
+						"Inhalt": "<ul><li>Vorwort und Einleitung</li><li>Fitness und Körperkult. Entwicklungen des Körperbewusstseins im 20. Jahrhundert</li><li>Zwischen «Beruf» und «Berufung». Zur Geschichte der kommerziellen Fitnessanbieter </li><li>Ausser Konkurrenz. Der Freizeitsportler Daniel Müller<p><a href='media/publikationen/fitness/ausser_konkurenz.pdf' target='_blank'>Johannes Reichen</a></p></li></ul>",
 						"Autoren": [
 							["Katharina Arpagaus", "Psychologin, Laufbahnberaterin und Seminarleiterin", "1971", "", "Bern", "www.kamala-yoga.com", "«Als passionierte Outdoor-Sportlerin bevorzuge ich Nervenkitzel und Natur pur statt Schweiss trebender Aktivitäten an Kraftmaschinen. Deshalb mache ich einen grossen Bogen um FItnesscenter und Turnhallen.»"],
 							["Philipp Burkard", "Germanist und Philosoph", "1968", "", "Bern", true, "«Ich esse seit kurzem wieder Äpfel und bin dieses Jahr zum ersten Mal die 16 Kilometer des Grand Prix von Bern gelaufen. Ich beendete ihn auf dem 5401. Rang.»"],
