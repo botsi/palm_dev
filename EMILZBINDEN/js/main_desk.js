@@ -1,3 +1,12 @@
+var index_in_parent = function(child) {
+	var i = 0;
+	while ((child = child.previousSibling) != null) {
+		i++;
+	}
+	return i;
+};
+
+
 var disable_swap = false;
 
 
@@ -66,9 +75,12 @@ var illuminate = function() {
 	document.getElementsByClassName('header-year')[0].innerHTML = $divs[grep].getAttribute('year', 0);
 	//}
 
-	if (window.location.href.indexOf('ausstellungen.html') == -1) {
-		return;
-	}
+	console.log('scrolled dav');
+
+
+	//if (window.location.href.indexOf('ausstellungen.html') == -1) {
+	return;
+	//}
 
 	var middle = (function() {
 		var filtered;
@@ -191,12 +203,79 @@ var toggle_img_view = function(t) {
 };
 
 var outer_link = function(site) {
-					window.open(site, '_blank');
+	window.open(site, '_blank');
 
 };
 
-var inner_link = function(site,position) {
-	        window.location = site.toLowerCase() + '.html';
+var inner_link = function(site, position) {
+	window.location = site.toLowerCase() + '.html';
 };
 
-//window.addEventListener('scroll', illuminate, false);
+var page_load = function() {
+
+	colorize();
+
+	query_iframe();
+
+};
+
+var mss = document.getElementById('mss');
+
+var red = true;
+
+var colorize = function() {
+
+	if (red && mss.href !== 'css/botsi_red.css') {
+
+		mss.onload = function() {
+
+			colorize;
+
+		};
+
+		mss.href = 'css/botsi_red.css';
+
+	}
+
+
+};
+
+var query_iframe = function() {
+
+	var dia = document.getElementById('dia');
+
+	if (dia != null) {
+		dia.addEventListener('load', function() {
+			if (dia.contentWindow.location.href.indexOf('empty') == -1) {
+				dia.style.display = 'block';
+				console.log(dia.offsetTop, ' dia top');
+				//window.scrollTo(0, dia.offsetTop);
+			} else {
+				dia.style.display = 'none';
+				images_arr = [];
+			}
+		}, false);
+	} else {
+		console.log('no dia');
+	}
+};
+
+var images_arr = [];
+
+var make_img_arr = function(t) {
+
+	var as = t.parentNode.getElementsByTagName('a');
+
+	for (var i = 0; i < as.length; i++) {
+		images_arr.push(as[i].href.split("=")[1].slice(0, as[i].href.split("=")[1].length - 5));
+	}
+	console.log(images_arr);
+
+
+
+};
+
+
+window.addEventListener('scroll', illuminate, false);
+
+window.addEventListener('load', page_load, false);

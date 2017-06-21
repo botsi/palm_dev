@@ -19,6 +19,8 @@
 
 		<link rel="shortcut icon" href="images/favicon.ico" />
 
+		<link rel="stylesheet" href="../font-awesome-4.6.3/css/font-awesome.min.css" />
+
 		<style>
 			html,
 			body {
@@ -36,23 +38,71 @@
 
 			#panorama {
 				position: absolute;
-				top: 0;
-				height: 100%;
+				width: 960px;
+				left: calc(50vw - 480px);
+				overflow: auto;
+				bottom: 200px;
+				height: calc(100vh - 400px);
+				/*
 				display: inline-block;
+*/
+				display: flex;
+				justify-content: center;
 			}
 
-			#panorama img {
-				width: auto;
+			#panorama img,
+			#panorama .img_over_left,
+			#panorama .img_over_right {
 				height: 100%;
 				border: 0 none;
 				margin: 0;
 				padding: 0;
 				top: 0;
 				display: block;
+				position: absolute;
+			}
+
+			#panorama img {
+				width: auto;
+    -webkit-user-select: none; /* Chrome, Opera, Safari */
+    -moz-user-select: none; /* Firefox 2+ */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none; /* Standard syntax */
 			}
 
 			#panorama video {
 				width: 100vw;
+			}
+
+			#panorama .img_over_left {
+				width: 50%;
+				cursor: url("images/sys/left.png"), url("images/sys/left.cur"), move;
+				z-index: 1;
+			}
+
+			#panorama .img_over_right {
+				width: 50%;
+				cursor: url("images/sys/right.png"), url("images/sys/right.cur"), move;
+				z-index: 1;
+				right: 0;
+			}
+
+			.fa-times-thin:before {
+				content: '\00d7';
+			}
+
+			.fa-times-thin {
+				position: absolute;
+				right: 0;
+				padding: 12px;
+				font-size: 48px;
+				line-height: 24px;
+			}
+
+			.fa {
+				cursor: pointer;
+				color: #ccc;
+				font-size: 48px;
 			}
 		</style>
 
@@ -65,9 +115,44 @@
 
 			};
 
+			var out_click = function(e) {
+				console.log(e.target.className);
+				if (e.target.tagName.toLowerCase() == 'body' || e.target.className == 'fa fa-times-thin') {
+					this.location.href = 'empty.html';
+					console.log('now please close this iframe', this.location.href);
+				}
+			};
+
+			var slide_image = {
+				"count": 0,
+				"mouse": function(t) {
+					this.count = parent.index_in_parent(t);
+console.log(this.count);
+
+
+
+				},
+				"left": function(t) {
+					this.count--;
+					if (this.count < 0) {
+						this.count = parent.images_arr.length - 1;
+					}
+					t.parentNode.children[2].src = 'images/' + parent.images_arr[this.count] + '.jpg';
+				},
+				"right": function(t) {
+					this.count++;
+					if (this.count > parent.images_arr.length - 1) {
+						this.count = 0;
+					}
+					t.parentNode.children[2].src = 'images/' + parent.images_arr[this.count] + '.jpg';
+				}
+			};
+
+
 			var img_load = function() {
 
 				var q = window.location.search.substring(1);
+
 
 				var obj = {};
 				var pairs = q.split('&');
@@ -114,8 +199,12 @@
 
 	</head>
 
-	<body>
-		<div id="panorama"></div>
+	<body onclick="out_click(event)">
+		<div id="panorama">
+			<div class="img_over_left" onclick="slide_image.left(this)" onmouseover="slide_image.mouse(this)"></div>
+			<div class="img_over_right" onclick="slide_image.right(this)" onmouseover="slide_image.mouse(this)"></div>
+		</div>
+		<i class="fa fa-times-thin" aria-hidden="true"></i>
 	</body>
 
 </html>
