@@ -21,6 +21,7 @@
 
 		<link rel="stylesheet" href="../font-awesome-4.6.3/css/font-awesome.min.css" />
 
+
 		<style>
 			html,
 			body {
@@ -29,6 +30,7 @@
 				height: 100%;
 				margin: 0;
 				padding: 0;
+				/*pointer-events: auto;*/
 			}
 
 			a {
@@ -36,55 +38,119 @@
 				text-decoration: underline;
 			}
 
-			#panorama {
-				position: absolute;
+			#transp_head {
+				font-family: lucida sans unicode, lucida grande, sans-serif;
+				font-size: 48px;
+				color: #a1242d;
+				position: fixed;
+				display: flex;
+				flex-wrap: nowrap;
+				justify-content: space-around;
+				align-items: center;
+				top: 0;
+				height: 100px;
+				background: #363539;
 				width: 960px;
 				left: calc(50vw - 480px);
-				overflow: auto;
-				bottom: 200px;
-				height: calc(100vh - 400px);
-				/*
-				display: inline-block;
-*/
-				display: flex;
-				justify-content: center;
+				cursor: pointer;
+			}
+
+			#transp_head img {
+				border: #363539 2px solid;
+				height: 48px;
+			}
+
+
+			#panorama {
+				position: absolute;
+				left: calc(50vw - 480px);
+				width: 960px;
+				top: 100px;
+				height: calc(100vh - 200px);
+				overflow-x: auto;
+				overflow-y: hidden;
 			}
 
 			#panorama img,
-			#panorama .img_over_left,
-			#panorama .img_over_right {
-				height: 100%;
+			.img_over_left,
+			.img_over_right {
 				border: 0 none;
 				margin: 0;
 				padding: 0;
-				top: 0;
-				display: block;
-				position: absolute;
 			}
 
 			#panorama img {
-				width: auto;
-    -webkit-user-select: none; /* Chrome, Opera, Safari */
-    -moz-user-select: none; /* Firefox 2+ */
-    -ms-user-select: none; /* IE 10+ */
-    user-select: none; /* Standard syntax */
+/*
+				top: 0;
+*/
+				height: 100%;
+			}
+
+			#transp_head,
+			#panorama img {
+				-webkit-user-select: none;
+				/* Chrome, Opera, Safari */
+				-moz-user-select: none;
+				/* Firefox 2+ */
+				-ms-user-select: none;
+				/* IE 10+ */
+				user-select: none;
+				/* Standard syntax */
 			}
 
 			#panorama video {
-				width: 100vw;
+				width: 960px;
 			}
 
-			#panorama .img_over_left {
-				width: 50%;
-				cursor: url("images/sys/left.png"), url("images/sys/left.cur"), move;
-				z-index: 1;
+			.img_over_left {
+				top: 100px;
+				height: calc(100vh - 200px);
+				position: absolute;
+				z-index: 11;
+				cursor: url(images/sys/left_r.png), url(images/sys/left.cur), pointer;
+				/*
+				background: rgba( 0, 255, 0, 0.5);
+*/
 			}
 
-			#panorama .img_over_right {
-				width: 50%;
-				cursor: url("images/sys/right.png"), url("images/sys/right.cur"), move;
-				z-index: 1;
-				right: 0;
+			.img_over_right {
+				top: 100px;
+				height: calc(100vh - 200px);
+				left: 50vw;
+				position: absolute;
+				z-index: 11;
+				cursor: url(images/sys/right_r.png), url(images/sys/right.cur), pointer;
+				/*
+				background: rgba( 255, 0, 0, 0.5);
+*/
+			}
+
+				/*
+			.img_over_left:hover {
+				cursor: url(images/sys/left_r.png), w-resize !important;
+			}
+
+			.img_over_right:hover {
+				cursor: url(images/sys/right_r.png), e-resize !important;
+			}
+*/
+
+			.img_over_disable {
+				display: none;
+			}
+
+
+			#panorama p {
+				font-family: lucida sans unicode, lucida grande, sans-serif;
+				color: #bc123a;
+				bottom: 100px;
+				height: 24px;
+				position: fixed;
+				background: rgba(243, 239, 228, 0.75);
+				margin: 0;
+				padding: 0 8px;
+				overflow: hidden;
+				left: initial;
 			}
 
 			.fa-times-thin:before {
@@ -94,14 +160,14 @@
 			.fa-times-thin {
 				position: absolute;
 				right: 0;
-				padding: 12px;
+				padding: 24px;
 				font-size: 48px;
 				line-height: 24px;
 			}
 
 			.fa {
 				cursor: pointer;
-				color: #ccc;
+				color: #bc123a;
 				font-size: 48px;
 			}
 		</style>
@@ -117,41 +183,37 @@
 
 			var out_click = function(e) {
 				console.log(e.target.className);
-				if (e.target.tagName.toLowerCase() == 'body' || e.target.className == 'fa fa-times-thin') {
+				if (e.target.tagName.toLowerCase() == 'body' || e.target.id == 'panorama' || e.target.tagName.toLowerCase() == 'img' || e.target.id == 'transp_head' || e.target.className == 'fa fa-times-thin') {
 					this.location.href = 'empty.html';
 					console.log('now please close this iframe', this.location.href);
 				}
 			};
 
 			var slide_image = {
-				"count": 0,
-				"mouse": function(t) {
-					this.count = parent.index_in_parent(t);
-console.log(this.count);
-
-
-
-				},
-				"left": function(t) {
+				"count": parent.dia_position,
+				"left": function() {
 					this.count--;
 					if (this.count < 0) {
 						this.count = parent.images_arr.length - 1;
 					}
-					t.parentNode.children[2].src = 'images/' + parent.images_arr[this.count] + '.jpg';
+					panorama.children[0].src = 'images/' + parent.images_arr[this.count] + '.jpg';
 				},
-				"right": function(t) {
+				"right": function() {
 					this.count++;
 					if (this.count > parent.images_arr.length - 1) {
 						this.count = 0;
 					}
-					t.parentNode.children[2].src = 'images/' + parent.images_arr[this.count] + '.jpg';
+					panorama.children[0].src = 'images/' + parent.images_arr[this.count] + '.jpg';
 				}
 			};
 
 
 			var img_load = function() {
 
+
 				var q = window.location.search.substring(1);
+
+				panorama = document.getElementById('panorama');
 
 
 				var obj = {};
@@ -167,43 +229,141 @@ console.log(this.count);
 
 					i.innerHTML = '<source src="images/' + obj.name + '.mp4" type="video/mp4">Your browser does not support the video tag.';
 
-					document.getElementById('panorama').appendChild(i);
-
-					//i.onloadedmetadata = function(){
-
-					//};
-
+					panorama.appendChild(i);
 
 					i.addEventListener("canplaythrough", dimensionFunction, false);
 
 				} else {
 
+					if (parent.images_arr.length < 2) {
+						panorama.previousSibling.previousSibling.className = panorama.previousSibling.className = 'img_over_disable';
+					} else {
+
+						panorama.previousSibling.previousSibling.className = 'img_over_left';
+
+						panorama.previousSibling.className = 'img_over_right';
+
+						panorama.previousSibling.previousSibling.addEventListener('click', function() {
+
+							slide_image.left();
+
+						}, false);
+
+						panorama.previousSibling.addEventListener('click', function() {
+
+							slide_image.right();
+
+						}, false);
+
+					}
+
 
 					var i = document.createElement('img');
 
+					var p = document.createElement('p');
+
+					i.onload = function() {
+
+						panorama.appendChild(i);
+
+						p.innerHTML = parent.images_arr_tx[slide_image.count];
+
+						panorama.appendChild(p);
+
+						setTimeout(function() {
+
+							var en = false;
+
+							if (i.offsetWidth <= 960) {
+
+								panorama.style.display = 'flex';
+
+								panorama.style.justifyContent = 'center';
+
+								panorama.previousSibling.previousSibling.style.left = i.getBoundingClientRect().left + 'px';
+
+								panorama.previousSibling.previousSibling.style.width = i.offsetWidth / 2 + 'px';
+
+								panorama.previousSibling.style.width = i.offsetWidth / 2 - 32 + 'px';
+
+								p.style.width = i.offsetWidth - 16 + 'px';
+
+								p.style.left = i.getBoundingClientRect().left + 'px';
+
+							} else {
+
+								en = true;
+
+								panorama.style.display = 'block';
+
+								panorama.style.justifyContent = 'unset';
+
+								panorama.previousSibling.previousSibling.style.left = panorama.getBoundingClientRect().left + 'px';
+
+								panorama.previousSibling.previousSibling.style.width = '480px';
+
+								panorama.previousSibling.style.width = '448px';
+
+								p.style.width = '944px';
+
+								p.style.left = 'inherit';
+
+								var le = parseInt((i.offsetWidth - 960) / 2);
+
+								panorama.scrollLeft = le;
+
+							}
+
+							document.addEventListener('mousemove', function(e) {
+								handleMouse(e, en);
+							}, false);
+
+						}, 100);
+					};
+
 					i.src = 'images/' + obj.name + '.' + obj.type;
-
-					i.addEventListener('click', function() {
-
-					}, false);
-
-					document.getElementById('panorama').appendChild(i);
 
 				}
 
 			};
 
 			document.addEventListener('DOMContentLoaded', img_load, false);
+
+
+			var x;
+			var panorama;
+			var dir = 0;
+
+			function handleMouse(e, en) {
+
+				if (!en) {
+					return;
+				}
+
+				// Verify that x and y already have some value
+				if (x) {
+					if (x > e.clientX) {
+						dir = -1;
+					}
+					if (x < e.clientX) {
+						dir = 1;
+					}
+					var sl = panorama.scrollLeft;
+					panorama.scrollLeft = sl + dir;
+				}
+
+				// Store current position
+				x = e.clientX;
+			}
 		</script>
 
 
 	</head>
 
 	<body onclick="out_click(event)">
-		<div id="panorama">
-			<div class="img_over_left" onclick="slide_image.left(this)" onmouseover="slide_image.mouse(this)"></div>
-			<div class="img_over_right" onclick="slide_image.right(this)" onmouseover="slide_image.mouse(this)"></div>
+		<div id="transp_head" onclick="out_click(event)">EMIL ZBINDEN<img src="images/sys/logo_kaligr.jpg" />
 		</div>
+		<div class="img_over_left"></div><div class="img_over_right"></div><div id="panorama" onclick="out_click(event)"></div>
 		<i class="fa fa-times-thin" aria-hidden="true"></i>
 	</body>
 
