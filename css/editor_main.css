@@ -22,6 +22,30 @@
       	opacity: 0;
       }
 
+      .editor_fields button {
+      	visibility: hidden;
+      	display: inline-block;
+      	margin: 18px 24px 4px 24px;
+      	padding: 6px 24px;
+      	width: 200px;
+      	background: #0f0;
+      	border: #444 4px solid;
+      	border-radius: 18px;
+      	font-size: 14px;
+      	font-weight: 600;
+      	color: #444;
+      	cursor: pointer;
+      }
+
+      .editor_fields button:nth-of-type(2) {
+      	background: #f00;
+      }
+
+      .editor_fields button .fa {
+      	float: left;
+      	margin-top: 2px;
+      }
+
       #encoderInputCanvas {
       	display: none;
       }
@@ -45,6 +69,13 @@
 				line-height: 24px;
 				background: red;
 */
+      }
+
+      #header span.meter {
+      	font-size: 12px;
+      	font-weight: lighter;
+      	position: absolute;
+      	top: 0px;
       }
 
       th, td {
@@ -86,19 +117,37 @@
       .editor_fields {
       	width: 96vw;
       	margin: 6px 2vw;
+      	padding: 12px 6px;
       	background: #ccc;
+      	text-align: center;
       }
 
       #editor_fields_container {
       	display: none;
       }
 
-      .editor_fields label, .editor_fields button {
+      .editor_fields label {
       	display: block;
+      	float: left;
       }
 
-      .editor_fields button {
-      	visibility: hidden;
+      .editor_fields div {
+      	text-align: left;
+      	margin-top: 24px !important;
+      }
+
+      .editor_fields input {
+      	display: block;
+      	text-align: left;
+      	margin-top: 24px !important;
+      	border: #ccc 2px solid;
+      	outline: 0 none;
+      	min-width: 300px;
+      }
+
+      .editor_fields div input {
+      	display: inline;
+      	margin-top: auto !important;
       }
 
       .button_valid {
@@ -109,7 +158,7 @@
       	float: right;
       }
 
-      .fa-plus-circle, .fa-minus-circle, .fa-times-circle, .fa-pencil-square-o, .fa-arrows-h {
+      .fa-plus-circle, .fa-minus-circle, .fa-times-circle, .fa-pencil-square-o, .fa-arrows-h, .fa-link {
       	cursor: pointer;
       }
 
@@ -175,36 +224,34 @@
       	font-size: 14px;
       }
 
-      #Impressum_display .keyfield, #Impressum_display span {
+      #Impressum_display .keyfield {
       	width: 12vw;
       	text-align: center;
       	border: 0 none;
-      	margin: 6px calc(6vw / 8);
-      	display: block;
+      	margin: 24px auto 6px auto !important;
       }
-      /*
-			#Impressum_display input[type="text"],
-			#Impressum_display span {
-				width: 12vw;
-				text-align: center;
-				border: 0 none;
-				margin: 6px calc(6vw / 8);
-			}
 
-			#Impressum_display span {
-				display: inline-block;
-				font-size: 14px;
-			}
-*/
+      #Impressum_display .keyfield:nth-child(1) {
+      	margin-top: auto !important;
+      }
+
+      #Impressum_display .keyfield+i {
+      	display: inline;
+      }
+
+      #Impressum_display .keyfield+i:after {
+      	content: "\A";
+      	white-space: pre;
+      }
+
+      .add-raw {
+      	font-size: 2vw;
+      	margin: 3vw auto;
+      	display: inline-block;
+      	padding: 6px 8px;
+      }
 
       #Images_display {
-      	/*
-	position: fixed;
-	width: 100vw;
-	z-index: 100;
-	margin: 0;
-	bottom: 0;
-*/
       	height: auto;
       	flex-wrap: wrap-reverse;
       	justify-content: end;
@@ -217,8 +264,8 @@
       	width: 2vw !important;
       	height: 2vw !important;
       	margin: 3vw !important;
-      	line-height: 8vw;
-      	vertical-align: bottom;
+      	vertical-align: 3.2vw;
+      	line-height: 0;
       	display: inline;
       }
 

@@ -80,7 +80,7 @@
 			}
 
 			#panorama img {
-/*
+				/*
 				top: 0;
 */
 				height: 100%;
@@ -100,6 +100,7 @@
 
 			#panorama video {
 				width: 960px;
+        margin-top: calc(50vh - 370px);
 			}
 
 			.img_over_left {
@@ -124,8 +125,7 @@
 				background: rgba( 255, 0, 0, 0.5);
 */
 			}
-
-				/*
+			/*
 			.img_over_left:hover {
 				cursor: url(images/sys/left_r.png), w-resize !important;
 			}
@@ -143,7 +143,7 @@
 			#panorama p {
 				font-family: lucida sans unicode, lucida grande, sans-serif;
 				color: #bc123a;
-				bottom: 100px;
+				bottom: 76px;
 				height: 24px;
 				position: fixed;
 				background: rgba(243, 239, 228, 0.75);
@@ -182,10 +182,10 @@
 			};
 
 			var out_click = function(e) {
-				console.log(e.target.className);
+				//console.log(e.target.className);
 				if (e.target.tagName.toLowerCase() == 'body' || e.target.id == 'panorama' || e.target.tagName.toLowerCase() == 'img' || e.target.id == 'transp_head' || e.target.className == 'fa fa-times-thin') {
 					this.location.href = 'empty.html';
-					console.log('now please close this iframe', this.location.href);
+					//console.log('now please close this iframe', this.location.href);
 				}
 			};
 
@@ -314,6 +314,8 @@
 
 							}
 
+							panorama.addEventListener('scroll', reset_autoscroll, false);
+
 							document.addEventListener('mousemove', function(e) {
 								handleMouse(e, en);
 							}, false);
@@ -329,12 +331,24 @@
 
 			document.addEventListener('DOMContentLoaded', img_load, false);
 
+			var reset_autoscroll = function() {
+
+				setTimeout(function() {
+
+					dir = 0;
+					//x = e.clientX;
+					console.log('oki, done');
+
+				}, 100);
+
+			};
+
 
 			var x;
 			var panorama;
 			var dir = 0;
 
-			function handleMouse(e, en) {
+			var handleMouse = function(e, en) {
 
 				if (!en) {
 					return;
@@ -354,7 +368,7 @@
 
 				// Store current position
 				x = e.clientX;
-			}
+			};
 		</script>
 
 

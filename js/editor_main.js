@@ -1,8 +1,6 @@
-			var folders, to_edit, to_edit_folder, to_edit_image, swap, save_image_presets, TextEditor;
+			var folders, to_edit, to_edit_folder, to_edit_image, swap, save_image_presets, TextEditor, all_search;
 
-			/*
-						var uploadtimerId, upseconds = 0;
-			*/
+			var largest = 0;
 
 			var disable_img_over = false;
 
@@ -298,26 +296,340 @@
 
 			/******           validate           ******/
 
+			//			var input_attributes = ' type="text" onkeyup="validate(this,this.parentNode.nextSibling)"';
+
+
 			var validate = function(t, b) {
 				var value = (t.tagName.toLowerCase() == 'input') ? t.value : t.innerHTML;
+				console.log(value, 'i validate');
+				t.style.background = '#fff';
+				t.removeAttribute('title');
+				t.style.textDecoration = 'none';
+
+
 				if (value == '' || value == ' ' || value.indexOf('eval(') != -1) {
+					t.style.background = 'rgb(250, 161, 179)';
+					t.style.textDecoration = 'line-through';
+
 					b.classList.remove('button_valid');
+					b.nextSibling.classList.remove('button_valid');
+
+					t.title = 'Error: empty, space or eval';
+
+					t.value = '';
+
+					t.addEventListener("blur", function() {
+						remove_search_item(this.nextSibling);
+					}, false);
+
 					//console.log('nicht akzeptiert', value.indexOf('"'));
 					//console.log(value.charAt(value.indexOf('"') - 6), value.charAt(value.indexOf('"') - 5), value.charAt(value.indexOf('"') - 4), value.charAt(value.indexOf('"') - 3), value.charAt(value.indexOf('"') - 2), value.charAt(value.indexOf('"') - 1), value.charAt(value.indexOf('"')));
+					return;
 				}
-				console.log(value, 'i validate');
+
+				var entry_kind = t.parentNode.id.replace('_display', '');
+
+				if (entry_kind == 'search') {
+					//console.log('index is: ' + all_search.indexOf(value + ',' + to_edit.name));
+					console.log(to_edit.name);
+					console.log(all_search);
+					if (all_search.term.indexOf(value) != -1) {
+						t.style.background = 'rgb(250, 161, 179)';
+						t.style.textDecoration = 'line-through';
+
+						b.classList.remove('button_valid');
+						b.nextSibling.classList.remove('button_valid');
+
+						t.title = 'Das Stichwort ' + value + ' existiert leider bereits\nin ' + all_search.position[all_search.term.indexOf(value)] + '!';
+
+						t.addEventListener("blur", function() {
+							remove_search_item(this.nextSibling);
+						}, false);
+
+						return;
+					}
+				}
+				/*
+
+								switch (entry_kind) {
+				*/
+
 				b.classList.add('button_valid');
+				b.nextSibling.classList.add('button_valid');
+
+			};
+
+
+			/******           remove Ausstellungsort           ******/
+
+			//<i class="fa fa-minus-circle" aria-hidden="true" onclick="remove_Ausstellungsort(this)"></i>
+
+			var remove_Ausstellungsort = function(t) {
+
+				/*
+								if (t.nextSibling.nextSibling.className == 'fa fa-plus-circle add-raw') {
+									alert('Mindestens ein Ausstellungsort muss definiert sein!');
+									return;
+								}
+				*/
+
+				t.parentNode.nextSibling.classList.add('button_valid');
+				t.parentNode.nextSibling.nextSibling.classList.add('button_valid');
+
+				var this_key = t.previousSibling;
+
+				var els = document.getElementById('Ausstellungsort_display');
+
+				console.log(els.getElementsByTagName('input').length);
+
+				var els_count = els.children.length;
+
+				var first_remove = index_in_parent(this_key) - 6;
+
+				for (var i = first_remove; i < els_count; i++) {
+					if (els.children[first_remove] && els.children[first_remove].className != 'fa fa-minus-circle') {
+						els.removeChild(els.children[first_remove]);
+					} else {
+						break;
+					}
+				}
+
+				els.removeChild(t.nextSibling);
+
+				els.removeChild(t);
+
+				if (els.getElementsByClassName('fa-minus-circle').length == 1) {
+
+					els.removeChild(els.getElementsByClassName('fa-minus-circle')[0]);
+
+				}
+
+			};
+
+
+			/******           add Ausstellungsort           ******/
+
+			var add_Ausstellungsort = function(t) {
+
+				//			var input_attributes = ' type="text" onkeyup="validate(this,this.parentNode.nextSibling)"';
+
+				/*
+
+													temp_ih = '<input' + input_attributes + ' value="" />' + 
+				                            '<input' + input_attributes + ' value="" />' +
+														        '<input' + input_attributes + ' value="" />' + 
+				                            '<input' + input_attributes + ' value="" />' + 
+				                            '<input' + input_attributes + ' value="" />' + 
+				                            '<input' + input_attributes + ' value="" />' + 
+				                            '<input' + input_attributes + ' value="" /><br/>';
+
+				*/
+
+				//console.log(t.nextSibling.tagName);
+
+				//console.log(t.nextSibling.tagName);
+
+				var newItem;
+
+				if (document.getElementById('Ausstellungsort_display').getElementsByClassName('fa-minus-circle').length < 1) {
+
+					newItem = document.createElement("i");
+
+					newItem.className = "fa fa-minus-circle";
+
+					newItem.setAttribute("aria-hidden", "true");
+
+					newItem.setAttribute("onclick", "remove_Ausstellungsort(this)");
+
+					document.getElementById('Ausstellungsort_display').insertBefore(newItem, t.previousSibling);
+
+				}
+
+				for (var i = 0; i < 7; i++) {
+					newItem = document.createElement("input");
+
+					newItem.type = "text";
+
+					newItem.setAttribute("onkeyup", "validate(this,this.parentNode.nextSibling)");
+
+					newItem.value = "";
+
+					document.getElementById('Ausstellungsort_display').insertBefore(newItem, t);
+				}
+
+				newItem = document.createElement("i");
+
+				newItem.className = "fa fa-minus-circle";
+
+				newItem.setAttribute("aria-hidden", "true");
+
+				newItem.setAttribute("onclick", "remove_Ausstellungsort(this)");
+
+				document.getElementById('Ausstellungsort_display').insertBefore(newItem, t);
+
+				newItem = document.createElement("br");
+
+				document.getElementById('Ausstellungsort_display').insertBefore(newItem, t);
+
+				/*
+								var newItem = document.createElement("input");
+
+								newItem.type = "text";
+
+								newItem.className = "keyfield";
+
+								newItem.setAttribute("onkeyup", "validate(this,this.parentNode.nextSibling)");
+
+								newItem.value = "";
+
+								document.getElementById('Impressum_display').insertBefore(newItem, t);
+
+								newItem = document.createElement("i");
+
+								newItem.className = "fa fa-minus-circle";
+
+								newItem.setAttribute("aria-hidden", "true");
+
+								newItem.setAttribute("onclick", "remove_impressum_key(this)");
+
+								document.getElementById('Impressum_display').insertBefore(newItem, t);
+
+								newItem = document.createElement("input");
+
+								newItem.type = "text";
+
+								newItem.setAttribute("onkeyup", "validate(this,this.parentNode.nextSibling)");
+
+								newItem.value = "";
+
+								document.getElementById('Impressum_display').insertBefore(newItem, t);
+
+								newItem = document.createElement("i");
+
+								newItem.className = "fa fa-minus-circle";
+
+								newItem.setAttribute("aria-hidden", "true");
+
+								newItem.setAttribute("onclick", "remove_impressum_value(this)");
+
+								document.getElementById('Impressum_display').insertBefore(newItem, t);
+
+								newItem = document.createElement("i");
+
+								newItem.className = "fa fa-plus-circle";
+
+								newItem.setAttribute("aria-hidden", "true");
+
+								newItem.setAttribute("onclick", "add_impressum_value(this)");
+
+								document.getElementById('Impressum_display').insertBefore(newItem, t);
+
+								newItem = document.createElement("br");
+
+								document.getElementById('Impressum_display').insertBefore(newItem, t);
+				*/
 			};
 
 
 			/******           remove impressum key           ******/
 
 			var remove_impressum_key = function(t) {
-				console.log(t.previousSibling.className);
-				/*
-								document.getElementById('Impressum_display').removeChild(t.previousSibling);
-								document.getElementById('Impressum_display').removeChild(t);
-				*/
+
+				t.parentNode.nextSibling.classList.add('button_valid');
+				t.parentNode.nextSibling.nextSibling.classList.add('button_valid');
+
+				var this_key = t.nextSibling;
+
+				var els = document.getElementById('Impressum_display');
+
+				var els_count = els.children.length;
+
+				var first_remove = index_in_parent(this_key);
+
+				for (var i = first_remove; i < els_count; i++) {
+					if (els.children[first_remove] && els.children[first_remove].className != 'keyfield' && els.children[first_remove].className != 'fa fa-plus-circle add-raw') {
+						els.removeChild(els.children[first_remove]);
+					} else {
+						break;
+					}
+				}
+
+				els.removeChild(t.previousSibling);
+				els.removeChild(t);
+
+			};
+
+
+			/******           add impressum key           ******/
+
+			var add_impressum_key = function(t) {
+
+				var newItem = document.createElement("input");
+
+				newItem.type = "text";
+
+				newItem.className = "keyfield";
+
+				newItem.setAttribute("onkeyup", "validate(this,this.parentNode.nextSibling)");
+
+				newItem.value = "";
+
+				document.getElementById('Impressum_display').insertBefore(newItem, t);
+
+				newItem = document.createElement("i");
+
+				newItem.className = "fa fa-minus-circle";
+
+				newItem.setAttribute("aria-hidden", "true");
+
+				newItem.setAttribute("onclick", "remove_impressum_key(this)");
+
+				document.getElementById('Impressum_display').insertBefore(newItem, t);
+
+				newItem = document.createElement("input");
+
+				newItem.type = "text";
+
+				newItem.setAttribute("onkeyup", "validate(this,this.parentNode.nextSibling)");
+
+				newItem.value = "";
+
+				document.getElementById('Impressum_display').insertBefore(newItem, t);
+
+				newItem = document.createElement("i");
+
+				newItem.className = "fa fa-link";
+
+				newItem.setAttribute("aria-hidden", "true");
+
+				newItem.setAttribute("onclick", "sh_link_editor(this.previousSibling)");
+
+				document.getElementById('Impressum_display').insertBefore(newItem, t);
+
+				newItem = document.createElement("i");
+
+				newItem.className = "fa fa-minus-circle";
+
+				newItem.setAttribute("aria-hidden", "true");
+
+				newItem.setAttribute("onclick", "remove_impressum_value(this)");
+
+				document.getElementById('Impressum_display').insertBefore(newItem, t);
+
+				newItem = document.createElement("i");
+
+				newItem.className = "fa fa-plus-circle";
+
+				newItem.setAttribute("aria-hidden", "true");
+
+				newItem.setAttribute("onclick", "add_impressum_value(this)");
+
+				document.getElementById('Impressum_display').insertBefore(newItem, t);
+
+				newItem = document.createElement("br");
+
+				document.getElementById('Impressum_display').insertBefore(newItem, t);
+
 			};
 
 
@@ -325,19 +637,93 @@
 
 			var remove_impressum_value = function(t) {
 				console.log(t.nextSibling.tagName);
-				if (t.previousSibling.previousSibling.previousSibling.className != 'keyfield' || (t.nextSibling && t.nextSibling.tagName.toLowerCase() != 'br')) {
+				if (t.previousSibling.previousSibling.previousSibling.previousSibling.className != 'keyfield' || (t.nextSibling && t.nextSibling.tagName.toLowerCase() != 'i')) {
 					t.parentNode.nextSibling.classList.add('button_valid');
+					t.parentNode.nextSibling.nextSibling.classList.add('button_valid');
+					document.getElementById('Impressum_display').removeChild(t.previousSibling.previousSibling);
 					document.getElementById('Impressum_display').removeChild(t.previousSibling);
 					document.getElementById('Impressum_display').removeChild(t);
 				}
 			};
 
 
+			/******           add impressum value           ******/
+
+			var add_impressum_value = function(t) {
+
+				console.log(t.nextSibling.tagName);
+
+				var newItem = document.createElement("input");
+
+				newItem.type = "text";
+
+				newItem.setAttribute("onkeyup", "validate(this,this.parentNode.nextSibling)");
+
+				newItem.value = "";
+
+				document.getElementById('Impressum_display').insertBefore(newItem, t);
+
+				newItem = document.createElement("i");
+
+				newItem.className = "fa fa-link";
+
+				newItem.setAttribute("aria-hidden", "true");
+
+				newItem.setAttribute("onclick", "sh_link_editor(this.previousSibling)");
+
+				document.getElementById('Impressum_display').insertBefore(newItem, t);
+
+				newItem = document.createElement("i");
+
+				newItem.className = "fa fa-minus-circle";
+
+				newItem.setAttribute("aria-hidden", "true");
+
+				newItem.setAttribute("onclick", "remove_impressum_value(this)");
+
+				document.getElementById('Impressum_display').insertBefore(newItem, t);
+
+			};
+
+
 			/******           remove search item           ******/
 
 			var remove_search_item = function(t) {
+
+				var parent_first_input = document.getElementById('search_display').getElementsByTagName('input')[0]
+
 				document.getElementById('search_display').removeChild(t.previousSibling);
 				document.getElementById('search_display').removeChild(t);
+				console.log(parent_first_input, document.getElementById('search_display').nextSibling);
+				validate(parent_first_input, document.getElementById('search_display').nextSibling);
+
+			};
+
+
+			/******           add search item           ******/
+
+			var add_search_item = function(t) {
+
+				var newItem = document.createElement("input");
+
+				newItem.type = "text";
+
+				newItem.setAttribute("onkeyup", "validate(this,this.parentNode.nextSibling)");
+
+				newItem.value = "";
+
+				document.getElementById('search_display').insertBefore(newItem, t);
+
+				newItem = document.createElement("i");
+
+				newItem.className = "fa fa-minus-circle";
+
+				newItem.setAttribute("aria-hidden", "true");
+
+				newItem.setAttribute("onclick", "remove_search_item(this)");
+
+				document.getElementById('search_display').insertBefore(newItem, t);
+
 			};
 
 
@@ -357,11 +743,30 @@
 			};
 
 
+			/******           revert           ******/
+
+			var revert = function(t) {
+
+				var entry_kind = t.previousSibling.previousSibling.id.replace('_display', '');
+
+
+				console.log(to_edit[entry_kind]);
+
+				fill_cat(entry_kind);
+
+
+				t.classList.remove('button_valid');
+				t.previousSibling.classList.remove('button_valid');
+
+			};
+
+
 			/******           replace entry           ******/
 
 			var save_existing = function(t) {
 
 				t.classList.remove('button_valid');
+				t.nextSibling.classList.remove('button_valid');
 
 				/******           overlay (disable other precess)           ******/
 				document.getElementById('process_overlay').classList.add('process_overlay_dark');
@@ -374,7 +779,6 @@
 						/* update table */
 						var lks = document.getElementById('all_cells').getElementsByClassName('lk');
 						for (var i = 0; i < lks.length; i++) {
-							//console.log('lks content: ', lks[i].innerHTML);
 							if (lks[i].innerHTML.indexOf('<i class="fa fa-minus-circle" aria-hidden="true" onclick="remove_entry(this)"></i>') != -1) {
 								lks[i].innerHTML = to_edit[entry_kind] + '<i class="fa fa-minus-circle" aria-hidden="true" onclick="remove_entry(this)"></i>';
 							}
@@ -388,9 +792,27 @@
 						var a = [];
 						var els = t.previousSibling.getElementsByTagName('input');
 						for (var i = 0; i < els.length; i++) {
-							a.push(els[i].value);
+							//console.log('title: ' + els[i].title.length);
+							//if (els[i].value != to_edit.comp_name && els[i].value != to_edit.name.toLowerCase().replace(/ /g, '') && els[i].title.length == 0) {
+							if (els[i].value != to_edit.comp_name && els[i].value != to_edit.name.toLowerCase().replace(/ /g, '')) {
+								a.push(els[i].value);
+							}
 						}
 						to_edit[entry_kind] = a;
+
+						/*    update all_search */
+
+						all_search = {
+							"term": [],
+							"position": []
+						};
+
+						for (var j = 0; j < largest; j++) {
+							make_all_search(j);
+						}
+
+						/*    end update all_search */
+
 						break;
 					case 'text':
 						to_edit[entry_kind] = t.previousSibling.innerHTML;
@@ -421,9 +843,23 @@
 					case 'Impressum':
 						var a = {};
 						var els = t.previousSibling.getElementsByTagName('input');
-						for (var i = 0; i < els.length; i += 2) {
-							a[els[i].value] = els[i + 1].value;
+						var temp_key = 0;
+
+						for (var i = 0; i < els.length; i++) {
+							if (els[i].className == 'keyfield') {
+								temp_key = i;
+								a[els[i].value] = [];
+							} else {
+								//store_link
+								/*
+								<a href='http://www.josnaepflin.ch/index.html' target='_blank'>Jos Näpflin, Zürich</a>
+								*/
+								var link_or_text = (els[i].getAttribute("store_link") != null) ? "<a href='" + els[i].getAttribute("store_link") + "' target='_blank'>" + els[i].value + "</a>" : els[i].value;
+
+								a[els[temp_key].value].push(link_or_text);
+							}
 						}
+
 						to_edit.epilog[entry_kind] = a;
 						break;
 					case 'Ausstellungskonzept':
@@ -459,6 +895,164 @@
 
 			/******         end replace entry         ******/
 
+			var input_attributes = ' type="text" onkeyup="validate(this,this.parentNode.nextSibling)"';
+
+
+			var fill_cat = function(c) {
+
+				var el = document.getElementById(c + '_display');
+
+				switch (c) {
+
+					/******           main data           ******/
+
+					case 'name':
+
+						el.value = to_edit.name;
+
+						break;
+
+					case 'prolog':
+
+						el.value = to_edit.prolog.replace(/<br\s*\/?>/mg, "\n");
+
+						break;
+
+					case 'search':
+
+						temp_ih = '<span>das erste Stichwort wird aus dem Namen / Titel generiert</span><span>fügen Sie bisher auf der Seite nicht vorkommende, passende Stichworte hinzu ...</span><br/>';
+
+						//		add comp_name
+
+						temp_ih += '<input' + input_attributes + ' value="' + to_edit.comp_name + '" />';
+
+						if (to_edit.name.toLowerCase().replace(/ /g, '') != to_edit.comp_name) {
+
+							//		add name
+
+							temp_ih += '<input' + input_attributes + ' value="' + to_edit.name.toLowerCase().replace(/ /g, '') + '" />';
+
+						}
+
+						for (var j = 0; j < to_edit.search.length; j++) {
+							temp_ih += '<input' + input_attributes + ' value="' + to_edit.search[j] + '" /><i class="fa fa-minus-circle" aria-hidden="true" onclick="remove_search_item(this)"></i>';
+						}
+
+						temp_ih += '<i class="fa fa-plus-circle" aria-hidden="true" onclick="add_search_item(this)"></i>';
+
+						el.innerHTML = temp_ih;
+
+						break;
+
+					case 'text':
+
+						el.innerHTML = to_edit.text; //.replace(/<br\s*\/?>/mg, "\n");
+						add_text_editor_funcs(el);
+
+						break;
+
+					case 'time':
+
+						if (typeof to_edit.time !== 'undefined') {
+							temp_ih = '<input' + input_attributes + ' value="' + to_edit.time.from[0] + '" />' + '<input' + input_attributes + ' value="' + to_edit.time.from[1] + '" />' + '<input' + input_attributes + ' value="' +
+								to_edit.time.from[2] + '" />';
+							if (typeof to_edit.time.till !== 'undefined') {
+								temp_ih += ' bis ' + '<input' + input_attributes + ' value="' + to_edit.time.till[0] + '" />' + '<input' + input_attributes + ' value="' + to_edit.time.till[1] + '" />' + '<input' + input_attributes +
+									' value="' + to_edit.time.till[2] +
+									'" />';
+							}
+						}
+
+						el.innerHTML = temp_ih;
+
+						break;
+
+						/******           epilog data           ******/
+
+					case 'Ausstellungsort':
+						temp_ih = '<span>von / bis (wenn mehrere Daten)</span><span>Veranstaltungsort</span><span>Strasse und Hausnummer</span><span>Postleitzahl und Ort</span><span>Land (wenn nicht Schweiz)</span><span>Webseite</span><span>GoogleMaps kurz-url</span>';
+						if (to_edit.epilog && to_edit.epilog.Ausstellungsort && Array.isArray(to_edit.epilog.Ausstellungsort)) {
+							for (var j = 0; j < to_edit.epilog.Ausstellungsort.length; j++) {
+								temp_ih += '<input' + input_attributes + ' value="' + to_edit.epilog.Ausstellungsort[j][0] + '" />' + '<input' + input_attributes + ' value="' + to_edit.epilog.Ausstellungsort[j][1] +
+									'" />' +
+									'<input' + input_attributes + ' value="' + to_edit.epilog.Ausstellungsort[j][2] + '" />' + '<input' + input_attributes + ' value="' + to_edit.epilog.Ausstellungsort[j][3] + '" />' + '<input' + input_attributes + ' value="' + to_edit.epilog.Ausstellungsort[
+										j][4] + '" />' +
+									'<input' + input_attributes + ' value="' + to_edit.epilog.Ausstellungsort[j][5] + '" />' + '<input' + input_attributes + ' value="' + to_edit.epilog.Ausstellungsort[j][6] + '" />';
+
+								temp_ih += (to_edit.epilog.Ausstellungsort.length > 1) ? '<i class="fa fa-minus-circle" aria-hidden="true" onclick="remove_Ausstellungsort(this)"></i><br/>' : '<br/>';
+
+							}
+
+
+						} else {
+
+							if (to_edit.epilog && to_edit.epilog.Projektort && Array.isArray(to_edit.epilog.Projektort)) {
+								for (var j = 0; j < to_edit.epilog.Projektort.length; j++) {
+									temp_ih += '<input' + input_attributes + ' value="' + to_edit.epilog.Projektort[j][0] + '" />' + '<input' + input_attributes + ' value="' + to_edit.epilog.Projektort[j][1] + '" />' +
+										'<input' + input_attributes + ' value="' +
+										to_edit.epilog.Projektort[j][2] + '" />' + '<input' + input_attributes + ' value="' + to_edit.epilog.Projektort[j][3] + '" />' + '<input' + input_attributes + ' value="' + to_edit.epilog.Projektort[j][4] + '" />' + '<input' +
+										input_attributes + ' value="' + to_edit.epilog.Projektort[
+											j][5] + '" />' + '<input' + input_attributes + ' value="' + to_edit.epilog.Projektort[j][6] + '" />';
+
+									temp_ih += (to_edit.epilog.Projektort.length > 1) ? '<i class="fa fa-minus-circle" aria-hidden="true" onclick="remove_Ausstellungsort(this)"></i><br/>' : '<br/>';
+
+								}
+							}
+						}
+
+						temp_ih += '<i class="fa fa-plus-circle add-raw" aria-hidden="true" onclick="add_Ausstellungsort(this)"></i>';
+
+						el.innerHTML = temp_ih;
+
+						break;
+
+					case 'Impressum':
+
+						for (var key in to_edit.epilog.Impressum) {
+							temp_ih += '<input' + input_attributes + ' value="' + key + '" class="keyfield" /><i class="fa fa-minus-circle" aria-hidden="true" onclick="remove_impressum_key(this)"></i>';
+							for (var j = 0; j < to_edit.epilog.Impressum[key].length; j++) {
+								temp_ih += '<input' + input_attributes + ' value="' + to_edit.epilog.Impressum[key][j] + '" /><i class="fa fa-minus-circle" aria-hidden="true" onclick="remove_impressum_value(this)"></i>';
+							}
+							temp_ih += '<i class="fa fa-plus-circle" aria-hidden="true" onclick="add_impressum_value(this)"></i>';
+							temp_ih += '<br/>';
+						}
+
+						temp_ih += '<i class="fa fa-plus-circle add-raw" aria-hidden="true" onclick="add_impressum_key(this)"></i>';
+
+						el.innerHTML = temp_ih;
+
+						add_inputfield_editor_funcs(el);
+
+						break;
+
+					case 'Ausstellungskonzept':
+
+						el.innerHTML = to_edit.epilog.Ausstellungskonzept;
+						add_text_editor_funcs(el);
+
+						break;
+
+						/*					case '':
+												break;
+						*/
+
+						/*					case '':
+												break;
+						*/
+					default:
+
+						alert('no default fill_cat defined');
+
+				}
+
+				temp_ih = '';
+
+				el.nextSibling.classList.remove('button_valid');
+				el.nextSibling.nextSibling.classList.remove('button_valid');
+
+			};
+
+
 
 
 			var edit = function(t) {
@@ -485,118 +1079,59 @@
 
 				observe_actual_chapter();
 
-				var input_attributes = ' type="text" onkeyup="validate(this,this.parentNode.nextSibling)"';
 
 				/******           main data           ******/
 
-				document.getElementById('name_display').value = to_edit.name;
+				fill_cat('name');
 
-				document.getElementById('prolog_display').value = to_edit.prolog.replace(/<br\s*\/?>/mg, "\n");
+				fill_cat('prolog');
 
 				/******           search           ******/
 
 				if (to_edit.search && Array.isArray(to_edit.search)) {
 
-					document.getElementById('search_display').innerHTML = '<span>das erste Stichwort wird aus dem Namen / Titel generiert</span><span>fügen Sie bisher auf der Seite nicht vorkommende, passende Stichworte hinzu ...</span><br/>';
+					fill_cat('search');
 
-					//		add comp_name
-
-					document.getElementById('search_display').innerHTML += '<input' + input_attributes + ' value="' + to_edit.comp_name + '" />';
-
-					if (to_edit.name.toLowerCase().replace(/ /g, '') != to_edit.comp_name) {
-
-						//		add name
-
-						document.getElementById('search_display').innerHTML += '<input' + input_attributes + ' value="' + to_edit.name.toLowerCase().replace(/ /g, '') + '" />';
-
-					}
-
-					for (var j = 0; j < to_edit.search.length; j++) {
-						document.getElementById('search_display').innerHTML += '<input' + input_attributes + ' value="' + to_edit.search[j] + '" /><i class="fa fa-minus-circle" aria-hidden="true" onclick="remove_search_item(this)"></i>';
-					}
 				}
 
 				/******           text           ******/
 
-				document.getElementById('text_display').innerHTML = to_edit.text; //.replace(/<br\s*\/?>/mg, "\n");
-				add_text_editor_funcs(document.getElementById('text_display'));
+				fill_cat('text');
 
 				/******           time           ******/
 
-				document.getElementById('time_display').innerHTML = '';
-				if (typeof to_edit.time !== 'undefined') {
-					document.getElementById('time_display').innerHTML = '<input' + input_attributes + ' value="' + to_edit.time.from[0] + '" />' + '<input' + input_attributes + ' value="' + to_edit.time.from[1] + '" />' + '<input' + input_attributes + ' value="' +
-						to_edit.time.from[2] + '" />';
-					if (typeof to_edit.time.till !== 'undefined') {
-						document.getElementById('time_display').innerHTML += ' bis ' + '<input' + input_attributes + ' value="' + to_edit.time.till[0] + '" />' + '<input' + input_attributes + ' value="' + to_edit.time.till[1] + '" />' + '<input' + input_attributes +
-							' value="' + to_edit.time.till[2] +
-							'" />';
-					}
-				} else {
-					document.getElementById('time_display').value = '';
-				}
+				fill_cat('time');
 
 				/******           epilog data           ******/
 
 				/******           Ausstellungsort           ******/
 
-				document.getElementById('Ausstellungsort_display').innerHTML =
-					'<span>von / bis (wenn mehrere Daten)</span><span>Veranstaltungsort</span><span>Strasse und Hausnummer</span><span>Postleitzahl und Ort</span><span>Land (wenn nicht Schweiz)</span><span>Webseite</span><span>GoogleMaps kurz-url</span>';
-				if (to_edit.epilog && to_edit.epilog.Ausstellungsort && Array.isArray(to_edit.epilog.Ausstellungsort)) {
-					//document.getElementById('Ausstellungsort_display').innerHTML +=
-					for (var j = 0; j < to_edit.epilog.Ausstellungsort.length; j++) {
-						document.getElementById('Ausstellungsort_display').innerHTML += '<input' + input_attributes + ' value="' + to_edit.epilog.Ausstellungsort[j][0] + '" />' + '<input' + input_attributes + ' value="' + to_edit.epilog.Ausstellungsort[j][1] +
-							'" />' +
-							'<input' + input_attributes + ' value="' + to_edit.epilog.Ausstellungsort[j][2] + '" />' + '<input' + input_attributes + ' value="' + to_edit.epilog.Ausstellungsort[j][3] + '" />' + '<input' + input_attributes + ' value="' + to_edit.epilog.Ausstellungsort[
-								j][4] + '" />' +
-							'<input' + input_attributes + ' value="' + to_edit.epilog.Ausstellungsort[j][5] + '" />' + '<input' + input_attributes + ' value="' + to_edit.epilog.Ausstellungsort[j][6] + '" /><br/>';
-					}
-
-				} else {
-
-					if (to_edit.epilog && to_edit.epilog.Projektort && Array.isArray(to_edit.epilog.Projektort)) {
-						for (var j = 0; j < to_edit.epilog.Projektort.length; j++) {
-							document.getElementById('Ausstellungsort_display').innerHTML += '<input' + input_attributes + ' value="' + to_edit.epilog.Projektort[j][0] + '" />' + '<input' + input_attributes + ' value="' + to_edit.epilog.Projektort[j][1] + '" />' +
-								'<input' + input_attributes + ' value="' +
-								to_edit.epilog.Projektort[j][2] + '" />' + '<input' + input_attributes + ' value="' + to_edit.epilog.Projektort[j][3] + '" />' + '<input' + input_attributes + ' value="' + to_edit.epilog.Projektort[j][4] + '" />' + '<input' +
-								input_attributes + ' value="' + to_edit.epilog.Projektort[
-									j][5] + '" />' + '<input' + input_attributes + ' value="' + to_edit.epilog.Projektort[j][6] + '" /><br/>';
-						}
-					}
-				}
+				fill_cat('Ausstellungsort');
 
 				/******           Impressum           ******/
 
-				//document.getElementById('Impressum_display').innerHTML = '';
-				//var temp_ih = '';
-
 				if (to_edit.epilog && to_edit.epilog.Impressum) {
-					for (var key in to_edit.epilog.Impressum) {
-						temp_ih += '<input' + input_attributes + ' value="' + key + '" class="keyfield" /><i class="fa fa-minus-circle" aria-hidden="true" onclick="remove_impressum_key(this)"></i>';
-						for (var j = 0; j < to_edit.epilog.Impressum[key].length; j++) {
-							temp_ih += '<input' + input_attributes + ' value="' + to_edit.epilog.Impressum[key][j] + '" /><i class="fa fa-minus-circle" aria-hidden="true" onclick="remove_impressum_value(this)"></i>';
-						}
-						temp_ih += '<br/>';
-						//document.getElementById('Impressum_display').innerHTML += '<input' + input_attributes + ' value="' + key + '" /><input' + input_attributes + ' value="' + to_edit.epilog.Impressum[key] + '" /><br/>';
-					}
 
-					document.getElementById('Impressum_display').innerHTML = temp_ih;
-					temp_ih = '';
+					fill_cat('Impressum');
 
 				}
 
 				/******           Ausstellungskonzept           ******/
 
 				document.getElementById('Ausstellungskonzept_display').innerHTML = '';
+
 				if (to_edit.epilog && to_edit.epilog.Ausstellungskonzept) {
-					document.getElementById('Ausstellungskonzept_display').innerHTML = to_edit.epilog.Ausstellungskonzept;
-					add_text_editor_funcs(document.getElementById('Ausstellungskonzept_display'));
+
+					fill_cat('Ausstellungskonzept');
+
 				}
 
 				/******           Images           ******/
 
 				document.getElementById('image_selector').style.display = 'none';
+
 				temp_ih = '<img src="images/mobile/' + to_edit_folder + '/' + to_edit.comp_name + '.jpg" />';
+
 				load_additional_images(1);
 
 				/******           done, now make editor_fields_container visible          ******/
@@ -639,6 +1174,78 @@
 
 			};
 
+			/*******    inputfield editor functions   *******/
+
+			var add_inputfield_editor_funcs = function(el) {
+
+				console.log(el.id);
+
+				//if (el.id == 'Ausstellungskonzept_display') {
+				console.log('a s length: ', el.querySelectorAll('a').length);
+
+				var as = el.querySelectorAll('input');
+
+				var newItem;
+
+				for (var i = 0; i < as.length; i++) {
+
+					if (as[i].className != 'keyfield') {
+
+						if (as[i].value.indexOf('http://') != -1 || as[i].value.indexOf('https://') != -1) {
+
+
+							newItem = document.createElement("div");
+
+							newItem.innerHTML = as[i].value;
+
+							as[i].setAttribute("store_link", newItem.children[0].href);
+
+							as[i].value = newItem.children[0].innerHTML;
+
+							newItem.removeChild(newItem.children[0]);
+
+							var rest = newItem.innerHTML;
+
+							if (rest != '') {
+
+								var meter = document.createElement("span");
+
+								meter.innerHTML = as[i].value;
+
+								meter.className = 'meter';
+
+								document.getElementById("header").appendChild(meter);
+
+								as[i].style.background = 'linear-gradient(to right, rgba(191, 231, 153, 0.9) ,rgba(191, 231, 153, 0.9) ' + meter.offsetWidth + 'px, #fff ' + meter.offsetWidth + 'px)';
+
+								document.getElementById("header").removeChild(meter);
+
+							} else {
+
+								as[i].style.background = 'rgba(191, 231, 153, 0.9)';
+
+							}
+
+							as[i].value += rest;
+
+						}
+
+						newItem = document.createElement("i");
+
+						newItem.className = "fa fa-link";
+
+						newItem.setAttribute("aria-hidden", "true");
+
+						newItem.setAttribute("onclick", "sh_link_editor(this.previousSibling)");
+
+						document.getElementById('Impressum_display').insertBefore(newItem, as[i].nextSibling);
+
+					}
+				}
+				//}
+
+			};
+
 			/*******    textparts who have allready onclick   *******/
 
 
@@ -655,10 +1262,20 @@
 			};
 
 			var sh_link_editor = function(t) {
+
+
+				if (t.tagName.toLowerCase() == 'input') {
+					TextEditor.ih_preset = t.getAttribute("store_link");
+					console.log(TextEditor.ih_preset);
+				}
+
+				console.log(t.value);
 				var link_target = (TextEditor.ih_preset != '') ? TextEditor.ih_preset : t.onclick;
-				var ih = '<label>Link Text</label><label>Link Ziel</label><br/><input value="' + t.innerHTML + '"/><input value="' + link_target + '"/><i class="fa fa-times-circle" aria-hidden="true" onclick="go_TextEditor()"></i>';
+				var ih = '<label>Link Text</label><label>Link Ziel</label><br/><input value="'
+				ih += (t.tagName.toLowerCase() == 'input') ? t.value : t.innerHTML;
+				ih += '"/><input value="' + link_target + '"/><i class="fa fa-times-circle" aria-hidden="true" onclick="go_TextEditor()"></i>';
 				TextEditor.ih_preset = '';
-				come_TextEditor(ih, t, [t.parentNode.offsetLeft, t.parentNode.offsetTop - 132]);
+				come_TextEditor(ih, t, [t.parentNode.offsetLeft, t.parentNode.offsetTop]);
 			};
 
 			var go_TextEditor = function(tx, t, p) {
@@ -687,10 +1304,12 @@
 
 
 			var load_additional_images = function(c) {
-				var try_img = new Image();
-				try_img.count = c;
-				try_img.onerror = function() {
 
+				var try_img = new Image();
+
+				try_img.count = c;
+
+				try_img.onerror = function() {
 
 					temp_ih += '<i class="fa fa-plus-circle add_image_but" aria-hidden="true" onclick="add_image(this)"></i>';
 
@@ -708,13 +1327,28 @@
 					//document.getElementById('process_overlay').classList.remove('process_overlay_dark');
 
 				};
+
 				try_img.onload = function() {
 					temp_ih += '<img ondrop="drop(event)" ondragover="allowDrop(event)" src="' + try_img.src + '" />';
 					var c = this.count;
 					c++;
 					load_additional_images(c);
 				};
+
 				try_img.src = 'images/mobile/' + to_edit_folder + '/' + to_edit.comp_name + '_' + c + '.jpg?zuza' + Math.floor(Math.random() * (1000) + 1);
+			};
+
+			var make_all_search = function(p) {
+
+				for (var i = 0; i < folders.length; i++) {
+					if (folders[i].data[p] && folders[i].data[p].search) {
+						for (var y = 0; y < folders[i].data[p].search.length; y++) {
+							all_search.term.push(folders[i].data[p].search[y]);
+							all_search.position.push(folders[i].data[p].name);
+						}
+					}
+				}
+
 			};
 
 			var getvals = function() {
@@ -727,8 +1361,6 @@
 						if (xmlhttp.status == 200) {
 
 							folders = JSON.parse(xmlhttp.responseText).folders;
-
-							var largest = 0;
 
 							for (var i = 0; i < folders.length; i++) {
 
@@ -754,10 +1386,19 @@
 
 							var new_raw = '<tr>';
 
+
+							all_search = {
+								"term": [],
+								"position": []
+							};
+
+
 							for (var j = 0; j < largest; j++) {
 								//console.log('cycle ',);
 								new_raw += cycle(j) + '</tr><tr>';
+								make_all_search(j);
 							}
+
 
 							new_raw += '</tr>';
 

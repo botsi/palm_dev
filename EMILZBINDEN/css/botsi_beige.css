@@ -150,13 +150,13 @@ a:active {
 	background-color: #336699;
 }
 
-
-/*
-.freetextarea {
-	font-family: lucida sans unicode, lucida grande, sans-serif;
-	font-size: 14px;
+.fa-map-marker {
+	font-weight: 800;
+	font-size: 22px;
+	vertical-align: -2px;
+	margin-left: 12px;
+	cursor: pointer;
 }
-*/
 
 .diy-resizable:nth-last-child(1) {
 	margin-bottom: 72px;

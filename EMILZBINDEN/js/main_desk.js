@@ -82,7 +82,11 @@ var colorize = function() {
 
 	}
 
+};
 
+var gog_query_place = function(t) {
+	console.log(t.previousSibling.nodeValue);
+	outer_link('https://www.google.ch/maps/?hl=de&q=' + t.previousSibling.nodeValue);
 };
 
 var query_iframe = function() {
@@ -120,6 +124,8 @@ var make_img_arr = function(t, d) {
 		images_arr_tx = [t.getAttribute('displaytext', 0)];
 
 		images_arr = [t.href.split("=")[1].slice(0, t.href.split("=")[1].length - 5)];
+
+		dia_position = 0;
 
 	} else {
 
