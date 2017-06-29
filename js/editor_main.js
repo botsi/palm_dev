@@ -307,7 +307,7 @@
 				t.style.textDecoration = 'none';
 
 
-				if (value == '' || value == ' ' || value.indexOf('eval(') != -1) {
+				if ((value == '' || value == ' ' || value.indexOf('eval(') != -1) && (t.getAttribute("datakind") != 0 && t.getAttribute("datakind") < 4)) {
 					t.style.background = 'rgb(250, 161, 179)';
 					t.style.textDecoration = 'line-through';
 
@@ -317,10 +317,6 @@
 					t.title = 'Error: empty, space or eval';
 
 					t.value = '';
-
-					t.addEventListener("blur", function() {
-						remove_search_item(this.nextSibling);
-					}, false);
 
 					//console.log('nicht akzeptiert', value.indexOf('"'));
 					//console.log(value.charAt(value.indexOf('"') - 6), value.charAt(value.indexOf('"') - 5), value.charAt(value.indexOf('"') - 4), value.charAt(value.indexOf('"') - 3), value.charAt(value.indexOf('"') - 2), value.charAt(value.indexOf('"') - 1), value.charAt(value.indexOf('"')));
@@ -349,10 +345,20 @@
 						return;
 					}
 				}
-				/*
 
-								switch (entry_kind) {
-				*/
+				if (entry_kind == 'Ausstellungsort') {
+					if (t.value.length > 3 && t.getAttribute("datakind") == 3) {
+						if (t.value.length == 4 && t.value.match(/^-?\d+$/)) {
+							get_geonames_array('number', t);
+							console.log("It's a whole number!");
+						} else {
+							if (t.value.match(/\d+/g) == null) {
+								//console.log("no number! ", t.value.match(/\d+/g));    (els[i].getAttribute("datakind") == 3)
+								get_geonames_array('string', t);
+							}
+						}
+					}
+				}
 
 				b.classList.add('button_valid');
 				b.nextSibling.classList.add('button_valid');
@@ -362,16 +368,7 @@
 
 			/******           remove Ausstellungsort           ******/
 
-			//<i class="fa fa-minus-circle" aria-hidden="true" onclick="remove_Ausstellungsort(this)"></i>
-
 			var remove_Ausstellungsort = function(t) {
-
-				/*
-								if (t.nextSibling.nextSibling.className == 'fa fa-plus-circle add-raw') {
-									alert('Mindestens ein Ausstellungsort muss definiert sein!');
-									return;
-								}
-				*/
 
 				t.parentNode.nextSibling.classList.add('button_valid');
 				t.parentNode.nextSibling.nextSibling.classList.add('button_valid');
@@ -411,24 +408,6 @@
 
 			var add_Ausstellungsort = function(t) {
 
-				//			var input_attributes = ' type="text" onkeyup="validate(this,this.parentNode.nextSibling)"';
-
-				/*
-
-													temp_ih = '<input' + input_attributes + ' value="" />' + 
-				                            '<input' + input_attributes + ' value="" />' +
-														        '<input' + input_attributes + ' value="" />' + 
-				                            '<input' + input_attributes + ' value="" />' + 
-				                            '<input' + input_attributes + ' value="" />' + 
-				                            '<input' + input_attributes + ' value="" />' + 
-				                            '<input' + input_attributes + ' value="" /><br/>';
-
-				*/
-
-				//console.log(t.nextSibling.tagName);
-
-				//console.log(t.nextSibling.tagName);
-
 				var newItem;
 
 				if (document.getElementById('Ausstellungsort_display').getElementsByClassName('fa-minus-circle').length < 1) {
@@ -446,15 +425,19 @@
 				}
 
 				for (var i = 0; i < 7; i++) {
+
 					newItem = document.createElement("input");
 
 					newItem.type = "text";
 
 					newItem.setAttribute("onkeyup", "validate(this,this.parentNode.nextSibling)");
 
+					newItem.setAttribute("datakind", i);
+
 					newItem.value = "";
 
 					document.getElementById('Ausstellungsort_display').insertBefore(newItem, t);
+
 				}
 
 				newItem = document.createElement("i");
@@ -471,63 +454,6 @@
 
 				document.getElementById('Ausstellungsort_display').insertBefore(newItem, t);
 
-				/*
-								var newItem = document.createElement("input");
-
-								newItem.type = "text";
-
-								newItem.className = "keyfield";
-
-								newItem.setAttribute("onkeyup", "validate(this,this.parentNode.nextSibling)");
-
-								newItem.value = "";
-
-								document.getElementById('Impressum_display').insertBefore(newItem, t);
-
-								newItem = document.createElement("i");
-
-								newItem.className = "fa fa-minus-circle";
-
-								newItem.setAttribute("aria-hidden", "true");
-
-								newItem.setAttribute("onclick", "remove_impressum_key(this)");
-
-								document.getElementById('Impressum_display').insertBefore(newItem, t);
-
-								newItem = document.createElement("input");
-
-								newItem.type = "text";
-
-								newItem.setAttribute("onkeyup", "validate(this,this.parentNode.nextSibling)");
-
-								newItem.value = "";
-
-								document.getElementById('Impressum_display').insertBefore(newItem, t);
-
-								newItem = document.createElement("i");
-
-								newItem.className = "fa fa-minus-circle";
-
-								newItem.setAttribute("aria-hidden", "true");
-
-								newItem.setAttribute("onclick", "remove_impressum_value(this)");
-
-								document.getElementById('Impressum_display').insertBefore(newItem, t);
-
-								newItem = document.createElement("i");
-
-								newItem.className = "fa fa-plus-circle";
-
-								newItem.setAttribute("aria-hidden", "true");
-
-								newItem.setAttribute("onclick", "add_impressum_value(this)");
-
-								document.getElementById('Impressum_display').insertBefore(newItem, t);
-
-								newItem = document.createElement("br");
-
-								document.getElementById('Impressum_display').insertBefore(newItem, t);
-				*/
 			};
 
 
@@ -838,7 +764,24 @@
 						break;
 					case 'Ausstellungsort':
 						var a = [];
-						to_edit.epilog[entry_kind] = a;
+						var aa = [];
+						var els = t.previousSibling.getElementsByTagName('input');
+						for (var i = 0; i < els.length; i++) {
+							var x = (i + 1) / 7;
+							if (x != parseInt(x)) {
+								aa.push(els[i].value);
+							} else {
+								aa.push(els[i].value);
+								a.push(aa);
+								aa = [];
+							}
+						}
+						if (to_edit.epilog.Ausstellungsort) {
+							to_edit.epilog[entry_kind] = a;
+						}
+						if (to_edit.epilog.Projektort) {
+							to_edit.epilog.Projektort = a;
+						}
 						break;
 					case 'Impressum':
 						var a = {};
@@ -973,11 +916,10 @@
 						temp_ih = '<span>von / bis (wenn mehrere Daten)</span><span>Veranstaltungsort</span><span>Strasse und Hausnummer</span><span>Postleitzahl und Ort</span><span>Land (wenn nicht Schweiz)</span><span>Webseite</span><span>GoogleMaps kurz-url</span>';
 						if (to_edit.epilog && to_edit.epilog.Ausstellungsort && Array.isArray(to_edit.epilog.Ausstellungsort)) {
 							for (var j = 0; j < to_edit.epilog.Ausstellungsort.length; j++) {
-								temp_ih += '<input' + input_attributes + ' value="' + to_edit.epilog.Ausstellungsort[j][0] + '" />' + '<input' + input_attributes + ' value="' + to_edit.epilog.Ausstellungsort[j][1] +
+								temp_ih += '<input' + input_attributes + ' datakind="0" value="' + to_edit.epilog.Ausstellungsort[j][0] + '" />' + '<input' + input_attributes + ' datakind="1" value="' + to_edit.epilog.Ausstellungsort[j][1] +
 									'" />' +
-									'<input' + input_attributes + ' value="' + to_edit.epilog.Ausstellungsort[j][2] + '" />' + '<input' + input_attributes + ' value="' + to_edit.epilog.Ausstellungsort[j][3] + '" />' + '<input' + input_attributes + ' value="' + to_edit.epilog.Ausstellungsort[
-										j][4] + '" />' +
-									'<input' + input_attributes + ' value="' + to_edit.epilog.Ausstellungsort[j][5] + '" />' + '<input' + input_attributes + ' value="' + to_edit.epilog.Ausstellungsort[j][6] + '" />';
+									'<input' + input_attributes + ' datakind="2" value="' + to_edit.epilog.Ausstellungsort[j][2] + '" />' + '<input' + input_attributes + ' datakind="3" value="' + to_edit.epilog.Ausstellungsort[j][3] + '" />' + '<input' + input_attributes + ' datakind="4" value="' + to_edit.epilog.Ausstellungsort[j][4] + '" />' +
+									'<input' + input_attributes + ' datakind="5" value="' + to_edit.epilog.Ausstellungsort[j][5] + '" />' + '<input' + input_attributes + ' datakind="6" value="' + to_edit.epilog.Ausstellungsort[j][6] + '" />';
 
 								temp_ih += (to_edit.epilog.Ausstellungsort.length > 1) ? '<i class="fa fa-minus-circle" aria-hidden="true" onclick="remove_Ausstellungsort(this)"></i><br/>' : '<br/>';
 
@@ -988,11 +930,9 @@
 
 							if (to_edit.epilog && to_edit.epilog.Projektort && Array.isArray(to_edit.epilog.Projektort)) {
 								for (var j = 0; j < to_edit.epilog.Projektort.length; j++) {
-									temp_ih += '<input' + input_attributes + ' value="' + to_edit.epilog.Projektort[j][0] + '" />' + '<input' + input_attributes + ' value="' + to_edit.epilog.Projektort[j][1] + '" />' +
-										'<input' + input_attributes + ' value="' +
-										to_edit.epilog.Projektort[j][2] + '" />' + '<input' + input_attributes + ' value="' + to_edit.epilog.Projektort[j][3] + '" />' + '<input' + input_attributes + ' value="' + to_edit.epilog.Projektort[j][4] + '" />' + '<input' +
-										input_attributes + ' value="' + to_edit.epilog.Projektort[
-											j][5] + '" />' + '<input' + input_attributes + ' value="' + to_edit.epilog.Projektort[j][6] + '" />';
+									temp_ih += '<input' + input_attributes + ' datakind="0" value="' + to_edit.epilog.Projektort[j][0] + '" />' + '<input' + input_attributes + ' datakind="1" value="' + to_edit.epilog.Projektort[j][1] + '" />' +
+										'<input' + input_attributes + ' datakind="2" value="' + to_edit.epilog.Projektort[j][2] + '" />' + '<input' + input_attributes + ' datakind="3" value="' + to_edit.epilog.Projektort[j][3] + '" />' + '<input' + input_attributes + ' datakind="4" value="' + to_edit.epilog.Projektort[j][4] + '" />' + '<input' +
+										input_attributes + ' datakind="5" value="' + to_edit.epilog.Projektort[j][5] + '" />' + '<input' + input_attributes + ' datakind="6" value="' + to_edit.epilog.Projektort[j][6] + '" />';
 
 									temp_ih += (to_edit.epilog.Projektort.length > 1) ? '<i class="fa fa-minus-circle" aria-hidden="true" onclick="remove_Ausstellungsort(this)"></i><br/>' : '<br/>';
 
@@ -1106,13 +1046,34 @@
 
 				/******           Ausstellungsort           ******/
 
-				fill_cat('Ausstellungsort');
+
+				document.getElementById('Ausstellungsort_display').innerHTML = '';
+
+				if (to_edit.epilog && (to_edit.epilog.Ausstellungsort || to_edit.epilog.Projektort)) {
+
+					fill_cat('Ausstellungsort');
+
+					document.getElementById('Ausstellungsort_display').parentNode.style.display = 'block';
+
+				} else {
+
+					document.getElementById('Ausstellungsort_display').parentNode.style.display = 'none';
+
+				}
 
 				/******           Impressum           ******/
+
+				document.getElementById('Impressum_display').innerHTML = '';
 
 				if (to_edit.epilog && to_edit.epilog.Impressum) {
 
 					fill_cat('Impressum');
+
+					document.getElementById('Impressum_display').parentNode.style.display = 'block';
+
+				} else {
+
+					document.getElementById('Impressum_display').parentNode.style.display = 'none';
 
 				}
 
@@ -1123,6 +1084,12 @@
 				if (to_edit.epilog && to_edit.epilog.Ausstellungskonzept) {
 
 					fill_cat('Ausstellungskonzept');
+
+					document.getElementById('Ausstellungskonzept_display').parentNode.style.display = 'block';
+
+				} else {
+
+					document.getElementById('Ausstellungskonzept_display').parentNode.style.display = 'none';
 
 				}
 

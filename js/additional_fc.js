@@ -207,6 +207,39 @@ var shop = {
 		}
 		search_nostyle(t);
 	},
+	"geonames": function(op, t) {
+
+		var meter = document.createElement("input");
+
+		var org_meter_value = meter.value = '';
+		var iv_count = 0;
+		var iv = setInterval(function() {
+			iv_count++;
+			if (org_meter_value != meter.value || iv_count > 40) {
+				console.log('iv_count: ', iv_count);
+				clearInterval(iv);
+				if (meter.value != '') {
+					if (op == 'number') {
+						shop.fields[form_ort] = document.getElementById('form_ort').value = meter.value.slice(5);
+					} else {
+						shop.fields[form_plz] = document.getElementById('form_plz').value = meter.value.slice(0, 4);
+					}
+					shop.fields[form_land] = document.getElementById('form_land').value = 'Schweiz';
+				} else {
+					if (op == 'number') {
+						shop.fields[form_ort] = document.getElementById('form_ort').value = '';
+					} else {
+						shop.fields[form_plz] = document.getElementById('form_plz').value = '';
+					}
+				}
+				shop.fields[t.id] = t.value;
+
+			}
+		}, 100); // 10 times/second
+
+		get_geonames_array(op, t, meter);
+
+	},
 	"user": function(t) {
 
 		if (t.value.indexOf('<') != -1 || t.value.indexOf('>') != -1 || t.value.indexOf('\'') != -1 || t.value.indexOf('"') != -1 || t.value.indexOf('(') != -1 || t.value.indexOf(')') != -1 || t.value.indexOf('{') != -1 || t.value.indexOf('}') != -1 || t.value.indexOf('eval') != -1) {
@@ -229,7 +262,6 @@ var shop = {
 			case 'form_vorname':
 			case 'form_name':
 			case 'form_strasse':
-			case 'form_ort':
 				if (t.value == ' ' || t.value.length < 2) {
 					console.log('uncomplete');
 					shop.fields[t.id] = '';
@@ -237,12 +269,26 @@ var shop = {
 					shop.fields[t.id] = t.value;
 				}
 				break;
+			case 'form_ort':
+				if (t.value == ' ' || t.value.length < 2) {
+					console.log('uncomplete');
+					shop.fields[t.id] = '';
+				} else {
+					//					shop.fields[t.id] = t.value;
+
+					shop.geonames('string', t);
+
+				}
+				break;
 			case 'form_plz':
 				if (isNaN(t.value) || t.value.length < 4) {
 					console.log('uncomplete plz');
 					shop.fields[t.id] = '';
 				} else {
-					shop.fields[t.id] = t.value;
+					//					shop.fields[t.id] = t.value;
+
+					shop.geonames('number', t);
+
 				}
 				break;
 			default:
@@ -688,6 +734,31 @@ var loadForm = function() {
 	shop.check_send_but();
 
 	shop.fillbasket();
+
+	console.log('need script');
+
+	//   get postalcode and geonames stuff
+
+	if (!document.getElementById('geonamesscr')) {
+
+		var s = document.createElement('script');
+
+
+		s.onload = function() {
+
+			console.log('doubleloaded geonamesscr script ???');
+
+		};
+
+
+		s.src = 'scripts/geonames_dav.js';
+		s.charset = 'utf-8';
+		s.id = 'geonamesscr';
+
+		document.head.appendChild(s);
+
+	}
+
 
 };
 

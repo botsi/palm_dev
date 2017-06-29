@@ -19,10 +19,14 @@
 <!-- javascript files for the demo page; json for old webbrowser-->
 <script type="text/javascript" src="../../scripts/lib/js/base64.min.js" ></script>
 <!-- file that contains the functions to use drag/drop and the file api (you need HTML5) -->
-<script type="text/javascript" src="../../scripts/lib/js/script.js" ></script>
+<script type="text/javascript" src="scripts/lib/js/script.js" ></script>
 
 <!-- libwebp javascript by Dominik Homberger (Dominikhlbg) -->
-<script type="text/javascript" src="../../scripts/lib/js/libwebp-0.1.min.js"></script>
+<script type="text/javascript" src="scripts/lib/js/libwebp-0.1.min.js"></script>
+
+
+
+<script type="text/javascript" charset="utf-8" src="scripts/geonames_dav.js"></script>
 
 
 
@@ -54,7 +58,7 @@
 			<div class="editor_fields"><label>Daten</label>
 				<div id="time_display"></div><button type="button" onclick="save_existing(this)"><i class="fa fa-floppy-o" aria-hidden="true"></i> speichern</button><button type="button" onclick="revert(this)"><i class="fa fa-undo" aria-hidden="true"></i> nein, lieber nicht</button></div>
 			<div class="editor_fields"><label>Orte</label>
-				<div id="Ausstellungsort_display"></div><button type="button" onclick=""><i class="fa fa-floppy-o" aria-hidden="true"></i> speichern</button><button type="button" onclick="revert(this)"><i class="fa fa-undo" aria-hidden="true"></i> nein, lieber nicht</button></div>
+				<div id="Ausstellungsort_display"></div><button type="button" onclick="save_existing(this)"><i class="fa fa-floppy-o" aria-hidden="true"></i> speichern</button><button type="button" onclick="revert(this)"><i class="fa fa-undo" aria-hidden="true"></i> nein, lieber nicht</button></div>
 			<div class="editor_fields"><label>Impressum</label>
 				<div id="Impressum_display"></div><button type="button" onclick="save_existing(this)"><i class="fa fa-floppy-o" aria-hidden="true"></i> speichern</button><button type="button" onclick="revert(this)"><i class="fa fa-undo" aria-hidden="true"></i> nein, lieber nicht</button></div>
 			<div class="editor_fields"><label>Ausstellungskonzept</label><div contenteditable="true" id="Ausstellungskonzept_display" onkeyup="validate(this,this.nextSibling)"></div><button type="button" onclick="save_existing(this)"><i class="fa fa-floppy-o" aria-hidden="true"></i> speichern</button><button type="button" onclick="revert(this)"><i class="fa fa-undo" aria-hidden="true"></i> nein, lieber nicht</button></div>

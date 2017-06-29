@@ -50,7 +50,7 @@
 					"comp_name": "bestellen",
 					"form": " ... ",
 					"name": "Bestellen",
-					"search": ["buch", "beratung", "hierimshop"],
+					"search": ["buch", "beratung", "hierimshop", "shop"],
 					"prolog": "Wünschen Sie eine Analyse für eine geplante Ausstellung oder möchten Sie unverbindlich über ein Projekt sprechen?",
 					"text": "",
 					"epilog": {
