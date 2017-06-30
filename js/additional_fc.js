@@ -209,35 +209,37 @@ var shop = {
 	},
 	"geonames": function(op, t) {
 
-		var meter = document.createElement("input");
-
-		var org_meter_value = meter.value = '';
-		var iv_count = 0;
-		var iv = setInterval(function() {
-			iv_count++;
-			if (org_meter_value != meter.value || iv_count > 40) {
-				console.log('iv_count: ', iv_count);
-				clearInterval(iv);
-				if (meter.value != '') {
-					if (op == 'number') {
-						shop.fields[form_ort] = document.getElementById('form_ort').value = meter.value.slice(5);
-					} else {
-						shop.fields[form_plz] = document.getElementById('form_plz').value = meter.value.slice(0, 4);
-					}
-					shop.fields[form_land] = document.getElementById('form_land').value = 'Schweiz';
+		get_geonames_array(op, t, function(post_arr) {
+			if (post_arr[2] > 0) {
+				if (op == 'number') {
+					shop.fields[form_ort] = document.getElementById('form_ort').value = post_arr[1];
 				} else {
-					if (op == 'number') {
-						shop.fields[form_ort] = document.getElementById('form_ort').value = '';
+
+
+					if (post_arr[2] > 1) {
+						//console.log('post_arr result code is: ', post_arr[3]);
+
+						if (post_arr[3].indexOf(document.getElementById('form_plz').value) == -1) {
+							shop.fields[form_plz] = document.getElementById('form_plz').value = post_arr[0];
+						}
+
+
 					} else {
-						shop.fields[form_plz] = document.getElementById('form_plz').value = '';
+						shop.fields[form_plz] = document.getElementById('form_plz').value = post_arr[0];
 					}
+
+
 				}
-				shop.fields[t.id] = t.value;
-
+				shop.fields[form_land] = document.getElementById('form_land').value = 'Schweiz';
+			} else {
+				if (op == 'number') {
+					shop.fields[form_ort] = document.getElementById('form_ort').value = '';
+				} else {
+					shop.fields[form_plz] = document.getElementById('form_plz').value = '';
+				}
 			}
-		}, 100); // 10 times/second
-
-		get_geonames_array(op, t, meter);
+			shop.fields[t.id] = t.value;
+		});
 
 	},
 	"user": function(t) {
@@ -286,7 +288,6 @@ var shop = {
 					shop.fields[t.id] = '';
 				} else {
 					//					shop.fields[t.id] = t.value;
-
 					shop.geonames('number', t);
 
 				}

@@ -62,8 +62,8 @@
 			<div class="editor_fields"><label>Impressum</label>
 				<div id="Impressum_display"></div><button type="button" onclick="save_existing(this)"><i class="fa fa-floppy-o" aria-hidden="true"></i> speichern</button><button type="button" onclick="revert(this)"><i class="fa fa-undo" aria-hidden="true"></i> nein, lieber nicht</button></div>
 			<div class="editor_fields"><label>Ausstellungskonzept</label><div contenteditable="true" id="Ausstellungskonzept_display" onkeyup="validate(this,this.nextSibling)"></div><button type="button" onclick="save_existing(this)"><i class="fa fa-floppy-o" aria-hidden="true"></i> speichern</button><button type="button" onclick="revert(this)"><i class="fa fa-undo" aria-hidden="true"></i> nein, lieber nicht</button></div>
-			<div class="editor_fields"><label>Bilder</label>
-				<div id="Images_display"></div><button type="button" onclick=""><i class="fa fa-floppy-o" aria-hidden="true"></i> speichern</button><button type="button"><i class="fa fa-undo" aria-hidden="true"></i> nein, lieber nicht</button></div>
+			<div class="editor_fields"><label>Bilder</label><div id="Images_display"></div></div>
+      <div class="editor_fields"><label>Medienberichte</label><div id="Medienberichte_display"></div><button type="button" onclick=""><i class="fa fa-floppy-o" aria-hidden="true"></i> speichern</button><button type="button" onclick=""><i class="fa fa-undo" aria-hidden="true"></i> nein, lieber nicht</button></div>
 		</div>
 
 		<div id="image_selector" draggable="true" ondragstart="drag(event)"><i class="fa fa-minus-circle" aria-hidden="true" onclick="remove_image()"></i><i class="fa fa-arrows-h" aria-hidden="true"></i><i class="fa fa-pencil-square-o" aria-hidden="true" onclick="edit_image()"></i></div>

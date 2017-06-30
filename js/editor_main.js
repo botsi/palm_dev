@@ -360,10 +360,76 @@
 					}
 				}
 
+				if (entry_kind == 'Impressum') {
+					if (t.value.length > 3) {
+
+						if (t.className == 'keyfield') {
+							var k_els = document.getElementById('Impressum_display').getElementsByClassName('keyfield');
+							for (var i = 0; i < k_els.length; i++) {
+								if (k_els[i] != t && k_els[i].value.toLowerCase() == value.toLowerCase()) {
+									t.style.background = 'rgb(250, 161, 179)';
+									t.style.textDecoration = 'line-through';
+
+									b.classList.remove('button_valid');
+									b.nextSibling.classList.remove('button_valid');
+
+									t.title = 'Der Eintrag ' + value + ' existiert bereits!';
+
+									t.addEventListener("blur", function() {
+										remove_impressum_key(this.nextSibling);
+									}, false);
+
+									return;
+								}
+							}
+							//console.log("It's a whole number!");
+						}
+					}
+				}
+
 				b.classList.add('button_valid');
 				b.nextSibling.classList.add('button_valid');
 
 			};
+
+
+
+			/******           hide google short url           ******/
+
+			var hide_gog_short = function(t) {
+				return false;
+				//if(gog_info){
+				//document.getElementById("header").removeChild(gog_info);
+				//}
+			};
+
+
+
+			/******           check google short url           ******/
+
+			var check_gog_short = function(t) {
+
+				if (t.value == '' && t.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.value != '' && t.previousSibling.previousSibling.previousSibling.previousSibling.value != '' && t.previousSibling.previousSibling.previousSibling.value != '') {
+					if (typeof gog_info === 'undefined') {
+						gog_info = document.createElement('div');
+						gog_info.style = 'position:absolute;cursor:pointer;left:' + parseInt((window.innerWidth - 968) / 2) + 'px;top:' + parseInt((window.innerHeight - 360) / 2) + 'px;width:968px;height:360px;';
+						gog_info.style.background = 'url(images/gog_bg.jpg) top left no-repeat';
+						gog_info.innerHTML = 'bei google die kurz-url finden.';
+						gog_info.onmouseout = function(e) {
+							e.target.parentNode.removeChild(e.target);
+						};
+						document.getElementById("header").appendChild(gog_info);
+					} else {
+						document.getElementById("header").appendChild(gog_info);
+					}
+					gog_info.onclick = function() {
+						window.open('https://www.google.ch/maps/?hl=de&q=' + t.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.value + ', ' + t.previousSibling.previousSibling.previousSibling.previousSibling.value + ', ' + t.previousSibling.previousSibling.previousSibling.value, '_blank');
+					};
+
+				}
+
+			};
+
 
 
 			/******           remove Ausstellungsort           ******/
@@ -460,6 +526,7 @@
 			/******           remove impressum key           ******/
 
 			var remove_impressum_key = function(t) {
+				//console.log('t: ', t);
 
 				t.parentNode.nextSibling.classList.add('button_valid');
 				t.parentNode.nextSibling.nextSibling.classList.add('button_valid');
@@ -786,24 +853,27 @@
 					case 'Impressum':
 						var a = {};
 						var els = t.previousSibling.getElementsByTagName('input');
-						var temp_key = 0;
+						if (els.length > 0) {
+							var temp_key = 0;
 
-						for (var i = 0; i < els.length; i++) {
-							if (els[i].className == 'keyfield') {
-								temp_key = i;
-								a[els[i].value] = [];
-							} else {
-								//store_link
-								/*
-								<a href='http://www.josnaepflin.ch/index.html' target='_blank'>Jos Näpflin, Zürich</a>
-								*/
-								var link_or_text = (els[i].getAttribute("store_link") != null) ? "<a href='" + els[i].getAttribute("store_link") + "' target='_blank'>" + els[i].value + "</a>" : els[i].value;
+							for (var i = 0; i < els.length; i++) {
+								if (els[i].className == 'keyfield') {
+									temp_key = i;
+									a[els[i].value] = [];
+								} else {
+									//store_link
+									/*
+									<a href='http://www.josnaepflin.ch/index.html' target='_blank'>Jos Näpflin, Zürich</a>
+									*/
+									var link_or_text = (els[i].getAttribute("store_link") != null) ? "<a href='" + els[i].getAttribute("store_link") + "' target='_blank'>" + els[i].value + "</a>" : els[i].value;
 
-								a[els[temp_key].value].push(link_or_text);
+									a[els[temp_key].value].push(link_or_text);
+								}
 							}
+							to_edit.epilog[entry_kind] = a;
+						} else {
+							delete to_edit.epilog[entry_kind];
 						}
-
-						to_edit.epilog[entry_kind] = a;
 						break;
 					case 'Ausstellungskonzept':
 						to_edit.epilog[entry_kind] = t.previousSibling.innerHTML;
@@ -896,15 +966,15 @@
 
 					case 'time':
 
-						if (typeof to_edit.time !== 'undefined') {
-							temp_ih = '<input' + input_attributes + ' value="' + to_edit.time.from[0] + '" />' + '<input' + input_attributes + ' value="' + to_edit.time.from[1] + '" />' + '<input' + input_attributes + ' value="' +
-								to_edit.time.from[2] + '" />';
-							if (typeof to_edit.time.till !== 'undefined') {
-								temp_ih += ' bis ' + '<input' + input_attributes + ' value="' + to_edit.time.till[0] + '" />' + '<input' + input_attributes + ' value="' + to_edit.time.till[1] + '" />' + '<input' + input_attributes +
-									' value="' + to_edit.time.till[2] +
-									'" />';
-							}
+						//if (typeof to_edit.time !== 'undefined') {
+						temp_ih = '<input' + input_attributes + ' value="' + to_edit.time.from[0] + '" />' + '<input' + input_attributes + ' value="' + to_edit.time.from[1] + '" />' + '<input' + input_attributes + ' value="' +
+							to_edit.time.from[2] + '" />';
+						if (typeof to_edit.time.till !== 'undefined') {
+							temp_ih += ' bis ' + '<input' + input_attributes + ' value="' + to_edit.time.till[0] + '" />' + '<input' + input_attributes + ' value="' + to_edit.time.till[1] + '" />' + '<input' + input_attributes +
+								' value="' + to_edit.time.till[2] +
+								'" />';
 						}
+						//}
 
 						el.innerHTML = temp_ih;
 
@@ -914,12 +984,12 @@
 
 					case 'Ausstellungsort':
 						temp_ih = '<span>von / bis (wenn mehrere Daten)</span><span>Veranstaltungsort</span><span>Strasse und Hausnummer</span><span>Postleitzahl und Ort</span><span>Land (wenn nicht Schweiz)</span><span>Webseite</span><span>GoogleMaps kurz-url</span>';
-						if (to_edit.epilog && to_edit.epilog.Ausstellungsort && Array.isArray(to_edit.epilog.Ausstellungsort)) {
+						if (to_edit.epilog.Ausstellungsort && Array.isArray(to_edit.epilog.Ausstellungsort)) {
 							for (var j = 0; j < to_edit.epilog.Ausstellungsort.length; j++) {
 								temp_ih += '<input' + input_attributes + ' datakind="0" value="' + to_edit.epilog.Ausstellungsort[j][0] + '" />' + '<input' + input_attributes + ' datakind="1" value="' + to_edit.epilog.Ausstellungsort[j][1] +
 									'" />' +
 									'<input' + input_attributes + ' datakind="2" value="' + to_edit.epilog.Ausstellungsort[j][2] + '" />' + '<input' + input_attributes + ' datakind="3" value="' + to_edit.epilog.Ausstellungsort[j][3] + '" />' + '<input' + input_attributes + ' datakind="4" value="' + to_edit.epilog.Ausstellungsort[j][4] + '" />' +
-									'<input' + input_attributes + ' datakind="5" value="' + to_edit.epilog.Ausstellungsort[j][5] + '" />' + '<input' + input_attributes + ' datakind="6" value="' + to_edit.epilog.Ausstellungsort[j][6] + '" />';
+									'<input' + input_attributes + ' datakind="5" value="' + to_edit.epilog.Ausstellungsort[j][5] + '" />' + '<input' + input_attributes + ' onmouseover="check_gog_short(this)" onmouseout="hide_gog_short()" datakind="6" value="' + to_edit.epilog.Ausstellungsort[j][6] + '" />';
 
 								temp_ih += (to_edit.epilog.Ausstellungsort.length > 1) ? '<i class="fa fa-minus-circle" aria-hidden="true" onclick="remove_Ausstellungsort(this)"></i><br/>' : '<br/>';
 
@@ -928,11 +998,11 @@
 
 						} else {
 
-							if (to_edit.epilog && to_edit.epilog.Projektort && Array.isArray(to_edit.epilog.Projektort)) {
+							if (to_edit.epilog.Projektort && Array.isArray(to_edit.epilog.Projektort)) {
 								for (var j = 0; j < to_edit.epilog.Projektort.length; j++) {
 									temp_ih += '<input' + input_attributes + ' datakind="0" value="' + to_edit.epilog.Projektort[j][0] + '" />' + '<input' + input_attributes + ' datakind="1" value="' + to_edit.epilog.Projektort[j][1] + '" />' +
 										'<input' + input_attributes + ' datakind="2" value="' + to_edit.epilog.Projektort[j][2] + '" />' + '<input' + input_attributes + ' datakind="3" value="' + to_edit.epilog.Projektort[j][3] + '" />' + '<input' + input_attributes + ' datakind="4" value="' + to_edit.epilog.Projektort[j][4] + '" />' + '<input' +
-										input_attributes + ' datakind="5" value="' + to_edit.epilog.Projektort[j][5] + '" />' + '<input' + input_attributes + ' datakind="6" value="' + to_edit.epilog.Projektort[j][6] + '" />';
+										input_attributes + ' datakind="5" value="' + to_edit.epilog.Projektort[j][5] + '" />' + '<input' + input_attributes + ' onmouseover="check_gog_short(this)" onmouseout="hide_gog_short()" datakind="6" value="' + to_edit.epilog.Projektort[j][6] + '" />';
 
 									temp_ih += (to_edit.epilog.Projektort.length > 1) ? '<i class="fa fa-minus-circle" aria-hidden="true" onclick="remove_Ausstellungsort(this)"></i><br/>' : '<br/>';
 
@@ -972,9 +1042,65 @@
 
 						break;
 
-						/*					case '':
+					case 'Medienberichte':
+
+
+						loadXMLDoc('media/' + to_edit_folder + '/' + to_edit.comp_name + '/media.txt', function() { // media txt file
+
+							if (xmlhttp.readyState == 4) {
+								if (xmlhttp.status == 200) {
+
+									var media_obj = JSON.parse(xmlhttp.responseText);
+
+
+									for (var key in media_obj) {
+
+										var fa = '';
+										switch (media_obj[key][3]) {
+
+											case 'Video':
+
+												fa = 'fa fa-film';
+
 												break;
-						*/
+
+											case 'Audio':
+
+												fa = 'fa fa-volume-up';
+
+												break;
+
+											case 'PDF':
+
+												fa = 'fa fa-file-pdf-o';
+
+												break;
+
+											default:
+
+												alert('no fa defined');
+
+										}
+
+										temp_ih += '<i class="' + fa + ' media_icon_size" aria-hidden="true"></i> ';
+										for (var j = 0; j < 3; j++) {
+											temp_ih += '<input' + input_attributes + ' value="' + media_obj[key][j] + '" />';
+										}
+										temp_ih += '<i class="fa fa-minus-circle" aria-hidden="true" onclick="remove_media_key(this)"></i><br/>';
+									}
+
+
+									el.innerHTML = temp_ih;
+
+
+								} else {
+									alert('load media txt shit happens');
+								}
+							}
+						});
+
+						break;
+
 
 						/*					case '':
 												break;
@@ -1040,7 +1166,20 @@
 
 				/******           time           ******/
 
-				fill_cat('time');
+
+				document.getElementById('time_display').innerHTML = '';
+
+				if (to_edit.time) {
+
+					fill_cat('time');
+
+					document.getElementById('time_display').parentNode.style.display = 'block';
+
+				} else {
+
+					document.getElementById('time_display').parentNode.style.display = 'none';
+
+				}
 
 				/******           epilog data           ******/
 
@@ -1057,7 +1196,21 @@
 
 				} else {
 
+					/*
+
+										if (to_edit_folder != 'uberuns' && to_edit_folder != 'audioundvideo' && to_edit_folder != 'publikationen') {
+
+											document.getElementById('Ausstellungsort_display').innerHTML = '<br/><i class="fa fa-plus-circle add-raw" aria-hidden="true" onclick="add_impressum_key(this)"></i>';
+
+											document.getElementById('Ausstellungsort_display').parentNode.style.display = 'block';
+
+										} else {
+
+					*/
+
 					document.getElementById('Ausstellungsort_display').parentNode.style.display = 'none';
+
+					//}
 
 				}
 
@@ -1073,7 +1226,18 @@
 
 				} else {
 
-					document.getElementById('Impressum_display').parentNode.style.display = 'none';
+
+					if (to_edit_folder != 'uberuns') {
+
+						document.getElementById('Impressum_display').innerHTML = '<br/><i class="fa fa-plus-circle add-raw" aria-hidden="true" onclick="add_impressum_key(this)"></i>';
+
+						document.getElementById('Impressum_display').parentNode.style.display = 'block';
+
+					} else {
+
+						document.getElementById('Impressum_display').parentNode.style.display = 'none';
+
+					}
 
 				}
 
@@ -1093,11 +1257,56 @@
 
 				}
 
+				/******           Medienberichte           ******/
+				/*
+								document.getElementById('Medienberichte_display').innerHTML = '';
+
+								if (to_edit.epilog && to_edit.epilog.Medienberichte) {
+
+									fill_cat('Medienberichte');
+
+									document.getElementById('Medienberichte_display').parentNode.style.display = 'block';
+
+								} else {
+
+									document.getElementById('Medienberichte_display').parentNode.style.display = 'none';
+
+								}
+
+				*/
+
 				/******           Images           ******/
+
+				/******           and Medienberichte           ******/
 
 				document.getElementById('image_selector').style.display = 'none';
 
 				temp_ih = '<img src="images/mobile/' + to_edit_folder + '/' + to_edit.comp_name + '.jpg" />';
+
+				func_after_Image = function() {
+
+					document.getElementById('Medienberichte_display').innerHTML = '';
+
+					if (to_edit.epilog && to_edit.epilog.Medienberichte) {
+
+						fill_cat('Medienberichte');
+
+						document.getElementById('Medienberichte_display').parentNode.style.display = 'block';
+
+					} else {
+
+						document.getElementById('Medienberichte_display').parentNode.style.display = 'none';
+
+					}
+
+					func_after_Image = function() {
+						return false;
+					};
+
+					console.log('func_after_Image is now: ', func_after_Image);
+
+				};
+
 
 				load_additional_images(1);
 
@@ -1159,7 +1368,6 @@
 					if (as[i].className != 'keyfield') {
 
 						if (as[i].value.indexOf('http://') != -1 || as[i].value.indexOf('https://') != -1) {
-
 
 							newItem = document.createElement("div");
 
@@ -1269,6 +1477,8 @@
 
 			/*******    end textpart editor functions   *******/
 
+			var func_after_Image;
+
 
 			var load_additional_images = function(c) {
 
@@ -1291,6 +1501,8 @@
 
 					document.getElementById('Images_display').style.height = document.getElementById('Images_display').offsetHeight + 'px';
 					temp_ih = '';
+					var callback = func_after_Image;
+					callback('img stuff done! dav');
 					//document.getElementById('process_overlay').classList.remove('process_overlay_dark');
 
 				};
@@ -1306,7 +1518,9 @@
 			};
 
 			var make_all_search = function(p) {
+				/*
 
+				*/
 				for (var i = 0; i < folders.length; i++) {
 					if (folders[i].data[p] && folders[i].data[p].search) {
 						for (var y = 0; y < folders[i].data[p].search.length; y++) {
@@ -1317,6 +1531,29 @@
 				}
 
 			};
+
+			/*
+
+						var make_projectlist = function(p, employee) {
+							for (var i = 1; i < folders.length; i++) {
+								if (folders[i].data[p] && folders[i].data[p].epilog.Impressum) {
+									for (key in folders[i].data[p].epilog.Impressum) {
+
+										if (folders[i].data[p].epilog.Impressum[key].indexOf(employee) != -1 && projectlist.indexOf(folders[i].data[p].name) == -1) {
+											projectlist.push(folders[i].data[p].name);
+										}
+
+
+									}
+								}
+							}
+
+						};
+
+						var projectlist = [];
+
+			*/
+
 
 			var getvals = function() {
 
@@ -1364,7 +1601,10 @@
 								//console.log('cycle ',);
 								new_raw += cycle(j) + '</tr><tr>';
 								make_all_search(j);
+								//make_projectlist(j, 'Ronny Trachsel (palma3)');
 							}
+
+							//console.log(projectlist);
 
 
 							new_raw += '</tr>';

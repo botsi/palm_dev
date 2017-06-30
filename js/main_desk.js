@@ -4,6 +4,8 @@ var jump_destination = false;
 
 var wlh, folders;
 
+var largest = 0;
+
 var align_onresize = function() {
 
 	//		imediate
@@ -448,13 +450,33 @@ var sub_chapter = function(t) {
 			sh_cheese(t.parentNode.parentNode, 1);
 
 			break;
+		case 'Projektliste':
+
+			if (c[folders[chapter].last_position].epilog[t.innerHTML] === true) {
+
+				var projectlist = '<ul>';
+
+				for (var j = 0; j < largest; j++) {
+
+					projectlist = make_projectlist(j, c[folders[chapter].last_position].name + ' (palma3)', projectlist);
+
+				}
+
+				projectlist += '</ul>';
+
+				c[folders[chapter].last_position].epilog[t.innerHTML] = projectlist;
+
+			}
+
+			t.parentNode.previousSibling.innerHTML = c[folders[chapter].last_position].epilog[t.innerHTML];
+			sh_cheese(t.parentNode.parentNode, 0);
+
+			break;
 		default:
 
 			var ih = (t.innerHTML != 'Orte und Daten') ? t.innerHTML : 'Ausstellungsort';
 
-
 			console.log('default sh_cheese');
-
 
 			t.parentNode.previousSibling.innerHTML = c[folders[chapter].last_position].epilog[ih];
 			sh_cheese(t.parentNode.parentNode, 0);
@@ -603,6 +625,22 @@ var plc = function(arr, c) {
 
 	return ul;
 
+};
+
+var make_projectlist = function(p, employee, projectlist) {
+	for (var i = 1; i < folders.length; i++) {
+		if (folders[i].data[p] && folders[i].data[p].epilog.Impressum) {
+			for (key in folders[i].data[p].epilog.Impressum) {
+
+				if (folders[i].data[p].epilog.Impressum[key].indexOf(employee) != -1 && projectlist.indexOf(folders[i].data[p].name) == -1) {
+					projectlist += '<li><a onclick="search_nostyle(this)">' + folders[i].data[p].name + '</a></li>';
+				}
+
+
+			}
+		}
+	}
+	return projectlist;
 };
 
 
@@ -1956,8 +1994,6 @@ var arrow = function(e) {
 
 	}
 
-	console.log(e.keyCode);
-
 	if (e.keyCode == 37) {
 
 		slide_lr(-1);
@@ -2033,6 +2069,11 @@ var page_load = function() {
 
 			})
 		}
+
+		if (largest < folders[f].data.length) {
+			largest = folders[f].data.length;
+		}
+
 
 		var a = document.createElement('div');
 

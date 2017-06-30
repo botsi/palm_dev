@@ -70,7 +70,7 @@
 					"prolog": "Kurator und Projektleiter",
 					"text": "<span class='inta'>Qfaktur<br/>Dammweg 41<br/>3013 Bern<br/><a href='mailto:andreas.schwab@palma3.ch'>andreas.schwab@palma3.ch</a><br/><a class='tel_link' href='tel:+41313335902'>031 333 59 02</a></span>",
 					"epilog": {
-						"Projektliste": "<ul><li><a onclick='search_nostyle(this)'>Schreibrausch</a></li><li><a onclick='search_nostyle(this)'>Den Körper im Blick</a></li><li><a onclick='search_nostyle(this)'>Barryland</a></li><li><a onclick='search_nostyle(this)'>Fernes Donnergrollen</a></li><li><a onclick='search_nostyle(this)'>Die Utopie der Widerspenstigen</a></li><li><a onclick='search_nostyle(this)'>Das Abenteuer Bildung</a></li><li><a onclick='search_nostyle(this)'>Halbzeit</a></li><li><a onclick='search_nostyle(this)'>Die 68er</a></li><li><a onclick='search_nostyle(this)'>Hirnsturm</a></li><li><a onclick='search_nostyle(this)'>Monte Verità</a></li><li><a onclick='search_nostyle(this)'>anders sehen</a></li><li><a onclick='search_nostyle(this)'>Sasso San Gottardo</a></li><li><a onclick='search_nostyle(this)'>Auf den Spuren von Max Frisch</a></li><li><a onclick='search_nostyle(this)'>Mediaguide Monte Verità</a></li><li><a onclick='search_nostyle(this)'>Fitness</a></li></ul>",
+						"Projektliste": true,
 						"weitere Tätigkeiten": "<ul><li>Historiker, Dr. phil.</li><li>Diplom Management culturel et social</li><li>Gemeinderat Ressort Bildung, Bremgarten bei Bern 2012 - 2017, <a href='http://www.andreasschwab.ch' target='_blank'>www.andreasschwab.ch</a></li><li>Mitarbeit bei der Ausstellung «Zuflucht Monte Verità» im Museo Hermann Hesse, Montagnola (23.9. 2006 – 15.2.2007), <a href='http://www.hessemontagnola.ch' target='_blank'>www.hessemontagnola.ch</a></li><li>Kurator der Ausstellung «Am Anfang ist das Wort. Lexika in der Schweiz». Eine Koproduktion der Schweizerischen Nationalbibliothek und des Historischen Lexikons der Schweiz (7.11.2008 – 29.3.2009)</li></ul>",
 						"Veröffentlichungen": "<ul><li>«Monte Verità – Sanatorium der Sehnsucht», Orell Füssli Verlag, Zürich 2003, 286 Seiten</li><li>«Landkooperativen Longo maï – Pioniere einer gelebten Utopie», <a href='https://rotpunktverlag.ch/titel/landkooperativen-longo-mai' target='_blank'>Rotpunktverlag, Zürich</a> 2013, 228 Seiten</li><li>«Lei non può lamentarsi di aver passato il suo tempo annoiandosi.» Harald Szeemann e l’esposizione sul Monte Verità, in: Claudia Lafranchi Cattaneo / Andreas Schwab, Dalla visione al chiodo. Dal chiodo alla visione. Il Fonde Harald Szeemann dell’Archivio Fondazione Monte Verità, Bellinzona 2013, Seiten 173 bis 220. (Übersetzung aus dem Deutschen, Originaltext: <a href='http://old.palma3.ch/fileadmin/user_upload/Palma3_Daten_allgemein/Presserartikel_Andreas_Schwab/Szeemann_MV_def.pdf' target='_blank'>Harald Szeemann und der Monte Verità PDF</a>)</li></ul>",
 						"Info": ""
@@ -89,7 +89,7 @@
 					"prolog": "Kurator und Projektleiter",
 					"text": "<span class='inta'>Qfaktur<br/>Dammweg 41<br/>3013 Bern<br/><a href='mailto:juerg.spichiger@palma3.ch'>juerg.spichiger@palma3.ch</a><br/><a class='tel_link' href='tel:+41313335901'>031 333 59 01</a></span>",
 					"epilog": {
-						"Projektliste": "<ul><li><a onclick='search_nostyle(this)'>IndustrieStadt Baden</a></li><li><a onclick='search_nostyle(this)'>Dreiecksgeschichte</a></li><li><a onclick='search_nostyle(this)'>L’albigna di Emil Zbinden</a></li><li><a onclick='search_nostyle(this)'>Stadt vor Augen - Landschaft im Kopf</a></li><li><a onclick='search_nostyle(this)'>Ich schweige nicht!</a></li><li><a onclick='search_nostyle(this)'>Nidwaldner Geschichten</a></li><li><a onclick='search_nostyle(this)'>Museum Bruder Klaus</a></li><li><a onclick='search_nostyle(this)'>Videoportrait Bruder Klaus</a></li><li><a onclick='search_nostyle(this)'>Gezeichnet</a></li><li><a onclick='search_nostyle(this)'>Innovation For Better Lives</a></li><li><a onclick='search_nostyle(this)'>Auf den Spuren von Max Frisch</a></li></ul>",
+						"Projektliste": true,
 						"weitere Tätigkeiten": "<ul><li>Freischaffender Journalist und Ausstellungsmacher</li><li>Leitung Verlag X-Time und Herausgabe von belletristischen Titeln, Zeitschriften sowie historischen Sachbüchern, <a href='http://www.edition-eigenart.ch' target='_blank'>www.edition-eigenart.ch</a></li><li>Dozent für Kulturjournalismus an der Medienschule Nordwestschweiz, <a href='http://www.medienkurse.ch' target='_blank'>www.medienkurse.ch</a></li></ul>",
 						"Info": ""
 					}
@@ -104,7 +104,7 @@
 					"prolog": "Kuratorin und Beirätin",
 					"text": "<span class='inta'>Qfaktur<br/>Dammweg 41<br/>3013 Bern<br/><a href='mailto:beate.schappach@palma3.ch'>beate.schappach@palma3.ch</a><br/>&nbsp;</span>",
 					"epilog": {
-						"Projektliste": "<ul><li><a onclick='search_nostyle(this)'>Das Abenteuer Bildung</a></li><li><a onclick='search_nostyle(this)'>Halbzeit</a></li><li><a onclick='search_nostyle(this)'>Mit Biss</a></li><li><a onclick='search_nostyle(this)'>Die 68er</a></li></ul>",
+						"Projektliste": true,
 						"weitere Tätigkeiten": "<ul><li>Dr. phil.</li><li>Studium der Germanistik und Theaterwissenschaft</li><li>Wissenschaftliche Assistentin am Institut für Theaterwissenschaft der Universität Bern, <a href='http://www.theaterwissenschaft.ch' target='_blank'>www.theaterwissenschaft.ch</a></li><li>Präsidentin der Schweizerischen Gesellschaft für Kulturwissenschaften und Leiterin der Arbeitsgruppe Literature-Medicine-Gender, <a href='http://www.culturalstudies.ch' target='_blank'>www.culturalstudies.ch</a></li></ul>",
 						"Info": ""
 					}
@@ -119,7 +119,7 @@
 					"prolog": "Beirat",
 					"text": "<span class='inta'>Qfaktur<br/>Dammweg 41<br/>3013 Bern<br/><a href='mailto:ronny.trachsel@palma3.ch'>ronny.trachsel@palma3.ch</a><br/>&nbsp;</span>",
 					"epilog": {
-						"Projektliste": "<ul><li><a onclick='search_nostyle(this)'>Fernes Donnergrollen</a></li><li><a onclick='search_nostyle(this)'>Mit Biss</a></li><li><a onclick='search_nostyle(this)'>Stadt vor Augen - Landschaft im Kopf</a></li><li><a onclick='search_nostyle(this)'>Ich schweige nicht!</a></li><li><a onclick='search_nostyle(this)'>Edith liebt ihn</a></li><li><a onclick='search_nostyle(this)'>Hirnsturm</a></li><li><a onclick='search_nostyle(this)'>Fitness</a></li></ul>",
+						"Projektliste": true,
 						"weitere Tätigkeiten": "<ul><li>Historiker, lic.phil.hist., I+D-Spezialist (NDS FH)</li><li>ETH Zürich, ETH-Bibliothek, Teamleiter</li></ul>",
 						"Info": ""
 					}
@@ -134,7 +134,7 @@
 					"prolog": "Beirat",
 					"text": "<span class='inta'>Qfaktur<br/>Dammweg 41<br/>3013 Bern<br/><a href='mailto:philipp.burkard@palma3.ch'>philipp.burkard@palma3.ch</a><br/>&nbsp;</span>",
 					"epilog": {
-						"Projektliste": "<ul><li><a onclick='search_nostyle(this)'>Edith liebt ihn</a></li><li><a onclick='search_nostyle(this)'>Hirnsturm</a></li></ul>",
+						"Projektliste": true,
 						"weitere Tätigkeiten": "<ul><li>Leiter Stiftung Science et Cité (seit 2012), <a href='http://www.science-et-cite.ch' target='_blank'>www.science-et-cite.ch</a></li><li>Co-Präsident Kulturvermittlung Schweiz KVS (seit 2015), Vorstand bekult (seit 2016)</li><li>Leiter Kulturabteilung Stadt Thun (2005-2012, Kulturförderung, Thuner Kulturnacht, Ausbau KK Thun, Renovation/Ausbau Thun-Panorama, Stiftungsrat Schlossmuseum Thun, Festival Kleist in Thun 2011)</li><li>Mitglied Schweizerische Städtekonferenz Kultur SKK, Steuergruppe Forum Kultur und Ökonomie</li><li>Kurator der Ausstellung «brotlos? – Vom Schreiben und vom Geld», Schweizerische Landesbibliothek Bern und Museum Strauhof Zürich (2005-2006)</li><li>Mitarbeit Schweizerisches Literaturarchiv und Centre Dürrenmatt Neuchâtel 2001-2005</li><li>«Dürrenmatts 'Stoffe'», Tübingen Francke (2004, Diss.)</li><li>Unterrichtstätigkeit Gymnasium Bern-Neufeld (1993-2003)</li></ul>",
 						"Info": ""
 					}
@@ -1195,6 +1195,9 @@
 					"text": "Über 45 Schweizer Pressezeichner zeigen die prägendsten und pointiertesten Karikaturen und Cartoons des Jahres 2012. Vernissage mit: Slam Poet Simon Libsig, dem Musiker Nic Niedermann und den beiden Politikern Philipp Müller und Alex Tschäppät.",
 					"epilog": {
 						"Ausstellungskonzept": " ... <a href='http://www.gezeichnet.ch' target='_blank'>www.gezeichnet.ch</a>",
+						"Impressum": {
+							"Fachbegleitung": ["Jürg Spichiger (palma3)"]
+						},
 						"Medienberichte": true,
 						"Ausstellungsort": [
 							["bis 2014", "Kornhausforum", "Kornhausplatz 18", "3011 Bern", "", "www.kornhausforum.ch", "d6LFswqcBGy"],
