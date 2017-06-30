@@ -28,19 +28,16 @@ function callOtherDomain(url, xdr, el) {
 
 						if (r.postalCodes.length > 0) {
 							if (typeof el === 'function') {
-								var a = [r.postalCodes[0].postalCode, r.postalCodes[0].placeName, r.postalCodes.length];
+								var a = [r.postalCodes[0].postalCode, r.postalCodes[0].placeName];
+								var opt = [r.postalCodes[0].postalCode];
 								if (r.postalCodes.length > 1) {
-									//console.log('got multiple answers: ', r.postalCodes);
-									var opt = [];
 									for (var i = 1; i < r.postalCodes.length; i++) {
 										if (r.postalCodes[i].placeName.indexOf(r.postalCodes[0].placeName) != -1 && opt.indexOf(r.postalCodes[i].postalCode) == -1) {
 											opt.push(r.postalCodes[i].postalCode);
 										}
 									}
-									if (opt.length > 0) {
-										a.push(opt);
-									}
 								}
+								a.push(opt);
 								el(a);
 
 							} else {

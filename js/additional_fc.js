@@ -210,16 +210,16 @@ var shop = {
 	"geonames": function(op, t) {
 
 		get_geonames_array(op, t, function(post_arr) {
-			if (post_arr[2] > 0) {
+			if (post_arr[2].length > 0) {
 				if (op == 'number') {
 					shop.fields[form_ort] = document.getElementById('form_ort').value = post_arr[1];
 				} else {
 
 
-					if (post_arr[2] > 1) {
+					if (post_arr[2].length > 1) {
 						//console.log('post_arr result code is: ', post_arr[3]);
 
-						if (post_arr[3].indexOf(document.getElementById('form_plz').value) == -1) {
+						if (post_arr[2].indexOf(document.getElementById('form_plz').value) == -1) {
 							shop.fields[form_plz] = document.getElementById('form_plz').value = post_arr[0];
 						}
 
