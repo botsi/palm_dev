@@ -5,6 +5,15 @@
 			var disable_img_over = false;
 
 			var temp_ih = '';
+			var sel = [
+				[],
+				["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
+				[]
+			];
+			for (var i = 1; i < 32; i++) {
+				sel[0].push(i);
+				sel[2].push(i + 1999);
+			}
 
 			var loadXMLDoc = function(url, cfunc, val) {
 
@@ -196,29 +205,11 @@
 
 				t.parentNode.classList.add('img_uploader_active');
 
-				/*
-								uploadtimerId = setInterval(function() {
-									upseconds++;
-									console.log('upseconds: ', upseconds);
-								}, 500);
-				*/
-
 				t.parentNode.innerHTML = ' ... bitte warten ...';
-
-				console.log(document.getElementById('image_selector').store_img);
-				console.log(save_image_presets[0]);
-				console.log(save_image_presets[1]);
-				console.log(save_image_presets[2]);
-				/*
-				 */
-
-				//console.log(save_image_presets[0].size);
 
 				var fd = new FormData();
 				fd.append("upload_file", save_image_presets[0], save_image_presets[1]);
 				fd.append('extraParam', save_image_presets[2]);
-				//fd.append('extraParam','test');
-
 
 				loadXMLDoc('scripts/upload_imgs.php', function() { // swap image names (numbers) on server
 
@@ -301,7 +292,7 @@
 
 			var validate = function(t, b) {
 				var value = (t.tagName.toLowerCase() == 'input') ? t.value : t.innerHTML;
-				console.log(value, 'i validate');
+				//console.log(value, 'i validate');
 				t.style.background = '#fff';
 				t.removeAttribute('title');
 				t.style.textDecoration = 'none';
@@ -344,6 +335,63 @@
 
 						return;
 					}
+				}
+
+				if (entry_kind == 'time') {
+
+					t.blur();
+
+					var els = t.parentNode.getElementsByTagName('select');
+
+					for (var i = 0; i < els.length; i++) {
+						els[i].style.background = '#fff';
+						els[i].removeAttribute('title');
+						els[i].style.textDecoration = 'none';
+					}
+
+
+					if (els.length == 6) {
+
+						var date_start = new Date(els[2].value, sel[1].indexOf(els[1].value) + 1, els[0].value);
+						var date_end = new Date(els[5].value, sel[1].indexOf(els[4].value) + 1, els[3].value);
+
+						console.log('start < end : ', date_start < date_end);
+						if (date_start >= date_end) {
+							t.style.background = 'rgb(250, 161, 179)';
+							t.style.textDecoration = 'line-through';
+
+							if (t == els[0]) {
+								els[1].style.background = els[2].style.background = 'rgb(250, 161, 179)';
+								els[1].style.textDecoration = els[2].style.textDecoration = 'line-through';
+							}
+
+							if (t == els[1]) {
+								els[2].style.background = 'rgb(250, 161, 179)';
+								els[2].style.textDecoration = 'line-through';
+							}
+
+							if (t == els[3]) {
+								els[4].style.background = els[5].style.background = 'rgb(250, 161, 179)';
+								els[4].style.textDecoration = els[5].style.textDecoration = 'line-through';
+							}
+
+							if (t == els[4]) {
+								els[5].style.background = 'rgb(250, 161, 179)';
+								els[5].style.textDecoration = 'line-through';
+							}
+
+							b.classList.remove('button_valid');
+							b.nextSibling.classList.remove('button_valid');
+
+
+							for (var i = 0; i < els.length; i++) {
+								els[i].title = 'Datum "von" muss früher als Datum "nach" sein!';
+							}
+
+							return;
+						}
+					} else {}
+					//}
 				}
 
 				if (entry_kind == 'Ausstellungsort') {
@@ -407,17 +455,21 @@
 
 			/******           check google short url           ******/
 
+			var no_gog_short = function(t) {
+				t.parentNode.parentNode.removeChild(t.parentNode);
+			};
+
 			var check_gog_short = function(t) {
 
 				if (t.value == '' && t.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.value != '' && t.previousSibling.previousSibling.previousSibling.previousSibling.value != '' && t.previousSibling.previousSibling.previousSibling.value != '') {
 					if (typeof gog_info === 'undefined') {
 						gog_info = document.createElement('div');
-						gog_info.style = 'position:absolute;cursor:pointer;left:' + parseInt((window.innerWidth - 968) / 2) + 'px;top:' + parseInt((window.innerHeight - 360) / 2) + 'px;width:968px;height:360px;';
+						gog_info.style = 'position:absolute;cursor:pointer;left:' + parseInt((window.innerWidth - 968) / 2) + 'px;top:' + parseInt((window.innerHeight - 360) / 2) + 'px;width:968px;height:360px;border:24px rgba(141, 170, 212, 0.9) solid;';
 						gog_info.style.background = 'url(images/gog_bg.jpg) top left no-repeat';
-						gog_info.innerHTML = 'bei google die kurz-url finden.';
-						gog_info.onmouseout = function(e) {
+						gog_info.innerHTML = '<p style="background:rgba(255,255,255,0.8);margin-top:0;">So finden Sie bei Google Maps die Kurz-URL.</p><button type="button" class="gog_btn button_valid" onclick="" class="button_valid"><i class="fa fa-floppy-o" aria-hidden="true"></i> Ok, mal probieren ... </button><button type="button" class="no_gog_btn button_valid" onmousedown="no_gog_short(this)" class="button_valid"><i class="fa fa-undo" aria-hidden="true"></i> Nein danke!</button>';
+						/*gog_info.onmouseout = function(e) {
 							e.target.parentNode.removeChild(e.target);
-						};
+						};*/
 						document.getElementById("header").appendChild(gog_info);
 					} else {
 						document.getElementById("header").appendChild(gog_info);
@@ -761,7 +813,8 @@
 				t.classList.remove('button_valid');
 				t.nextSibling.classList.remove('button_valid');
 
-				/******           overlay (disable other precess)           ******/
+				/******           overlay (disable other process)           ******/
+
 				document.getElementById('process_overlay').classList.add('process_overlay_dark');
 
 				var entry_kind = t.previousSibling.id.replace('_display', '');
@@ -811,23 +864,33 @@
 						to_edit[entry_kind] = t.previousSibling.innerHTML;
 						break;
 					case 'time':
+						var els = t.previousSibling.getElementsByTagName('select');
 						var a = [];
-						var els = t.previousSibling.getElementsByTagName('input');
 						if (els.length == 3) {
-							for (var i = 0; i < els.length; i++) {
-								a.push(els[i].value);
+							for (var i = 0; i < 3; i++) {
+								if (i == 1) {
+									a.push(sel[1].indexOf(els[i].value) + 1);
+								} else {
+									a.push(parseInt(els[i].value));
+								}
 							}
 							to_edit[entry_kind].from = a;
 						}
 						if (els.length == 6) {
 							var b = [];
 							for (var i = 0; i < 3; i++) {
-								a.push(els[i].value);
-								b.push(els[i + 3].value);
+								if (i == 1) {
+									a.push(sel[1].indexOf(els[i].value) + 1);
+									b.push(sel[1].indexOf(els[i + 3].value) + 1);
+								} else {
+									a.push(parseInt(els[i].value));
+									b.push(parseInt(els[i + 3].value));
+								}
 							}
 							to_edit[entry_kind].from = a;
 							to_edit[entry_kind].till = b;
 						}
+						console.log(a, ' und ', b);
 						break;
 					case 'Ausstellungsort':
 						var a = [];
@@ -965,15 +1028,83 @@
 						break;
 
 					case 'time':
+						//			var input_attributes = ' type="text" onchange="validate(this,this.parentNode.nextSibling)"';
+						temp_ih = (typeof to_edit.time.till !== 'undefined') ? 'von' : 'ab';
+
+						temp_ih += '<select onchange="validate(this,this.parentNode.nextSibling)">';
+
+						for (var i = 0; i < sel[0].length; i++) {
+							temp_ih += (to_edit.time.from[0] != i + 1) ? '<option value="' + sel[0][i] + '">' + sel[0][i] + '</option>' : '<option selected value="' + sel[0][i] + '">' + sel[0][i] + '</option>';
+						}
+
+						temp_ih += '</select><select onchange="validate(this,this.parentNode.nextSibling)">';
+
+						for (var i = 0; i < sel[1].length; i++) {
+							if (to_edit.time.from[1] != i + 1) {
+								temp_ih += '<option value="' + sel[1][i] + '">' + sel[1][i] + '</option>';
+							} else {
+								temp_ih += '<option selected value="' + sel[1][i] + '">' + sel[1][i] + '</option>';
+							}
+						}
+
+						temp_ih += '</select><select onchange="validate(this,this.parentNode.nextSibling)">';
+
+						for (var i = 0; i < sel[2].length; i++) {
+
+							if (to_edit.time.from[2] != sel[2][i]) {
+								temp_ih += '<option value="' + sel[2][i] + '">' + sel[2][i] + '</option>';
+							} else {
+								temp_ih += '<option selected value="' + sel[2][i] + '">' + sel[2][i] + '</option>';
+							}
+						}
+
+						temp_ih += '</select>';
+
+
+						if (typeof to_edit.time.till !== 'undefined') {
+							temp_ih += 'bis';
+
+							temp_ih += '<select onchange="validate(this,this.parentNode.nextSibling)">';
+
+							for (var i = 0; i < sel[0].length; i++) {
+								temp_ih += (to_edit.time.till[0] != i + 1) ? '<option value="' + sel[0][i] + '">' + sel[0][i] + '</option>' : '<option selected value="' + sel[0][i] + '">' + sel[0][i] + '</option>';
+							}
+
+							temp_ih += '</select><select onchange="validate(this,this.parentNode.nextSibling)">';
+
+							for (var i = 0; i < sel[1].length; i++) {
+								if (to_edit.time.till[1] != i + 1) {
+									temp_ih += '<option value="' + sel[1][i] + '">' + sel[1][i] + '</option>';
+								} else {
+									temp_ih += '<option selected value="' + sel[1][i] + '">' + sel[1][i] + '</option>';
+								}
+							}
+
+							temp_ih += '</select><select onchange="validate(this,this.parentNode.nextSibling)">';
+
+							for (var i = 0; i < sel[2].length; i++) {
+
+								if (to_edit.time.till[2] != sel[2][i]) {
+									temp_ih += '<option value="' + sel[2][i] + '">' + sel[2][i] + '</option>';
+								} else {
+									temp_ih += '<option selected value="' + sel[2][i] + '">' + sel[2][i] + '</option>';
+								}
+							}
+
+							temp_ih += '</select>';
+
+						}
 
 						//if (typeof to_edit.time !== 'undefined') {
-						temp_ih = '<input' + input_attributes + ' value="' + to_edit.time.from[0] + '" />' + '<input' + input_attributes + ' value="' + to_edit.time.from[1] + '" />' + '<input' + input_attributes + ' value="' +
-							to_edit.time.from[2] + '" />';
-						if (typeof to_edit.time.till !== 'undefined') {
-							temp_ih += ' bis ' + '<input' + input_attributes + ' value="' + to_edit.time.till[0] + '" />' + '<input' + input_attributes + ' value="' + to_edit.time.till[1] + '" />' + '<input' + input_attributes +
-								' value="' + to_edit.time.till[2] +
-								'" />';
-						}
+						/*
+												temp_ih = '<input' + var input_attributes + ' value="' + to_edit.time.from[0] + '" />' + '<input' + input_attributes + ' value="' + to_edit.time.from[1] + '" />' + '<input' + input_attributes + ' value="' +
+													to_edit.time.from[2] + '" />';
+												if (typeof to_edit.time.till !== 'undefined') {
+													temp_ih += ' bis ' + '<input' + input_attributes + ' value="' + to_edit.time.till[0] + '" />' + '<input' + input_attributes + ' value="' + to_edit.time.till[1] + '" />' + '<input' + input_attributes +
+														' value="' + to_edit.time.till[2] +
+														'" />';
+												}
+						*/
 						//}
 
 						el.innerHTML = temp_ih;
@@ -1303,7 +1434,7 @@
 						return false;
 					};
 
-					console.log('func_after_Image is now: ', func_after_Image);
+					//console.log('func_after_Image is now: ', func_after_Image);
 
 				};
 
@@ -1501,8 +1632,8 @@
 
 					document.getElementById('Images_display').style.height = document.getElementById('Images_display').offsetHeight + 'px';
 					temp_ih = '';
-					var callback = func_after_Image;
-					callback('img stuff done! dav');
+
+					func_after_Image();
 					//document.getElementById('process_overlay').classList.remove('process_overlay_dark');
 
 				};
@@ -1568,11 +1699,22 @@
 
 							for (var i = 0; i < folders.length; i++) {
 
-								document.getElementById('basis').innerHTML += '<th>' + folders[i].menu_name + '<i class="fa fa-plus-circle" aria-hidden="true" onclick="new_entry(this)"></i></th>';
+
+								if (typeof folders[i].data[0].time !== 'undefined') {
+
+									folders[i].data.sort(function(a, b) {
+
+										return b.time.from[2] - a.time.from[2];
+
+									});
+								}
 
 								if (largest < folders[i].data.length) {
 									largest = folders[i].data.length;
 								}
+
+
+								document.getElementById('basis').innerHTML += '<th>' + folders[i].menu_name + '<i class="fa fa-plus-circle" aria-hidden="true" onclick="new_entry(this)"></i></th>';
 
 							}
 
@@ -1746,13 +1888,11 @@
 				var encInCanvas = document.getElementById("encoderInputCanvas"),
 					encInContext = encInCanvas.getContext("2d"),
 					img = document.createElement("img"),
-
 					encOutputWebPImage = document.getElementById('encOutputWebPImage'),
 					base64URI = '';
 
-				//var file = save_image_presets[0];
-
 				var freader = new FileReader();
+
 				freader.onload = function(evt) {
 
 					img.onload = function() {
@@ -1764,9 +1904,11 @@
 						WebPEncodeAndDraw(80);
 
 					};
+
 					img.src = evt.target.result;
 
 				};
+
 				freader.readAsDataURL(save_image_presets[0]);
 
 				WebPEncodeAndDraw = function(qualityVal) {
@@ -1779,14 +1921,12 @@
 						output: ''
 					};
 
-					//var start = new Date();
-
 					//CODE START
 					var encoder = new WebPEncoder();
 
 					//Config, you can set all arguments or what you need, nothing no objeect
-					var
-						config = new Object()
+					var config = new Object();
+
 					config.target_size = 0; // if non-zero, set the desired target size in bytes. Takes precedence over the 'compression' parameter.
 					config.target_PSNR = 0.; // if non-zero, specifies the minimal distortion to	try to achieve. Takes precedence over target_size.
 					config.method = 4; // quality/speed trade-off (0=fast, 6=slower-better)    //  was method
@@ -1811,13 +1951,7 @@
 					var size = encoder.WebPEncodeRGBA(inputData, w, h, w * 4, qualityVal, out); //w*4 desc: w = width, 3:RGB/BGR, 4:RGBA/BGRA
 					//CODE END
 
-					//var end = new Date();
-					//var bench_libwebp = (end - start);
-
-					//console.log('Speed result:<br />libwebp: finish in ' + bench_libwebp + 'ms - ' + size + 'bytes<pre>' + encoder.ReturnExtraInfo() + '</pre>');
-
 					base64URI = btoa(out.output);
-					//console.log(base64URI);
 
 					/*    prepare json and upload_file   */
 
@@ -1841,13 +1975,6 @@
 								close_image_editor();
 								save_image_presets = [];
 
-								/*
-																clearInterval(uploadtimerId);
-								*/
-
-
-
-
 							} else {
 								alert('upload_file (webp) shit happens');
 							}
@@ -1857,7 +1984,6 @@
 
 					/*    end upload_file   */
 
-
-				}
+				};
 
 			};
