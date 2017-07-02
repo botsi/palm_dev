@@ -5,14 +5,27 @@
 			var disable_img_over = false;
 
 			var temp_ih = '';
+
+
+			var adjustments_de = {
+
+				dayNames: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"],
+				dayNamesMin: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
+				monthNames: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
+				monthNamesMin: ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
+				years: []
+
+			};
+
+
 			var sel = [
-				[],
-				["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
-				[]
+				[], adjustments_de.monthNames, []
 			];
 			for (var i = 1; i < 32; i++) {
 				sel[0].push(i);
-				sel[2].push(i + 1999);
+			}
+			for (var i = 2000; i < new Date().getFullYear() + 11; i++) {
+				sel[2].push(i);
 			}
 
 			var loadXMLDoc = function(url, cfunc, val) {
@@ -339,8 +352,6 @@
 
 				if (entry_kind == 'time') {
 
-					t.blur();
-
 					var els = t.parentNode.getElementsByTagName('select');
 
 					for (var i = 0; i < els.length; i++) {
@@ -349,13 +360,20 @@
 						els[i].style.textDecoration = 'none';
 					}
 
+					if (t != els[0] && t != els[3]) {
+
+						check_calendar(t);
+
+					}
+
+					//t.blur();
 
 					if (els.length == 6) {
 
-						var date_start = new Date(els[2].value, sel[1].indexOf(els[1].value) + 1, els[0].value);
-						var date_end = new Date(els[5].value, sel[1].indexOf(els[4].value) + 1, els[3].value);
+						var date_start = new Date(parseInt(sel[1].indexOf(els[1].value) + 1) + "/" + els[0].value + "/" + els[2].value);
 
-						console.log('start < end : ', date_start < date_end);
+						var date_end = new Date(parseInt(sel[1].indexOf(els[4].value) + 1) + "/" + els[3].value + "/" + els[5].value);
+
 						if (date_start >= date_end) {
 							t.style.background = 'rgb(250, 161, 179)';
 							t.style.textDecoration = 'line-through';
@@ -391,7 +409,6 @@
 							return;
 						}
 					} else {}
-					//}
 				}
 
 				if (entry_kind == 'Ausstellungsort') {
@@ -483,6 +500,55 @@
 			};
 
 
+			/******           check calendar           ******/
+
+
+			var ck_calendar = function(el, c, els) {
+
+				if (new Date(parseInt(sel[1].indexOf(els[el + 1].value) + 1) + "/" + c + "/" + els[el + 2].value).getMonth() !== new Date(parseInt(sel[1].indexOf(els[el + 1].value) + 1) + "/1/" + els[el + 2].value).getMonth()) {
+
+					if (els[el].lastChild.selected == true) {
+						els[el].lastChild.selected = false;
+						els[el].value = parseInt(els[el].lastChild.previousSibling.value);
+					}
+
+					els[el].removeChild(els[el].lastChild);
+
+				}
+
+			};
+
+			var check_calendar = function(t) {
+
+				var els = t.parentNode.getElementsByTagName('select');
+
+				var e_ix = (t == els[1] || t == els[2]) ? 0 : 3;
+
+				for (var i = 31; i > 28; i--) {
+
+					if (els[e_ix].children.length != 31) {
+						var child = document.createElement('option');
+						child.value = parseInt(els[e_ix].children.length + 1);
+						els[e_ix].add(child);
+					}
+
+				}
+
+				for (var i = 31; i > 28; i--) {
+
+					ck_calendar(e_ix, i, els);
+
+				}
+
+				for (var i = 0; i < els[e_ix].length; i++) {
+
+					var day = adjustments_de.dayNames[new Date(parseInt(sel[1].indexOf(els[e_ix + 1].value) + 1) + "/" + els[e_ix][i].value + "/" + els[e_ix + 2].value).getDay()];
+
+					els[e_ix][i].text = day + ' ' + els[e_ix][i].value + '.';
+
+				}
+
+			};
 
 			/******           remove Ausstellungsort           ******/
 
@@ -795,13 +861,11 @@
 				var entry_kind = t.previousSibling.previousSibling.id.replace('_display', '');
 
 
-				console.log(to_edit[entry_kind]);
+				t.classList.remove('button_valid');
+				t.previousSibling.classList.remove('button_valid');
 
 				fill_cat(entry_kind);
 
-
-				t.classList.remove('button_valid');
-				t.previousSibling.classList.remove('button_valid');
 
 			};
 
@@ -945,7 +1009,11 @@
 						alert('no save_existing handling defined');
 				}
 
-				console.log(to_edit);
+				if (to_edit[entry_kind]) {
+					console.log(to_edit[entry_kind]);
+				} else {
+					console.log(to_edit.epilog[entry_kind]);
+				}
 
 				var newtext = JSON.stringify({
 					"folders": folders
@@ -1067,7 +1135,7 @@
 							temp_ih += '<select onchange="validate(this,this.parentNode.nextSibling)">';
 
 							for (var i = 0; i < sel[0].length; i++) {
-								temp_ih += (to_edit.time.till[0] != i + 1) ? '<option value="' + sel[0][i] + '">' + sel[0][i] + '</option>' : '<option selected value="' + sel[0][i] + '">' + sel[0][i] + '</option>';
+								temp_ih += (to_edit.time.till[0] != i + 1) ? '<option value="' + sel[0][i] + '"></option>' : '<option selected value="' + sel[0][i] + '"></option>';
 							}
 
 							temp_ih += '</select><select onchange="validate(this,this.parentNode.nextSibling)">';
@@ -1093,21 +1161,19 @@
 
 							temp_ih += '</select>';
 
+						} else {
+
+							temp_ih += '<i class="fa fa-plus-circle add-raw" aria-hidden="true" onclick="add_time_till(this)"></i>';
+
 						}
 
-						//if (typeof to_edit.time !== 'undefined') {
-						/*
-												temp_ih = '<input' + var input_attributes + ' value="' + to_edit.time.from[0] + '" />' + '<input' + input_attributes + ' value="' + to_edit.time.from[1] + '" />' + '<input' + input_attributes + ' value="' +
-													to_edit.time.from[2] + '" />';
-												if (typeof to_edit.time.till !== 'undefined') {
-													temp_ih += ' bis ' + '<input' + input_attributes + ' value="' + to_edit.time.till[0] + '" />' + '<input' + input_attributes + ' value="' + to_edit.time.till[1] + '" />' + '<input' + input_attributes +
-														' value="' + to_edit.time.till[2] +
-														'" />';
-												}
-						*/
-						//}
-
 						el.innerHTML = temp_ih;
+
+						check_calendar(el.getElementsByTagName('select')[2]);
+
+						if (typeof to_edit.time.till !== 'undefined') {
+							check_calendar(el.getElementsByTagName('select')[5]);
+						}
 
 						break;
 
@@ -1148,6 +1214,8 @@
 						break;
 
 					case 'Impressum':
+
+						console.log(temp_ih);
 
 						for (var key in to_edit.epilog.Impressum) {
 							temp_ih += '<input' + input_attributes + ' value="' + key + '" class="keyfield" /><i class="fa fa-minus-circle" aria-hidden="true" onclick="remove_impressum_key(this)"></i>';
@@ -1223,6 +1291,7 @@
 
 									el.innerHTML = temp_ih;
 
+									temp_ih = '';
 
 								} else {
 									alert('load media txt shit happens');
@@ -1506,7 +1575,9 @@
 
 							as[i].setAttribute("store_link", newItem.children[0].href);
 
-							as[i].value = newItem.children[0].innerHTML;
+							as[i].removeAttribute("value");
+
+							as[i].setAttribute("value", newItem.children[0].innerHTML);
 
 							newItem.removeChild(newItem.children[0]);
 
@@ -1533,6 +1604,12 @@
 							}
 
 							as[i].value += rest;
+
+							as[i].readOnly = true;
+
+							as[i].onfocus = function() {
+								sh_link_editor(this);
+							};
 
 						}
 
@@ -1577,9 +1654,10 @@
 
 				console.log(t.value);
 				var link_target = (TextEditor.ih_preset != '') ? TextEditor.ih_preset : t.onclick;
-				var ih = '<label>Link Text</label><label>Link Ziel</label><br/><input value="'
+				var ih = '<label>Link Text:</label><input value="';
 				ih += (t.tagName.toLowerCase() == 'input') ? t.value : t.innerHTML;
-				ih += '"/><input value="' + link_target + '"/><i class="fa fa-times-circle" aria-hidden="true" onclick="go_TextEditor()"></i>';
+				ih += '"/><br/><label>Link Ziel:</label><input value="' + link_target + '"/><i class="fa fa-times-circle" aria-hidden="true" onclick="go_TextEditor()"></i>';
+				ih += '<button type="button" class="ok_link_btn button_valid" onclick="ok_link(this)"><i class="fa fa-check" aria-hidden="true"></i>Ok, übernehmen</button>';
 				TextEditor.ih_preset = '';
 				come_TextEditor(ih, t, [t.parentNode.offsetLeft, t.parentNode.offsetTop]);
 			};
@@ -1604,6 +1682,23 @@
 				} else {
 					go_TextEditor();
 				}
+			};
+
+
+			var ok_link = function(t) {
+				var els = t.parentNode.getElementsByTagName('input');
+				console.log(els[0].value, els[1].value, TextEditor.origin);
+				if (TextEditor.origin.tagName.toLowerCase() == 'input') {
+					TextEditor.origin.value = els[0].value;
+					TextEditor.origin.removeAttribute("store_link");
+					TextEditor.origin.setAttribute("store_link", els[1].value);
+					//TextEditor.origin.store_link = els[1].value;
+					validate(TextEditor.origin, TextEditor.origin.parentNode.nextSibling);
+					TextEditor.origin.style.background = 'rgba(191, 231, 153, 0.9)';
+				} else {
+					TextEditor.origin.innerHTML = els[0].value;
+				}
+				go_TextEditor();
 			};
 
 			/*******    end textpart editor functions   *******/
