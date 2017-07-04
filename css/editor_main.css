@@ -8,6 +8,15 @@
       	font-family: 'Futura', Arial;
       }
 
+      #positioner {
+      	position: absolute;
+      	border: 0 none;
+      	margin: 0;
+      	padding: 0;
+      	width: 0;
+      	height: 0;
+      }
+
       input[type="text"] {
       	font-size: 12px;
       	font-weight: lighter;
@@ -35,6 +44,10 @@
       	font-weight: 600;
       	color: #444;
       	cursor: pointer;
+      }
+
+      .ok_link_btn {
+      	margin: 24px calc(50% - 100px) auto calc(50% - 100px);
       }
 
       .editor_fields button:nth-of-type(2), .no_gog_btn {
@@ -214,6 +227,7 @@
 
       #text_display a, #Ausstellungskonzept_display a {
       	background: rgba(191, 231, 153, 0.9);
+      	cursor: pointer;
       }
 
       #Ausstellungsort_display input[type="text"], #Ausstellungsort_display span {
@@ -266,7 +280,7 @@
       }
 
       #Images_display {
-      	height: auto;
+      	height: 100% !important;
       	flex-wrap: wrap-reverse;
       	justify-content: end;
       	align-items: flex-end;
@@ -383,7 +397,7 @@
 
       #text_editor {
       	width: 400px;
-      	position: absolute;
+      	position: fixed;
       	top: 200px;
       	background: #fff;
       	padding: 24px;
@@ -392,15 +406,24 @@
       }
 
       #text_editor i.fa-times-circle {
-      	font-size: 24px;
+      	font-size: 2vw;
       	position: absolute;
+      	top: 4px;
+      	right: 4px;
       }
 
       #text_editor label, #text_editor input {
-      	width: 50%;
       	display: inline-block;
       	padding: 0;
       	border: 0;
+      }
+
+      #text_editor label {
+      	width: 24%;
+      }
+
+      #text_editor input {
+      	width: 76%;
       }
 
       #time_display select {
@@ -433,4 +456,8 @@
       select:-moz-focusring {
       	color: transparent;
       	text-shadow: 0 0 0 #000;
+      }
+
+      a.line {
+      	background: rgba(191, 231, 153, 0.9);
       }
