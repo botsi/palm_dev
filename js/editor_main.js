@@ -143,16 +143,15 @@
 
 					var numberPattern = /slide_lr\(\d+/g;
 
-					//var replace_slid_numbers = function(to_kind, kind, json) {
+					var one = JSON.parse(json).one.replace(to_edit.comp_name + '_', '');
 
-
-					//};
+					var two = JSON.parse(json).two.replace(to_edit.comp_name + '_', '');
 
 					if (to_edit.text.match(numberPattern) != null) {
 
-						//replace_slid_numbers(to_edit.text, 'text', json);
-
 						var count = 0;
+
+						var founds = '';
 
 						for (var i = 0; i < to_edit.text.match(numberPattern).length; i++) {
 
@@ -160,28 +159,142 @@
 
 							var found_s_lr_nr = parseInt(found_s_lr_str.replace('slide_lr(', ''));
 
-							if (found_s_lr_nr == JSON.parse(json).one.replace(to_edit.comp_name + '_', '')) {
+							if (found_s_lr_nr == one) {
+
+								founds += (founds.indexOf('from') == -1) ? 'from' : '';
+
+							}
+
+							if (found_s_lr_nr == two) {
+
+								founds += (founds.indexOf('to') == -1) ? 'to' : '';
+
+							}
+
+						}
+
+						console.log('found : ', founds);
+						/******   oh, must make rochade, so put away nr two ******/
+						if (founds == 'fromto' || founds == 'tofrom') {
+
+
+							for (var i = 0; i < to_edit.text.match(numberPattern).length; i++) {
+
+								var found_s_lr_str = to_edit.text.match(numberPattern)[i];
+
+								var found_s_lr_nr = parseInt(found_s_lr_str.replace('slide_lr(', ''));
+
+
+								if (found_s_lr_nr == two) {
+
+									//count++;
+
+									var to_rep = found_s_lr_str + ')';
+
+									var rep_with = 'slide_lr(9999' + one + ')';
+									console.log('oki found, now rep from / to : ', to_rep, ' / ', rep_with);
+
+									to_edit.text = (function() {
+										return replaceAll(to_edit.text, to_rep, rep_with);
+									})();
+
+									//fill_cat('text');
+
+								}
+
+							}
+
+						}
+						/******   end put away ******/
+
+						/******   now normal work ******/
+
+						for (var i = 0; i < to_edit.text.match(numberPattern).length; i++) {
+
+							var found_s_lr_str = to_edit.text.match(numberPattern)[i];
+
+							var found_s_lr_nr = parseInt(found_s_lr_str.replace('slide_lr(', ''));
+
+							if (found_s_lr_nr == one) {
 
 								count++;
 
 								var to_rep = found_s_lr_str + ')';
 
-								var rep_with = 'slide_lr(' + JSON.parse(json).two.replace(to_edit.comp_name + '_', '') + ')';
+								var rep_with = 'slide_lr(' + two + ')';
 								console.log('oki found, now rep from / to : ', to_rep, ' / ', rep_with);
 
 								to_edit.text = (function() {
 									return replaceAll(to_edit.text, to_rep, rep_with);
 								})();
 
-								fill_cat('text');
+								//fill_cat('text');
+
+							}
+
+							if (found_s_lr_nr == two) {
+
+								count++;
+
+								var to_rep = found_s_lr_str + ')';
+
+								var rep_with = 'slide_lr(' + one + ')';
+								console.log('oki found, now rep from / to : ', to_rep, ' / ', rep_with);
+
+								to_edit.text = (function() {
+									return replaceAll(to_edit.text, to_rep, rep_with);
+								})();
+
+								//fill_cat('text');
+
+							}
+
+						}
+						/******   end normal work ******/
+
+
+
+						/******   complete rochade (assign nr two) ******/
+
+						if (founds == 'fromto' || founds == 'tofrom') {
+
+
+							for (var i = 0; i < to_edit.text.match(numberPattern).length; i++) {
+
+								var found_s_lr_str = to_edit.text.match(numberPattern)[i];
+
+								var found_s_lr_nr = parseInt(found_s_lr_str.replace('slide_lr(', ''));
+
+
+								if (found_s_lr_nr == '9999' + one) {
+
+									//count++;
+
+									var to_rep = 'slide_lr(9999' + one + ')';
+
+									var rep_with = 'slide_lr(' + one + ')';
+									console.log('oki found, now rep from / to : ', to_rep, ' / ', rep_with);
+
+									to_edit.text = (function() {
+										return replaceAll(to_edit.text, to_rep, rep_with);
+									})();
+
+									//fill_cat('text');
+
+								}
 
 							}
 
 						}
 
+						/******   end rochade ******/
+
+
+
 						console.log('i count: ', count);
 
 						if (count != 0) {
+							fill_cat('text');
 
 							save_existing(document.getElementById('text_display').nextSibling);
 						}
@@ -189,8 +302,6 @@
 					}
 
 					if (to_edit.epilog.Ausstellungskonzept.match(numberPattern) != null) {
-
-						//replace_slid_numbers(to_edit.epilog.Ausstellungskonzept, 'Ausstellungskonzept', json);
 
 						var count = 0;
 
@@ -200,13 +311,13 @@
 
 							var found_s_lr_nr = parseInt(found_s_lr_str.replace('slide_lr(', ''));
 
-							if (found_s_lr_nr == JSON.parse(json).one.replace(to_edit.comp_name + '_', '')) {
+							if (found_s_lr_nr == one) {
 
 								count++;
 
 								var to_rep = found_s_lr_str + ')';
 
-								var rep_with = 'slide_lr(' + JSON.parse(json).two.replace(to_edit.comp_name + '_', '') + ')';
+								var rep_with = 'slide_lr(' + two + ')';
 								console.log('oki found, now rep from / to : ', to_rep, ' / ', rep_with);
 
 								to_edit.epilog.Ausstellungskonzept = (function() {
@@ -286,6 +397,9 @@
 
 				document.getElementById('Images_display').lastChild.style.display = 'inline';
 
+				document.getElementById('process_overlay').classList.remove('process_overlay_dark');
+
+
 				disable_img_over = false;
 
 			};
@@ -296,15 +410,15 @@
 			var preview_image = function(t) {
 				console.log(t.value);
 
-				document.getElementById('image_editor').getElementsByTagName('img')[0].src = t.value;
-				//document.getElementById('image_editor').style.display = 'none';
+				document.getElementById('image_editor').style.backgroundImage = 'url("' + t.value + '")';
 
 
 				var oFReader = new FileReader();
 				oFReader.readAsDataURL(t.files[0]);
 
 				oFReader.onload = function(oFREvent) {
-					document.getElementById('image_editor').getElementsByTagName('img')[0].src = oFREvent.target.result;
+
+					document.getElementById('image_editor').style.backgroundImage = 'url("' + oFREvent.target.result + '")';
 
 					var file = t.files[0];
 					// This code is only for demo ...
@@ -331,23 +445,23 @@
 
 					console.log(errors);
 
+					t.nextSibling.style.zIndex = 1;
+
 					if (errors.length > 0) {
 
-						t.nextSibling.nextSibling.innerHTML = 'i stop here because ...<br/>';
+						t.nextSibling.innerHTML = '';
 
 						for (var i = 0; i < errors.length; i++) {
-							t.nextSibling.nextSibling.innerHTML += errors[i] + '<br/>';
+							t.nextSibling.innerHTML += errors[i] + '<br/>';
 						}
 
-						t.nextSibling.nextSibling.innerHTML += 'Sie können ein anderes Bild hierher ziehen oder den Bildeditor <button type="button" onclick="close_image_editor()">schliessen</button>';
+						t.nextSibling.innerHTML += 'Sie können ein anderes Bild hierher ziehen oder den Bildeditor ... <button type="button" onclick="close_image_editor()" style="background:#f00;">schliessen</button>';
 
 					} else {
 
 						save_image_presets = [t.files[0], to_edit.comp_name + '_' + document.getElementById('image_selector').store_img + '.jpg', to_edit_folder];
 
-						//save_image_presets = [t.files[0], to_edit.comp_name + to_edit_image.substring(to_edit_image.indexOf("_"), to_edit_image.indexOf("?") - 3) + 'jpg', to_edit_folder];
-
-						t.nextSibling.nextSibling.innerHTML = '<button type="button" onclick="upload_file(this)">speichern</button>' + file.name;
+						t.nextSibling.innerHTML = 'Bild "' + file.name + '" ... <button type="button" onclick="upload_file(this)">speichern</button>';
 
 					}
 
@@ -390,6 +504,9 @@
 
 			var edit_image = function(img) {
 
+				document.getElementById('process_overlay').classList.add('process_overlay_dark');
+
+
 				document.getElementById('image_selector').style.backgroundImage = 'none';
 				document.getElementById('image_selector').style.display = 'none';
 
@@ -398,13 +515,10 @@
 
 				disable_img_over = true;
 
-				if (!img) {
-					document.getElementById('image_editor').innerHTML = '<p><i class="fa fa-times-circle" aria-hidden="true" onclick="close_image_editor()"></i></p><input type="file" id="myFile" onchange="preview_image(this)"><img src="' + to_edit_image +
-						'" /><p>neues Bild hierher ziehen ...</p>';
-				} else {
-					//console.log('value: ', img, ' und ', document.getElementById('image_selector').store_img);
-					document.getElementById('image_editor').innerHTML = '<p><i class="fa fa-times-circle" aria-hidden="true" onclick="close_image_editor()"></i></p><input type="file" id="myFile" onchange="preview_image(this)"><img src="images/editor_new_image.jpg" /><p>neues Bild hierher ziehen ...</p>';
-				}
+				document.getElementById('image_editor').innerHTML = '<p><i class="fa fa-times-circle" aria-hidden="true" onclick="close_image_editor()"></i></p><input type="file" id="myFile" onchange="preview_image(this)"><p style="z-index:0;">neues Bild hierher ziehen ...</p>';
+
+				document.getElementById('image_editor').style.backgroundImage = (!img) ? 'url("' + to_edit_image + '")' : 'url("images/editor_new_image.jpg")';
+
 				document.getElementById('image_editor').style.display = 'block';
 
 			};
@@ -416,6 +530,8 @@
 				if (disable_img_over) {
 					return false;
 				}
+
+
 
 				if (t.tagName.toLowerCase() != 'img') {
 					var s = t.previousSibling.src.split('_')[0];
@@ -449,12 +565,17 @@
 			};
 
 			var validate_link_target = function(t) {
+
 				t.parentNode.getElementsByTagName('button')[0].classList.add('button_valid');
 
-				var canvas_ini = document.getElementById('Images_display').children[TextEditor.children[4].value].getBoundingClientRect();
-				canvArrow.arr = [(canvas_ini.left + canvas_ini.right) / 2, canvas_ini.top + 60];
+				if (TextEditor.ih_preset.indexOf('slide_lr') != -1) {
 
-				drawArrow(canvArrow.arr);
+					var canvas_ini = document.getElementById('Images_display').children[TextEditor.children[4].value].getBoundingClientRect();
+					canvArrow.arr = [(canvas_ini.left + canvas_ini.right) / 2, canvas_ini.top + 60];
+
+					drawArrow(canvArrow.arr);
+
+				}
 
 			};
 
@@ -466,7 +587,7 @@
 					return;
 				}
 
-				console.log(t);
+				//console.log(t);
 				if (t.id.indexOf('_display') != -1) {
 					b = t.nextSibling;
 				} else {
@@ -499,6 +620,12 @@
 					var value = t.innerHTML;
 
 				}
+
+				if (isSafari && t.tagName.toLowerCase() == 'select') {
+					saf_align(t);
+				}
+
+
 
 
 				if ((value == '' || value == ' ' || value.indexOf('eval(') != -1) && (t.getAttribute("datakind") != 0 && t.getAttribute("datakind") < 4)) {
@@ -1277,6 +1404,46 @@
 
 			/******         end replace entry         ******/
 
+
+			/******         special select alignment for safari         ******/
+
+			var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+			var saf_align = function(ta) {
+
+				var t_align = function(t) {
+
+					var newItem = document.createElement("span");
+
+					newItem.style.visibility = 'hidden';
+
+					newItem.style.height = 0;
+
+					newItem.innerHTML = t.options[t.selectedIndex].text;
+
+					document.body.appendChild(newItem);
+
+					var wps = parseInt((parseInt(window.getComputedStyle(t, null).getPropertyValue("width")) - newItem.offsetWidth) / 2) + 'px';
+
+					document.body.removeChild(newItem);
+
+					return wps;
+
+				};
+
+				if (Array.isArray(ta)) {
+					for (var i = 0; i < ta.length; i++) {
+						ta[i].style.WebkitPaddingStart = t_align(ta[i]);
+					}
+				} else {
+					ta.style.WebkitPaddingStart = t_align(ta);
+				}
+
+			};
+
+			/******         end alignment for safari         ******/
+
+
 			var input_attributes = ' type="text" onkeyup="validate(this,this.parentNode.nextSibling)"';
 
 
@@ -1584,6 +1751,10 @@
 
 				temp_ih = '';
 
+				if (isSafari) {
+					saf_align(Array.from(el.getElementsByTagName('select')));
+				}
+
 				el.nextSibling.classList.remove('button_valid');
 				el.nextSibling.nextSibling.classList.remove('button_valid');
 
@@ -1807,6 +1978,7 @@
 					as[i].addEventListener("click", function(event) {
 						sh_link_editor(this);
 					}, false);
+
 					/*
 										}else{
 
@@ -1914,11 +2086,15 @@
 			};
 
 			var search_nostyle = function(t) {
-				TextEditor.ih_preset = 'search_nostyle';
+				TextEditor.ih_preset = 'search_nostyle' + t.innerHTML;
 				//TextEditor.ih_preset = 'search_nostyle ' + t.innerHTML + ' (this)';
 			};
 
 			var sh_link_editor = function(t) {
+
+				/******   clear TextEditor ih_preset   ******/
+
+				/******   end clear   ******/
 
 
 				if (t.tagName.toLowerCase() == 'input') {
@@ -1926,18 +2102,61 @@
 					console.log(TextEditor.ih_preset);
 				}
 
-				console.log(t.value);
+				console.log('t.value: ', t.value);
 				var ih = '<label>Link Text:</label><input value="';
 				ih += (t.tagName.toLowerCase() == 'input') ? t.value : t.innerHTML;
 				var link_target = (TextEditor.ih_preset != '') ? TextEditor.ih_preset : t.onclick.toString().slice(t.onclick.toString().indexOf('slide_lr') + 9, t.onclick.toString().length - 3);
 				link_target = (TextEditor.ih_preset.indexOf('slide_lr') == -1) ? link_target : TextEditor.ih_preset.replace('slide_lr', '');
-				ih += '" onkeyup="validate_link_ih(this)"/><br/><label>Link Ziel:</label><input value="' + link_target + '" onkeyup="validate_link_target(this)"/><i class="fa fa-times-circle" aria-hidden="true" onclick="go_TextEditor()"></i>';
+				link_target = (TextEditor.ih_preset.indexOf('search_nostyle') == -1) ? link_target : TextEditor.ih_preset.replace('search_nostyle', '');
+
+				if ((TextEditor.ih_preset.indexOf('slide_lr') == -1) && (TextEditor.ih_preset.indexOf('search_nostyle') == -1)) {
+					var secondfield = '<input value="' + link_target + '" onkeyup="validate_link_target(this)"/>';
+				} else {
+					var secondfield = '<select onchange="validate_link_target(this)">';
+
+					var o = '';
+
+					if ((TextEditor.ih_preset.indexOf('slide_lr') != -1)) {
+
+						console.log('Yeah, TextEditor.ih_preset has slide_lr. I make options:', TextEditor.ih_preset);
+
+						for (var i = 1; i < document.getElementById('Images_display').children.length - 1; i++) {
+
+							o += (i != link_target) ? '<option value="' + i + '">Bild ' + i + '</option>' : '<option selected value="' + i + '">Bild ' + i + '</option>';
+
+						}
+
+					} else {
+
+						secondfield = '<select onchange="duplicate_to_linktext(this)">';
+
+						var c = document.getElementsByClassName('lk');
+
+						for (var i = 0; i < c.length; i++) {
+							if (c[i].innerText != to_edit.name) {
+								o += (c[i].innerText != link_target) ? '<option value="' + c[i].innerText + '">' + c[i].innerText + '</option>' : '<option selected value="' + c[i].innerText + '">' + c[i].innerText + '</option>';
+							}
+
+						}
+
+					}
+
+					secondfield += o;
+					secondfield += '</select>';
+				}
+
+				ih += '" onkeyup="validate_link_ih(this)"/><br/><label>Link Ziel:</label>' + secondfield + '<i title="Link entfernen aber Text belassen." class="fa fa-minus-circle" style="position: absolute;left: 22%;" aria-hidden="true" onclick="remove_link()"></i><i class="fa fa-times-circle" aria-hidden="true" onclick="go_TextEditor()"></i>';
 				ih += '<button type="button" class="ok_link_btn" onclick="ok_link(this)"><i class="fa fa-check" aria-hidden="true"></i>Ok, übernehmen</button>';
-				TextEditor.ih_preset = '';
 				come_TextEditor(ih, t);
 			};
 
+			var duplicate_to_linktext = function(t) {
+				TextEditor.children[1].value = t.value;
+				validate_link_target(t);
+			};
+
 			var go_TextEditor = function(tx, t) {
+				TextEditor.ih_preset = '';
 				TextEditor.style.display = 'none';
 				TextEditor.innerHTML = '';
 				if (TextEditor.position) {
@@ -1964,9 +2183,6 @@
 
 					link_selector.style.opacity = 1;
 
-					link_selector.style.cursor = 'default';
-
-
 					if (link_selector.children.length > 3) {
 						link_selector.removeChild(link_selector.lastChild);
 
@@ -1986,6 +2202,17 @@
 				if (TextEditor.style.display != 'block' || TextEditor.origin != t) {
 
 					TextEditor.innerHTML = tx;
+
+					if (isSafari) {
+						var se = TextEditor.getElementsByTagName('select');
+						saf_align(Array.from(se));
+						for (var i = 0; i < se.length; i++) {
+							se[i].addEventListener("change", function() {
+								saf_align(this);
+							}, false);
+						}
+					}
+
 					TextEditor.style.display = 'block';
 					TextEditor.style.left = (window.innerWidth - TextEditor.offsetWidth) / 2 + 'px';
 					TextEditor.style.top = (window.innerHeight - TextEditor.offsetHeight) / 2 + 'px';
@@ -2011,13 +2238,13 @@
 
 						/*    modify image_selector   */
 
+						document.getElementById('Images_display').lastChild.style.display = 'none';
+
 						var link_selector = document.getElementById('image_selector');
 
 						for (var i = 0; i < link_selector.children.length; i++) {
 							link_selector.children[i].style.display = 'none';
 						}
-
-						document.getElementById('Images_display').lastChild.style.display = 'none';
 
 						var newItem = document.createElement("i");
 
@@ -2027,6 +2254,8 @@
 
 						newItem.style.display = 'inline-block';
 
+						newItem.style.padding = '3vw';
+
 						newItem.style.cursor = 'pointer';
 
 						newItem.setAttribute("onclick", "link_selector_callback(this)");
@@ -2034,8 +2263,6 @@
 						link_selector.appendChild(newItem);
 
 						link_selector.style.opacity = 0;
-
-						link_selector.style.cursor = 'pointer';
 
 
 						canvArrow = document.createElement("canvas");
@@ -2085,23 +2312,28 @@
 
 				var ctx = canvArrow.getContext("2d");
 
+				var curv = Math.abs(x - window.innerWidth / 2) / 5;
+
 				ctx.clearRect(0, 0, canvArrow.width, canvArrow.height);
 
 				ctx.beginPath();
 
-				ctx.fillStyle = ctx.strokeStyle = 'rgba(141, 170, 212, 0.9)';
+				ctx.fillStyle = ctx.strokeStyle = 'rgba(141, 170, 212, 1)';
 				ctx.moveTo(canvArrow.width / 2, 4);
 				ctx.lineTo(canvArrow.width / 2 - 6, 24);
 				ctx.lineTo(canvArrow.width / 2 + 6, 24);
 				ctx.lineTo(canvArrow.width / 2, 4);
 				ctx.fill();
 
-
 				ctx.lineWidth = 6;
 				ctx.lineCap = "round";
 				ctx.moveTo(canvArrow.width / 2, 24);
-				ctx.bezierCurveTo(canvArrow.width / 2, canvArrow.height / 2 + 9, x, canvArrow.height / 2 + 9, x, canvArrow.height - 6);
+				ctx.bezierCurveTo(canvArrow.width / 2, canvArrow.height / 2 + 9 + curv, x, canvArrow.height / 2 + 9 - curv, x, canvArrow.height - 6);
 				ctx.stroke();
+
+				ctx.beginPath();
+				ctx.arc(x, canvArrow.height - 14, 12, 0, 2 * Math.PI);
+				ctx.fill();
 
 			};
 
@@ -2130,29 +2362,42 @@
 
 
 			var ok_link = function(t) {
-				var els = t.parentNode.getElementsByTagName('input');
+				//var els = t.parentNode.getElementsByTagName('input');
 
 				if (TextEditor.origin.tagName.toLowerCase() == 'input') {
 
-					TextEditor.origin.value = els[0].value;
+					TextEditor.origin.value = TextEditor.children[1].value;
 					TextEditor.origin.removeAttribute("store_link");
-					TextEditor.origin.setAttribute("store_link", els[1].value);
+					TextEditor.origin.setAttribute("store_link", TextEditor.children[4].value);
 					validate(TextEditor.origin, TextEditor.origin.parentNode.nextSibling);
 
 				} else {
 
-					if (!isNaN(TextEditor.children[4].value)) {
-						TextEditor.origin.innerHTML = els[0].value;
-						TextEditor.origin.removeAttribute("onclick");
-						TextEditor.origin.setAttribute("onclick", "slide_lr(" + els[1].value + ")");
+					console.log('TextEditor.ih_preset: ', TextEditor.ih_preset);
+					TextEditor.origin.innerHTML = TextEditor.children[1].value;
 
-						validate(TextEditor.origin, TextEditor.origin.parentNode.nextSibling);
+					if (TextEditor.ih_preset.indexOf('slide_lr') != -1) {
+						//if (!isNaN(TextEditor.children[4].value)) {
+						//TextEditor.origin.removeAttribute("onclick");
+						TextEditor.origin.setAttribute("onclick", "slide_lr(" + TextEditor.children[4].value + ")");
+						/*
+												TextEditor.origin.addEventListener("click", function(event) {
+													sh_link_editor(this);
+												}, false);
+						*/
+
 
 					} else {
-						TextEditor.origin.innerHTML = els[0].value;
+						//TextEditor.origin.setAttribute("onclick", "search_nostyle(" + TextEditor.children[4].value + ")");
 					}
 
+					validate(TextEditor.origin, TextEditor.origin.parentNode.nextSibling);
+
 				}
+				go_TextEditor();
+			};
+
+			/*
 				go_TextEditor();
 			};
 
@@ -2450,7 +2695,7 @@
 
 				var freader = new FileReader();
 
-				freader.onload = fuder.onload = function(evt) {
+				freader.onload = function(evt) {
 
 					img.onload = function() {
 						encInContext.clearRect(0, 0, encInCanvas.width, encInCanvas.height);

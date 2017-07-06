@@ -4,8 +4,10 @@
       	padding: 0;
       }
 
-      body, input {
-      	font-family: 'Futura', Arial;
+      body, input, select {
+      	font-family: 'Open Sans', 'Futura', Arial, sans-serif;
+      	font-size: 16px;
+      	font-weight: 300;
       }
 
       #positioner {
@@ -19,19 +21,18 @@
 
       input[type="text"] {
       	font-size: 12px;
-      	font-weight: lighter;
+      	line-height: 28px;
       }
 
       input[type="file"] {
       	height: 100%;
-      	font-weight: lighter;
       	position: absolute;
       	width: 100%;
       	z-index: 1;
       	opacity: 0;
       }
 
-      .editor_fields button, .gog_btn, .no_gog_btn, .ok_link_btn {
+      .editor_fields button, #image_editor button, .gog_btn, .no_gog_btn, .ok_link_btn {
       	visibility: hidden;
       	display: inline-block;
       	margin: 18px 24px 4px 24px;
@@ -328,9 +329,13 @@
       	left: calc(50vw - 304px);
       	top: calc(50vh - 304px);
       	position: fixed;
-      	border: 24px rgba(141, 170, 212, 0.9) solid;
+      	border: 24px rgba(141, 170, 212, 1) solid;
       	background: #ccc;
       	overflow: hidden;
+      	z-index: 1;
+      	background-size: cover;
+      	background-position: 50%;
+      	background-repeat: no-repeat;
       }
 
       #image_editor img {
@@ -344,6 +349,13 @@
       	z-index: 2;
       }
 
+      #image_editor button {
+      	margin: 4px auto;
+      	visibility: visible;
+      	text-align: center;
+      	display: block;
+      }
+
       #image_editor p:nth-child(1) {
       	margin: 4px 0 0 -4px;
       	font-size: 2vw;
@@ -351,11 +363,10 @@
       }
 
       #image_editor p:nth-last-child(1) {
-      	margin: -24px 0 0 0;
-      	/*
-*/
-      	background: rgba(207, 207, 207, 0.68);
+      	margin: -24px -6px 0 0;
+      	background: rgba(207, 207, 207, 0.85);
       	bottom: 0;
+      	padding-left: 6px;
       }
 
       @-webkit-keyframes fill_lr {
@@ -419,14 +430,17 @@
       }
 
       #text_editor label {
-      	width: 24%;
+      	width: 25%;
       }
 
       #text_editor input {
-      	width: 76%;
+      	width: 200px;
+      	text-align: center;
+      	font-size: 16px;
       }
 
-      #time_display select {
+      #time_display select, #text_editor select {
+      	background: #fff;
       	box-shadow: none;
       	border: 0 none;
       	margin: 0 12px;
@@ -435,8 +449,10 @@
       	-moz-appearance: none;
       	-webkit-padding-start: 0;
       	-moz-padding-start: 0;
+      	/*
       	-webkit-padding-before: 12px;
       	-webkit-padding-after: 12px;
+*/
       	font-size: inherit;
       	padding: 4px 0;
       	/*
@@ -444,6 +460,12 @@
       	background-image: url("../images/sel_arrow.png");
       	background-position: 97% center;
       	background-repeat: no-repeat;
+
+padding-top: 10px;
+padding-right: 20px;
+padding-bottom: 10px;
+padding-left: 20px;
+
 */
       	text-overflow: ellipsis;
       	width: 8.4vw;
@@ -451,6 +473,11 @@
       	text-align-last: center;
       	border-radius: 0;
       	cursor: pointer;
+      }
+
+      #text_editor select {
+      	width: 200px;
+      	margin: 0;
       }
 
       select:-moz-focusring {
