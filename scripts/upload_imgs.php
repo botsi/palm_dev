@@ -1,4 +1,13 @@
 <?php
+
+SESSION_START();
+if (!$_SESSION["login"] == 1){
+    echo 'session is dead: '.$_SESSION["login"];
+    exit; 
+}else{
+
+
+
 if (isset($_FILES['upload_file'])) {
 
     if(move_uploaded_file($_FILES['upload_file']['tmp_name'], "../images/" . $_REQUEST['extraParam'] . "/" . $_FILES['upload_file']['name'])){
@@ -50,4 +59,8 @@ if (isset($_FILES['upload_file'])) {
     echo "No files uploaded ...";
 
 }
+
+    echo 'session is: ok';
+}
+
 ?>

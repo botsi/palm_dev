@@ -1,4 +1,4 @@
-			var folders, to_edit, to_edit_folder, to_edit_image, swap, save_image_presets, TextEditor, all_search, canvArrow;
+			var folders, to_edit, to_edit_folder, to_edit_image, swap, save_image_presets, TextEditor, Positioner, Unsaved, all_search, canvArrow;
 
 			var largest = 0;
 
@@ -398,6 +398,8 @@
 				document.getElementById('Images_display').lastChild.style.display = 'inline';
 
 				document.getElementById('process_overlay').classList.remove('process_overlay_dark');
+				document.body.style.background = '#fff';
+				document.getElementById('Images_display').style.background = '#ccc';
 
 
 				disable_img_over = false;
@@ -410,15 +412,13 @@
 			var preview_image = function(t) {
 				console.log(t.value);
 
-				document.getElementById('image_editor').style.backgroundImage = 'url("' + t.value + '")';
+				//document.getElementById('image_editor').style.backgroundImage = 'url("' + t.value + '")';
 
 
 				var oFReader = new FileReader();
 				oFReader.readAsDataURL(t.files[0]);
 
 				oFReader.onload = function(oFREvent) {
-
-					document.getElementById('image_editor').style.backgroundImage = 'url("' + oFREvent.target.result + '")';
 
 					var file = t.files[0];
 					// This code is only for demo ...
@@ -455,11 +455,15 @@
 							t.nextSibling.innerHTML += errors[i] + '<br/>';
 						}
 
+						document.getElementById('image_editor').style.backgroundImage = 'url("images/editor_error_image.jpg")';
+
 						t.nextSibling.innerHTML += 'Sie können ein anderes Bild hierher ziehen oder den Bildeditor ... <button type="button" onclick="close_image_editor()" style="background:#f00;">schliessen</button>';
 
 					} else {
 
 						save_image_presets = [t.files[0], to_edit.comp_name + '_' + document.getElementById('image_selector').store_img + '.jpg', to_edit_folder];
+
+						document.getElementById('image_editor').style.backgroundImage = 'url("' + oFREvent.target.result + '")';
 
 						t.nextSibling.innerHTML = 'Bild "' + file.name + '" ... <button type="button" onclick="upload_file(this)">speichern</button>';
 
@@ -783,10 +787,62 @@
 				b.nextSibling.classList.add('button_valid');
 
 
+
+				if (Unsaved.innerText.indexOf(b.parentNode.firstChild.innerHTML) == -1) {
+
+
+
+					var els_in_table = document.getElementsByClassName('lk');
+					var act_el_in_table;
+					for (var i = 0; i < els_in_table.length; i++) {
+						if (els_in_table[i].innerText == to_edit.name) {
+							act_el_in_table = els_in_table[i];
+							break;
+						}
+
+					}
+
+					var act_el_in_table_BCR = act_el_in_table.getBoundingClientRect();
+					console.log(act_el_in_table_BCR);
+
+					Unsaved.style.right = window.innerWidth - act_el_in_table_BCR.right + 31 + 'px';
+
+
+
+					Unsaved.style.display = 'block';
+
+
+					if (Unsaved.firstChild.innerHTML == '') {
+						Unsaved.innerHTML += '<p style="width:' + parseInt(act_el_in_table_BCR.right - act_el_in_table_BCR.left) + 'px;">Ungesicherte Eingaben in ... </p>';
+						Unsaved.firstChild.innerHTML = 1;
+					} else {
+						Unsaved.firstChild.innerHTML = parseInt(Unsaved.firstChild.innerHTML) + 1;
+					}
+
+					var newItem = document.createElement("p");
+
+					newItem.innerHTML = b.parentNode.firstChild.innerHTML;
+
+					newItem.style.cursor = 'pointer';
+
+					newItem.addEventListener('click', function() {
+						Positioner.style.top = b.offsetTop - window.innerHeight / 2 + 'px';
+						Positioner.scrollIntoView({
+							block: "start",
+							behavior: "smooth"
+						});
+
+					}, false);
+
+					Unsaved.appendChild(newItem);
+
+				}
+
+
 				if (b.getBoundingClientRect().bottom > window.innerHeight) {
-					Positioner.style.top = b.offsetTop + 180 + 'px';
+					Positioner.style.top = b.offsetTop - window.innerHeight + 180 + 'px';
 					Positioner.scrollIntoView({
-						block: "end",
+						block: "start",
 						behavior: "smooth"
 					});
 				}
@@ -811,11 +867,17 @@
 			var no_gog_short = function(t) {
 				t.parentNode.parentNode.removeChild(t.parentNode);
 				document.getElementById('process_overlay').classList.remove('process_overlay_dark');
+				document.body.style.background = '#fff';
+				document.getElementById('Images_display').style.background = '#ccc';
 			};
 
 			var gog_paste = function() {
-				console.log('foc');
-				CopyToClipboard();
+				console.log('foc', forExecElement.textContent);
+				//CopyToClipboard();
+			};
+
+			var gog_clc = function() {
+				console.log('out click');
 			};
 
 			var gog_blur = function() {
@@ -827,9 +889,11 @@
 				if (t.value == '' && t.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.value != '' && t.previousSibling.previousSibling.previousSibling.previousSibling.value != '' && t.previousSibling.previousSibling.previousSibling.value != '') {
 
 					document.getElementById('process_overlay').classList.add('process_overlay_dark');
-					window.addEventListener("focus", function() {
-						gog_paste();
-					}, false);
+					/*
+										window.addEventListener("focus", function() {
+											gog_paste();
+										}, false);
+					*/
 					/*
 										window.addEventListener("blur", function() {
 											gog_blur();
@@ -839,7 +903,7 @@
 						gog_info = document.createElement('div');
 						gog_info.style = 'position:fixed;cursor:pointer;left:' + parseInt((window.innerWidth - 968) / 2) + 'px;top:' + parseInt((window.innerHeight - 360) / 2) + 'px;width:968px;height:360px;border:24px rgba(141, 170, 212, 0.9) solid;';
 						gog_info.style.background = 'url(images/gog_bg.jpg) top left no-repeat';
-						gog_info.innerHTML = '<p style="background:rgba(255,255,255,0.8);margin-top:0;">So finden Sie bei Google Maps die Kurz-URL.</p><button type="button" class="gog_btn button_valid" onclick="CopyToClipboard()" class="button_valid"><i class="fa fa-floppy-o" aria-hidden="true"></i> Ok, mal probieren ... </button><button type="button" class="no_gog_btn button_valid" onmousedown="no_gog_short(this)" class="button_valid"><i class="fa fa-undo" aria-hidden="true"></i> Nein danke!</button>';
+						gog_info.innerHTML = '<p style="background:rgba(255,255,255,0.8);margin-top:0;">So finden Sie bei Google Maps die Kurz-URL.</p><button type="button" id="go_gog_btn" class="gog_btn button_valid" onclick="" class="button_valid"><i class="fa fa-floppy-o" aria-hidden="true"></i> Ok, mal probieren ... </button><button type="button" class="no_gog_btn button_valid" onmousedown="no_gog_short(this)" class="button_valid"><i class="fa fa-undo" aria-hidden="true"></i> Nein danke!</button><input id="testpaste" />';
 						/*gog_info.onmouseout = function(e) {
 							e.target.parentNode.removeChild(e.target);
 						};*/
@@ -847,12 +911,32 @@
 					} else {
 						document.getElementsByTagName("body")[0].appendChild(gog_info);
 					}
+
+					document.getElementById('testpaste').addEventListener("paste", function(e) {
+						alert(e.clipboardData.getData("text/plain"));
+					}, false);
+
 					gog_info.onclick = function() {
+
+						//CopyToClipboard();
 						//var gog_win = window.open('https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyCi0JgwWx4peuLZN6b0Ng2xmW825wMj6tc&latlng=46.822617,7.415771', '_blank');
 						//var gog_win = window.open('https://maps.googleapis.com/maps/api/geocode/json?address=Dammweg+41,+3013+Bern,+Schweiz&key=AIzaSyCi0JgwWx4peuLZN6b0Ng2xmW825wMj6tc', '_blank');
 						//var gog_win = window.open('https://maps.googleapis.com/maps/api/place/details/json?key=AIzaSyCi0JgwWx4peuLZN6b0Ng2xmW825wMj6tc&placeid=ChIJUZbNvuw5jkcReK5LdKyO6Do', '_blank');
 
 						var gog_win = window.open('https://www.google.ch/maps/?hl=de&q=' + t.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.value + ', ' + t.previousSibling.previousSibling.previousSibling.previousSibling.value + ', ' + t.previousSibling.previousSibling.previousSibling.value, '_blank');
+						/*
+											window.addEventListener("focus", function() {
+												gog_paste();
+											}, false);
+
+//e.clipboardData
+						*/
+
+
+
+						gog_win.addEventListener("click", function() {
+							opener.gog_clc();
+						}, false);
 
 						gog_win.addEventListener("blur", function() {
 							opener.gog_blur();
@@ -1228,6 +1312,7 @@
 
 				t.classList.remove('button_valid');
 				t.previousSibling.classList.remove('button_valid');
+				update_unsaved(t);
 
 				fill_cat(entry_kind);
 
@@ -1241,6 +1326,7 @@
 
 				t.classList.remove('button_valid');
 				t.nextSibling.classList.remove('button_valid');
+				update_unsaved(t);
 
 				/******           overlay (disable other process)           ******/
 
@@ -1373,13 +1459,7 @@
 					default:
 						alert('no save_existing handling defined');
 				}
-				/*
-								if (to_edit[entry_kind]) {
-									console.log(to_edit[entry_kind]);
-								} else {
-									console.log(to_edit.epilog[entry_kind]);
-								}
-				*/
+
 				var newtext = JSON.stringify({
 					"folders": folders
 				});
@@ -1394,6 +1474,8 @@
 							console.log('oki, done', xmlhttp.responseText); // output php echo for control
 							/******           end overlay           ******/
 							document.getElementById('process_overlay').classList.remove('process_overlay_dark');
+							document.body.style.background = '#fff';
+							document.getElementById('Images_display').style.background = '#ccc';
 						} else {
 							alert('new_e shit happens');
 						}
@@ -1403,6 +1485,34 @@
 			};
 
 			/******         end replace entry         ******/
+
+
+			/******         update unsaved bullet         ******/
+			var update_unsaved = function(t) {
+				if (Unsaved.children.length > 1) {
+
+					for (var i = 2; i < Unsaved.children.length; i++) {
+						if (t.parentNode.firstChild.innerHTML == Unsaved.children[i].innerHTML) {
+
+							Unsaved.removeChild(Unsaved.children[i]);
+
+						}
+
+					}
+
+					Unsaved.firstChild.innerHTML = Unsaved.children.length - 2;
+
+					if (Unsaved.children.length == 2) {
+
+						Unsaved.removeChild(Unsaved.lastChild);
+						Unsaved.style.display = 'none';
+						Unsaved.firstChild.innerHTML = '';
+					}
+
+
+				}
+			}
+			/******         end update unsaved bullet         ******/
 
 
 			/******         special select alignment for safari         ******/
@@ -1765,6 +1875,10 @@
 
 			var edit = function(t) {
 
+				if (to_edit == folders[t.getAttribute('f', 0)].data[t.getAttribute('d', 0)]) {
+					return;
+				}
+
 				var ac = document.getElementById('all_cells').getElementsByTagName('td');
 
 				for (var i = 0; i < ac.length; i++) {
@@ -1776,6 +1890,25 @@
 					}
 
 				}
+
+				for (var i = Unsaved.children.length - 1; i > 0; i--) {
+
+					Unsaved.removeChild(Unsaved.lastChild);
+
+				}
+
+				//console.log('cat: ', ((5 - parseInt(t.getAttribute('f', 0))) * 1));
+
+				Unsaved.firstChild.innerHTML = '';
+
+				Unsaved.style.display = 'none';
+
+				//var folder_offset = 5 - parseInt(t.getAttribute('f', 0));
+
+				// do this on window resize
+				//Unsaved.style.right = 'calc(' + parseInt(folder_offset + 29) + 'px + ' + parseInt(folder_offset * 16 + 2) + 'vw)';
+
+				Unsaved.style.top = t.offsetTop + t.offsetHeight - 6 + 'px';
 
 				t.style.background = 'rgba(141, 170, 212, 0.9)';
 
@@ -2192,6 +2325,8 @@
 					}
 				}
 				document.getElementById('process_overlay').classList.remove('process_overlay_dark');
+				document.body.style.background = '#fff';
+				document.getElementById('Images_display').style.background = '#ccc';
 
 
 
@@ -2490,7 +2625,7 @@
 
 
 				//loadXMLDoc('inhalt.js', function() { // org (inhalt.js)
-				loadXMLDoc('inhalt2.js', function() { // get json data on load
+				loadXMLDoc('inhalt.js', function() { // get json data on load
 
 					if (xmlhttp.readyState == 4) {
 						if (xmlhttp.status == 200) {
@@ -2555,10 +2690,30 @@
 
 							document.getElementById('process_overlay').classList.remove('process_overlay_dark');
 
+							document.getElementById('process_overlay').addEventListener("animationstart", function() {
+								document.body.style.background = '#000';
+								if (typeof TextEditor.ih_preset !== 'undefined' && TextEditor.ih_preset.indexOf('slide_lr') != -1) {
+									document.getElementById('Images_display').style.background = '#000';
+								}
+							}, false);
+
+
 							TextEditor = document.getElementById('text_editor');
 
 							Positioner = document.getElementById('positioner');
 
+							Unsaved = document.getElementById('unsaved');
+
+							Unsaved.addEventListener("mouseover", function() {
+								this.style.width = this.style.height = 'auto';
+								this.style.marginRight = '-30px';
+								this.firstChild.style.marginRight = '30px';
+							}, false);
+
+							Unsaved.addEventListener("mouseout", function() {
+								this.style.width = this.style.height = '18px';
+								this.style.marginRight = this.firstChild.style.marginRight = 0;
+							}, false);
 
 							//page_load();
 
@@ -2624,8 +2779,6 @@
 					"two": swap[1]
 				});
 
-				//console.log('swap: ', json);
-
 				swap_image_positions(json);
 
 
@@ -2634,7 +2787,6 @@
 			var run_swap_multiples = false;
 			var swap_multiples = function(o) {
 
-				//remove_image()
 				if (o < document.getElementById('Images_display').children.length - 2) {
 
 
@@ -2646,8 +2798,6 @@
 						"two": swap[1]
 					});
 
-					//console.log('swap: ', json);
-
 					swap_image_positions(json);
 
 				} else {
@@ -2658,8 +2808,6 @@
 						"folder": to_edit_folder,
 						"one": swap[0]
 					});
-
-					//console.log('swap: ', json);
 
 					loadXMLDoc('scripts/delete_img.php', function() { // swap image names (numbers) on server
 
@@ -2706,6 +2854,8 @@
 						WebPEncodeAndDraw(80);
 
 					};
+
+					img.crossOrigin = 'anonymous';
 
 					img.src = evt.target.result;
 
@@ -2793,14 +2943,14 @@
 			function CopyToClipboard() {
 				//var input = document.getElementById ("toClipboard");
 				var textToClipboard = 'dummytext';
-				var tx = 'nix';
+				copied = 'nix';
 				var success = true;
 				if (window.clipboardData) { // Internet Explorer
 					window.clipboardData.setData("Text", textToClipboard);
-					tx = textToClipboard + " ie";
+					copied = textToClipboard + " ie";
 				} else {
 					// create a temporary element for the execCommand method
-					var forExecElement = CreateElementForExecCommand(textToClipboard);
+					forExecElement = CreateElementForExecCommand(textToClipboard);
 
 					/* Select the contents of the element 
 					    (the execCommand for 'copy' method works on the selection) */
@@ -2816,23 +2966,26 @@
 
 						// Copy the selected content to the clipboard
 						// Works in Firefox and in Srefox and in Safari before version 5
-						tx = forExecElement.textContent;
+						copied = forExecElement.textContent;
 						success = document.execCommand("copy", false, null);
 					} catch (e) {
-						tx = forExecElement.textContent;
+						copied = forExecElement.textContent;
 						success = false;
 					}
 
 					// remove the temporary element
-					document.body.removeChild(forExecElement);
+					//document.body.removeChild(forExecElement);
 				}
 
 				if (success) {
-					console.log("The text is on the clipboard, try to paste it! " + tx + " und " + success);
+					console.log("The text is on the clipboard, try to paste it! " + copied + " und " + success);
 				} else {
-					console.log("Your browser doesn't allow clipboard access! " + tx + " und " + success);
+					console.log("Your browser doesn't allow clipboard access! " + copied + " und " + success);
 				}
 			}
+
+			var copied = 'nix';
+			var forExecElement;
 
 			function CreateElementForExecCommand(textToClipboard) {
 				var forExecElement = document.createElement("div");

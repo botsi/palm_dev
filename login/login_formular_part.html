@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<meta charset="utf-8" />
+
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<meta name="viewport" id="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+		<meta name="mobile-web-app-capable" content="yes" />
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+
+		<meta name="apple-mobile-web-app-status-bar-style" content="white" />
+
+		<title>Login</title>
+
+		<link rel="shortcut icon" href="../images/favicon.ico" />
+
+		<link rel="stylesheet" href="../css/login.css" />
+
+	</head>
+
+	<body>
+		<form name="login_form" method="POST" action="../editor.php">
+			<div id="start">
+				<div id="form_date">
+					<input type="text" id="foc" tabindex="1" value="" name="username" /><input type="password" tabindex="2" value="" name="passwort" /><span id="start_info">Email und Passwort eingeben, dann Enter.</span><input type="hidden" name="login" value="botsi"
+					/>
+				</div>
+			</div>
+		</form>
+
+		<script type="text/javascript" charset="utf-8">
+			var ck_fail = function() {
+				if (login.length > 0) {
+					document.getElementById('form_date').classList.add('shake');
+				}
+			};
+
+			var arrow = function(e) {
+
+				if (foc.value.indexOf('@') == -1 || foc.value == '' || foc.value == ' ' || foc.nextSibling.value == '' || foc.nextSibling.value == ' ' || foc.nextSibling.value.length < 5) {
+					return;
+				}
+
+				if (!e) {
+
+					e = window.event;
+
+				}
+
+				if (e.keyCode == 13) {
+
+					document.forms["login_form"].submit();
+
+				}
+			};
+			var foc = document.getElementById('foc');
+			foc.focus();
+			window.addEventListener("keyup", arrow, false);
+			window.addEventListener("load", ck_fail, false);
+		</script>
