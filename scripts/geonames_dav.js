@@ -53,7 +53,7 @@ function callOtherDomain(url, xdr, el) {
 						}
 
 					} else {
-						alert("Invocation Errors Occured");
+						alert("inner Invocation Errors Occured");
 					}
 				}
 			};
@@ -61,7 +61,7 @@ function callOtherDomain(url, xdr, el) {
 			invocation.send();
 		}
 	} else {
-		alert("Invocation Errors Occured");
+		alert("outer Invocation Errors Occured");
 	}
 }
 
@@ -73,7 +73,9 @@ function get_geonames_array(op, ori, el) {
 
 	var s = (op == "number") ? "postalcode" : "placename";
 
-	var u = "http://api.geonames.org/postalCodeSearchJSON?" + s + "=" + encodeURIComponent(ori.value) + "&country=" + act_country + "&username=sagres32";
+	var h = (window.location.href.indexOf("https://") == -1) ? "http://api" : "https://secure";
+
+	var u = h + ".geonames.org/postalCodeSearchJSON?" + s + "=" + encodeURIComponent(ori.value) + "&country=" + act_country + "&username=sagres32";
 
 	var XDR = window.XDomainRequest ? true : false;
 

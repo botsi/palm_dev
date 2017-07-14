@@ -650,6 +650,16 @@
 
 				var entry_kind = t.parentNode.id.replace('_display', '');
 
+
+
+				if (entry_kind == 'text') {
+					t.parentNode.removeChild(t.parentNode.children[1]);
+
+					/*                                                              **************************************      ho maybe an Error     ************************************** */
+					add_text_editor_funcs(el);
+					/*                                                              **************************************      ho maybe an Error     ************************************** */
+				}
+
 				if (entry_kind == 'search') {
 					//console.log('index is: ' + all_search.indexOf(value + ',' + to_edit.name));
 					console.log(to_edit.name);
@@ -2093,24 +2103,83 @@
 
 			/*******    textpart editor functions   *******/
 
-			var add_text_editor_funcs = function(el) {
+			function getSelectionHtml() {
+				var r = 'nix';
+				var html = "";
+				if (typeof window.getSelection != "undefined") {
+					var sel = window.getSelection();
+					if (sel.rangeCount) {
+						var container = document.createElement("div");
+						for (var i = 0, len = sel.rangeCount; i < len; ++i) {
+							container.appendChild(sel.getRangeAt(i).cloneContents());
+						}
+						r = sel.getRangeAt(0).startOffset;
+						html = container.innerHTML;
+					}
+				} else if (typeof document.selection != "undefined") {
+					if (document.selection.type == "Text") {
+						html = document.selection.createRange().htmlText;
+						r = 'createRange: ' + document.selection.createRange();
+					}
+				}
 
-				console.log(el.id);
+				return [html, r];
+			}
+
+			var text_selected = function(t) {
+
+				var sel = getSelectionHtml();
+				//console.log(sel);
+
+				if (sel[0] == '') {
+					if (t.previousSibling.className == 'fa fa-link') {
+						t.parentNode.removeChild(t.parentNode.children[1]);
+					}
+				} else {
+					if (t.previousSibling.className != 'fa fa-link') {
+
+						newItem = document.createElement("i");
+
+						newItem.className = "fa fa-link";
+
+						newItem.setAttribute("to_link_text", sel[0]);
+
+						newItem.setAttribute("to_link_text_start", sel[1]);
+
+						newItem.setAttribute("aria-hidden", "true");
+
+						newItem.setAttribute("onclick", "sh_link_editor(this)");
+
+						t.parentNode.insertBefore(newItem, t.parentNode.children[1]);
+					} else {
+						t.previousSibling.setAttribute("to_link_text", sel[0]);
+
+						newItem.setAttribute("to_link_text_start", sel[1]);
+					}
+				}
+
+			};
+
+			/*******    textpart editor functions   *******/
+
+			var add_text_editor_funcs = function(el) {
 
 				//if (el.id == 'Ausstellungskonzept_display') {
 				console.log('a s length: ', el.querySelectorAll('a').length);
 
 				var as = el.querySelectorAll('a');
 				for (var i = 0; i < as.length; i++) {
-					console.log(as[i].onclick);
+					console.log('as[i].onclick: ', as[i].onclick);
 
 					// exclude textparts who have allready onclick
 
-					//					if (as[i].onclick == null) {
+					if (as[i].onclick == null) {
 
-					as[i].addEventListener("click", function(event) {
-						sh_link_editor(this);
-					}, false);
+						as[i].addEventListener("click", function(event) {
+							sh_link_editor(this);
+						}, false);
+
+					}
 
 					/*
 										}else{
@@ -2234,16 +2303,29 @@
 					TextEditor.ih_preset = t.getAttribute("store_link");
 					console.log(TextEditor.ih_preset);
 				}
+				if (t.tagName.toLowerCase() == 'i') {
+					TextEditor.ih_preset = 'http://';
+					console.log(TextEditor.ih_preset);
+				}
 
 				console.log('t.value: ', t.value);
 				var ih = '<label>Link Text:</label><input value="';
-				ih += (t.tagName.toLowerCase() == 'input') ? t.value : t.innerHTML;
+				ih += (t.tagName.toLowerCase() == 'input') ? t.value : (t.tagName.toLowerCase() == 'i') ? t.getAttribute('to_link_text') : t.innerHTML;
+
 				var link_target = (TextEditor.ih_preset != '') ? TextEditor.ih_preset : t.onclick.toString().slice(t.onclick.toString().indexOf('slide_lr') + 9, t.onclick.toString().length - 3);
 				link_target = (TextEditor.ih_preset.indexOf('slide_lr') == -1) ? link_target : TextEditor.ih_preset.replace('slide_lr', '');
 				link_target = (TextEditor.ih_preset.indexOf('search_nostyle') == -1) ? link_target : TextEditor.ih_preset.replace('search_nostyle', '');
 
 				if ((TextEditor.ih_preset.indexOf('slide_lr') == -1) && (TextEditor.ih_preset.indexOf('search_nostyle') == -1)) {
+					//if (t.tagName.toLowerCase() == 'input') {
 					var secondfield = '<input value="' + link_target + '" onkeyup="validate_link_target(this)"/>';
+					//}else{
+					/*
+					if(){
+										var secondfield = '<input value="' + link_target + '" onkeyup="validate_link_target(this)"/>';
+					}
+					*/
+					//}
 				} else {
 					var secondfield = '<select onchange="validate_link_target(this)">';
 
@@ -2497,7 +2579,6 @@
 
 
 			var ok_link = function(t) {
-				//var els = t.parentNode.getElementsByTagName('input');
 
 				if (TextEditor.origin.tagName.toLowerCase() == 'input') {
 
@@ -2508,25 +2589,58 @@
 
 				} else {
 
-					console.log('TextEditor.ih_preset: ', TextEditor.ih_preset);
-					TextEditor.origin.innerHTML = TextEditor.children[1].value;
 
-					if (TextEditor.ih_preset.indexOf('slide_lr') != -1) {
-						//if (!isNaN(TextEditor.children[4].value)) {
-						//TextEditor.origin.removeAttribute("onclick");
-						TextEditor.origin.setAttribute("onclick", "slide_lr(" + TextEditor.children[4].value + ")");
-						/*
-												TextEditor.origin.addEventListener("click", function(event) {
-													sh_link_editor(this);
-												}, false);
-						*/
+					if (TextEditor.origin.tagName.toLowerCase() == 'i') {
 
+						//console.log('TextEditor.origin: ', TextEditor.origin.getAttribute('to_link_text'));
+
+						var l = TextEditor.origin.getAttribute('to_link_text').length;
+						var instr = TextEditor.origin.nextSibling.innerHTML;
+						var index = TextEditor.origin.getAttribute('to_link_text_start');
+						//console.log('index: ', index);
+						var rep = '<a href="' + TextEditor.children[4].value + '" target="_blank">' + TextEditor.children[1].value + '</a>';
+
+						//console.log('instr.substr(0, index) "before": ', instr.substr(0, index));
+						//console.log('instr.substr(index).replace() "after with replaced": ', instr.substr(index).replace(TextEditor.origin.getAttribute('to_link_text'), rep));
+
+
+						var str_prol = instr.substr(0, index);
+						var str_epil = instr.substr(index).replace(TextEditor.origin.getAttribute('to_link_text'), rep);
+
+
+						//s = s.substr(0, index) + rep + s.substr(index + 1);
+						//console.log(s);
+
+						TextEditor.origin.nextSibling.innerHTML = str_prol + str_epil;
+
+						TextEditor.origin.removeAttribute("to_link_text");
+						TextEditor.origin.removeAttribute("to_link_text_start");
+
+						//TextEditor.origin.setAttribute("to_link_text", TextEditor.children[4].value);
+						validate(TextEditor.origin.nextSibling, TextEditor.origin.nextSibling.nextSibling);
 
 					} else {
-						//TextEditor.origin.setAttribute("onclick", "search_nostyle(" + TextEditor.children[4].value + ")");
-					}
+						//					console.log('TextEditor.ih_preset: ', TextEditor.ih_preset);
+						TextEditor.origin.innerHTML = TextEditor.children[1].value;
 
-					validate(TextEditor.origin, TextEditor.origin.parentNode.nextSibling);
+						if (TextEditor.ih_preset.indexOf('slide_lr') != -1) {
+							//if (!isNaN(TextEditor.children[4].value)) {
+							//TextEditor.origin.removeAttribute("onclick");
+							TextEditor.origin.setAttribute("onclick", "slide_lr(" + TextEditor.children[4].value + ")");
+							/*
+													TextEditor.origin.addEventListener("click", function(event) {
+														sh_link_editor(this);
+													}, false);
+							*/
+
+
+						} else {
+							//TextEditor.origin.setAttribute("onclick", "search_nostyle(" + TextEditor.children[4].value + ")");
+						}
+
+						validate(TextEditor.origin, TextEditor.origin.parentNode.nextSibling);
+
+					}
 
 				}
 				go_TextEditor();

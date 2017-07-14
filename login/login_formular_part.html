@@ -42,7 +42,7 @@
 
 			var arrow = function(e) {
 
-				if (foc.value.indexOf('@') == -1 || foc.value == '' || foc.value == ' ' || foc.nextSibling.value == '' || foc.nextSibling.value == ' ' || foc.nextSibling.value.length < 5) {
+				if (foc.value.indexOf('@') == -1 || foc.value.indexOf('.') == -1 || foc.value.length < 8 || foc.value == '' || foc.value == ' ' || foc.nextSibling.value == '' || foc.nextSibling.value == ' ' || foc.nextSibling.value.length < 5) {
 					return;
 				}
 

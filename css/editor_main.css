@@ -169,9 +169,9 @@
 
       .process_overlay_dark {
       	display: block !important;
-      	-webkit-animation: darken 0.1s ease-out forwards;
-      	-moz-animation: darken 0.1s ease-out forwards;
-      	animation: darken 0.1s ease-out forwards;
+      	-webkit-animation: darken 0.5s ease-out forwards;
+      	-moz-animation: darken 0.5s ease-out forwards;
+      	animation: darken 0.5s ease-out forwards;
       }
 
       .editor_fields {
@@ -194,6 +194,7 @@
       .editor_fields div {
       	text-align: left;
       	margin-top: 24px !important;
+      	outline: 0 none;
       }
 
       .editor_fields input {
