@@ -133,11 +133,13 @@ echo '<script type="text/javascript" charset="utf-8">var login = "'.$referer.'";
 
 <script type="text/javascript" charset="utf-8" src="scripts/geonames_dav.js"></script>
 
-
+<?php
+echo '<script type="text/javascript" charset="utf-8">var logged_user = "'.$_SESSION["user"]["email"].'";</script>';
+?>
 
 <script type="text/javascript" charset="utf-8" src="js/editor_main.js"></script>
 
-
+<script type="text/javascript" charset="utf-8" src="js/editor_links.js"></script>
 
 	</head>
 
@@ -147,7 +149,7 @@ echo '<script type="text/javascript" charset="utf-8">var login = "'.$referer.'";
 	Your Browser cannot show canvas
 </canvas>
 
-		<div id="header">Palma3 Editor<span id="actual_chapter"></span>
+		<div id="header">Palma3 Editor<span id="actual_chapter"></span><span id="username"></span>
 		</div>
 		<div id="positioner">
 		</div>

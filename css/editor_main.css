@@ -91,6 +91,19 @@
 */
       }
 
+      #header #username {
+      	right: 2vw;
+      	position: absolute;
+      	font-size: 12px;
+      }
+
+      #header #username .fa-sign-out {
+      	margin: 0 6px 0 12px;
+      	font-size: 18px;
+      	vertical-align: -2px;
+      	cursor: pointer;
+      }
+
       #header span.meter {
       	font-size: 12px;
       	font-weight: lighter;
@@ -189,6 +202,9 @@
       .editor_fields label {
       	display: block;
       	float: left;
+      	width: 200px;
+      	text-align: left;
+      	margin-left: 12px;
       }
 
       .editor_fields div {
@@ -222,12 +238,41 @@
       	cursor: pointer;
       }
 
+      #search_display .fa-plus-circle, #search_display .fa-minus-circle, #Ausstellungskonzept_display .fa-minus-circle, #Impressum_display .fa-plus-circle, #Impressum_display .fa-minus-circle, .fa-link, #Medienberichte_display .fa-minus-circle {
+      	padding: 6px;
+      	border: 2px rgba(0, 0, 0, 0) solid;
+      	line-height: 14px;
+      	border-radius: 16px;
+      }
+
+      #search_display .fa-plus-circle:hover, #search_display .fa-minus-circle:hover, #Ausstellungskonzept_display .fa-minus-circle:hover, #Impressum_display .fa-plus-circle:hover, #Impressum_display .fa-minus-circle:hover, .fa-link:hover, #Medienberichte_display .fa-minus-circle:hover {
+      	border: 2px #333 solid;
+      }
+
+      #search_display .fa-plus-circle:hover, #Impressum_display .fa-plus-circle:hover {
+      	background: #0f0;
+      }
+
+      #search_display .fa-minus-circle:hover, #Ausstellungskonzept_display .fa-minus-circle:hover, #Impressum_display .fa-minus-circle:hover, #Medienberichte_display .fa-minus-circle:hover {
+      	background: #f00;
+      }
+
+      .fa-link:hover {
+      	background: rgba(191, 231, 153, 0.9);
+      }
+
       #name_display {
       	width: 12vw;
       }
 
       #prolog_display {
       	width: calc(48vw - 8px);
+      }
+
+      label+.fa-link {
+      	margin-left: -100px;
+      	position: absolute;
+      	margin-top: -8px;
       }
 
       #name_display, #prolog_display {
@@ -241,6 +286,11 @@
       	text-align: center;
       	border: 0 none;
       	margin: 6px calc(6vw / 8);
+      }
+
+      #search_display input[type="text"]:disabled {
+      	background: #eee;
+      	margin-right: calc(6vw / 8 + 30px);
       }
 
       #search_display span {
@@ -287,13 +337,15 @@
 
       #Impressum_display input[type="text"] {
       	min-width: 300px;
+      	border: 0 none;
+      	margin: 6px calc(6vw / 8);
       }
 
       #Impressum_display .keyfield {
       	width: 12vw;
       	text-align: center;
       	border: 0 none;
-      	margin: 24px auto 6px auto !important;
+      	margin-top: 24px !important;
       }
 
       #Impressum_display .keyfield:nth-child(1) {
@@ -307,6 +359,10 @@
       #Impressum_display .keyfield+i:after {
       	content: "\A";
       	white-space: pre;
+      }
+
+      #Impressum_display .fa-link+i, #Impressum_display .fa-link+i+i {
+      	margin-left: calc(6vw / 8);
       }
 
       .add-raw {
@@ -485,9 +541,10 @@
       }
 
       #text_editor {
-      	width: 400px;
       	position: fixed;
-      	top: 200px;
+      	width: 400px;
+      	left: calc(50vw - 248px);
+      	top: calc(50vh - 102px);
       	background: #fff;
       	padding: 24px;
       	border: rgba(141, 170, 212, 0.9) 24px solid;
@@ -569,3 +626,29 @@ padding-left: 20px;
       a.line {
       	background: rgba(191, 231, 153, 0.9);
       }
+
+      .link_btn_raw {
+      	display: flex;
+      	/* flex-wrap: wrap; */
+      	justify-content: space-between;
+      	align-items: center;
+      	margin-top: -24px;
+      	padding-top: 12px;
+      	background: #fff;
+      	position: absolute;
+      	width: calc(100% - 48px);
+      }
+
+      .link_btn_raw button {
+      	width: 118px;
+      	font-size: 14px;
+      	border: #333 2px solid;
+      	border-radius: 12px;
+      	cursor: pointer;
+      	padding: 2px 0;
+      }
+      /*
+      .link_btn_raw button:nth-child(2) {
+      	margin: 0 23px;
+      }
+*/

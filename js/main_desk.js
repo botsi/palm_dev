@@ -632,10 +632,9 @@ var make_projectlist = function(p, employee, projectlist) {
 		if (folders[i].data[p] && folders[i].data[p].epilog.Impressum) {
 			for (key in folders[i].data[p].epilog.Impressum) {
 
-				if (folders[i].data[p].epilog.Impressum[key].indexOf(employee) != -1 && projectlist.indexOf(folders[i].data[p].name) == -1) {
+				if (folders[i].data[p].epilog.Impressum[key].indexOf(employee) != -1 && projectlist.indexOf(">" + folders[i].data[p].name + "<") == -1) {
 					projectlist += '<li><a onclick="search_nostyle(this)">' + folders[i].data[p].name + '</a></li>';
 				}
-
 
 			}
 		}

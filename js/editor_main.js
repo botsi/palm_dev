@@ -565,14 +565,16 @@
 
 
 			var validate_link_ih = function(t) {
-				t.parentNode.getElementsByTagName('button')[0].classList.add('button_valid');
+				t.parentNode.getElementById('confirm_link').classList.add('button_valid');
 			};
 
-			var validate_link_target = function(t) {
+			var validate_link_target = function() {
 
-				t.parentNode.getElementsByTagName('button')[0].classList.add('button_valid');
+				console.log('okoko');
 
-				if (TextEditor.ih_preset.indexOf('slide_lr') != -1) {
+				document.getElementById('confirm_link').classList.add('button_valid');
+
+				if (link_editor.link_kind == 'slide_lr') {
 
 					var canvas_ini = document.getElementById('Images_display').children[TextEditor.children[4].value].getBoundingClientRect();
 					canvArrow.arr = [(canvas_ini.left + canvas_ini.right) / 2, canvas_ini.top + 60];
@@ -653,10 +655,10 @@
 
 
 				if (entry_kind == 'text') {
-					t.parentNode.removeChild(t.parentNode.children[1]);
+					//t.parentNode.removeChild(t.parentNode.children[1]);
 
 					/*                                                              **************************************      ho maybe an Error     ************************************** */
-					add_text_editor_funcs(el);
+					add_text_editor_funcs(t.parentNode);
 					/*                                                              **************************************      ho maybe an Error     ************************************** */
 				}
 
@@ -813,7 +815,7 @@
 					}
 
 					var act_el_in_table_BCR = act_el_in_table.getBoundingClientRect();
-					console.log(act_el_in_table_BCR);
+					//console.log(act_el_in_table_BCR);
 
 					Unsaved.style.right = window.innerWidth - act_el_in_table_BCR.right + 31 + 'px';
 
@@ -1589,17 +1591,21 @@
 
 					case 'search':
 
-						temp_ih = '<span>das erste Stichwort wird aus dem Namen / Titel generiert</span><span>fügen Sie bisher auf der Seite nicht vorkommende, passende Stichworte hinzu ...</span><br/>';
+						if (to_edit.name.toLowerCase().replace(/ /g, '') == to_edit.comp_name) {
 
-						//		add comp_name
+							temp_ih = '<span>das erste Stichwort wird aus dem Namen / Titel generiert</span><span>fügen Sie bisher auf der Seite nicht vorkommende, passende Stichworte hinzu ...</span><br/>';
 
-						temp_ih += '<input' + input_attributes + ' value="' + to_edit.comp_name + '" />';
+							//		add comp_name
 
-						if (to_edit.name.toLowerCase().replace(/ /g, '') != to_edit.comp_name) {
+							temp_ih += '<input' + input_attributes + ' value="' + to_edit.comp_name + '" disabled />';
 
-							//		add name
+						} else {
 
-							temp_ih += '<input' + input_attributes + ' value="' + to_edit.name.toLowerCase().replace(/ /g, '') + '" />';
+							temp_ih = '<span>das erstn zwei Stichworte werden aus dem Namen / Titel generiert</span><span>fügen Sie bisher auf der Seite nicht vorkommende, passende Stichworte hinzu ...</span><br/>';
+
+							//		add comp_name and name
+
+							temp_ih += '<input' + input_attributes + ' value="' + to_edit.comp_name + '" disabled /><input' + input_attributes + ' value="' + to_edit.name.toLowerCase().replace(/ /g, '') + '" disabled />';
 
 						}
 
@@ -2129,7 +2135,11 @@
 			var text_selected = function(t) {
 
 				var sel = getSelectionHtml();
-				//console.log(sel);
+
+				if (sel[0].indexOf('<') != -1 || sel[0].indexOf('>') != -1) {
+					alert('tag in selection: ' + sel[0]);
+					return;
+				}
 
 				if (sel[0] == '') {
 					if (t.previousSibling.className == 'fa fa-link') {
@@ -2144,6 +2154,8 @@
 
 						newItem.setAttribute("to_link_text", sel[0]);
 
+						newItem.setAttribute("title", '"' + sel[0] + '" zu einem Link machen');
+
 						newItem.setAttribute("to_link_text_start", sel[1]);
 
 						newItem.setAttribute("aria-hidden", "true");
@@ -2151,10 +2163,14 @@
 						newItem.setAttribute("onclick", "sh_link_editor(this)");
 
 						t.parentNode.insertBefore(newItem, t.parentNode.children[1]);
+
 					} else {
+
+						t.previousSibling.setAttribute("title", '"' + sel[0] + '" zu einem Link machen');
+
 						t.previousSibling.setAttribute("to_link_text", sel[0]);
 
-						newItem.setAttribute("to_link_text_start", sel[1]);
+						t.previousSibling.setAttribute("to_link_text_start", sel[1]);
 					}
 				}
 
@@ -2165,7 +2181,7 @@
 			var add_text_editor_funcs = function(el) {
 
 				//if (el.id == 'Ausstellungskonzept_display') {
-				console.log('a s length: ', el.querySelectorAll('a').length);
+				//console.log('a s length: ', el.querySelectorAll('a').length);
 
 				var as = el.querySelectorAll('a');
 				for (var i = 0; i < as.length; i++) {
@@ -2173,23 +2189,23 @@
 
 					// exclude textparts who have allready onclick
 
-					if (as[i].onclick == null) {
+					//if (!as[i].onclick == null) {
 
-						as[i].addEventListener("click", function(event) {
-							sh_link_editor(this);
-						}, false);
-
-					}
-
+					as[i].addEventListener("click", function(event) {
+						sh_link_editor(this);
+					}, false);
 					/*
-										}else{
 
-											as[i].addEventListener("click", function(event) {
-												sh_link_editor(this);
-											}, false);
+										} else {
+											if (as[i].href) {
 
-										}
+												as[i].addEventListener("click", function(event) {
+													console.log(this.href);
+												}, false);
+
+											}
 					*/
+					//}
 				}
 				//}
 
@@ -2199,10 +2215,10 @@
 
 			var add_inputfield_editor_funcs = function(el) {
 
-				console.log(el.id);
+				//console.log(el.id);
 
 				//if (el.id == 'Ausstellungskonzept_display') {
-				console.log('a s length: ', el.querySelectorAll('a').length);
+				//console.log('a s length: ', el.querySelectorAll('a').length);
 
 				var as = el.querySelectorAll('input');
 
@@ -2275,102 +2291,145 @@
 			};
 
 			/*******    textparts who have allready onclick   *******/
-
+			var link_editor = {};
 
 			var jump_to = function(f, s) {
 				TextEditor.ih_preset = 'jump_to';
-				//TextEditor.ih_preset = 'jump_to ' + f + ' und ' + s;
+				link_editor.link_kind = 'jump_to';
+				link_editor.ih_preset = [f, s];
+				alert('link_editor.ih_preset is array, from jump_to:', link_editor.ih_preset);
 			};
 
 			var slide_lr = function(f) {
 				TextEditor.ih_preset = 'slide_lr' + f;
-				//TextEditor.ih_preset = 'slide_lr ' + f + ' und ' + s;
+				link_editor.link_kind = 'slide_lr';
+				link_editor.ih_preset = f;
 			};
 
 			var search_nostyle = function(t) {
 				TextEditor.ih_preset = 'search_nostyle' + t.innerHTML;
-				//TextEditor.ih_preset = 'search_nostyle ' + t.innerHTML + ' (this)';
+				link_editor.link_kind = 'search_nostyle';
+				link_editor.ih_preset = t.innerHTML;
 			};
 
 			var sh_link_editor = function(t) {
 
 				/******   clear TextEditor ih_preset   ******/
 
+				//TextEditor.origin = t;
+				link_editor.origin = t;
+
 				/******   end clear   ******/
+				var ih = '<label>Link Text:</label><input value="' + link_editor.origin.innerHTML;
 
-
-				if (t.tagName.toLowerCase() == 'input') {
-					TextEditor.ih_preset = t.getAttribute("store_link");
-					console.log(TextEditor.ih_preset);
+				if (link_editor.origin.tagName.toLowerCase() == 'a' && link_editor.origin.onclick == null) {
+					ih = '<label>Link Text:</label><input value="' + link_editor.origin.innerHTML;
+					//link_editor.ih_preset = link_editor.origin.href;
+					TextEditor.ih_preset = link_editor.origin.href;
 				}
-				if (t.tagName.toLowerCase() == 'i') {
-					TextEditor.ih_preset = 'http://';
-					console.log(TextEditor.ih_preset);
-				}
-
-				console.log('t.value: ', t.value);
-				var ih = '<label>Link Text:</label><input value="';
-				ih += (t.tagName.toLowerCase() == 'input') ? t.value : (t.tagName.toLowerCase() == 'i') ? t.getAttribute('to_link_text') : t.innerHTML;
-
-				var link_target = (TextEditor.ih_preset != '') ? TextEditor.ih_preset : t.onclick.toString().slice(t.onclick.toString().indexOf('slide_lr') + 9, t.onclick.toString().length - 3);
-				link_target = (TextEditor.ih_preset.indexOf('slide_lr') == -1) ? link_target : TextEditor.ih_preset.replace('slide_lr', '');
-				link_target = (TextEditor.ih_preset.indexOf('search_nostyle') == -1) ? link_target : TextEditor.ih_preset.replace('search_nostyle', '');
-
-				if ((TextEditor.ih_preset.indexOf('slide_lr') == -1) && (TextEditor.ih_preset.indexOf('search_nostyle') == -1)) {
-					//if (t.tagName.toLowerCase() == 'input') {
-					var secondfield = '<input value="' + link_target + '" onkeyup="validate_link_target(this)"/>';
-					//}else{
-					/*
-					if(){
-										var secondfield = '<input value="' + link_target + '" onkeyup="validate_link_target(this)"/>';
-					}
-					*/
-					//}
-				} else {
-					var secondfield = '<select onchange="validate_link_target(this)">';
-
-					var o = '';
-
-					if ((TextEditor.ih_preset.indexOf('slide_lr') != -1)) {
-
-						console.log('Yeah, TextEditor.ih_preset has slide_lr. I make options:', TextEditor.ih_preset);
-
-						for (var i = 1; i < document.getElementById('Images_display').children.length - 1; i++) {
-
-							o += (i != link_target) ? '<option value="' + i + '">Bild ' + i + '</option>' : '<option selected value="' + i + '">Bild ' + i + '</option>';
-
-						}
-
+				if (link_editor.origin.tagName.toLowerCase() == 'input') {
+					ih = '<label>Link Text:</label><input value="' + link_editor.origin.value;
+					if (link_editor.origin.getAttribute("store_link") == null) {
+						link_editor.link_kind = 'virgin';
+						link_editor.ih_preset = 'http://';
+						TextEditor.ih_preset = 'http://';
 					} else {
-
-						secondfield = '<select onchange="duplicate_to_linktext(this)">';
-
-						var c = document.getElementsByClassName('lk');
-
-						for (var i = 0; i < c.length; i++) {
-							if (c[i].innerText != to_edit.name) {
-								o += (c[i].innerText != link_target) ? '<option value="' + c[i].innerText + '">' + c[i].innerText + '</option>' : '<option selected value="' + c[i].innerText + '">' + c[i].innerText + '</option>';
-							}
-
-						}
-
+						link_editor.ih_preset = link_editor.origin.getAttribute("store_link");
+						TextEditor.ih_preset = link_editor.origin.getAttribute("store_link");
 					}
+				}
+				if (link_editor.origin.tagName.toLowerCase() == 'i') {
+					ih = '<label>Link Text:</label><input value="' + link_editor.origin.getAttribute('to_link_text');
+					link_editor.link_kind = 'virgin';
+					link_editor.ih_preset = 'http://';
+					TextEditor.ih_preset = 'http://';
+				}
 
-					secondfield += o;
-					secondfield += '</select>';
+
+				if (TextEditor.ih_preset == '') {
+					alert("t.onclick.toString().slice(t.onclick.toString().indexOf('slide_lr') + 9, t.onclick.toString().length - 3); TextEditor.ih_preset is empty");
+				}
+
+
+				switch (link_editor.link_kind) {
+					case 'virgin':
+						var secondfield = '<input value="' + link_editor.ih_preset + '" onkeyup="validate_link_target()"/>';
+						break;
+					case 'slide_lr':
+					case 'search_nostyle':
+						var secondfield = make_secondfield(link_editor.ih_preset);
+						break;
+					case 'jump_to':
+						/*
+														var link_target = this.link_kind + this.ih_preset;
+						*/
+						alert('jump_to comming soon');
+						return;
+						break;
+					case '':
+						alert('empty comming soon');
+						return;
+						break;
+					default:
+						var secondfield = '<input value="' + link_editor.ih_preset + '" onkeyup="validate_link_target()"/>';
+						console.log('nothing to change , default');
 				}
 
 				ih += '" onkeyup="validate_link_ih(this)"/><br/><label>Link Ziel:</label>' + secondfield + '<i title="Link entfernen aber Text belassen." class="fa fa-minus-circle" style="position: absolute;left: 22%;" aria-hidden="true" onclick="remove_link()"></i><i class="fa fa-times-circle" aria-hidden="true" onclick="go_TextEditor()"></i>';
-				ih += '<button type="button" class="ok_link_btn" onclick="ok_link(this)"><i class="fa fa-check" aria-hidden="true"></i>Ok, übernehmen</button>';
+				if (link_editor.link_kind == 'virgin') {
+					ih += '<div class="link_btn_raw">';
+					if (t.tagName.toLowerCase() != 'input') {
+						ih += '<button type="button" class="link_kind_btn" onclick="link_kind_response(this,1)"><i class="fa fa-picture-o" aria-hidden="true"></i> Bild</button>';
+					}
+					ih += '<button type="button" class="link_kind_btn" onclick="link_kind_response(this,2)"><i class="fa fa-file-text-o" aria-hidden="true"></i> Projekt</button>';
+					ih += '<button type="button" class="link_kind_btn" onclick="link_kind_response(this,0)"><i class="fa fa-external-link" aria-hidden="true"></i> Webseite</button>';
+					ih += '</div>';
+				}
+				ih += '<button type="button" class="ok_link_btn" id="confirm_link" onclick="ok_link(this)"><i class="fa fa-check" aria-hidden="true"></i>Ok, übernehmen</button>';
 				come_TextEditor(ih, t);
 			};
 
-			var duplicate_to_linktext = function(t) {
-				TextEditor.children[1].value = t.value;
-				validate_link_target(t);
+			var link_kind_response = function(t, i) {
+				t.parentNode.style.display = 'none';
 			};
 
-			var go_TextEditor = function(tx, t) {
+			var link_kinds = ["virgin", "slide_lr", "search_nostyle", "jump_to", "external"];
+			var link_kind_response = function(t, k) {
+				link_editor.link_kind = link_kinds[k];
+				console.log(link_editor.link_kind);
+				if (link_editor.link_kind == 'slide_lr') {
+					TextEditor.ih_preset = 'slide_lr' + 1;
+					link_editor.ih_preset = 1;
+					var c = document.createElement('div');
+					c.innerHTML = make_secondfield(link_editor.ih_preset);
+					TextEditor.insertBefore(c.children[0], TextEditor.children[4]);
+					TextEditor.removeChild(TextEditor.children[5]);
+					pre_drawArrow();
+				}
+				if (link_editor.link_kind == 'search_nostyle') {
+					TextEditor.ih_preset = 'search_nostyle';
+					link_editor.ih_preset = TextEditor.children[1].value;
+					var c = document.createElement('div');
+					c.innerHTML = make_secondfield(link_editor.ih_preset);
+					TextEditor.insertBefore(c.children[0], TextEditor.children[4]);
+					TextEditor.removeChild(TextEditor.children[5]);
+				}
+				t.parentNode.style.display = 'none';
+			};
+
+
+			var duplicate_to_linktext = function(t) {
+				TextEditor.children[1].value = t.value;
+				validate_link_target();
+			};
+
+			var go_TextEditor = function() {
+
+				if (TextEditor.origin.tagName.toLowerCase() == 'i') {
+					TextEditor.origin.parentNode.removeChild(TextEditor.origin);
+				}
+
+				link_editor = {};
 				TextEditor.ih_preset = '';
 				TextEditor.style.display = 'none';
 				TextEditor.innerHTML = '';
@@ -2431,84 +2490,86 @@
 					}
 
 					TextEditor.style.display = 'block';
-					TextEditor.style.left = (window.innerWidth - TextEditor.offsetWidth) / 2 + 'px';
-					TextEditor.style.top = (window.innerHeight - TextEditor.offsetHeight) / 2 + 'px';
 					TextEditor.children[1].select();
 					TextEditor.origin = t;
 					document.getElementById('process_overlay').classList.add('process_overlay_dark');
 
 					if (!isNaN(TextEditor.children[4].value)) {
-
-
-						TextEditor.position = window.scrollY;
-
-						document.getElementById('Images_display').scrollIntoView(false);
-
-						window.addEventListener('DOMMouseScroll', mypreventDefault, false);
-						window.onwheel = mypreventDefault; // modern standard
-						window.onmousewheel = document.onmousewheel = mypreventDefault; // older browsers, IE
-
-
-						var colorgap = 0 - document.getElementById('Images_display').offsetHeight + 'px';
-
-						document.getElementById('process_overlay').style.top = colorgap;
-
-						/*    modify image_selector   */
-
-						document.getElementById('Images_display').lastChild.style.display = 'none';
-
-						var link_selector = document.getElementById('image_selector');
-
-						for (var i = 0; i < link_selector.children.length; i++) {
-							link_selector.children[i].style.display = 'none';
-						}
-
-						var newItem = document.createElement("i");
-
-						newItem.className = "fa fa-check";
-
-						newItem.setAttribute("aria-hidden", "true");
-
-						newItem.style.display = 'inline-block';
-
-						newItem.style.padding = '3vw';
-
-						newItem.style.cursor = 'pointer';
-
-						newItem.setAttribute("onclick", "link_selector_callback(this)");
-
-						link_selector.appendChild(newItem);
-
-						link_selector.style.opacity = 0;
-
-
-						canvArrow = document.createElement("canvas");
-
-						canvArrow.disable = false;
-
-						canvArrow.minreq = document.getElementById('Images_display').getBoundingClientRect().top;
-
-						canvArrow.style.position = 'fixed';
-
-						canvArrow.width = window.innerWidth;
-
-						canvArrow.style.top = 'calc(50vh + ' + TextEditor.offsetHeight / 2 + 'px + 12px)';
-
-						document.getElementById('process_overlay').appendChild(canvArrow);
-
-						var canvas_ini = document.getElementById('Images_display').children[TextEditor.children[4].value].getBoundingClientRect();
-						canvArrow.arr = [(canvas_ini.left + canvas_ini.right) / 2, canvas_ini.top + 60];
-
-						drawArrow(canvArrow.arr);
-
-						window.addEventListener("mousemove", drawArrow, false);
-
+						console.log('i pre_drawArrow');
+						pre_drawArrow();
 
 					}
 
 				} else {
 					go_TextEditor();
 				}
+			};
+
+			var pre_drawArrow = function() {
+
+				TextEditor.position = window.scrollY;
+
+				document.getElementById('Images_display').scrollIntoView(false);
+
+				window.addEventListener('DOMMouseScroll', mypreventDefault, false);
+				window.onwheel = mypreventDefault; // modern standard
+				window.onmousewheel = document.onmousewheel = mypreventDefault; // older browsers, IE
+
+
+				var colorgap = 0 - document.getElementById('Images_display').offsetHeight + 'px';
+
+				document.getElementById('process_overlay').style.top = colorgap;
+
+				/*    modify image_selector   */
+
+				document.getElementById('Images_display').lastChild.style.display = 'none';
+
+				var link_selector = document.getElementById('image_selector');
+
+				for (var i = 0; i < link_selector.children.length; i++) {
+					link_selector.children[i].style.display = 'none';
+				}
+
+				var newItem = document.createElement("i");
+
+				newItem.className = "fa fa-check";
+
+				newItem.setAttribute("aria-hidden", "true");
+
+				newItem.style.display = 'inline-block';
+
+				newItem.style.padding = '3vw';
+
+				newItem.style.cursor = 'pointer';
+
+				newItem.setAttribute("onclick", "link_selector_callback(this)");
+
+				link_selector.appendChild(newItem);
+
+				link_selector.style.opacity = 0;
+
+
+				canvArrow = document.createElement("canvas");
+
+				canvArrow.disable = false;
+
+				canvArrow.minreq = document.getElementById('Images_display').getBoundingClientRect().top;
+
+				canvArrow.style.position = 'fixed';
+
+				canvArrow.width = window.innerWidth;
+
+				canvArrow.style.top = 'calc(50vh + ' + TextEditor.offsetHeight / 2 + 'px + 12px)';
+
+				document.getElementById('process_overlay').appendChild(canvArrow);
+
+				var canvas_ini = document.getElementById('Images_display').children[TextEditor.children[4].value].getBoundingClientRect();
+				canvArrow.arr = [(canvas_ini.left + canvas_ini.right) / 2, canvas_ini.top + 60];
+
+				drawArrow(canvArrow.arr);
+
+				window.addEventListener("mousemove", drawArrow, false);
+
 			};
 
 			var drawArrow = function(e) {
@@ -2567,7 +2628,7 @@
 
 				TextEditor.children[4].value = document.getElementById('image_selector').store_img;
 
-				validate_link_target(TextEditor.children[4]);
+				validate_link_target();
 			};
 
 			function mypreventDefault(e) {
@@ -2576,6 +2637,39 @@
 					e.preventDefault();
 				e.returnValue = false;
 			}
+
+
+			var remove_link = function(t) {
+
+				console.log(TextEditor.origin.tagName.toLowerCase());
+
+				if (TextEditor.origin.tagName.toLowerCase() == 'input') {
+
+					alert('comming soon');
+
+				} else {
+
+
+					if (TextEditor.origin.tagName.toLowerCase() == 'a') {
+						console.log(TextEditor.origin);
+
+						var textnode = document.createTextNode(TextEditor.children[1].value); // Create a text node
+						TextEditor.origin.parentNode.insertBefore(textnode, TextEditor.origin);
+						TextEditor.origin.parentNode.removeChild(TextEditor.origin);
+
+						validate(textnode.parentNode, textnode.parentNode.nextSibling);
+
+						go_TextEditor();
+
+					} else {
+
+						alert('comming soon');
+
+					}
+
+				}
+
+			};
 
 
 			var ok_link = function(t) {
@@ -2589,41 +2683,42 @@
 
 				} else {
 
+					console.log('ok_link link_editor.link_kind: ', link_editor.link_kind);
 
 					if (TextEditor.origin.tagName.toLowerCase() == 'i') {
 
-						//console.log('TextEditor.origin: ', TextEditor.origin.getAttribute('to_link_text'));
-
-						var l = TextEditor.origin.getAttribute('to_link_text').length;
 						var instr = TextEditor.origin.nextSibling.innerHTML;
-						var index = TextEditor.origin.getAttribute('to_link_text_start');
-						//console.log('index: ', index);
-						var rep = '<a href="' + TextEditor.children[4].value + '" target="_blank">' + TextEditor.children[1].value + '</a>';
+						var ix = TextEditor.origin.getAttribute('to_link_text_start');
 
-						//console.log('instr.substr(0, index) "before": ', instr.substr(0, index));
-						//console.log('instr.substr(index).replace() "after with replaced": ', instr.substr(index).replace(TextEditor.origin.getAttribute('to_link_text'), rep));
+						if (link_editor.link_kind == 'slide_lr') {
+							//<a class="line" onclick="slide_lr(12)">«Der Mensch als Industriepalast»</a>
+							TextEditor.origin.nextSibling.innerHTML = instr.substr(0, ix) + instr.substr(ix).replace(TextEditor.origin.getAttribute('to_link_text'), '<a class="line" onclick="slide_lr(' + TextEditor.children[4].value + ')">' + TextEditor.children[1].value + '</a>');
 
-
-						var str_prol = instr.substr(0, index);
-						var str_epil = instr.substr(index).replace(TextEditor.origin.getAttribute('to_link_text'), rep);
+						} else {
 
 
-						//s = s.substr(0, index) + rep + s.substr(index + 1);
-						//console.log(s);
+							if (link_editor.link_kind == 'search_nostyle') {
 
-						TextEditor.origin.nextSibling.innerHTML = str_prol + str_epil;
+								TextEditor.origin.nextSibling.innerHTML = instr.substr(0, ix) + instr.substr(ix).replace(TextEditor.origin.getAttribute('to_link_text'), '<a class="line" onclick="search_nostyle(this)">' + TextEditor.children[1].value + '</a>');
+
+							} else {
+
+								TextEditor.origin.nextSibling.innerHTML = instr.substr(0, ix) + instr.substr(ix).replace(TextEditor.origin.getAttribute('to_link_text'), '<a href="' + TextEditor.children[4].value + '" target="_blank">' + TextEditor.children[1].value + '</a>');
+
+							}
+
+						}
 
 						TextEditor.origin.removeAttribute("to_link_text");
 						TextEditor.origin.removeAttribute("to_link_text_start");
 
-						//TextEditor.origin.setAttribute("to_link_text", TextEditor.children[4].value);
 						validate(TextEditor.origin.nextSibling, TextEditor.origin.nextSibling.nextSibling);
 
 					} else {
 						//					console.log('TextEditor.ih_preset: ', TextEditor.ih_preset);
 						TextEditor.origin.innerHTML = TextEditor.children[1].value;
 
-						if (TextEditor.ih_preset.indexOf('slide_lr') != -1) {
+						if (link_editor.link_kind == 'slide_lr') {
 							//if (!isNaN(TextEditor.children[4].value)) {
 							//TextEditor.origin.removeAttribute("onclick");
 							TextEditor.origin.setAttribute("onclick", "slide_lr(" + TextEditor.children[4].value + ")");
@@ -2829,6 +2924,13 @@
 								this.style.marginRight = this.firstChild.style.marginRight = 0;
 							}, false);
 
+							if (logged_user) {
+								var u = logged_user.split('@')[0].replace('.', ' ').replace(/\b\w/g, function(l) {
+									return l.toUpperCase();
+								});
+								document.getElementById('username').innerHTML = '... bedient von: ' + u + '<i class="fa fa-sign-out" aria-hidden="true" title="abmelden" onclick="logout()"></i>';
+							}
+
 							//page_load();
 
 
@@ -2844,6 +2946,10 @@
 
 				window.addEventListener("scroll", observe_actual_chapter, false);
 
+			};
+
+			var logout = function() {
+				window.location.href = 'login/logout.php';
 			};
 
 			var observe_actual_chapter = function() {
