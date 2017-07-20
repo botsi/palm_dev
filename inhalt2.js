@@ -1,6 +1,6 @@
 {
 	"folders": [{
-			"menu_name": "Über uns",
+			"menu_name": "Über unser Dorf Belp Airport",
 			"name": "uberuns",
 			"intro": "Ausstellungsbüro für Kopfreisen",
 			"data": [{
