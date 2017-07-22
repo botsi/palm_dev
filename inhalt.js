@@ -2140,7 +2140,7 @@
 							2013
 						]
 					},
-					"prolog": "Ein aktuelles Porträt auf DVD Die aktuelle Videoproduktion «Bruder Klaus: Bauer, Vermittler, Heiliger» schliesst diese Lücke. In die DVD ist Video-, Foto- und Textmaterial aus der neuen Grundausstellung einbezogen. ",
+					"prolog": "Die aktuelle Videoproduktion «Bruder Klaus: Bauer, Vermittler, Heiliger» schliesst diese Lücke. In die DVD ist Video-, Foto- und Textmaterial aus der neuen Grundausstellung einbezogen. ",
 					"text": "Das halbstündige Videoporträt gibt Einblick in die Lebensverhältnisse des 15. Jahrhunderts und zeigt die wichtigsten Stationen aus dem Leben Niklaus von Flües auf. Ebenso wird die Wirkungsgeschichte von Bruder Klaus bis in die heutige Zeit präsentiert. Ein zentraler Aspekt ist dabei seine Fähigkeit, als Vermittler zwischen verschiedenen Welten zu wirken.<br/>Mehr über die Ausstellung zu Niklaus von Flüe finden Sie <a class='line' onclick='jump_to(4,2)'>hier unter Dauerausstellungen</a>.",
 					"epilog": {
 						"Impressum": {
