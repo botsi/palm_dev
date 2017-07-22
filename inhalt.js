@@ -1996,7 +1996,7 @@
 					"prolog": "Die besten Pressezeichnungen des Jahres",
 					"text": "Über 45 Schweizer Pressezeichner zeigen die prägendsten und pointiertesten Karikaturen und Cartoons des Jahres 2012. Vernissage mit: Slam Poet Simon Libsig, dem Musiker Nic Niedermann und den beiden Politikern Philipp Müller und Alex Tschäppät.",
 					"epilog": {
-						"Ausstellungskonzept": " ... <a href='http://www.gezeichnet.ch' target='_blank'>www.gezeichnet.ch</a>",
+						"Ausstellungskonzept": "somming soon ...<br>",
 						"Impressum": {
 							"Fachbegleitung": [
 								"Jürg Spichiger (palma3)"
