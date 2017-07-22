@@ -1750,7 +1750,7 @@
 								"",
 								"Blindenschule",
 								"Kirchlindachstrasse 49",
-								"3122 Kehrsatz",
+								"3052 Zollikofen",
 								"",
 								"www.blindenschule.ch",
 								"diqLd7DqeN52"
