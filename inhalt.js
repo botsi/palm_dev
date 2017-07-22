@@ -187,7 +187,7 @@
 						"impressum"
 					],
 					"prolog": "html, javascript, css",
-					"text": "<span>Programmierung von altgriechisch prógramma - öffentlich und schriftlich bekannt gemachte Nachricht, Befehl - bezeichnet die Tätigkeit, Computerprogramme zu erstellen.<br>Diese Webseite wurde vollständig in Vanilla JS programiert. Javascript, CSS und HTML, keine Frameworks und ohne proprietäre CMS</span><span class=\"inta\">.<br>David Abotsi<br>Untereyfeldweg 7<br>3063 Ittigen - Bern<br><a href=\"http://david.abotsi.com\" target=\"_blank\">david.abotsi.com</a><br><a href=\"mailto:david@abotsi.com\">david@abotsi.com</a><br><a class=\"tel_link\" href=\"tel:+41319212452\">031 921 24 52</a></span>",
+					"text": "<span>Programmierung von altgriechisch prógramma - öffentlich und schriftlich bekannt gemachte Nachricht, Befehl - bezeichnet die Tätigkeit, Computerprogramme zu erstellen.<br>Diese Webseite wurde vollständig in Vanilla JS programiert. Keine Frameworks und ohne proprietäre CMS</span><span class=\"inta\">.<br>David Abotsi<br>Untereyfeldweg 7<br>3063 Ittigen - Bern<br><a href=\"http://david.abotsi.com\" target=\"_blank\">david.abotsi.com</a><br><a href=\"mailto:david@abotsi.com\">david@abotsi.com</a><br><a class=\"tel_link\" href=\"tel:+41319212452\">031 921 24 52</a></span>",
 					"epilog": {
 						"Rechte": "Für diese Webseite wurden Bilder von <a href='mailto:hutrachsel@gmx.ch'>Hansueli Trachsel</a> und <a href='mailto:mwichary@aresluna.org'>Marcin Wichary</a> verwendet."
 					}
