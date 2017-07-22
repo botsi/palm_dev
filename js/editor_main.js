@@ -1483,11 +1483,16 @@
 					if (xmlhttp.readyState == 4) {
 						if (xmlhttp.status == 200) {
 
-							console.log('oki, done', xmlhttp.responseText); // output php echo for control
+							var resp = xmlhttp.responseText.split(' ');
+
+							console.log('oki, done', resp[0]); // output php echo for control
+
+							up_git(logged_user, newtext, resp[1], resp[2], resp[3], resp[4], resp[5]);
+
 							/******           end overlay           ******/
-							document.getElementById('process_overlay').classList.remove('process_overlay_dark');
-							document.body.style.background = '#fff';
-							document.getElementById('Images_display').style.background = '#ccc';
+
+							/*  moved after up_git  */
+
 						} else {
 							alert('new_e shit happens');
 						}
@@ -2307,7 +2312,7 @@
 			};
 
 			var search_nostyle = function(t) {
-				TextEditor.ih_preset = 'search_nostyle' + t.innerHTML;
+				TextEditor.ih_preset_preset = 'search_nostyle' + t.innerHTML;
 				link_editor.link_kind = 'search_nostyle';
 				link_editor.ih_preset = t.innerHTML;
 			};
@@ -2925,7 +2930,7 @@
 							}, false);
 
 							if (logged_user) {
-								var u = logged_user.split('@')[0].replace('.', ' ').replace(/\b\w/g, function(l) {
+								var u = logged_user.split('@')[0].replace('.', ' ').replace('juer', 'jür').replace(/\b\w/g, function(l) {
 									return l.toUpperCase();
 								});
 								document.getElementById('username').innerHTML = '... bedient von: ' + u + '<i class="fa fa-sign-out" aria-hidden="true" title="abmelden" onclick="logout()"></i>';

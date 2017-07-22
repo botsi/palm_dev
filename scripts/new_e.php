@@ -8,8 +8,8 @@ if (!$_SESSION["login"] == 1 || !isJSON($str_json)){
     echo 'session is dead: '.$_SESSION["login"];
     exit; 
 }else{
-    echo 'session is: ok';
     $file = '../inhalt.js';
     file_put_contents($file, $str_json);
+    echo 'ok botsi palm_dev master 358f997273970c46e7802547dab38c5ec04561cc inhalt.js';
 }
 ?>
