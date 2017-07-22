@@ -1750,7 +1750,7 @@
 								"",
 								"Blindenschule",
 								"Kirchlindachstrasse 49",
-								"3052 Zollikofen",
+								"8702 Zollikon",
 								"",
 								"www.blindenschule.ch",
 								"diqLd7DqeN52"
