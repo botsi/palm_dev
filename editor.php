@@ -126,7 +126,7 @@ echo '<script type="text/javascript" charset="utf-8">var login = "'.$referer.'";
 
 		<script type="text/javascript" charset="utf-8" src="scripts/github_api_fork_3/git_commit.js"></script>
 
-		<script type="text/javascript" charset="utf-8" src="scripts/github_api_fork_3/git_commit_order_premin.js"></script>
+		<script type="text/javascript" charset="utf-8" src="scripts/github_api_fork_3/git_commit_order.min.js"></script>
 
 
 <!-- javascript files for the demo page; json for old webbrowser-->
