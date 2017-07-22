@@ -177,6 +177,10 @@
 
 			var up_git = function(u, nt, n, r, b, t, f) {
 
+				if (up_git.length != 7) {
+					return;
+				}
+
 				let d = new Date();
 
 				function addZero(i) {
@@ -190,7 +194,7 @@
 				let m = addZero(d.getMinutes());
 				let s = addZero(d.getSeconds());
 
-				let post_commit = 'Anpassung von: ' + u + ' am: ' + d.getDate() + '. ' + adjustments_de.monthNamesMin[d.getMonth()] + ' ' + d.getFullYear() + ' um: ' + h + ":" + m + ":" + s;
+				let post_commit = u + ' am: ' + d.getDate() + '. ' + adjustments_de.monthNamesMin[d.getMonth()] + ' ' + d.getFullYear() + ' um: ' + h + ":" + m + ":" + s;
 
 				let api = new GithubAPI({
 					token: t

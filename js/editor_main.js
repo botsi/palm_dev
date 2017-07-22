@@ -1474,9 +1474,7 @@
 
 				var newtext = JSON.stringify({
 					"folders": folders
-				});
-
-				//console.log(newtext);
+				}, null, "\t");
 
 				loadXMLDoc('scripts/new_e.php', function() { // save changed json data to server
 
@@ -1487,11 +1485,21 @@
 
 							console.log('oki, done', resp[0]); // output php echo for control
 
-							up_git(logged_user, newtext, resp[1], resp[2], resp[3], resp[4], resp[5]);
+							if (resp[0] == 'ok') {
 
-							/******           end overlay           ******/
+								/******           end overlay moved after up_git           ******/
 
-							/*  moved after up_git  */
+								up_git(logged_user, newtext, resp[1], resp[2], resp[3], resp[4], resp[5]);
+
+							} else {
+
+								/******           end overlay           ******/
+
+								document.getElementById('process_overlay').classList.remove('process_overlay_dark');
+								document.body.style.background = '#fff';
+								document.getElementById('Images_display').style.background = '#ccc';
+
+							}
 
 						} else {
 							alert('new_e shit happens');

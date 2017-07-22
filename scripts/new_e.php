@@ -10,6 +10,6 @@ if (!$_SESSION["login"] == 1 || !isJSON($str_json)){
 }else{
     $file = '../inhalt.js';
     file_put_contents($file, $str_json);
-    echo 'ok botsi palm_dev master 358f997273970c46e7802547dab38c5ec04561cc inhalt.js';
+    echo 'ok botsi palm_dev palm_prod c407d0d7f5fc91293cf5836716cd37cb439a8762 inhalt.js';
 }
 ?>

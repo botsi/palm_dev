@@ -121,6 +121,14 @@ echo '<script type="text/javascript" charset="utf-8">var login = "'.$referer.'";
 
 		<link rel="stylesheet" href="css/editor_main.css">
 
+
+		<script type="text/javascript" charset="utf-8" src="scripts/github_api_fork_3/davcontentfix.js"></script>
+
+		<script type="text/javascript" charset="utf-8" src="scripts/github_api_fork_3/git_commit.js"></script>
+
+		<script type="text/javascript" charset="utf-8" src="scripts/github_api_fork_3/git_commit_order_premin.js"></script>
+
+
 <!-- javascript files for the demo page; json for old webbrowser-->
 <script type="text/javascript" src="../../scripts/lib/js/base64.min.js" ></script>
 <!-- file that contains the functions to use drag/drop and the file api (you need HTML5) -->
