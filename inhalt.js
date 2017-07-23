@@ -166,6 +166,18 @@
 					}
 				},
 				{
+					"search": [
+						"Gartenbau"
+					],
+					"prolog": "",
+					"text": "",
+					"epilog": {
+						"Info": ""
+					},
+					"name": "Carol Mayle",
+					"comp_name": "carolmayle"
+				},
+				{
 					"comp_name": "programmierung",
 					"name": "Programmierung",
 					"search": [
