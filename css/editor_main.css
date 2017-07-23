@@ -309,6 +309,7 @@
       	margin: 6px;
       	padding: 0;
       	background: #fff;
+      	min-height: 28px;
       }
 
       #text_display h2, #Ausstellungskonzept_display h2 {
@@ -432,6 +433,7 @@
       	top: calc(50vh - 304px);
       	position: fixed;
       	border: 24px rgba(141, 170, 212, 1) solid;
+      	background-image: url("images/editor_new_image.jpg");
       	background: #ccc;
       	overflow: hidden;
       	z-index: 1;

@@ -395,8 +395,9 @@
 				document.getElementById('image_editor').innerHTML = '';
 				document.getElementById('image_editor').style.display = 'none';
 
-				document.getElementById('Images_display').lastChild.style.display = 'inline';
-
+				if (document.getElementById('Images_display').lastChild) {
+					document.getElementById('Images_display').lastChild.style.display = 'inline';
+				}
 				document.getElementById('process_overlay').classList.remove('process_overlay_dark');
 				document.body.style.background = '#fff';
 				document.getElementById('Images_display').style.background = '#ccc';
@@ -461,7 +462,7 @@
 
 					} else {
 
-						save_image_presets = [t.files[0], to_edit.comp_name + '_' + document.getElementById('image_selector').store_img + '.jpg', to_edit_folder];
+						save_image_presets = (typeof document.getElementById('image_selector').store_img !== 'undefined') ? [t.files[0], to_edit.comp_name + '_' + document.getElementById('image_selector').store_img + '.jpg', to_edit_folder] : [t.files[0], to_edit.comp_name + '.jpg', to_edit_folder];
 
 						document.getElementById('image_editor').style.backgroundImage = 'url("' + oFREvent.target.result + '")';
 
@@ -514,8 +515,9 @@
 				document.getElementById('image_selector').style.backgroundImage = 'none';
 				document.getElementById('image_selector').style.display = 'none';
 
-				document.getElementById('Images_display').lastChild.style.display = 'none';
-
+				if (document.getElementById('Images_display').lastChild) {
+					document.getElementById('Images_display').lastChild.style.display = 'none';
+				}
 
 				disable_img_over = true;
 
@@ -531,6 +533,8 @@
 
 			var come_selector = function(t) {
 
+				console.log('disable_img_over: ', disable_img_over);
+
 				if (disable_img_over) {
 					return false;
 				}
@@ -539,21 +543,18 @@
 
 				if (t.tagName.toLowerCase() != 'img') {
 					var s = t.previousSibling.src.split('_')[0];
-					//console.log(s + 1);
+
 					to_edit_image = s + '_' + index_in_parent(t) + '.jpg';
-					//console.log(to_edit_image);
 
 					document.getElementById('image_selector').store_img = index_in_parent(t);
 					edit_image('value');
 					return;
 				} else {
 					to_edit_image = t.src;
-					//console.log(to_edit_image);
 
 					document.getElementById('image_selector').store_img = index_in_parent(t);
 				}
 
-				//console.log('to_edit_image first call: ', to_edit_image);
 
 				document.getElementById('image_selector').style.left = t.offsetLeft + 'px';
 				document.getElementById('image_selector').style.top = t.offsetTop + 'px';
@@ -1321,14 +1322,135 @@
 			/******           remove entry           ******/
 
 			var remove_entry = function(t) {
-				alert('remove_entry: ');
+				if (confirm(to_edit.name + ' permanent Löschen?\n\nDies ist nicht rückgängig machbar!') == true) {
+					console.log('alles gelöscht! (Lüge)');
+				}
 			};
 
 
 			/******           new entry           ******/
 
 			var new_entry = function(t) {
-				alert('new_entry: ');
+
+				console.log(to_edit);
+				console.log(to_edit_folder);
+
+				document.getElementById('process_overlay').classList.add('process_overlay_dark');
+
+				var f = t.parentNode.innerText.toLowerCase().replace(/ /g, '').replace(/ü/g, 'u').replace(/ä/g, 'a').replace(/ö/g, 'o');
+				var p = '';
+				var ix = 0;
+
+				switch (f) {
+					case 'uberuns':
+						p = 'die neue Person in ' + t.parentNode.innerText;
+						var new_p = {
+							"search": [],
+							"prolog": "",
+							"text": "",
+							"epilog": {}
+						};
+						ix = folders[index_in_parent(t.parentNode)].data.length - 1;
+						break;
+					case 'beratung':
+					case 'audioundvideo':
+						p = 'das neue Projekt in ' + t.parentNode.innerText;
+						break;
+					case 'publikationen':
+						p = 'die neue Publikation';
+						break;
+					default:
+						p = 'die neue Ausstellung in ' + t.parentNode.innerText;
+						var new_p = {
+							"search": [],
+							"prolog": "",
+							"text": "",
+							"epilog": {}
+						};
+				}
+
+				if (!new_p) {
+					return;
+				}
+
+				var project = prompt('Bitte einen Namen für ' + p + ' angeben.');
+
+				if (project == null || project == "" || project == " ") {
+
+					console.log('Aha, doch lieber nicht!');
+					document.getElementById('process_overlay').classList.remove('process_overlay_dark');
+					document.body.style.background = '#fff';
+					document.getElementById('Images_display').style.background = '#ccc';
+
+				} else {
+
+					new_p.name = project;
+					new_p.comp_name = new_p.search[0] = project.toLowerCase().replace(/ /g, '').replace(/ü/g, 'u').replace(/ä/g, 'a').replace(/ö/g, 'o');
+					if (new_p.name.toLowerCase().replace(/ /g, '') != new_p.comp_name) {
+						new_p.search[1] = project.toLowerCase().replace(/ /g, '');
+					}
+					new_p.epilog.Info = "";
+
+
+
+
+					folders[index_in_parent(t.parentNode)].data.splice(ix, 0, new_p);
+
+					console.log(project + ' wird erstelt! (Lüge) (PRÜFEN!) (Und: bisher ungesicherte Änderungen gehen verloren!) ', folders[index_in_parent(t.parentNode)].data);
+
+					//else if new_p      //  test  last exit or go....
+
+					to_edit = new_p;
+					to_edit_folder = f;
+
+					edit_image('value');
+
+					func_after_Image = function() {
+
+						document.getElementById('process_overlay').classList.add('process_overlay_dark');
+
+						var newtext = JSON.stringify({
+							"folders": folders
+						}, null, "\t");
+
+						loadXMLDoc('scripts/new_e.php', function() { // save changed json data to server
+
+							if (xmlhttp.readyState == 4) {
+								if (xmlhttp.status == 200) {
+
+									var resp = xmlhttp.responseText.split(' ');
+
+									console.log('oki, done ', resp[0]); // output php echo for control
+
+									if (resp[0] == 'ok') {
+
+										/******           end overlay moved after up_git           ******/
+
+										up_git(to_edit.name, logged_user, newtext, resp[1], resp[2], resp[3], resp[4], resp[5], 'editor.php?' + new_p.comp_name);
+
+									} else {
+
+										/******           reload_page           ******/
+
+										console.log('editor.php/?' + new_p.comp_name);
+
+										window.location.href = 'editor.php?' + new_p.comp_name;
+
+									}
+
+								} else {
+									alert('new_e (new entry built) shit happens');
+								}
+							}
+						}, newtext);
+
+						func_after_Image = function() {
+							return false;
+						};
+
+					};
+
+				}
 			};
 
 
@@ -1338,13 +1460,11 @@
 
 				var entry_kind = t.previousSibling.previousSibling.id.replace('_display', '');
 
-
 				t.classList.remove('button_valid');
 				t.previousSibling.classList.remove('button_valid');
 				update_unsaved(t);
 
 				fill_cat(entry_kind);
-
 
 			};
 
@@ -1506,7 +1626,7 @@
 
 								/******           end overlay moved after up_git           ******/
 
-								up_git(logged_user, newtext, resp[1], resp[2], resp[3], resp[4], resp[5]);
+								up_git(to_edit.name, logged_user, newtext, resp[1], resp[2], resp[3], resp[4], resp[5]);
 
 							} else {
 
@@ -1921,6 +2041,8 @@
 
 			var edit = function(t) {
 
+				console.log(t);
+
 				if (to_edit == folders[t.getAttribute('f', 0)].data[t.getAttribute('d', 0)]) {
 					return;
 				}
@@ -2123,8 +2245,6 @@
 					func_after_Image = function() {
 						return false;
 					};
-
-					//console.log('func_after_Image is now: ', func_after_Image);
 
 				};
 
@@ -2818,6 +2938,7 @@
 					}
 
 
+
 				};
 
 				try_img.onload = function() {
@@ -2900,12 +3021,15 @@
 
 							}
 
+							var taxi = decodeURI(window.location.search.substring(1));
+
 							var p = -1;
 							var cycle = function(c) {
 								p++;
 								var ih = '';
 								for (var i = 0; i < folders.length; i++) {
-									ih += (typeof folders[i].data[p] !== 'undefined') ? '<td class="lk" onclick="edit(this)" f="' + i + '" d="' + p + '">' + folders[i].data[p].name + '</td>' : '<td></td>';
+									var id = (typeof folders[i].data[p] !== 'undefined' && taxi == folders[i].data[p].comp_name) ? ' id="edit_preset"' : '';
+									ih += (typeof folders[i].data[p] !== 'undefined') ? '<td class="lk"' + id + ' onclick="edit(this)" f="' + i + '" d="' + p + '">' + folders[i].data[p].name + '</td>' : '<td></td>';
 								}
 
 								return ih;
@@ -2971,7 +3095,11 @@
 
 							//page_load();
 
+							/*******    and redirect to entry if taxi is valid and not empty   *******/
 
+							if (document.getElementById('edit_preset')) {
+								edit(document.getElementById('edit_preset'));
+							}
 
 
 
@@ -3168,7 +3296,7 @@
 					/*    extension   */
 
 					var webp_json = JSON.stringify({
-						"folder": 'webp/' + save_image_presets[2], //to_edit_folder,
+						"folder": 'webp/' + save_image_presets[2],
 						"name": save_image_presets[1].replace('.jpg', '.webp'),
 						"base": base64URI
 					});
