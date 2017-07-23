@@ -664,8 +664,8 @@
 
 				if (entry_kind == 'search') {
 					//console.log('index is: ' + all_search.indexOf(value + ',' + to_edit.name));
-					console.log(to_edit.name);
-					console.log(all_search);
+					//console.log(to_edit.name);
+					//console.log(all_search);
 					if (all_search.term.indexOf(value) != -1) {
 						t.style.background = 'rgb(250, 161, 179)';
 						t.style.textDecoration = 'line-through';
