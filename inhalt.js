@@ -181,7 +181,7 @@
 					"search": [
 						"bertaquatropani"
 					],
-					"prolog": "",
+					"prolog": "So sind wir.",
 					"text": "",
 					"epilog": {
 						"Info": ""
