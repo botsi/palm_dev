@@ -179,7 +179,8 @@
 				},
 				{
 					"search": [
-						"bertaquatropani"
+						"lisa",
+						"brot"
 					],
 					"prolog": "So sind wir.",
 					"text": "Nichts zu sagen. Nur Bilder!<br>",
