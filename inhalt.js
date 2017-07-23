@@ -182,7 +182,7 @@
 						"bertaquatropani"
 					],
 					"prolog": "So sind wir.",
-					"text": "",
+					"text": "Nichts zu sagen. Nur Bilder!<br>",
 					"epilog": {
 						"Info": ""
 					},
