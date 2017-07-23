@@ -245,11 +245,11 @@
       	border-radius: 16px;
       }
 
-      #search_display .fa-plus-circle:hover, #search_display .fa-minus-circle:hover, #Ausstellungskonzept_display .fa-minus-circle:hover, #Impressum_display .fa-plus-circle:hover, #Impressum_display .fa-minus-circle:hover, .fa-link:hover, #Medienberichte_display .fa-minus-circle:hover {
+      #search_display .fa-plus-circle:hover, #time_display .fa-plus-circle:hover, #Ausstellungsort_display .fa-plus-circle:hover, #search_display .fa-minus-circle:hover, #Ausstellungskonzept_display .fa-minus-circle:hover, #Impressum_display .fa-plus-circle:hover, #Impressum_display .fa-minus-circle:hover, .fa-link:hover, #Medienberichte_display .fa-minus-circle:hover {
       	border: 2px #333 solid;
       }
 
-      #search_display .fa-plus-circle:hover, #Impressum_display .fa-plus-circle:hover {
+      #search_display .fa-plus-circle:hover, #time_display .fa-plus-circle:hover, #Ausstellungsort_display .fa-plus-circle:hover, #Impressum_display .fa-plus-circle:hover {
       	background: #0f0;
       }
 
@@ -369,7 +369,11 @@
       	font-size: 2vw;
       	margin: 3vw auto;
       	display: inline-block;
-      	padding: 6px 8px;
+      	padding: 8px !important;
+      	line-height: calc(2vw - 6px) !important;
+      	width: calc(2vw - 4px);
+      	border-radius: 2vw !important;
+      	margin-left: calc(6vw / 8);
       }
 
       .media_icon_size {

@@ -1235,6 +1235,19 @@
 
 				document.getElementById('Impressum_display').insertBefore(newItem, t);
 
+				newItem.placeholder = "neue Person / Firma für " + (function() {
+
+					for (var i = index_in_parent(t); i > -1; i--) {
+						if (t.parentNode.children[i].className == 'keyfield') {
+							return t.parentNode.children[i].value;
+							break;
+						}
+					}
+
+				})() + " ...";
+
+				newItem.focus();
+
 				newItem = document.createElement("i");
 
 				newItem.className = "fa fa-link";
@@ -1285,6 +1298,10 @@
 				newItem.value = "";
 
 				document.getElementById('search_display').insertBefore(newItem, t);
+
+				newItem.placeholder = "neues Stichwort ...";
+
+				newItem.focus();
 
 				newItem = document.createElement("i");
 
@@ -2296,6 +2313,14 @@
 						newItem.setAttribute("onclick", "sh_link_editor(this.previousSibling)");
 
 						document.getElementById('Impressum_display').insertBefore(newItem, as[i].nextSibling);
+
+					}
+				}
+				//}
+
+			};
+
+			/*******em, as[i].nextSibling);
 
 					}
 				}
