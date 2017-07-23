@@ -178,6 +178,18 @@
 					"comp_name": "alivenolsommer"
 				},
 				{
+					"search": [
+						"bertaquatropani"
+					],
+					"prolog": "",
+					"text": "",
+					"epilog": {
+						"Info": ""
+					},
+					"name": "Berta Quatropani",
+					"comp_name": "bertaquatropani"
+				},
+				{
 					"comp_name": "programmierung",
 					"name": "Programmierung",
 					"search": [
