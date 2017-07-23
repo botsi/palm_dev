@@ -704,7 +704,8 @@
 					"name": "Das Abenteuer Bildung",
 					"search": [
 						"bildung",
-						"weiterbildung"
+						"weiterbildung",
+						"ausbildung"
 					],
 					"time": {
 						"from": [
