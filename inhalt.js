@@ -167,8 +167,7 @@
 				},
 				{
 					"search": [
-						"alivenolsommer",
-						"alivenölsommer"
+						"öl"
 					],
 					"prolog": "Aliv ist heiss",
 					"text": "",
