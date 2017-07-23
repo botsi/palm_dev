@@ -166,6 +166,19 @@
 					}
 				},
 				{
+					"search": [
+						"alivenolsommer",
+						"alivenölsommer"
+					],
+					"prolog": "Aliv ist heiss",
+					"text": "",
+					"epilog": {
+						"Info": ""
+					},
+					"name": "Alivenöl Sommer",
+					"comp_name": "alivenolsommer"
+				},
+				{
 					"comp_name": "programmierung",
 					"name": "Programmierung",
 					"search": [
@@ -586,7 +599,6 @@
 								"Museo Ciäsa Granda",
 								"Stampa",
 								"7605 Bregaglia",
-								"",
 								"www.ciaesagranda.ch",
 								"MdtRoz6VGXB2"
 							],
