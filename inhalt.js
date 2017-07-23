@@ -1584,10 +1584,14 @@
 								"Andreas Schwab (palma3)"
 							],
 							"Illustrationen": [
-								"<a href='http://www.andreapeter.ch' target='_blank'>Andrea Peter, Bern</a>"
+								"<a href='http://www.andreapeter.ch/' target='_blank'>Andrea Peter, Bern</a>"
 							],
 							"Realisierung": [
-								"<a href='http://www.creactif.ch' target='_blank'>Créactif, Gaël Papilloud, Martigny</a>"
+								"<a href='http://www.creactif.ch/' target='_blank'>Créactif, Gaël Papilloud, Martigny</a>",
+								""
+							],
+							"Allgemeine Mithilfe": [
+								"Jürg Spichiger (palma3)"
 							]
 						},
 						"Ausstellungsort": [
