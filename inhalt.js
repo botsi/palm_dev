@@ -703,7 +703,8 @@
 					"comp_name": "abenteuerbildung",
 					"name": "Das Abenteuer Bildung",
 					"search": [
-						"bildung"
+						"bildung",
+						"weiterbildung"
 					],
 					"time": {
 						"from": [
