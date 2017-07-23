@@ -170,7 +170,7 @@
 						"öl"
 					],
 					"prolog": "Aliv ist heiss",
-					"text": "Alles wird gut. Und noch mehr.<br>",
+					"text": "Alles wird gut. <a class=\"line\" onclick=\"slide_lr(2)\">Und noch</a> mehr.<br>",
 					"epilog": {
 						"Info": ""
 					},
