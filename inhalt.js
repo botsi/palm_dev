@@ -169,7 +169,7 @@
 					"search": [
 						"Gartenbau"
 					],
-					"prolog": "",
+					"prolog": "Mitarbeiterin Lamlawor",
 					"text": "",
 					"epilog": {
 						"Info": ""
