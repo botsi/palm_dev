@@ -170,7 +170,7 @@
 						"öl"
 					],
 					"prolog": "Aliv ist heiss",
-					"text": "",
+					"text": "Alles wird gut. Und noch mehr.<br>",
 					"epilog": {
 						"Info": ""
 					},
