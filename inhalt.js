@@ -1588,9 +1588,6 @@
 							],
 							"Realisierung": [
 								"<a href='http://www.creactif.ch/' target='_blank'>Créactif, Gaël Papilloud, Martigny</a>"
-							],
-							"Allgemeine Mithilfe": [
-								"Jürg Spichiger (palma3)"
 							]
 						},
 						"Ausstellungsort": [
