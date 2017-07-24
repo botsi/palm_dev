@@ -166,6 +166,18 @@
 					}
 				},
 				{
+					"search": [
+						"beterbozio"
+					],
+					"prolog": "",
+					"text": "",
+					"epilog": {
+						"Info": ""
+					},
+					"name": "Beter Bozio",
+					"comp_name": "beterbozio"
+				},
+				{
 					"comp_name": "programmierung",
 					"name": "Programmierung",
 					"search": [
@@ -199,35 +211,6 @@
 			"name": "sonderausstellungen",
 			"intro": "Ausstellungen zu Geschichte, Kultur und Gesellschaft.",
 			"data": [
-				{
-					"search": [
-						"chatmechant"
-					],
-					"prolog": "Eine Ausstellung über Katzen.",
-					"text": "",
-					"epilog": {
-						"Ausstellungsort": [
-							[
-								"",
-								"",
-								"",
-								"",
-								"",
-								"",
-								""
-							]
-						],
-						"Impressum": {
-							"Kurator": [
-								"Fritz the cat"
-							]
-						},
-						"Dossier": [],
-						"Info": ""
-					},
-					"name": "Chat mechant",
-					"comp_name": "chatmechant"
-				},
 				{
 					"comp_name": "schreibrausch",
 					"name": "Schreibrausch",
