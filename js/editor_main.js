@@ -1,5 +1,7 @@
 			var folders, to_edit, to_edit_folder, to_edit_image, swap, save_image_presets, TextEditor, Positioner, Unsaved, all_search, canvArrow;
 
+			var cont_new_image = {};
+
 			var largest = 0;
 
 			var disable_img_over = false;
@@ -410,8 +412,24 @@
 
 			/******           preview image           ******/
 
-			var preview_image = function(t) {
-				console.log(t.value);
+			var preview_image = function(t, arr) {
+
+
+
+
+				/*
+
+
+				return;
+
+			*/
+
+
+
+
+
+
+
 
 				//document.getElementById('image_editor').style.backgroundImage = 'url("' + t.value + '")';
 
@@ -462,11 +480,29 @@
 
 					} else {
 
-						save_image_presets = (typeof document.getElementById('image_selector').store_img !== 'undefined') ? [t.files[0], to_edit.comp_name + '_' + document.getElementById('image_selector').store_img + '.jpg', to_edit_folder] : [t.files[0], to_edit.comp_name + '.jpg', to_edit_folder];
-
 						document.getElementById('image_editor').style.backgroundImage = 'url("' + oFREvent.target.result + '")';
 
-						t.nextSibling.innerHTML = 'Bild "' + file.name + '" ... <button type="button" onclick="upload_file(this)">speichern</button>';
+
+						console.log('arr: ', arr);
+
+						if (preview_image.length == 2) {
+
+
+
+
+
+
+							save_image_presets = [t.files[0], arr[3].comp_name + '.jpg', arr[2]];
+
+							t.nextSibling.innerHTML = 'Bild "' + file.name + '" ... <button type="button" onclick="upload_file(this,cont_new_image.arr)">ok</button>';
+
+						} else {
+
+							save_image_presets = [t.files[0], to_edit.comp_name + '_' + document.getElementById('image_selector').store_img + '.jpg', to_edit_folder];
+
+							t.nextSibling.innerHTML = 'Bild "' + file.name + '" ... <button type="button" onclick="upload_file(this)">speichern</button>';
+
+						}
 
 					}
 
@@ -476,7 +512,71 @@
 
 			};
 
-			var upload_file = function(t) {
+			var upload_file = function(t, arr) {
+
+
+
+				if (upload_file.length == 2) {
+
+
+
+					//    			var new_image = function(el, ix, f, new_p) {
+
+
+					folders[index_in_parent(arr[0].parentNode)].data.splice(arr[1], 0, arr[3]); //    arr[]
+
+					console.log(' wird erstelt! (Lüge) (PRÜFEN!) (Und: bisher ungesicherte Änderungen gehen verloren!) ', folders[index_in_parent(arr[0].parentNode)].data);
+
+					//else if new_p      //  test  last exit or go....
+
+					to_edit = arr[3];
+					to_edit_folder = arr[2];
+
+					func_after_Image = function() {
+
+						document.getElementById('process_overlay').classList.add('process_overlay_dark');
+
+						var newtext = JSON.stringify({
+							"folders": folders
+						}, null, "\t");
+
+						loadXMLDoc('scripts/new_e.php', function() { // save changed json data to server
+
+							if (xmlhttp.readyState == 4) {
+								if (xmlhttp.status == 200) {
+
+									var resp = xmlhttp.responseText.split(' ');
+
+									console.log('oki, done ', resp[0]); // output php echo for control
+
+									if (resp[0] == 'ok') {
+
+										//           end overlay moved after up_git           //
+
+										up_git(to_edit.name, logged_user, newtext, resp[1], resp[2], resp[3], resp[4], resp[5], 'editor.php?' + arr[3].comp_name);
+
+									} else {
+
+										//           reload_page           //
+
+										console.log('editor.php/?' + new_p.comp_name);
+
+										window.location.href = 'editor.php?' + new_p.comp_name;
+
+									}
+
+								} else {
+									alert('new_e (new entry built) shit happens');
+								}
+							}
+						}, newtext);
+
+						func_after_Image = function() {
+							return false;
+						};
+
+					};
+				}
 
 				t.parentNode.classList.add('img_uploader_active');
 
@@ -504,6 +604,69 @@
 
 			};
 
+
+			/******           edit_image           ******/
+
+			var new_image = function(t, p, ix, f, new_p) {
+
+
+
+
+
+				document.getElementById('process_overlay').classList.add('process_overlay_dark');
+
+				/*
+								document.getElementById('image_selector').style.backgroundImage = 'none';
+								document.getElementById('image_selector').style.display = 'none';
+
+								if (document.getElementById('Images_display').lastChild) {
+									document.getElementById('Images_display').lastChild.style.display = 'none';
+								}
+				*/
+				disable_img_over = true;
+
+				document.getElementById('image_editor').style.display = 'block';
+
+				cont_new_image.foo = function(a) {
+
+					var project = a.previousSibling.previousSibling.value;
+
+					if (project == "" || project == " " || project.length < 2 || project.indexOf('eval(') != -1 || project.indexOf('<') != -1 || project.indexOf('>') != -1) {
+
+						console.log('Aha, doch lieber nicht!');
+						close_image_editor();
+
+					} else {
+
+						cont_new_image.arr = [t, ix, f, new_p];
+
+						document.getElementById('image_editor').innerHTML = '<p><i class="fa fa-times-circle" aria-hidden="true" onclick="close_image_editor()"></i></p><input type="file" id="myFile" onchange="preview_image(this,cont_new_image.arr)"><p style="z-index:0;">neues Bild hierher ziehen ...</p>';
+
+						document.getElementById('image_editor').style.backgroundImage = 'url("images/editor_new_image.jpg")';
+
+						new_p.name = project;
+						new_p.comp_name = new_p.search[0] = project.toLowerCase().replace(/ /g, '').replace(/ü/g, 'u').replace(/ä/g, 'a').replace(/ö/g, 'o');
+						if (new_p.name.toLowerCase().replace(/ /g, '') != new_p.comp_name) {
+							new_p.search[1] = project.toLowerCase().replace(/ /g, '');
+						}
+						new_p.epilog.Info = "";
+
+
+
+
+					}
+
+				};
+
+
+
+				document.getElementById('image_editor').innerHTML = '<p><i class="fa fa-times-circle" aria-hidden="true" onclick="close_image_editor()"></i></p><input type="text" style="margin-top: 120px;" ><p style="z-index:0;">Bitte einen Namen für ' + p + ' angeben.</p><button onclick="cont_new_image.foo(this)" style="margin-top: 120px;">ok</button>';
+
+
+
+
+
+			};
 
 			/******           edit_image           ******/
 
@@ -1332,14 +1495,13 @@
 
 			var new_entry = function(t) {
 
-				console.log(to_edit);
 				console.log(to_edit_folder);
 
-				document.getElementById('process_overlay').classList.add('process_overlay_dark');
+				var p = '';
+
+				var ix = 0;
 
 				var f = t.parentNode.innerText.toLowerCase().replace(/ /g, '').replace(/ü/g, 'u').replace(/ä/g, 'a').replace(/ö/g, 'o');
-				var p = '';
-				var ix = 0;
 
 				switch (f) {
 					case 'uberuns':
@@ -1365,92 +1527,34 @@
 							"search": [],
 							"prolog": "",
 							"text": "",
-							"epilog": {}
+							"epilog": {
+								"Ausstellungsort": [
+									[
+										"",
+										"",
+										"",
+										"",
+										"",
+										"",
+										""
+									]
+								],
+								"Impressum": {
+									"Kurator": [
+										""
+									]
+								},
+								"Dossier": []
+							}
 						};
 				}
 
 				if (!new_p) {
+					console.log('i return');
 					return;
 				}
 
-				var project = prompt('Bitte einen Namen für ' + p + ' angeben.');
-
-				if (project == null || project == "" || project == " ") {
-
-					console.log('Aha, doch lieber nicht!');
-					document.getElementById('process_overlay').classList.remove('process_overlay_dark');
-					document.body.style.background = '#fff';
-					document.getElementById('Images_display').style.background = '#ccc';
-
-				} else {
-
-					new_p.name = project;
-					new_p.comp_name = new_p.search[0] = project.toLowerCase().replace(/ /g, '').replace(/ü/g, 'u').replace(/ä/g, 'a').replace(/ö/g, 'o');
-					if (new_p.name.toLowerCase().replace(/ /g, '') != new_p.comp_name) {
-						new_p.search[1] = project.toLowerCase().replace(/ /g, '');
-					}
-					new_p.epilog.Info = "";
-
-
-
-
-					folders[index_in_parent(t.parentNode)].data.splice(ix, 0, new_p);
-
-					console.log(project + ' wird erstelt! (Lüge) (PRÜFEN!) (Und: bisher ungesicherte Änderungen gehen verloren!) ', folders[index_in_parent(t.parentNode)].data);
-
-					//else if new_p      //  test  last exit or go....
-
-					to_edit = new_p;
-					to_edit_folder = f;
-
-					edit_image('value');
-
-					func_after_Image = function() {
-
-						document.getElementById('process_overlay').classList.add('process_overlay_dark');
-
-						var newtext = JSON.stringify({
-							"folders": folders
-						}, null, "\t");
-
-						loadXMLDoc('scripts/new_e.php', function() { // save changed json data to server
-
-							if (xmlhttp.readyState == 4) {
-								if (xmlhttp.status == 200) {
-
-									var resp = xmlhttp.responseText.split(' ');
-
-									console.log('oki, done ', resp[0]); // output php echo for control
-
-									if (resp[0] == 'ok') {
-
-										/******           end overlay moved after up_git           ******/
-
-										up_git(to_edit.name, logged_user, newtext, resp[1], resp[2], resp[3], resp[4], resp[5], 'editor.php?' + new_p.comp_name);
-
-									} else {
-
-										/******           reload_page           ******/
-
-										console.log('editor.php/?' + new_p.comp_name);
-
-										window.location.href = 'editor.php?' + new_p.comp_name;
-
-									}
-
-								} else {
-									alert('new_e (new entry built) shit happens');
-								}
-							}
-						}, newtext);
-
-						func_after_Image = function() {
-							return false;
-						};
-
-					};
-
-				}
+				new_image(t, p, ix, f, new_p);
 			};
 
 
@@ -2228,7 +2332,7 @@
 
 				func_after_Image = function() {
 
-					document.getElementById('Medienberichte_display').innerHTML = '';
+					document.getEleementById('Medienberichte_display').innerHTML = '';
 
 					if (to_edit.epilog && to_edit.epilog.Medienberichte) {
 
@@ -2278,6 +2382,7 @@
 						r = 'createRange: ' + document.selection.createRange();
 					}
 				}
+
 
 				return [html, r];
 			}
