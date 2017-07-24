@@ -219,7 +219,7 @@
 						],
 						"Impressum": {
 							"Kurator": [
-								""
+								"Fritz the cat"
 							]
 						},
 						"Dossier": [],
