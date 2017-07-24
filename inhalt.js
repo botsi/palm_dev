@@ -1,11 +1,9 @@
 {
-	"folders": [
-		{
+	"folders": [{
 			"menu_name": "Über uns",
 			"name": "uberuns",
 			"intro": "Ausstellungsbüro für Kopfreisen",
-			"data": [
-				{
+			"data": [{
 					"comp_name": "profil",
 					"name": "Profil",
 					"search": [
@@ -198,37 +196,7 @@
 			"menu_name": "Sonderausstellungen",
 			"name": "sonderausstellungen",
 			"intro": "Ausstellungen zu Geschichte, Kultur und Gesellschaft.",
-			"data": [
-				{
-					"search": [
-						"chatmechant"
-					],
-					"prolog": "Eine Ausstellung über Katzen.",
-					"text": "",
-					"epilog": {
-						"Ausstellungsort": [
-							[
-								"",
-								"",
-								"",
-								"",
-								"",
-								"",
-								""
-							]
-						],
-						"Impressum": {
-							"Kurator": [
-								"Fritz the cat"
-							]
-						},
-						"Dossier": [],
-						"Info": ""
-					},
-					"name": "Chat mechant",
-					"comp_name": "chatmechant"
-				},
-				{
+			"data": [{
 					"comp_name": "schreibrausch",
 					"name": "Schreibrausch",
 					"search": [
@@ -1522,8 +1490,7 @@
 			"menu_name": "Dauerausstellungen",
 			"name": "dauerausstellungen",
 			"intro": "",
-			"data": [
-				{
+			"data": [{
 					"comp_name": "fondazionemonteverita",
 					"name": "Monte Verità",
 					"search": [
@@ -1897,8 +1864,7 @@
 			"menu_name": "Beratung",
 			"name": "beratung",
 			"intro": "",
-			"data": [
-				{
+			"data": [{
 					"comp_name": "sasso",
 					"name": "Sasso San Gottardo",
 					"search": [
@@ -2063,8 +2029,7 @@
 			"menu_name": "Audio und Video",
 			"name": "audioundvideo",
 			"intro": "",
-			"data": [
-				{
+			"data": [{
 					"columns": "",
 					"comp_name": "maxfrisch",
 					"name": "Auf den Spuren von Max Frisch",
@@ -2233,8 +2198,7 @@
 			"menu_name": "Publikationen",
 			"name": "publikationen",
 			"intro": "",
-			"data": [
-				{
+			"data": [{
 					"name": "Anderberg",
 					"comp_name": "anderberg",
 					"search": [
