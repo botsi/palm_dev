@@ -1,9 +1,11 @@
 {
-	"folders": [{
+	"folders": [
+		{
 			"menu_name": "Über uns",
 			"name": "uberuns",
 			"intro": "Ausstellungsbüro für Kopfreisen",
-			"data": [{
+			"data": [
+				{
 					"comp_name": "profil",
 					"name": "Profil",
 					"search": [
@@ -164,31 +166,6 @@
 					}
 				},
 				{
-					"search": [
-						"öl"
-					],
-					"prolog": "Aliv ist heiss",
-					"text": "Alles wird gut. <a class=\"line\" onclick=\"slide_lr(2)\">Und noch</a> mehr.<br>",
-					"epilog": {
-						"Info": ""
-					},
-					"name": "Alivenöl Sommer",
-					"comp_name": "alivenolsommer"
-				},
-				{
-					"search": [
-						"lisa",
-						"brot"
-					],
-					"prolog": "So sind wir.",
-					"text": "Nichts zu sagen. Nur Bilder!<br>",
-					"epilog": {
-						"Info": ""
-					},
-					"name": "Berta Quatropani",
-					"comp_name": "bertaquatropani"
-				},
-				{
 					"comp_name": "programmierung",
 					"name": "Programmierung",
 					"search": [
@@ -221,7 +198,37 @@
 			"menu_name": "Sonderausstellungen",
 			"name": "sonderausstellungen",
 			"intro": "Ausstellungen zu Geschichte, Kultur und Gesellschaft.",
-			"data": [{
+			"data": [
+				{
+					"search": [
+						"chatmechant"
+					],
+					"prolog": "",
+					"text": "",
+					"epilog": {
+						"Ausstellungsort": [
+							[
+								"",
+								"",
+								"",
+								"",
+								"",
+								"",
+								""
+							]
+						],
+						"Impressum": {
+							"Kurator": [
+								""
+							]
+						},
+						"Dossier": [],
+						"Info": ""
+					},
+					"name": "Chat mechant",
+					"comp_name": "chatmechant"
+				},
+				{
 					"comp_name": "schreibrausch",
 					"name": "Schreibrausch",
 					"search": [
@@ -570,7 +577,7 @@
 				},
 				{
 					"comp_name": "emilzbinden",
-					"name": "Llbigna di Emil Zbinden",
+					"name": "L'Albigna di Emil Zbinden",
 					"search": [
 						"zbinden",
 						"emil",
@@ -608,6 +615,7 @@
 								"Museo Ciäsa Granda",
 								"Stampa",
 								"7605 Bregaglia",
+								"",
 								"www.ciaesagranda.ch",
 								"MdtRoz6VGXB2"
 							],
@@ -1514,7 +1522,8 @@
 			"menu_name": "Dauerausstellungen",
 			"name": "dauerausstellungen",
 			"intro": "",
-			"data": [{
+			"data": [
+				{
 					"comp_name": "fondazionemonteverita",
 					"name": "Monte Verità",
 					"search": [
@@ -1888,7 +1897,8 @@
 			"menu_name": "Beratung",
 			"name": "beratung",
 			"intro": "",
-			"data": [{
+			"data": [
+				{
 					"comp_name": "sasso",
 					"name": "Sasso San Gottardo",
 					"search": [
@@ -2053,7 +2063,8 @@
 			"menu_name": "Audio und Video",
 			"name": "audioundvideo",
 			"intro": "",
-			"data": [{
+			"data": [
+				{
 					"columns": "",
 					"comp_name": "maxfrisch",
 					"name": "Auf den Spuren von Max Frisch",
@@ -2222,7 +2233,8 @@
 			"menu_name": "Publikationen",
 			"name": "publikationen",
 			"intro": "",
-			"data": [{
+			"data": [
+				{
 					"name": "Anderberg",
 					"comp_name": "anderberg",
 					"search": [
