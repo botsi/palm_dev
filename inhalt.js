@@ -170,7 +170,7 @@
 						"beterbozio"
 					],
 					"prolog": "Ich bin ein Schüler!",
-					"text": "",
+					"text": "Der Sand ist heiss. Obwohl ich nicht keine Ahnung habe was ich schreiben soll, wird nach kurzer Zeit an dieser Stelle ziemlich viel Text stehen. Die weisse Fläche sollte möglichst vollständig mit Buchstaben bedeckt sein.<br>",
 					"epilog": {
 						"Info": ""
 					},
