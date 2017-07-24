@@ -203,7 +203,7 @@
 					"search": [
 						"chatmechant"
 					],
-					"prolog": "",
+					"prolog": "Eine Ausstellung über Katzen.",
 					"text": "",
 					"epilog": {
 						"Ausstellungsort": [
