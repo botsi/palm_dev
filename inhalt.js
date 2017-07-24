@@ -169,7 +169,7 @@
 					"search": [
 						"beterbozio"
 					],
-					"prolog": "",
+					"prolog": "Ich bin ein Schüler!",
 					"text": "",
 					"epilog": {
 						"Info": ""
