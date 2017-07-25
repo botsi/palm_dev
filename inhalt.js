@@ -200,47 +200,6 @@
 			"intro": "Ausstellungen zu Geschichte, Kultur und Gesellschaft.",
 			"data": [
 				{
-					"name": "Barrypark",
-					"comp_name": "barrypark",
-					"search": [
-						"etwas"
-					],
-					"time": {
-						"from": [
-							26,
-							7,
-							2017
-						],
-						"till": [
-							26,
-							1,
-							2018
-						]
-					},
-					"prolog": "hgftz",
-					"text": "",
-					"epilog": {
-						"Ausstellungsort": [
-							[
-								"",
-								"",
-								"",
-								"",
-								"",
-								"",
-								""
-							]
-						],
-						"Impressum": {
-							"Kurator": [
-								"fido"
-							]
-						},
-						"Dossier": [],
-						"Info": ""
-					}
-				},
-				{
 					"comp_name": "schreibrausch",
 					"name": "Schreibrausch",
 					"search": [
