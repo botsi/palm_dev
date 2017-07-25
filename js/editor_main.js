@@ -445,6 +445,11 @@
 
 					if (errors.length > 0) {
 
+						if (sh_vis.clear) {
+							delete sh_vis.clear;
+						}
+						sh_vis.pre_clear = [];
+
 						t.nextSibling.innerHTML = '';
 
 						for (var i = 0; i < errors.length; i++) {
@@ -490,6 +495,12 @@
 			var upload_file = function(t, arr) {
 
 				if (arr) {
+
+					if (sh_vis.clear) {
+						(function() {
+							sh_vis.clear();
+						})();
+					}
 
 					folders[index_in_parent(arr[0].parentNode)].data.splice(arr[1], 0, arr[3]);
 
@@ -572,7 +583,7 @@
 			};
 
 
-			/******           edit_image           ******/
+			/******           new_image           ******/
 
 			var new_image = function(t, p, ix, f, new_p) {
 
@@ -589,9 +600,44 @@
 					if (project == "" || project == " " || project.length < 2 || project.indexOf('eval(') != -1 || project.indexOf('<') != -1 || project.indexOf('>') != -1) {
 
 						console.log('Aha, doch lieber nicht!');
+
 						close_image_editor();
 
+						return;
+
 					} else {
+
+						if (sh_vis.pre_clear.length == 2) {
+
+							sh_vis.clear = function() {
+
+								/*
+														console.log(sh_vis.pre_clear);
+														console.log(t);
+														console.log(fd);
+								*/
+
+								var cont = true;
+								for (var j = 0; j < folders.length; j++) {
+									var fd = folders[j].data;
+									for (var i = 0; i < fd.length; i++) {
+										if (fd[i].name == sh_vis.pre_clear[1]) {
+											fd[i].search.splice(fd[i].search.indexOf(sh_vis.pre_clear[0]), 1);
+											cont = false;
+											break;
+										}
+									}
+									if (!cont) {
+										break;
+									}
+								}
+
+								sh_vis.pre_clear = [];
+								delete sh_vis.clear;
+
+							};
+
+						}
 
 						document.getElementById('image_editor').innerHTML = '<p><i class="fa fa-times-circle" aria-hidden="true" onclick="close_image_editor()"></i></p><input type="file" id="myFile" onchange="preview_image(this,cont_new_image.arr)"><p style="z-index:0;">neues Bild hierher ziehen ...</p>';
 
@@ -611,7 +657,11 @@
 
 				};
 
-				document.getElementById('image_editor').innerHTML = '<p><i class="fa fa-times-circle" aria-hidden="true" onclick="close_image_editor()"></i></p><input type="text" onkeyup="sh_vis(this.nextSibling,1)" ><button onclick="cont_new_image.foo(this)" style="visibility:hidden;margin-top: 100px;">ok</button><p style="z-index:0;">Bitte einen Namen für ' + p + ' angeben.</p>';
+				sh_vis.lk = document.getElementById('all_cells').innerText.toLowerCase().replace(/ /g, '');
+
+				console.log(sh_vis.lk);
+
+				document.getElementById('image_editor').innerHTML = '<p><i class="fa fa-times-circle" aria-hidden="true" onclick="close_image_editor()"></i></p><input type="text" onkeyup="sh_vis.foo(this)" ><button onclick="cont_new_image.foo(this)" style="visibility:hidden;margin-top: 100px;">ok</button><p style="z-index:0;">Bitte einen Namen für ' + p + ' angeben.</p>';
 
 				document.getElementById('image_editor').getElementsByTagName('input')[0].classList.add('new_image_text');
 
@@ -621,8 +671,80 @@
 
 			/******           edit_image           ******/
 
-			var sh_vis = function(el, sh) {
-				el.style.visibility = (sh = 1) ? 'visible' : 'hidden';
+			var sh_vis = {
+				"pre_clear": [],
+				"foo": function(t) {
+
+					if (all_search.term.indexOf(t.value.toLowerCase().replace(/ /g, '')) != -1) {
+						console.log(all_search.term);
+						t.style.background = 'rgb(247, 217, 190)';
+						t.style.textDecoration = 'overline';
+						//t.nextSibling.style.visibility = 'hidden';
+
+						t.title = '"' + t.value + '" existiert bereits als Stichwort zu "' + all_search.position[all_search.term.indexOf(t.value)] + '"\nWenn Sie "' + t.value + '" trotzdem wählen, wird das Sichwort entfernt!';
+
+						sh_vis.pre_clear = [t.value.toLowerCase().replace(/ /g, ''), all_search.position[all_search.term.indexOf(t.value)]];
+
+						return;
+
+					}
+
+					if (sh_vis.lk.indexOf(t.value.toLowerCase().replace(/ /g, '')) != -1) {
+						console.log('exists allready');
+						t.style.background = 'rgb(250, 161, 179)';
+						t.style.textDecoration = 'line-through';
+						t.nextSibling.style.visibility = 'hidden';
+
+						t.title = '"' + t.value + 'existiert bereits als Name!';
+
+						return;
+
+					}
+
+					if (t.value.replace(/ /g, '').length < 4) {
+						console.log('too short');
+						t.style.background = 'rgb(250, 161, 179)';
+						t.style.textDecoration = 'line-through';
+						t.nextSibling.style.visibility = 'hidden';
+
+						t.title = '"' + t.value + '" ist als Name zu kurz!';
+
+						return;
+
+					}
+
+					if (t.value.length > 30 && t.value.length < 37) {
+						console.log('bit long');
+						t.style.background = 'rgb(247, 217, 190)';
+						t.style.textDecoration = 'overline';
+						//t.nextSibling.style.visibility = 'hidden';
+
+						t.title = '"' + t.value + '" ist als Name ein bischen lang!';
+
+						return;
+
+					}
+
+					if (t.value.length > 36) {
+						console.log('too long');
+						t.style.background = 'rgb(250, 161, 179)';
+						t.style.textDecoration = 'line-through';
+						t.nextSibling.style.visibility = 'hidden';
+
+						t.title = '"' + t.value + '" ist als Name zu lang!';
+
+						return;
+
+					}
+
+					sh_vis.pre_clear = [];
+
+					t.title = 'Guter Name!';
+
+					t.style.background = '#fff';
+					t.style.textDecoration = 'none';
+					t.nextSibling.style.visibility = 'visible';
+				}
 			};
 
 			/******           edit_image           ******/
@@ -1442,28 +1564,27 @@
 			/******           remove entry           ******/
 
 			var remove_entry = function(t) {
+
+				document.getElementById('process_overlay').classList.add('process_overlay_dark');
+
 				if (confirm(to_edit.name + ' permanent Löschen?\n\nDies ist nicht rückgängig machbar!') == true) {
-					console.log('alles gelöscht! (Lüge)');
 
 					var c = document.getElementById('Images_display').children.length - 2;
 
-					console.log(document.getElementById('Images_display').children[c]);
 					swap_multiples(c, c);
 
+				} else {
 
-					/*
-
-					*/
+					document.getElementById('process_overlay').classList.remove('process_overlay_dark');
 
 				}
+
 			};
 
 
 			/******           new entry           ******/
 
 			var new_entry = function(t) {
-
-				console.log(to_edit_folder);
 
 				var p = '';
 
@@ -2177,7 +2298,7 @@
 				observe_actual_chapter();
 
 
-				/******           main data           ******/
+				/******            main data           ******/
 
 				fill_cat('name');
 
@@ -2227,21 +2348,7 @@
 
 				} else {
 
-					/*
-
-										if (to_edit_folder != 'uberuns' && to_edit_folder != 'audioundvideo' && to_edit_folder != 'publikationen') {
-
-											document.getElementById('Ausstellungsort_display').innerHTML = '<br/><i class="fa fa-plus-circle add-raw" aria-hidden="true" onclick="add_impressum_key(this)"></i>';
-
-											document.getElementById('Ausstellungsort_display').parentNode.style.display = 'block';
-
-										} else {
-
-					*/
-
 					document.getElementById('Ausstellungsort_display').parentNode.style.display = 'none';
-
-					//}
 
 				}
 
@@ -2288,24 +2395,6 @@
 
 				}
 
-				/******           Medienberichte           ******/
-				/*
-								document.getElementById('Medienberichte_display').innerHTML = '';
-
-								if (to_edit.epilog && to_ed && to_edit.epilog.Medienberichte) {
-
-									fill_cat('Medienberichte');
-
-									document.getElementById('Medienberichte_display').parentNode.style.display = 'block';
-
-								} else {
-
-									document.getElementById('Medienberichte_display').parentNode.style.display = 'none';
-
-								}
-
-				*/
-
 				/******           Images           ******/
 
 				/******           and Medienberichte           ******/
@@ -2335,7 +2424,6 @@
 					};
 
 				};
-
 
 				load_additional_images(1);
 
