@@ -200,47 +200,6 @@
 			"intro": "Ausstellungen zu Geschichte, Kultur und Gesellschaft.",
 			"data": [
 				{
-					"name": "barrychildren",
-					"comp_name": "barrychildren",
-					"search": [
-						"barrychildren"
-					],
-					"time": {
-						"from": [
-							26,
-							7,
-							2017
-						],
-						"till": [
-							26,
-							1,
-							2018
-						]
-					},
-					"prolog": "",
-					"text": "",
-					"epilog": {
-						"Ausstellungsort": [
-							[
-								"",
-								"",
-								"",
-								"",
-								"",
-								"",
-								""
-							]
-						],
-						"Impressum": {
-							"Kurator": [
-								""
-							]
-						},
-						"Dossier": [],
-						"Info": ""
-					}
-				},
-				{
 					"name": "Barrypark",
 					"comp_name": "barrypark",
 					"search": [
