@@ -234,7 +234,7 @@
 						],
 						"Impressum": {
 							"Kurator": [
-								""
+								"peter"
 							]
 						},
 						"Dossier": [],
