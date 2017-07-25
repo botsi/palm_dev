@@ -200,47 +200,6 @@
 			"intro": "Ausstellungen zu Geschichte, Kultur und Gesellschaft.",
 			"data": [
 				{
-					"name": "Caprice",
-					"comp_name": "caprice",
-					"search": [
-						"cap rice"
-					],
-					"time": {
-						"from": [
-							25,
-							7,
-							2005
-						],
-						"till": [
-							2,
-							10,
-							2006
-						]
-					},
-					"prolog": "Eine fiktive Ausstellung",
-					"text": "Am Kap der Reisschifffahrt.<br>",
-					"epilog": {
-						"Ausstellungsort": [
-							[
-								"",
-								"Berntor",
-								"Hafengasse 2",
-								"4030 Basel",
-								"",
-								"www.abotsi.com",
-								""
-							]
-						],
-						"Impressum": {
-							"Kurator": [
-								"David Abotsi"
-							]
-						},
-						"Dossier": [],
-						"Info": ""
-					}
-				},
-				{
 					"comp_name": "schreibrausch",
 					"name": "Schreibrausch",
 					"search": [
