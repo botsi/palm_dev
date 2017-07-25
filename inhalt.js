@@ -1,9 +1,11 @@
 {
-	"folders": [{
+	"folders": [
+		{
 			"menu_name": "Über uns",
 			"name": "uberuns",
 			"intro": "Ausstellungsbüro für Kopfreisen",
-			"data": [{
+			"data": [
+				{
 					"comp_name": "profil",
 					"name": "Profil",
 					"search": [
@@ -196,7 +198,49 @@
 			"menu_name": "Sonderausstellungen",
 			"name": "sonderausstellungen",
 			"intro": "Ausstellungen zu Geschichte, Kultur und Gesellschaft.",
-			"data": [{
+			"data": [
+				{
+					"name": "Barrypark",
+					"comp_name": "barrypark",
+					"search": [
+						"barrypark"
+					],
+					"time": {
+						"from": [
+							26,
+							7,
+							2017
+						],
+						"till": [
+							26,
+							1,
+							2018
+						]
+					},
+					"prolog": "",
+					"text": "",
+					"epilog": {
+						"Ausstellungsort": [
+							[
+								"",
+								"",
+								"",
+								"",
+								"",
+								"",
+								""
+							]
+						],
+						"Impressum": {
+							"Kurator": [
+								""
+							]
+						},
+						"Dossier": [],
+						"Info": ""
+					}
+				},
+				{
 					"comp_name": "schreibrausch",
 					"name": "Schreibrausch",
 					"search": [
@@ -1327,66 +1371,6 @@
 					}
 				},
 				{
-					"comp_name": "edithliebtihn",
-					"name": "Edith liebt ihn",
-					"search": [
-						"edith",
-						"robert",
-						"walser",
-						"robertwalser"
-					],
-					"time": {
-						"from": [
-							25,
-							12,
-							2006
-						],
-						"till": [
-							28,
-							12,
-							2006
-						]
-					},
-					"prolog": "Eine Veranstaltung zu Robert Walsers Räuber-Roman",
-					"text": "Zum 50. Todestag Robert Walsers, der 1956 am Weihnachtstag auf einem einsamen Spaziergang starb.<br/>In einer Millimeter-Handschrift entwarf Robert Walser 1925 in Bern einen autobiografischen Roman über einen nomadisierenden Schriftsteller. Erst spät konnten die 24 Kunstdruckblätter Walsers entziffert werden. In einer kleinen Ausstellung werden diese Mikrogramme inszeniert und weitere Materialien zum Roman präsentiert.",
-					"epilog": {
-						"Ausstellungskonzept": "fehlt, fehlt, fehlt",
-						"Impressum": {
-							"Veranstalter": [
-								"Theo Umhang und Susanne Schmid-Walder"
-							],
-							"Projektleitung": [
-								"Ronny Trachsel (palma3)"
-							],
-							"Kurator": [
-								"Philipp Burkard (palma3)"
-							],
-							"Mitarbeit": [
-								"Andreas Schwab (palma3)"
-							],
-							"Gestaltung": [
-								"Wenger/Zurflüh, Gestaltungen GmbH, Bern"
-							],
-							"Grafik": [
-								"<a href='http://www.lesgraphistes.ch' target='_blank'>Petra Schmied und Marc Siegenthaler, Bern</a>"
-							]
-						},
-						"Medienberichte": true,
-						"Ausstellungsort": [
-							[
-								"",
-								"raum am Breitenrainplatz",
-								"Militärstrasse 60",
-								"3014 Bern",
-								"",
-								"",
-								"3aLDVGF4qCP2"
-							]
-						],
-						"Dossier": []
-					}
-				},
-				{
 					"comp_name": "hirnsturm",
 					"name": "Hirnsturm",
 					"search": [
@@ -1550,7 +1534,8 @@
 			"menu_name": "Dauerausstellungen",
 			"name": "dauerausstellungen",
 			"intro": "",
-			"data": [{
+			"data": [
+				{
 					"comp_name": "fondazionemonteverita",
 					"name": "Monte Verità",
 					"search": [
@@ -1924,7 +1909,8 @@
 			"menu_name": "Beratung",
 			"name": "beratung",
 			"intro": "",
-			"data": [{
+			"data": [
+				{
 					"comp_name": "sasso",
 					"name": "Sasso San Gottardo",
 					"search": [
@@ -2089,7 +2075,8 @@
 			"menu_name": "Audio und Video",
 			"name": "audioundvideo",
 			"intro": "",
-			"data": [{
+			"data": [
+				{
 					"columns": "",
 					"comp_name": "maxfrisch",
 					"name": "Auf den Spuren von Max Frisch",
@@ -2258,7 +2245,8 @@
 			"menu_name": "Publikationen",
 			"name": "publikationen",
 			"intro": "",
-			"data": [{
+			"data": [
+				{
 					"name": "Anderberg",
 					"comp_name": "anderberg",
 					"search": [
