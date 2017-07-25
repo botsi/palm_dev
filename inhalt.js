@@ -218,7 +218,7 @@
 						]
 					},
 					"prolog": "Eine fiktive Ausstellung",
-					"text": "",
+					"text": "Am Kap der Reisschifffahrt.<br>",
 					"epilog": {
 						"Ausstellungsort": [
 							[
