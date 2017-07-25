@@ -212,9 +212,9 @@
 							2017
 						],
 						"till": [
-							25,
 							1,
-							2018
+							10,
+							2017
 						]
 					},
 					"prolog": "Eine fiktive Ausstellung",
@@ -233,7 +233,7 @@
 						],
 						"Impressum": {
 							"Kurator": [
-								""
+								"David Abotsi"
 							]
 						},
 						"Dossier": [],
