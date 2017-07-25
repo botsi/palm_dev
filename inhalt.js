@@ -223,11 +223,11 @@
 						"Ausstellungsort": [
 							[
 								"",
+								"Berntor",
+								"Hafengasse 2",
+								"4030 Basel",
 								"",
-								"",
-								"",
-								"",
-								"",
+								"www.abotsi.com",
 								""
 							]
 						],
