@@ -219,7 +219,7 @@
 						]
 					},
 					"prolog": "alles rein",
-					"text": "",
+					"text": "text",
 					"epilog": {
 						"Ausstellungsort": [
 							[
