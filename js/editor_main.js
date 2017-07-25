@@ -611,12 +611,6 @@
 
 							sh_vis.clear = function() {
 
-								/*
-														console.log(sh_vis.pre_clear);
-														console.log(t);
-														console.log(fd);
-								*/
-
 								var cont = true;
 								for (var j = 0; j < folders.length; j++) {
 									var fd = folders[j].data;
@@ -661,7 +655,7 @@
 
 				console.log(sh_vis.lk);
 
-				document.getElementById('image_editor').innerHTML = '<p><i class="fa fa-times-circle" aria-hidden="true" onclick="close_image_editor()"></i></p><input type="text" onkeyup="sh_vis.foo(this)" ><button onclick="cont_new_image.foo(this)" style="visibility:hidden;margin-top: 100px;">ok</button><p style="z-index:0;">Bitte einen Namen für ' + p + ' angeben.</p>';
+				document.getElementById('image_editor').innerHTML = '<p><i class="fa fa-times-circle" aria-hidden="true" onclick="close_image_editor()"></i></p><input type="text" class="new_entry" onkeyup="sh_vis.foo(this)" ><button onclick="cont_new_image.foo(this)" style="visibility:hidden;margin-top: 100px;">ok</button><p style="z-index:0;">Bitte einen Namen für ' + p + ' angeben.</p>';
 
 				document.getElementById('image_editor').getElementsByTagName('input')[0].classList.add('new_image_text');
 
@@ -678,10 +672,10 @@
 					if (all_search.term.indexOf(t.value.toLowerCase().replace(/ /g, '')) != -1) {
 						console.log(all_search.term);
 						t.style.background = 'rgb(247, 217, 190)';
-						t.style.textDecoration = 'overline';
-						//t.nextSibling.style.visibility = 'hidden';
+						t.style.textDecoration = 'none';
+						t.nextSibling.style.visibility = 'visible';
 
-						t.title = '"' + t.value + '" existiert bereits als Stichwort zu "' + all_search.position[all_search.term.indexOf(t.value)] + '"\nWenn Sie "' + t.value + '" trotzdem wählen, wird das Sichwort entfernt!';
+						t.title = '"' + t.value + '" existiert bereits als Stichwort zu "' + all_search.position[all_search.term.indexOf(t.value)] + '"\n\nWenn Sie "' + t.value + '" trotzdem wählen, wird das Sichwort entfernt!';
 
 						sh_vis.pre_clear = [t.value.toLowerCase().replace(/ /g, ''), all_search.position[all_search.term.indexOf(t.value)]];
 
@@ -695,7 +689,7 @@
 						t.style.textDecoration = 'line-through';
 						t.nextSibling.style.visibility = 'hidden';
 
-						t.title = '"' + t.value + 'existiert bereits als Name!';
+						t.title = '"' + t.value + '" existiert bereits als Name!';
 
 						return;
 
@@ -716,8 +710,8 @@
 					if (t.value.length > 30 && t.value.length < 37) {
 						console.log('bit long');
 						t.style.background = 'rgb(247, 217, 190)';
-						t.style.textDecoration = 'overline';
-						//t.nextSibling.style.visibility = 'hidden';
+						t.style.textDecoration = 'none';
+						t.nextSibling.style.visibility = 'visible';
 
 						t.title = '"' + t.value + '" ist als Name ein bischen lang!';
 
@@ -739,11 +733,11 @@
 
 					sh_vis.pre_clear = [];
 
-					t.title = 'Guter Name!';
-
 					t.style.background = '#fff';
 					t.style.textDecoration = 'none';
 					t.nextSibling.style.visibility = 'visible';
+
+					t.title = 'Guter Name!';
 				}
 			};
 
@@ -1567,7 +1561,7 @@
 
 				document.getElementById('process_overlay').classList.add('process_overlay_dark');
 
-				if (confirm(to_edit.name + ' permanent Löschen?\n\nDies ist nicht rückgängig machbar!') == true) {
+				if (confirm(to_edit.name + ' permanent Löschen?\n\nDies ist nicht mehr rückgängig zu machen!') == true) {
 
 					var c = document.getElementById('Images_display').children.length - 2;
 
@@ -1576,6 +1570,8 @@
 				} else {
 
 					document.getElementById('process_overlay').classList.remove('process_overlay_dark');
+					document.body.style.background = '#fff';
+					document.getElementById('Images_display').style.background = '#ccc';
 
 				}
 
@@ -3224,14 +3220,9 @@
 
 
 							for (var j = 0; j < largest; j++) {
-								//console.log('cycle ',);
 								new_raw += cycle(j) + '</tr><tr>';
 								make_all_search(j);
-								//make_projectlist(j, 'Ronny Trachsel (palma3)');
 							}
-
-							//console.log(projectlist);
-
 
 							new_raw += '</tr>';
 
@@ -3245,7 +3236,6 @@
 									document.getElementById('Images_display').style.background = '#000';
 								}
 							}, false);
-
 
 							TextEditor = document.getElementById('text_editor');
 

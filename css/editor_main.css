@@ -490,6 +490,13 @@
       	width: 512px;
       }
 
+      input.new_entry {
+      	font-family: "Open Sans", "Futura", Arial, sans-serif;
+      	font-size: 16px;
+      	font-weight: 300;
+      	text-align: center;
+      }
+
       @-webkit-keyframes fill_lr {
       	0% {
       		background-position: -280px 50%;
