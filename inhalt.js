@@ -209,12 +209,12 @@
 						"from": [
 							25,
 							7,
-							2017
+							2005
 						],
 						"till": [
 							2,
 							10,
-							2017
+							2006
 						]
 					},
 					"prolog": "Eine fiktive Ausstellung",
