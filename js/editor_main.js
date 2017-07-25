@@ -101,10 +101,7 @@
 
 			var add_image = function(t) {
 
-				//t.style.display = "none";
-
 				come_selector(t);
-
 
 			};
 
@@ -414,26 +411,6 @@
 
 			var preview_image = function(t, arr) {
 
-
-
-
-				/*
-
-
-				return;
-
-			*/
-
-
-
-
-
-
-
-
-				//document.getElementById('image_editor').style.backgroundImage = 'url("' + t.value + '")';
-
-
 				var oFReader = new FileReader();
 				oFReader.readAsDataURL(t.files[0]);
 
@@ -482,15 +459,9 @@
 
 						document.getElementById('image_editor').style.backgroundImage = 'url("' + oFREvent.target.result + '")';
 
-
 						console.log('arr: ', arr);
 
 						if (preview_image.length == 2) {
-
-
-
-
-
 
 							save_image_presets = [t.files[0], arr[3].comp_name + '.jpg', arr[2]];
 
@@ -514,20 +485,11 @@
 
 			var upload_file = function(t, arr) {
 
-
-
 				if (upload_file.length == 2) {
 
-
-
-					//    			var new_image = function(el, ix, f, new_p) {
-
-
-					folders[index_in_parent(arr[0].parentNode)].data.splice(arr[1], 0, arr[3]); //    arr[]
+					folders[index_in_parent(arr[0].parentNode)].data.splice(arr[1], 0, arr[3]);
 
 					console.log(' wird erstelt! (Lüge) (PRÜFEN!) (Und: bisher ungesicherte Änderungen gehen verloren!) ', folders[index_in_parent(arr[0].parentNode)].data);
-
-					//else if new_p      //  test  last exit or go....
 
 					to_edit = arr[3];
 					to_edit_folder = arr[2];
@@ -551,13 +513,13 @@
 
 									if (resp[0] == 'ok') {
 
-										//           end overlay moved after up_git           //
+										/******           end overlay moved after up_git           ******/
 
 										up_git(to_edit.name, logged_user, newtext, resp[1], resp[2], resp[3], resp[4], resp[5], 'editor.php?' + arr[3].comp_name);
 
 									} else {
 
-										//           reload_page           //
+										/******           reload_page           ******/
 
 										console.log('editor.php/?' + new_p.comp_name);
 
@@ -629,7 +591,7 @@
 
 				cont_new_image.foo = function(a) {
 
-					var project = a.previousSibling.previousSibling.value;
+					var project = a.previousSibling.value;
 
 					if (project == "" || project == " " || project.length < 2 || project.indexOf('eval(') != -1 || project.indexOf('<') != -1 || project.indexOf('>') != -1) {
 
@@ -651,21 +613,22 @@
 						}
 						new_p.epilog.Info = "";
 
-
-
-
 					}
 
 				};
 
+				document.getElementById('image_editor').innerHTML = '<p><i class="fa fa-times-circle" aria-hidden="true" onclick="close_image_editor()"></i></p><input type="text" onkeyup="sh_vis(this.nextSibling,1)" ><button onclick="cont_new_image.foo(this)" style="visibility:hidden;margin-top: 100px;">ok</button><p style="z-index:0;">Bitte einen Namen für ' + p + ' angeben.</p>';
 
+				document.getElementById('image_editor').getElementsByTagName('input')[0].classList.add('new_image_text');
 
-				document.getElementById('image_editor').innerHTML = '<p><i class="fa fa-times-circle" aria-hidden="true" onclick="close_image_editor()"></i></p><input type="text" style="margin-top: 120px;" ><p style="z-index:0;">Bitte einen Namen für ' + p + ' angeben.</p><button onclick="cont_new_image.foo(this)" style="margin-top: 120px;">ok</button>';
+				document.getElementById('image_editor').getElementsByTagName('input')[0].focus();
 
+			};
 
+			/******           edit_image           ******/
 
-
-
+			var sh_vis = function(el, sh) {
+				el.style.visibility = (sh = 1) ? 'visible' : 'hidden';
 			};
 
 			/******           edit_image           ******/
@@ -2332,7 +2295,7 @@
 
 				func_after_Image = function() {
 
-					document.getEleementById('Medienberichte_display').innerHTML = '';
+					document.getElementById('Medienberichte_display').innerHTML = '';
 
 					if (to_edit.epilog && to_edit.epilog.Medienberichte) {
 
@@ -3197,6 +3160,10 @@
 								});
 								document.getElementById('username').innerHTML = '... bedient von: ' + u + '<i class="fa fa-sign-out" aria-hidden="true" title="abmelden" onclick="logout()"></i>';
 							}
+
+							var bg_prel = new Image();
+
+							bg_prel.src = 'images/editor_new_image.jpg';
 
 							//page_load();
 
