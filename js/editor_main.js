@@ -571,20 +571,8 @@
 
 			var new_image = function(t, p, ix, f, new_p) {
 
-
-
-
-
 				document.getElementById('process_overlay').classList.add('process_overlay_dark');
 
-				/*
-								document.getElementById('image_selector').style.backgroundImage = 'none';
-								document.getElementById('image_selector').style.display = 'none';
-
-								if (document.getElementById('Images_display').lastChild) {
-									document.getElementById('Images_display').lastChild.style.display = 'none';
-								}
-				*/
 				disable_img_over = true;
 
 				document.getElementById('image_editor').style.display = 'block';
@@ -600,8 +588,6 @@
 
 					} else {
 
-						cont_new_image.arr = [t, ix, f, new_p];
-
 						document.getElementById('image_editor').innerHTML = '<p><i class="fa fa-times-circle" aria-hidden="true" onclick="close_image_editor()"></i></p><input type="file" id="myFile" onchange="preview_image(this,cont_new_image.arr)"><p style="z-index:0;">neues Bild hierher ziehen ...</p>';
 
 						document.getElementById('image_editor').style.backgroundImage = 'url("images/editor_new_image.jpg")';
@@ -611,7 +597,10 @@
 						if (new_p.name.toLowerCase().replace(/ /g, '') != new_p.comp_name) {
 							new_p.search[1] = project.toLowerCase().replace(/ /g, '');
 						}
+
 						new_p.epilog.Info = "";
+
+						cont_new_image.arr = [t, ix, f, new_p];
 
 					}
 
@@ -713,7 +702,6 @@
 			};
 
 			var validate = function(t, b) {
-
 
 				if (entry_kind == 'Medienberichte') {
 					console.log('Medienberichte return');
@@ -1470,10 +1458,14 @@
 					case 'uberuns':
 						p = 'die neue Person in ' + t.parentNode.innerText;
 						var new_p = {
+							"name": "",
+							"comp_name": "",
 							"search": [],
 							"prolog": "",
 							"text": "",
-							"epilog": {}
+							"epilog": {
+								"Info": ""
+							}
 						};
 						ix = folders[index_in_parent(t.parentNode)].data.length - 1;
 						break;
@@ -1485,9 +1477,18 @@
 						p = 'die neue Publikation';
 						break;
 					default:
+						var d = new Date(),
+							tf = [d.getDate(), d.getMonth() + 1, d.getFullYear()],
+							tt = [((d.getDate() < 28) ? d.getDate() : 28), ((d.getMonth() + 7 > 12) ? d.getMonth() - 5 : d.getMonth() + 7), ((d.getMonth() + 7 > 12) ? d.getFullYear() + 1 : d.getFullYear())];
 						p = 'die neue Ausstellung in ' + t.parentNode.innerText;
 						var new_p = {
+							"name": "",
+							"comp_name": "",
 							"search": [],
+							"time": {
+								"from": tf,
+								"till": tt
+							},
 							"prolog": "",
 							"text": "",
 							"epilog": {
@@ -1513,11 +1514,12 @@
 				}
 
 				if (!new_p) {
-					console.log('i return');
+					console.log('i return', new_p);
 					return;
 				}
 
 				new_image(t, p, ix, f, new_p);
+
 			};
 
 
