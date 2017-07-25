@@ -217,7 +217,7 @@
 							2018
 						]
 					},
-					"prolog": "",
+					"prolog": "Eine fiktive Ausstellung",
 					"text": "",
 					"epilog": {
 						"Ausstellungsort": [
