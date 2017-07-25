@@ -200,6 +200,47 @@
 			"intro": "Ausstellungen zu Geschichte, Kultur und Gesellschaft.",
 			"data": [
 				{
+					"name": "Caprice",
+					"comp_name": "caprice",
+					"search": [
+						"caprice"
+					],
+					"time": {
+						"from": [
+							25,
+							7,
+							2017
+						],
+						"till": [
+							25,
+							1,
+							2018
+						]
+					},
+					"prolog": "",
+					"text": "",
+					"epilog": {
+						"Ausstellungsort": [
+							[
+								"",
+								"",
+								"",
+								"",
+								"",
+								"",
+								""
+							]
+						],
+						"Impressum": {
+							"Kurator": [
+								""
+							]
+						},
+						"Dossier": [],
+						"Info": ""
+					}
+				},
+				{
 					"comp_name": "schreibrausch",
 					"name": "Schreibrausch",
 					"search": [
