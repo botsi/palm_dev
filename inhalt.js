@@ -218,7 +218,7 @@
 							2018
 						]
 					},
-					"prolog": "",
+					"prolog": "alles rein",
 					"text": "",
 					"epilog": {
 						"Ausstellungsort": [
