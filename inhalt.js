@@ -1565,7 +1565,8 @@
 						"stbernard",
 						"st.bernard",
 						"st.bernhard",
-						"grosserst.bernhard"
+						"grosserst.bernhard",
+						"barrychildren"
 					],
 					"time": {
 						"from": [
