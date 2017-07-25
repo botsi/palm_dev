@@ -1478,17 +1478,18 @@
 						break;
 					default:
 						var d = new Date(),
-							tf = [d.getDate(), d.getMonth() + 1, d.getFullYear()],
-							tt = [((d.getDate() < 28) ? d.getDate() : 28), ((d.getMonth() + 7 > 12) ? d.getMonth() - 5 : d.getMonth() + 7), ((d.getMonth() + 7 > 12) ? d.getFullYear() + 1 : d.getFullYear())];
+							ti = {
+								"from": [d.getDate(), d.getMonth() + 1, d.getFullYear()]
+							};
+						if (f == 'sonderausstellungen') {
+							ti.till = [((d.getDate() < 28) ? d.getDate() : 28), ((d.getMonth() + 7 > 12) ? d.getMonth() - 5 : d.getMonth() + 7), ((d.getMonth() + 7 > 12) ? d.getFullYear() + 1 : d.getFullYear())];
+						}
 						p = 'die neue Ausstellung in ' + t.parentNode.innerText;
 						var new_p = {
 							"name": "",
 							"comp_name": "",
 							"search": [],
-							"time": {
-								"from": tf,
-								"till": tt
-							},
+							"time": ti,
 							"prolog": "",
 							"text": "",
 							"epilog": {
@@ -1513,10 +1514,10 @@
 						};
 				}
 
-				if (!new_p) {
-					console.log('i return', new_p);
-					return;
-				}
+				//if (!new_p) {
+				console.log('i return', new_p);
+				return;
+				//}
 
 				new_image(t, p, ix, f, new_p);
 
