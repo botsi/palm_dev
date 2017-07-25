@@ -166,18 +166,6 @@
 					}
 				},
 				{
-					"search": [
-						"beterbozio"
-					],
-					"prolog": "Ich bin ein Schüler!",
-					"text": "Der Sand ist heiss. Obwohl ich nicht keine Ahnung habe was ich schreiben soll, wird nach kurzer Zeit an dieser Stelle ziemlich viel Text stehen. Die weisse Fläche sollte möglichst vollständig mit Buchstaben bedeckt sein.<br>",
-					"epilog": {
-						"Info": ""
-					},
-					"name": "Beter Bozio",
-					"comp_name": "beterbozio"
-				},
-				{
 					"comp_name": "programmierung",
 					"name": "Programmierung",
 					"search": [
@@ -211,6 +199,48 @@
 			"name": "sonderausstellungen",
 			"intro": "Ausstellungen zu Geschichte, Kultur und Gesellschaft.",
 			"data": [
+				{
+					"name": "Ariel Waschmäschiene",
+					"comp_name": "arielwaschmaschiene",
+					"search": [
+						"arielwaschmaschiene",
+						"arielwaschmäschiene"
+					],
+					"time": {
+						"from": [
+							25,
+							7,
+							2017
+						],
+						"till": [
+							25,
+							1,
+							2018
+						]
+					},
+					"prolog": "",
+					"text": "",
+					"epilog": {
+						"Ausstellungsort": [
+							[
+								"",
+								"",
+								"",
+								"",
+								"",
+								"",
+								""
+							]
+						],
+						"Impressum": {
+							"Kurator": [
+								""
+							]
+						},
+						"Dossier": [],
+						"Info": ""
+					}
+				},
 				{
 					"comp_name": "schreibrausch",
 					"name": "Schreibrausch",
