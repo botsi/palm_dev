@@ -203,7 +203,7 @@
 					"name": "Caprice",
 					"comp_name": "caprice",
 					"search": [
-						"caprice"
+						"cap rice"
 					],
 					"time": {
 						"from": [
