@@ -203,7 +203,7 @@
 					"name": "Barrypark",
 					"comp_name": "barrypark",
 					"search": [
-						"barrypark"
+						"etwas"
 					],
 					"time": {
 						"from": [
