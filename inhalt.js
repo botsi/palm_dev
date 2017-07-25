@@ -203,8 +203,7 @@
 					"name": "Ariel Waschmäschiene",
 					"comp_name": "arielwaschmaschiene",
 					"search": [
-						"arielwaschmaschiene",
-						"arielwaschmäschiene"
+						"ariel"
 					],
 					"time": {
 						"from": [
