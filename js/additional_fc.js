@@ -790,7 +790,7 @@ var loadMap = function() {
 	var script = document.createElement("script");
 	script.id = "map_script";
 	script.type = "text/javascript";
-	script.src = "http://maps.google.com/maps/api/js?key=AIzaSyCi0JgwWx4peuLZN6b0Ng2xmW825wMj6tc&callback=initMap";
+	script.src = "http" + ((location.href.indexOf('https://') != -1) ? 's' : '') + "://maps.google.com/maps/api/js?key=AIzaSyCi0JgwWx4peuLZN6b0Ng2xmW825wMj6tc&callback=initMap";
 	document.body.appendChild(script);
 };
 

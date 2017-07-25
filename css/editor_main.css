@@ -204,7 +204,8 @@
       	float: left;
       	width: 200px;
       	text-align: left;
-      	margin-left: 12px;
+      	margin-left: calc(6vw / 8);
+      	font-weight: 400;
       }
 
       .editor_fields div {
@@ -300,9 +301,10 @@
       }
 
       #text_display, #Ausstellungskonzept_display {
-      	font-family: 'Futura', Arial;
-      	font-size: 12px;
-      	font-weight: lighter;
+      	font-family: 'Open Sans', 'Futura', Arial;
+      	font-size: 16px;
+      	font-weight: 300;
+      	line-height: 24px;
       	display: block;
       	width: calc(100% - 12px);
       	border: 0 none;

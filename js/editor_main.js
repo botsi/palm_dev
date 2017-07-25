@@ -80,7 +80,7 @@
 
 			var remove_image = function() {
 
-				var r = confirm('Bild Nummer ' + document.getElementById('image_selector').store_img + ' wirklich dauerhaft aus ' + to_edit.name + ' entfernen?');
+				var r = confirm('Bild Nummer ' + document.getElementById('image_selector').store_img + ' wirklich dauerhaft aus "' + to_edit.name + '" entfernen?');
 
 				if (r == true) {
 
@@ -461,13 +461,17 @@
 
 						console.log('arr: ', arr);
 
-						if (preview_image.length == 2) {
+						if (arr) {
+
+							console.log('img with arr: ', arr);
 
 							save_image_presets = [t.files[0], arr[3].comp_name + '.jpg', arr[2]];
 
 							t.nextSibling.innerHTML = 'Bild "' + file.name + '" ... <button type="button" onclick="upload_file(this,cont_new_image.arr)">ok</button>';
 
 						} else {
+
+							console.log('img without arr: ', arr);
 
 							save_image_presets = [t.files[0], to_edit.comp_name + '_' + document.getElementById('image_selector').store_img + '.jpg', to_edit_folder];
 
@@ -485,7 +489,7 @@
 
 			var upload_file = function(t, arr) {
 
-				if (upload_file.length == 2) {
+				if (arr) {
 
 					folders[index_in_parent(arr[0].parentNode)].data.splice(arr[1], 0, arr[3]);
 
@@ -538,6 +542,7 @@
 						};
 
 					};
+
 				}
 
 				t.parentNode.classList.add('img_uploader_active');
@@ -1057,6 +1062,7 @@
 											}, false);
 
 //e.clipboardData
+
 						*/
 
 
@@ -1438,6 +1444,17 @@
 			var remove_entry = function(t) {
 				if (confirm(to_edit.name + ' permanent Löschen?\n\nDies ist nicht rückgängig machbar!') == true) {
 					console.log('alles gelöscht! (Lüge)');
+
+					var c = document.getElementById('Images_display').children.length - 2;
+
+					console.log(document.getElementById('Images_display').children[c]);
+					swap_multiples(c, c);
+
+
+					/*
+
+					*/
+
 				}
 			};
 
@@ -1514,10 +1531,10 @@
 						};
 				}
 
-				//if (!new_p) {
-				console.log('i return', new_p);
-				return;
-				//}
+				if (!new_p) {
+					console.log('i return', new_p);
+					return;
+				}
 
 				new_image(t, p, ix, f, new_p);
 
@@ -1595,7 +1612,7 @@
 
 						break;
 					case 'text':
-						to_edit[entry_kind] = t.previousSibling.innerHTML;
+						to_edit[entry_kind] = t.previousSibling.innerHTML.replace(/"/g, "'");
 						break;
 					case 'time':
 						var els = t.previousSibling.getElementsByTagName('select');
@@ -1673,11 +1690,12 @@
 						}
 						break;
 					case 'Ausstellungskonzept':
-						to_edit.epilog[entry_kind] = t.previousSibling.innerHTML;
+						to_edit.epilog[entry_kind] = t.previousSibling.innerHTML.replace(/"/g, "'");
 						break;
 					default:
 						alert('no save_existing handling defined');
 				}
+
 
 				var newtext = JSON.stringify({
 					"folders": folders
@@ -2242,7 +2260,7 @@
 
 					if (to_edit_folder != 'uberuns') {
 
-						document.getElementById('Impressum_display').innerHTML = '<br/><i class="fa fa-plus-circle add-raw" aria-hidden="true" onclick="add_impressum_key(this)"></i>';
+						document.getElementById('Impressum_display').innerHTML = '<br/><i class="fa fa-plus-circle add-raw" aria-hidden="true" onclick="add_imp_impressum_key(this)"></i>';
 
 						document.getElementById('Impressum_display').parentNode.style.display = 'block';
 
@@ -2274,7 +2292,7 @@
 				/*
 								document.getElementById('Medienberichte_display').innerHTML = '';
 
-								if (to_edit.epilog && to_edit.epilog.Medienberichte) {
+								if (to_edit.epilog && to_ed && to_edit.epilog.Medienberichte) {
 
 									fill_cat('Medienberichte');
 
@@ -2922,6 +2940,7 @@
 						if (link_editor.link_kind == 'slide_lr') {
 							//<a class="line" onclick="slide_lr(12)">«Der Mensch als Industriepalast»</a>
 							TextEditor.origin.nextSibling.innerHTML = instr.substr(0, ix) + instr.substr(ix).replace(TextEditor.origin.getAttribute('to_link_text'), '<a class="line" onclick="slide_lr(' + TextEditor.children[4].value + ')">' + TextEditor.children[1].value + '</a>');
+							//TextEditor.origin.nextSibling.innerHTML = instr.substr(0, ix) + instr.substr(ix).replace(TextEditor.origin.getAttribute('to_link_text'), "<a class='line' onclick='slide_lr(" + TextEditor.children[4].value + ")'>" + TextEditor.children[1].value + "</a>");
 
 						} else {
 
@@ -2950,7 +2969,7 @@
 						if (link_editor.link_kind == 'slide_lr') {
 							//if (!isNaN(TextEditor.children[4].value)) {
 							//TextEditor.origin.removeAttribute("onclick");
-							TextEditor.origin.setAttribute("onclick", "slide_lr(" + TextEditor.children[4].value + ")");
+							TextEditor.origin.setAttribute('onclick', 'slide_lr(' + TextEditor.children[4].value + ')');
 							/*
 													TextEditor.origin.addEventListener("click", function(event) {
 														sh_link_editor(this);
@@ -3246,9 +3265,9 @@
 			}
 
 			var run_swap_multiples = false;
-			var swap_multiples = function(o) {
+			var swap_multiples = function(o, c) {
 
-				if (o < document.getElementById('Images_display').children.length - 2) {
+				if (!c && o < document.getElementById('Images_display').children.length - 2) {
 
 
 					swap = [to_edit.comp_name + '_' + o, to_edit.comp_name + '_' + parseInt(o + 1)];
@@ -3275,11 +3294,21 @@
 						if (xmlhttp.readyState == 4) {
 							if (xmlhttp.status == 200) {
 
-								run_swap_multiples = false;
+								if (c) {
+									c--;
+									if (c == 0) {
+										console.log('all umless one killed!');
+										delete_bg_img();
+										return;
+									}
+									swap_multiples(c, c);
+								} else {
+									run_swap_multiples = false;
 
-								console.log('oki, done swap_multiples and delete', xmlhttp.responseText); // output php echo for control
-								temp_ih = '<img src="images/mobile/' + to_edit_folder + '/' + to_edit.comp_name + '.jpg" />';
-								load_additional_images(1);
+									console.log('oki, done swap_multiples and delete', xmlhttp.responseText); // output php echo for control
+									temp_ih = '<img src="images/mobile/' + to_edit_folder + '/' + to_edit.comp_name + '.jpg" />';
+									load_additional_images(1);
+								}
 
 							} else {
 								alert('delete_img shit happens');
@@ -3291,6 +3320,100 @@
 
 
 				}
+
+			};
+
+			var delete_bg_img = function() {
+
+
+
+				var json = JSON.stringify({
+					"folder": to_edit_folder,
+					"one": to_edit.comp_name
+				});
+
+				loadXMLDoc('scripts/delete_img.php', function() { // swap image names (numbers) on server
+
+					if (xmlhttp.readyState == 4) {
+						if (xmlhttp.status == 200) {
+
+							run_swap_multiples = false;
+
+							console.log('oki, done all images deleted. now kill to_edit ... ', xmlhttp.responseText); // output php echo for control
+							/*
+
+																temp_ih = '<img src="images/mobile/' + to_edit_folder + '/' + to_edit.comp_name + '.jpg" />';
+																load_additional_images(1);
+								*/
+
+							for (var k = 0; k < folders.length; k++) {
+								if (folders[k].name == to_edit_folder) {
+									for (var d = 0; d < folders[k].data.length; d++) {
+										if (folders[k].data[d] == to_edit) {
+											console.log('now kill ', to_edit.name);
+											folders[k].data.splice(d, 1);
+											break;
+										}
+									}
+									break;
+								}
+							}
+
+
+
+
+
+
+
+
+
+							var newtext = JSON.stringify({
+								"folders": folders
+							}, null, "\t");
+
+							loadXMLDoc('scripts/new_e.php', function() { // save changed json data to server
+
+								if (xmlhttp.readyState == 4) {
+									if (xmlhttp.status == 200) {
+
+										var resp = xmlhttp.responseText.split(' ');
+
+										console.log('oki, done ', resp[0]); // output php echo for control
+
+										if (resp[0] == 'ok') {
+
+											/******           end overlay moved after up_git           ******/
+
+											up_git(to_edit.name, logged_user, newtext, resp[1], resp[2], resp[3], resp[4], resp[5], 'editor.php');
+
+										} else {
+
+											/******           reload_page           ******/
+
+
+											window.location.href = 'editor.php';
+
+										}
+
+									} else {
+										alert('new_e (entry deleted) shit happens');
+									}
+								}
+							}, newtext);
+
+
+
+
+						} else {
+							alert('delete_bg_img shit happens');
+						}
+					}
+
+				}, json);
+
+
+
+
 
 			};
 
