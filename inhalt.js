@@ -659,7 +659,7 @@
 							2014
 						]
 					},
-					"prolog": "Deutschschweizer Literatur und Erster Weltkrieg",
+					"prolog": "Deutschschweizer Literatur und Erster Weltkrieg ok",
 					"text": "Die Schweiz hörte das Donnergrollen der Kanonen nur von fern. Dennoch war sie auf vielfältige Weise vom Krieg betroffen: Die Gräben zwischen Deutsch und Welsch, zwischen Besitzenden und Arbeiterschaft drohten das Land zu zerreissen.<br/>Der grössere Teil der Autorinnen und Autoren schrieb an diesen Problemen vorbei. In einer vermeintlichen Keller- oder Gotthelf-Nachfolge widmeten sie sich der bäurischen und kleinbürgerlichen Welt. Eine konservative Literaturkritik war sogar der Meinung, Literatur dürfe nicht auf Zeitprobleme eingehen. Doch nicht alle Autoren teilten diese Auffassung.<br/>Der Ausbruch des Krieges führte zuerst zu einer kriegstrunkenen Lyrik. Später, als die erste Begeisterung vorbei war, entstand der «Grenzwachtroman», der die Wehrmänner vom Sinn des Grenzdienstes überzeugen wollte.<br/>Das Bild des «fernen Donnergrollens» kennzeichnet auch das Verhältnis des Bürgertums zur Arbeiterschaft. Die Ansprüche der Arbeiterbewegung wurden als Bedrohung empfunden. Nur wenige politisch aufmerksame Autoren waren bereit, sich mit diesen auseinanderzusetzen. Sie taten dies aus bildungsbürgerlicher Sicht, das heisst, sie appellierten an Idealismus und Versöhnung.",
 					"epilog": {
 						"Impressum": {
