@@ -642,7 +642,7 @@
 				},
 				{
 					"comp_name": "donnergrollen",
-					"name": "blinde",
+					"name": "Fernes Donnergrollen",
 					"search": [
 						"donner",
 						"ersterweltkrieg"
