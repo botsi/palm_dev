@@ -1203,7 +1203,8 @@
 						"kurzersommerlangewirkung",
 						"hippie",
 						"museumfrankfurt",
-						"raum"
+						"raum",
+						"anzug"
 					],
 					"time": {
 						"from": [
