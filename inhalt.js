@@ -1788,7 +1788,7 @@
 							2012
 						]
 					},
-					"prolog": "«Niklaus von Flüe Vermittler zwischen Welten» Dauerausstellung zu Leben und Wirkungsgeschichte von Bruder Klaus (1417487)",
+					"prolog": "«Niklaus von Flüe - Vermittler zwischen Welten» Dauerausstellung zu Leben und Wirkungsgeschichte von Bruder Klaus (1417487)",
 					"text": "Bruder Klaus (Niklaus von Flüe) gehört zu den herausragenden Persönlichkeiten der Schweiz. Politisch ist seine Vermittlung beim Stanser Verkommnis von 1481 für die damalige Eidgenossenschaft von entscheidender Bedeutung. Seine Friedens- und Vermittlungsbotschaften sind bis heute über die Konfessionsgrenzen hinweg aktuell geblieben.<br/>Zu seinen Ehren wurden in Sachseln die Stiftung und 1976 das Museum Bruder Klaus errichtet. Das Museum hat gesamtschweizerische Bedeutung und strahlt weit über die Landesgrenzen hinaus. Es hat sich seit seinem Bestehen mit Sonderausstellungen zu religiösen Themen und mit raumbezogenen Installationen zeitgenössischer Kunst über die Pilgerkreise hinaus ein zusätzliches Publikum erarbeitet.",
 					"epilog": {
 						"Ausstellungsort": [
