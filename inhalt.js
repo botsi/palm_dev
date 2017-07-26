@@ -200,6 +200,47 @@
 			"intro": "Ausstellungen zu Geschichte, Kultur und Gesellschaft.",
 			"data": [
 				{
+					"name": "Aarau als Meister",
+					"comp_name": "aaraualsmeister",
+					"search": [
+						"aaraualsmeister"
+					],
+					"time": {
+						"from": [
+							26,
+							7,
+							2017
+						],
+						"till": [
+							26,
+							1,
+							2018
+						]
+					},
+					"prolog": "",
+					"text": "",
+					"epilog": {
+						"Ausstellungsort": [
+							[
+								"",
+								"",
+								"",
+								"",
+								"",
+								"",
+								""
+							]
+						],
+						"Impressum": {
+							"Kurator": [
+								""
+							]
+						},
+						"Dossier": [],
+						"Info": ""
+					}
+				},
+				{
 					"comp_name": "schreibrausch",
 					"name": "Schreibrausch",
 					"search": [
