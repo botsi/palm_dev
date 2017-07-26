@@ -1189,7 +1189,7 @@
 				},
 				{
 					"comp_name": "die68er",
-					"name": "Die 68er",
+					"name": "Klaus",
 					"search": [
 						"achtundsechziger",
 						"68er",
@@ -1766,7 +1766,6 @@
 					"name": "Museum Bruder Klaus",
 					"comp_name": "museumbruderklaus",
 					"search": [
-						"klaus",
 						"nik",
 						"niklaus",
 						"bruderklaus",
