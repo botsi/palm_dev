@@ -223,11 +223,11 @@
 						"Ausstellungsort": [
 							[
 								"",
+								"jetzjtz",
+								"tzhz 5",
+								"3063 Ittigen",
 								"",
-								"",
-								"",
-								"",
-								"",
+								"www.post.ch",
 								""
 							]
 						],
