@@ -233,7 +233,7 @@
 						],
 						"Impressum": {
 							"Kurator": [
-								""
+								"ich"
 							]
 						},
 						"Dossier": [],
