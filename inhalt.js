@@ -1189,7 +1189,7 @@
 				},
 				{
 					"comp_name": "die68er",
-					"name": "Die 68er",
+					"name": "Blind",
 					"search": [
 						"achtundsechziger",
 						"68er",
@@ -1683,7 +1683,6 @@
 					"comp_name": "anderssehen",
 					"name": "anders sehen",
 					"search": [
-						"blind",
 						"sehbehindert",
 						"sehbehinderte",
 						"blindenschule",
