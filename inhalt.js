@@ -1189,7 +1189,7 @@
 				},
 				{
 					"comp_name": "die68er",
-					"name": "Blinde",
+					"name": "Die 68er",
 					"search": [
 						"achtundsechziger",
 						"68er",
