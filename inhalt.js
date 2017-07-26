@@ -1189,7 +1189,7 @@
 				},
 				{
 					"comp_name": "die68er",
-					"name": "Hirn",
+					"name": "Die 68er",
 					"search": [
 						"achtundsechziger",
 						"68er",
@@ -1202,8 +1202,7 @@
 						"langewirkung",
 						"kurzersommerlangewirkung",
 						"hippie",
-						"museumfrankfurt",
-						"kurzersommer"
+						"museumfrankfurt"
 					],
 					"time": {
 						"from": [
