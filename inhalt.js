@@ -1690,7 +1690,8 @@
 						"blindenschule",
 						"blindenschulezollikofen",
 						"zollikofen",
-						"blind"
+						"blind",
+						"blinde"
 					],
 					"time": {
 						"from": [
