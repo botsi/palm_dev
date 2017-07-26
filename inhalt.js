@@ -2251,7 +2251,8 @@
 					"comp_name": "bernstattfern",
 					"name": "Bern statt fern",
 					"search": [
-						"stadtspaziergänge"
+						"stadtspaziergänge",
+						"toblerone"
 					],
 					"published": {
 						"year": 2010,
