@@ -203,7 +203,7 @@
 					"name": "Aarau als Meister",
 					"comp_name": "aaraualsmeister",
 					"search": [
-						"aaraualsmeister"
+						"wende"
 					],
 					"time": {
 						"from": [
