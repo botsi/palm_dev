@@ -1202,7 +1202,8 @@
 						"langewirkung",
 						"kurzersommerlangewirkung",
 						"hippie",
-						"museumfrankfurt"
+						"museumfrankfurt",
+						"raum"
 					],
 					"time": {
 						"from": [
