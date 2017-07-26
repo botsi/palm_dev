@@ -217,7 +217,7 @@
 							2018
 						]
 					},
-					"prolog": "",
+					"prolog": "Wendehals",
 					"text": "",
 					"epilog": {
 						"Ausstellungsort": [
