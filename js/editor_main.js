@@ -638,12 +638,10 @@
 						document.getElementById('image_editor').style.backgroundImage = 'url("images/editor_new_image.jpg")';
 
 						new_p.name = project;
-						new_p.comp_name = new_p.search[0] = project.toLowerCase().replace(/ /g, '').replace(/ü/g, 'u').replace(/ä/g, 'a').replace(/ö/g, 'o');
+						new_p.comp_name = project.toLowerCase().replace(/ /g, '').replace(/ü/g, 'u').replace(/ä/g, 'a').replace(/ö/g, 'o').replace(/è/g, 'e').replace(/é/g, 'e'); //******                            C H A N G E   ?    R E M O V E   ?
 						if (new_p.name.toLowerCase().replace(/ /g, '') != new_p.comp_name) {
-							new_p.search[1] = project.toLowerCase().replace(/ /g, '');
+							new_p.search[0] = project.toLowerCase().replace(/ /g, ''); //******                            C H A N G E   ?    R E M O V E   ?
 						}
-
-						new_p.epilog.Info = "";
 
 						cont_new_image.arr = [t, ix, f, new_p];
 
@@ -652,8 +650,6 @@
 				};
 
 				sh_vis.lk = document.getElementById('all_cells').innerText.toLowerCase().replace(/ /g, '');
-
-				console.log(sh_vis.lk);
 
 				document.getElementById('image_editor').innerHTML = '<p><i class="fa fa-times-circle" aria-hidden="true" onclick="close_image_editor()"></i></p><input type="text" class="new_entry" onkeyup="sh_vis.foo(this)" ><button onclick="cont_new_image.foo(this)" style="visibility:hidden;margin-top: 100px;">ok</button><p style="z-index:0;">Bitte einen Namen für ' + p + ' angeben.</p>';
 
