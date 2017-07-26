@@ -1336,7 +1336,8 @@
 						"einkabinett",
 						"einkabinettverwegenerforscher",
 						"verwegenerforscher",
-						"verwegeneforscher"
+						"verwegeneforscher",
+						"hirn"
 					],
 					"time": {
 						"from": [
