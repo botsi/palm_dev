@@ -1189,7 +1189,7 @@
 				},
 				{
 					"comp_name": "die68er",
-					"name": "Hirn",
+					"name": "Blind",
 					"search": [
 						"achtundsechziger",
 						"68er",
@@ -1687,8 +1687,7 @@
 						"sehbehinderte",
 						"blindenschule",
 						"blindenschulezollikofen",
-						"zollikofen",
-						"blind"
+						"zollikofen"
 					],
 					"time": {
 						"from": [
