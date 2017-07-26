@@ -1687,7 +1687,8 @@
 						"sehbehinderte",
 						"blindenschule",
 						"blindenschulezollikofen",
-						"zollikofen"
+						"zollikofen",
+						"blind"
 					],
 					"time": {
 						"from": [
