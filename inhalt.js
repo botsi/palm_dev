@@ -1189,7 +1189,7 @@
 				},
 				{
 					"comp_name": "die68er",
-					"name": "Die 68er",
+					"name": "Hirn",
 					"search": [
 						"achtundsechziger",
 						"68er",
