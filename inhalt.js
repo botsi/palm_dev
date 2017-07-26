@@ -947,7 +947,6 @@
 					"comp_name": "mitbiss",
 					"name": "Mit Biss",
 					"search": [
-						"biss",
 						"zähne",
 						"milchzähne",
 						"zahn",
@@ -1189,7 +1188,7 @@
 				},
 				{
 					"comp_name": "die68er",
-					"name": "Blind",
+					"name": "Biss",
 					"search": [
 						"achtundsechziger",
 						"68er",
