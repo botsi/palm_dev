@@ -448,6 +448,7 @@
 						if (sh_vis.clear) {
 							delete sh_vis.clear;
 						}
+
 						sh_vis.pre_clear = [];
 
 						t.nextSibling.innerHTML = '';
@@ -609,27 +610,7 @@
 
 						if (sh_vis.pre_clear.length == 2) {
 
-							sh_vis.clear = function() {
-
-								var cont = true;
-								for (var j = 0; j < folders.length; j++) {
-									var fd = folders[j].data;
-									for (var i = 0; i < fd.length; i++) {
-										if (fd[i].name == sh_vis.pre_clear[1]) {
-											fd[i].search.splice(fd[i].search.indexOf(sh_vis.pre_clear[0]), 1);
-											cont = false;
-											break;
-										}
-									}
-									if (!cont) {
-										break;
-									}
-								}
-
-								sh_vis.pre_clear = [];
-								delete sh_vis.clear;
-
-							};
+							sh_vis.rsi();
 
 						}
 
@@ -649,7 +630,7 @@
 
 				};
 
-				sh_vis.lk = document.getElementById('all_cells').innerText.toLowerCase().replace(/ /g, '');
+				//save_existing
 
 				document.getElementById('image_editor').innerHTML = '<p><i class="fa fa-times-circle" aria-hidden="true" onclick="close_image_editor()"></i></p><input type="text" class="new_entry" onkeyup="sh_vis.foo(this)" ><button onclick="cont_new_image.foo(this)" style="visibility:hidden;margin-top: 100px;">ok</button><p style="z-index:0;">Bitte einen Namen für ' + p + ' angeben.</p>';
 
@@ -662,25 +643,51 @@
 			/******           edit_image           ******/
 
 			var sh_vis = {
+				"rsi": function() {
+
+					sh_vis.clear = function() {
+
+						var cont = true;
+						for (var j = 0; j < folders.length; j++) {
+							var fd = folders[j].data;
+							for (var i = 0; i < fd.length; i++) {
+								if (fd[i].name == sh_vis.pre_clear[1]) {
+									fd[i].search.splice(fd[i].search.indexOf(sh_vis.pre_clear[0]), 1);
+									cont = false;
+									break;
+								}
+							}
+							if (!cont) {
+								break;
+							}
+						}
+
+						sh_vis.pre_clear = [];
+						delete sh_vis.clear;
+
+					};
+
+				},
+				"lk": [],
 				"pre_clear": [],
 				"foo": function(t) {
-
-					if (all_search.term.indexOf(t.value.toLowerCase().replace(/ /g, '')) != -1) {
+					var v = t.value.toLowerCase().replace(/ /g, '');
+					if (all_search.term.indexOf(v) != -1) {
 						console.log(all_search.term);
 						t.style.background = 'rgb(247, 217, 190)';
 						t.style.textDecoration = 'none';
 						t.nextSibling.style.visibility = 'visible';
 
-						t.title = '"' + t.value + '" existiert bereits als Stichwort zu "' + all_search.position[all_search.term.indexOf(t.value)] + '"\n\nWenn Sie "' + t.value + '" trotzdem wählen, wird das Sichwort entfernt!';
+						t.title = '"' + t.value + '" existiert bereits als Stichwort zu "' + all_search.position[all_search.term.indexOf(v)] + '"\n\nWenn Sie "' + t.value + '" trotzdem wählen, wird das Sichwort entfernt!';
 
-						sh_vis.pre_clear = [t.value.toLowerCase().replace(/ /g, ''), all_search.position[all_search.term.indexOf(t.value)]];
+						sh_vis.pre_clear = [v, all_search.position[all_search.term.indexOf(v)]];
 
 						return;
 
 					}
 
-					if (sh_vis.lk.indexOf(t.value.toLowerCase().replace(/ /g, '')) != -1) {
-						console.log('exists allready');
+					if (sh_vis.lk.indexOf(v) != -1) {
+
 						t.style.background = 'rgb(250, 161, 179)';
 						t.style.textDecoration = 'line-through';
 						t.nextSibling.style.visibility = 'hidden';
@@ -691,8 +698,8 @@
 
 					}
 
-					if (t.value.replace(/ /g, '').length < 4) {
-						console.log('too short');
+					if (v.length < 4) {
+
 						t.style.background = 'rgb(250, 161, 179)';
 						t.style.textDecoration = 'line-through';
 						t.nextSibling.style.visibility = 'hidden';
@@ -704,7 +711,7 @@
 					}
 
 					if (t.value.length > 30 && t.value.length < 37) {
-						console.log('bit long');
+
 						t.style.background = 'rgb(247, 217, 190)';
 						t.style.textDecoration = 'none';
 						t.nextSibling.style.visibility = 'visible';
@@ -716,7 +723,7 @@
 					}
 
 					if (t.value.length > 36) {
-						console.log('too long');
+
 						t.style.background = 'rgb(250, 161, 179)';
 						t.style.textDecoration = 'line-through';
 						t.nextSibling.style.visibility = 'hidden';
@@ -733,8 +740,10 @@
 					t.style.textDecoration = 'none';
 					t.nextSibling.style.visibility = 'visible';
 
-					t.title = 'Guter Name!';
+					t.title = '"' + t.value + '" ist ein guter Name!';
+
 				}
+
 			};
 
 			/******           edit_image           ******/
@@ -884,7 +893,10 @@
 
 				var entry_kind = t.parentNode.id.replace('_display', '');
 
-
+				if (t.id.replace('_display', '') == 'name') {
+					sh_vis.foo(t);
+					return;
+				}
 
 				if (entry_kind == 'text') {
 					//t.parentNode.removeChild(t.parentNode.children[1]);
@@ -895,24 +907,35 @@
 				}
 
 				if (entry_kind == 'search') {
-					//console.log('index is: ' + all_search.indexOf(value + ',' + to_edit.name));
-					//console.log(to_edit.name);
-					//console.log(all_search);
-					if (all_search.term.indexOf(value) != -1) {
+
+					if ((all_search.term.indexOf(value.toLowerCase().replace(/ /g, '')) != -1 && value.toLowerCase().replace(/ /g, '') != t.getAttribute('init_val')) || sh_vis.lk.indexOf(value.toLowerCase().replace(/ /g, '')) != -1) {
 						t.style.background = 'rgb(250, 161, 179)';
 						t.style.textDecoration = 'line-through';
 
 						b.classList.remove('button_valid');
-						b.nextSibling.classList.remove('button_valid');
 
-						t.title = 'Das Stichwort ' + value + ' existiert leider bereits\nin ' + all_search.position[all_search.term.indexOf(value)] + '!';
+						t.title = 'Das Stichwort ' + value + ' existiert leider bereits' + ((all_search.term.indexOf(value.toLowerCase().replace(/ /g, '')) != -1) ? '\nin ' + all_search.position[all_search.term.indexOf(value.toLowerCase().replace(/ /g, ''))] + '!' : 'als Name!');
 
-						t.addEventListener("blur", function() {
-							remove_search_item(this.nextSibling);
-						}, false);
+
+						t.onblur = function() {
+							if (this.placeholder == "") {
+								revert(this.parentNode.parentNode.lastChild);
+							} else {
+								remove_search_item(this.nextSibling, 'a');
+								b.nextSibling.classList.remove('button_valid');
+							}
+						};
 
 						return;
+
 					}
+
+					t.onblur = function() {
+						console.log(this.placeholder);
+						return false;
+					};
+
+
 				}
 
 				if (entry_kind == 'time') {
@@ -930,8 +953,6 @@
 						check_calendar(t);
 
 					}
-
-					//t.blur();
 
 					if (els.length == 6) {
 
@@ -1506,14 +1527,17 @@
 
 			/******           remove search item           ******/
 
-			var remove_search_item = function(t) {
+			var remove_search_item = function(t, a) {
 
-				var parent_first_input = document.getElementById('search_display').getElementsByTagName('input')[0]
+				//var parent_first_input = document.getElementById('search_display').getElementsByTagName('input')[0];
 
 				document.getElementById('search_display').removeChild(t.previousSibling);
 				document.getElementById('search_display').removeChild(t);
-				console.log(parent_first_input, document.getElementById('search_display').nextSibling);
-				validate(parent_first_input, document.getElementById('search_display').nextSibling);
+				//console.log(parent_first_input, document.getElementById('search_display').nextSibling);
+				//if (a) {
+				//validate(document.getElementById('search_display').getElementsByTagName('input')[0], document.getElementById('search_display').nextSibling);
+				//}
+				show_buttons(document.getElementById('search_display').nextSibling);
 
 			};
 
@@ -1686,6 +1710,7 @@
 				switch (entry_kind) {
 					case 'name':
 						to_edit[entry_kind] = t.previousSibling.value.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+
 						/* update table */
 						var lks = document.getElementById('all_cells').getElementsByClassName('lk');
 						for (var i = 0; i < lks.length; i++) {
@@ -1694,6 +1719,51 @@
 							}
 						}
 						/* end update table */
+
+
+						/* update forein searchitems */
+
+						if (sh_vis.pre_clear.length == 2) {
+
+							sh_vis.rsi();
+
+							(function() {
+								sh_vis.clear();
+							})();
+
+						}
+
+						/* end update forein searchitems */
+
+
+						/* update this searchitems */
+
+						var tl = to_edit.search.indexOf(t.previousSibling.value.toLowerCase().replace(/ /g, ''));
+
+						if (tl != -1) {
+
+							to_edit.search.splice(tl, 1);
+
+						}
+
+						fill_cat('search');
+
+						/* end update this searchitems */
+
+
+						/*    update all_search */
+
+						all_search = {
+							"term": [],
+							"position": []
+						};
+
+						for (var j = 0; j < largest; j++) {
+							make_all_search(j);
+						}
+
+						/*    end update all_search */
+
 						break;
 					case 'prolog':
 						to_edit[entry_kind] = t.previousSibling.value.replace(/(?:\r\n|\r|\n)/g, '<br/>');
@@ -1709,6 +1779,8 @@
 							}
 						}
 						to_edit[entry_kind] = a;
+
+						fill_cat(entry_kind);
 
 						/*    update all_search */
 
@@ -1961,7 +2033,7 @@
 						}
 
 						for (var j = 0; j < to_edit.search.length; j++) {
-							temp_ih += '<input' + input_attributes + ' value="' + to_edit.search[j] + '" /><i class="fa fa-minus-circle" aria-hidden="true" onclick="remove_search_item(this)"></i>';
+							temp_ih += '<input' + input_attributes + ' init_val="' + to_edit.search[j].toLowerCase().replace(/ /g, '') + '" value="' + to_edit.search[j] + '" /><i class="fa fa-minus-circle" aria-hidden="true" onclick="remove_search_item(this)"></i>';
 						}
 
 						temp_ih += '<i class="fa fa-plus-circle" aria-hidden="true" onclick="add_search_item(this)"></i>';
@@ -2725,6 +2797,8 @@
 				link_editor.link_kind = link_kinds[k];
 				console.log(link_editor.link_kind);
 				if (link_editor.link_kind == 'slide_lr') {
+					console.log(TextEditor.position);
+					document.getElementById('Images_display').style.background = '#000';
 					TextEditor.ih_preset = 'slide_lr' + 1;
 					link_editor.ih_preset = 1;
 					var c = document.createElement('div');
@@ -3069,10 +3143,6 @@
 				go_TextEditor();
 			};
 
-			/*
-				go_TextEditor();
-			};
-
 			/*******    end textpart editor functions   *******/
 
 			var func_after_Image;
@@ -3122,9 +3192,7 @@
 			};
 
 			var make_all_search = function(p) {
-				/*
 
-				*/
 				for (var i = 0; i < folders.length; i++) {
 					if (folders[i].data[p] && folders[i].data[p].search) {
 						for (var y = 0; y < folders[i].data[p].search.length; y++) {
@@ -3135,29 +3203,6 @@
 				}
 
 			};
-
-			/*
-
-						var make_projectlist = function(p, employee) {
-							for (var i = 1; i < folders.length; i++) {
-								if (folders[i].data[p] && folders[i].data[p].epilog.Impressum) {
-									for (key in folders[i].data[p].epilog.Impressum) {
-
-										if (folders[i].data[p].epilog.Impressum[key].indexOf(employee) != -1 && projectlist.indexOf(folders[i].data[p].name) == -1) {
-											projectlist.push(folders[i].data[p].name);
-										}
-
-
-									}
-								}
-							}
-
-						};
-
-						var projectlist = [];
-
-			*/
-
 
 			var getvals = function() {
 
@@ -3186,23 +3231,42 @@
 									largest = folders[i].data.length;
 								}
 
-
 								document.getElementById('basis').innerHTML += '<th>' + folders[i].menu_name + '<i class="fa fa-plus-circle" aria-hidden="true" onclick="new_entry(this)"></i></th>';
+
+								sh_vis.lk.push(folders[i].menu_name.toLowerCase().replace(/ /g, ''));
 
 							}
 
 							var taxi = decodeURI(window.location.search.substring(1));
 
 							var p = -1;
+
 							var cycle = function(c) {
+
 								p++;
+
 								var ih = '';
+
 								for (var i = 0; i < folders.length; i++) {
-									var id = (typeof folders[i].data[p] !== 'undefined' && taxi == folders[i].data[p].comp_name) ? ' id="edit_preset"' : '';
-									ih += (typeof folders[i].data[p] !== 'undefined') ? '<td class="lk"' + id + ' onclick="edit(this)" f="' + i + '" d="' + p + '">' + folders[i].data[p].name + '</td>' : '<td></td>';
+
+									if (typeof folders[i].data[p] !== 'undefined') {
+
+										var id = (taxi == folders[i].data[p].comp_name) ? ' id="edit_preset"' : '';
+
+										ih += '<td class="lk"' + id + ' onclick="edit(this)" f="' + i + '" d="' + p + '">' + folders[i].data[p].name + '</td>';
+
+										sh_vis.lk.push(folders[i].data[p].name.toLowerCase().replace(/ /g, ''));
+
+									} else {
+
+										ih += '<td></td>';
+
+									}
+
 								}
 
 								return ih;
+
 							};
 
 

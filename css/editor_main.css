@@ -239,7 +239,7 @@
       	cursor: pointer;
       }
 
-      #search_display .fa-plus-circle, #search_display .fa-minus-circle, #Ausstellungskonzept_display .fa-minus-circle, #Impressum_display .fa-plus-circle, #Impressum_display .fa-minus-circle, .fa-link, #Medienberichte_display .fa-minus-circle {
+      #search_display .fa-plus-circle, #search_display .fa-minus-circle, #Ausstellungskonzept_display .fa-minus-circle, #Impressum_display .fa-plus-circle:not(:last-child), #Impressum_display .fa-minus-circle, .fa-link, #Medienberichte_display .fa-minus-circle {
       	padding: 6px;
       	border: 2px rgba(0, 0, 0, 0) solid;
       	line-height: 14px;
@@ -306,12 +306,13 @@
       	font-weight: 300;
       	line-height: 24px;
       	display: block;
-      	width: calc(100% - 12px);
+      	width: auto;
       	border: 0 none;
-      	margin: 6px;
+      	margin: 6px calc(6vw / 8);
       	padding: 0;
       	background: #fff;
       	min-height: 28px;
+      	padding: 2px 4px;
       }
 
       #text_display h2, #Ausstellungskonzept_display h2 {
@@ -370,13 +371,14 @@
 
       .add-raw {
       	font-size: 2vw;
-      	margin: 3vw auto;
-      	display: inline-block;
-      	padding: 8px !important;
-      	line-height: calc(2vw - 6px) !important;
-      	width: calc(2vw - 4px);
+      	display: inline;
+      	padding: 6px 8px;
+      	line-height: 4vh;
+      	width: calc(2vw - 0px);
       	border-radius: 2vw !important;
-      	margin-left: calc(6vw / 8);
+      	margin-left: 10px;
+      	border: 2px solid rgba(0, 0, 0, 0);
+      	vertical-align: middle;
       }
 
       .media_icon_size {
@@ -596,6 +598,10 @@
       	border: 0 none;
       	outline: 0 none;
       	box-shadow: none;
+      }
+
+      #time_display {
+      	margin-left: calc(6vw / 8);
       }
 
       #time_display select, #text_editor select {
