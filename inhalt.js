@@ -953,7 +953,8 @@
 						"zahnarzt",
 						"zahnmedizin",
 						"geschichtenzurzahnmedizin",
-						"mundhygiene"
+						"mundhygiene",
+						"biss"
 					],
 					"time": {
 						"from": [
