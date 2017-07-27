@@ -200,6 +200,44 @@
 			"intro": "Ausstellungen zu Geschichte, Kultur und Gesellschaft.",
 			"data": [
 				{
+					"name": "Sandalen",
+					"comp_name": "sandalen",
+					"search": [],
+					"time": {
+						"from": [
+							27,
+							7,
+							2017
+						],
+						"till": [
+							27,
+							1,
+							2018
+						]
+					},
+					"prolog": "",
+					"text": "",
+					"epilog": {
+						"Ausstellungsort": [
+							[
+								"",
+								"",
+								"",
+								"",
+								"",
+								"",
+								""
+							]
+						],
+						"Impressum": {
+							"Kurator": [
+								""
+							]
+						},
+						"Dossier": []
+					}
+				},
+				{
 					"comp_name": "schreibrausch",
 					"name": "Schreibrausch",
 					"search": [
