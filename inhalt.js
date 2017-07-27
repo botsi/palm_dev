@@ -1146,7 +1146,7 @@
 						"Ausstellungskonzept": "<h2>Der Loosli-Kosmos</h2><p>C.A. Loosli pflegte trotz seiner aufmüpfigen Art immer wieder gute Freundschaften. Die Liste der Bekanntschaften enthält erstaunlich bekannte Namen. Die Künstler Ferdinand Hodler, Max Buri, Cuno Amiet, <a class='line' onclick='search_nostyle(this)'>Emil Zbinden</a> gehörten ebenso dazu wie die Schriftsteller Carl Spitteler, Jakob Bührer oder Heinrich Federer.</p><p>Auch zu Politikern, Juristen und Wissenschaftlern pflegte Loosli Kontakte. Kaum ein anderer Intellektueller seiner Zeit war auf derart vielen Ebenen anzutreffen.</p><h2>In Bümpliz und im Volk verwurzelt</h2><p>Als Intellektueller setzte sich C.A. Loosli mit den grossen Fragen seiner Zeit auseinander. Dennoch war er in seinem Dorf und im Kreise des Volkes verankert. Immer wieder kämpfte er mit finanziellen Problemen. Gerade weil der Schriftsteller offen für die Nöte anderer war, erhielt seine Familie in Bümpliz stets wieder Unterstützung.</p><p>Loosli machte es den Leuten aber nicht immer einfach. Sein Ruf reichte vom Bauernphilosophen bis zum weisen Eremiten, und oft half der Schriftsteller auch selbst mit bei der Legendenbildung.</p><h2>Prägende Jahre in Trachselwald</h2><p>Elternlos und bevormundet durchlief C.A. Loosli in der Zwangserziehungsanstalt Trachselwald eine harte Lebensschule. Später wohnte er für kurze Zeit in Rüegsau-Schachen und lernte dort seine Frau Ida kennen. Er blieb aber mit dem Emmental stets in einer Hassliebe verbunden.</p><p>Nach seiner Entlassung in Trachselwald betrieb Loosli als Autor über fünf Jahrzehnte lang Lobbyarbeit für die Jugend. Er forderte die Abschaffung aller Erziehungsanstalten und setzte sich für ein besseres Jugendstrafrecht ein.</p><h2>Wider Antisemitismus und Judenhetze</h2><p>Der Antisemitismus beschäftigte C.A. Loosli seit seinen Paris-Aufenthalten 1898 und 1899 immer wieder. 1927 und 1930, als die Judenfeindlichkeit auch in der Schweiz immer lauter wurde, publizierte er dazu zwei umstrittene Streitschriften.</p><p>Sein Kampf gegen die Judenhetze war für ihn gleichbedeutend mit jenem für die Freiheit des Menschen. Denn setzten sich die Antisemiten durch, wären alle Minderheiten in Gefahr.</p><h2>Kulturpolitischer Akteur</h2><p>C.A. Loosli verstand sich stets als politischer Autor. Obwohl er ein Individualist war, kämpfte er immer wieder für die Rechte seiner Künstlerfreunde und Schriftstellerkollegen. Er wirkte als Zentralsekretär der Gesellschaft Schweizerischer Maler, Bildhauer und Architekten (GSMBA) und war Mitgründer des Schweizerischen Schriftsteller-Vereins SSV.</p><p>Eine Frage bewegte ihn dabei grundsätzlich: Wie liess sich die chronische materielle Notlage der Schweizer Kulturschaffenden verbessern?</p><h2>Hodler-Clique und Künstlerideale</h2><p>Die Erneuerung der Schweizer Kultur war für C.A. Loosli zu Beginn des 20. Jahrhunderts das wichtigste Anliegen. In einer Zeit voller Modernisierungsschübe forderte er im Kreis um Ferdinand Hodler der «Hodler-Clique» mehr Anerkennung für die Kunstschaffenden. Dieser Kampf rückte mit dem 1. Weltkrieg und dem Tod Hodlers 1918 in den Hintergrund.</p><p>Als persönlichen Beitrag zur Kulturerneuerung publizierte Lossli zwischen 1909 und 1921 mehrere Mundartwerke. Er wollte damit insbesondere der Verpreussung der Sprache entgegenwirken und die schweizerische Identität fördern.</p><h2>Finanziell stets am Abgrund</h2><p>C.A. Loosli verstand sich als Berufsschriftsteller, als die meisten Vertreter seiner Zunft im Hauptamt einer anderen Tätigkeit nachgingen. Er benutzte eine moderne Schreibmaschine, als der Briefverkehr selbst in Amtsstuben noch von Hand erledigt wurde. Er revolutionierte das Schreiben mit aufwändigen Hilfsmitteln wie fremden Recherchediensten.</p><p>Und trotzdem kämpfte er oft buchstäblich um seine finanzielle Existenz. Eine wichtige ökonomische Stütze der Familie Loosli war die Ehefrau Ida. Dank ihrer Selbstversorgung aus dem eigenen Gemüsegarten ermöglichte sie ihrem Mann eine gewisse schriftstellerische Freiheit.</p>",
 						"Impressum": {
 							"Veranstalter": [
-								"<a href='http://www.carl-albert-loosli.ch' target='_blank'>Carl Albert Loosli-Gesellschaft, Bern</a>"
+								"<a href='http://www.carl-albert-loosli.ch/' target='_blank'>Carl Albert Loosli-Gesellschaft, Bern</a>"
 							],
 							"Realisation": [
 								"palma3, Bern"
@@ -1163,13 +1163,14 @@
 								"Fredi Lerch"
 							],
 							"Gestaltung": [
-								"<a href='http://www.josnaepflin.ch/index.html' target='_blank'>Jos Näpflin, Zürich</a>"
+								"<a href='http://www.josnaepflin.ch/index.html' target='_blank'>Jos Näpflin, Zürich</a>",
+								"Beate Schappach (palma3)"
 							],
 							"Grafik und Drucksachen": [
 								"Markus Bucher, Zürich"
 							],
 							"Zusammenarbeit": [
-								"<a href='http://www.nb.admin.ch' target='_blank'>Literaturarchiv der Schweizerischen Nationalbibliothek, Bern</a>"
+								"<a href='http://www.nb.admin.ch/' target='_blank'>Literaturarchiv der Schweizerischen Nationalbibliothek, Bern</a>"
 							]
 						},
 						"Medienberichte": true,
