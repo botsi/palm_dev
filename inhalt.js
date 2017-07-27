@@ -200,7 +200,7 @@
 			"intro": "Ausstellungen zu Geschichte, Kultur und Gesellschaft.",
 			"data": [
 				{
-					"name": "Sandalen",
+					"name": "Keramiken",
 					"comp_name": "sandalen",
 					"search": [
 						"tassen"
