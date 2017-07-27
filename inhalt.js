@@ -1188,7 +1188,7 @@
 				},
 				{
 					"comp_name": "die68er",
-					"name": "Die 68er",
+					"name": "Utopieder",
 					"search": [
 						"achtundsechziger",
 						"68er",
