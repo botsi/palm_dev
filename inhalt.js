@@ -216,7 +216,7 @@
 						]
 					},
 					"prolog": "Der Keramiker ...",
-					"text": "Der Keramiker ...<br>",
+					"text": "Der Keramiker David Luginbühl hat viele <a class='line' onclick='slide_lr(1)'>Vasen</a> gedreht.<br>",
 					"epilog": {
 						"Ausstellungsort": [
 							[
