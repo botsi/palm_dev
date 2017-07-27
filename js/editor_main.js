@@ -632,7 +632,7 @@
 
 				//save_existing
 
-				document.getElementById('image_editor').innerHTML = '<p><i class="fa fa-times-circle" aria-hidden="true" onclick="close_image_editor()"></i></p><input type="text" class="new_entry" onkeyup="sh_vis.foo(this)" ><button onclick="cont_new_image.foo(this)" style="visibility:hidden;margin-top: 100px;">ok</button><p style="z-index:0;">Bitte einen Namen für ' + p + ' angeben.</p>';
+				document.getElementById('image_editor').innerHTML = '<p><i class="fa fa-times-circle" aria-hidden="true" onclick="close_image_editor()"></i></p><input type="text" class="new_entry" onkeyup="sh_vis.foo(this)" ><button onclick="cont_new_image.foo(this)" style="display:none;margin-top: 100px;">ok</button><p style="z-index:0;">Bitte einen Namen für ' + p + ' angeben.</p>';
 
 				document.getElementById('image_editor').getElementsByTagName('input')[0].classList.add('new_image_text');
 
@@ -672,13 +672,21 @@
 				"pre_clear": [],
 				"foo": function(t) {
 					var v = t.value.toLowerCase().replace(/ /g, '');
+					var b = t.nextSibling;
 					if (all_search.term.indexOf(v) != -1) {
 						console.log(all_search.term);
 						t.style.background = 'rgb(247, 217, 190)';
 						t.style.textDecoration = 'none';
-						t.nextSibling.style.visibility = 'visible';
-
 						t.title = '"' + t.value + '" existiert bereits als Stichwort zu "' + all_search.position[all_search.term.indexOf(v)] + '"\n\nWenn Sie "' + t.value + '" trotzdem wählen, wird das Sichwort entfernt!';
+
+						if (t.parentNode.id == 'image_editor') {
+							b.style.display = 'block';
+						} else {
+
+							b.classList.add('button_valid');
+							b.nextSibling.classList.add('button_valid');
+
+						}
 
 						sh_vis.pre_clear = [v, all_search.position[all_search.term.indexOf(v)]];
 
@@ -690,9 +698,15 @@
 
 						t.style.background = 'rgb(250, 161, 179)';
 						t.style.textDecoration = 'line-through';
-						t.nextSibling.style.visibility = 'hidden';
-
 						t.title = '"' + t.value + '" existiert bereits als Name!';
+
+						if (t.parentNode.id == 'image_editor') {
+							b.style.display = 'none';
+						} else {
+
+							b.classList.remove('button_valid');
+							b.nextSibling.classList.add('button_valid');
+						}
 
 						return;
 
@@ -702,9 +716,16 @@
 
 						t.style.background = 'rgb(250, 161, 179)';
 						t.style.textDecoration = 'line-through';
-						t.nextSibling.style.visibility = 'hidden';
 
 						t.title = '"' + t.value + '" ist als Name zu kurz!';
+
+						if (t.parentNode.id == 'image_editor') {
+							b.style.display = 'none';
+						} else {
+
+							b.classList.remove('button_valid');
+							b.nextSibling.classList.add('button_valid');
+						}
 
 						return;
 
@@ -714,9 +735,15 @@
 
 						t.style.background = 'rgb(247, 217, 190)';
 						t.style.textDecoration = 'none';
-						t.nextSibling.style.visibility = 'visible';
-
 						t.title = '"' + t.value + '" ist als Name ein bischen lang!';
+
+						if (t.parentNode.id == 'image_editor') {
+							b.style.display = 'block';
+						} else {
+
+							b.classList.add('button_valid');
+							b.nextSibling.classList.add('button_valid');
+						}
 
 						return;
 
@@ -726,9 +753,15 @@
 
 						t.style.background = 'rgb(250, 161, 179)';
 						t.style.textDecoration = 'line-through';
-						t.nextSibling.style.visibility = 'hidden';
-
 						t.title = '"' + t.value + '" ist als Name zu lang!';
+
+						if (t.parentNode.id == 'image_editor') {
+							b.style.display = 'none';
+						} else {
+
+							b.classList.remove('button_valid');
+							b.nextSibling.classList.add('button_valid');
+						}
 
 						return;
 
@@ -738,13 +771,23 @@
 
 					t.style.background = '#fff';
 					t.style.textDecoration = 'none';
-					t.nextSibling.style.visibility = 'visible';
 
 					t.title = '"' + t.value + '" ist ein guter Name!';
+
+					if (t.parentNode.id == 'image_editor') {
+						b.style.display = 'block';
+					} else {
+
+						b.classList.add('button_valid');
+						b.nextSibling.classList.add('button_valid');
+					}
+
 
 				}
 
 			};
+
+			//revert
 
 			/******           edit_image           ******/
 
@@ -896,6 +939,7 @@
 				if (t.id.replace('_display', '') == 'name') {
 					sh_vis.foo(t);
 					return;
+					//show_buttons(t.parentNode.nextSibling);
 				}
 
 				if (entry_kind == 'text') {
@@ -2003,6 +2047,10 @@
 					case 'name':
 
 						el.value = to_edit.name;
+						if (el.style.background) {
+							el.style.background = '#fff';
+							el.style.textDecoration = 'none';
+						}
 
 						break;
 
@@ -2260,6 +2308,13 @@
 
 										for (var i = 0; i < sel[2].length; i++) {
 											temp_ih += (s[1] != sel[2][i]) ? '<option value="' + sel[2][i] + '">' + sel[2][i] + '</option>' : '<option selected value="' + sel[2][i] + '">' + sel[2][i] + '</option>';
+										}
+
+										temp_ih += '</select>';
+
+
+										/*
+																				for (var j = 0 + '">' + sel[2][i] + '</option>';
 										}
 
 										temp_ih += '</select>';
