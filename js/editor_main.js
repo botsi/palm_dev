@@ -694,10 +694,11 @@
 
 					}
 
-					if (sh_vis.lk.indexOf(v) != -1) {
+					if (sh_vis.lk.indexOf(v) != -1 && (!to_edit || to_edit.comp_name != v || t.parentNode.id == 'image_editor')) {
 
 						t.style.background = 'rgb(250, 161, 179)';
 						t.style.textDecoration = 'line-through';
+						//console.log('test: to_edit', to_edit.comp_name, ' vs. ', v);
 						t.title = '"' + t.value + '" existiert bereits als Name!';
 
 						if (t.parentNode.id == 'image_editor') {
@@ -2312,21 +2313,6 @@
 
 										temp_ih += '</select>';
 
-
-										/*
-																				for (var j = 0 + '">' + sel[2][i] + '</option>';
-										}
-
-										temp_ih += '</select>';
-
-
-										/*
-																				for (var j = 0; j < 3; j++) {
-																					temp_ih += '<input' + input_attributes + ' value="' + media_obj[key][j] + '" />';
-																				}
-
-										*/
-
 										temp_ih += '<i class="fa fa-minus-circle" aria-hidden="true" onclick="remove_media_key(this)"></i><br/>';
 									}
 
@@ -2843,9 +2829,11 @@
 				come_TextEditor(ih, t);
 			};
 
-			var link_kind_response = function(t, i) {
-				t.parentNode.style.display = 'none';
-			};
+			/*
+						var link_kind_response = function(t, i) {
+							t.parentNode.style.display = 'none';
+						};
+			*/
 
 			var link_kinds = ["virgin", "slide_lr", "search_nostyle", "jump_to", "external"];
 			var link_kind_response = function(t, k) {
@@ -3130,11 +3118,19 @@
 
 			var ok_link = function(t) {
 
+				console.log('TextEditor.origin: ', TextEditor.origin);
+
 				if (TextEditor.origin.tagName.toLowerCase() == 'input') {
 
 					TextEditor.origin.value = TextEditor.children[1].value;
 					TextEditor.origin.removeAttribute("store_link");
-					TextEditor.origin.setAttribute("store_link", TextEditor.children[4].value);
+					if (link_editor.link_kind == 'search_nostyle') {
+
+						TextEditor.origin.value = TextEditor.children[1].value;
+
+					} else {
+						TextEditor.origin.setAttribute("store_link", TextEditor.children[4].value);
+					}
 					validate(TextEditor.origin, TextEditor.origin.parentNode.nextSibling);
 
 				} else {
@@ -3165,6 +3161,8 @@
 							}
 
 						}
+
+						//link_kind_response
 
 						TextEditor.origin.removeAttribute("to_link_text");
 						TextEditor.origin.removeAttribute("to_link_text_start");
@@ -3310,7 +3308,15 @@
 
 										ih += '<td class="lk"' + id + ' onclick="edit(this)" f="' + i + '" d="' + p + '">' + folders[i].data[p].name + '</td>';
 
-										sh_vis.lk.push(folders[i].data[p].name.toLowerCase().replace(/ /g, ''));
+										var na = folders[i].data[p].name.toLowerCase().replace(/ /g, '');
+
+										sh_vis.lk.push(na);
+
+										if (na != folders[i].data[p].comp_name) {
+
+											sh_vis.lk.push(folders[i].data[p].comp_name);
+
+										}
 
 									} else {
 

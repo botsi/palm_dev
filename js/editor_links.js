@@ -117,13 +117,23 @@ var make_secondfield = function(lt) {
 
 	} else {
 
+		var mitarbeiter = [];
+
+		for (var i = 5; i < folders[0].data.length - 1; i++) {
+			mitarbeiter.push(folders[0].data[i].name.toLowerCase().replace(/ /g, ''));
+		}
+		console.log('mitarbeiter: ', mitarbeiter);
+
+		//  .toLowerCase().replace(/ /g, '')
+
 		s = '<select onchange="duplicate_to_linktext(this)">';
 
 		var c = document.getElementsByClassName('lk');
 
 		for (var i = 0; i < c.length; i++) {
 			if (c[i].innerText != to_edit.name) {
-				o += (c[i].innerText != lt) ? '<option value="' + c[i].innerText + '">' + c[i].innerText + '</option>' : '<option selected value="' + c[i].innerText + '">' + c[i].innerText + '</option>';
+				var write_opt = (mitarbeiter.indexOf(c[i].innerText.toLowerCase().replace(/ /g, '')) != -1) ? c[i].innerText + ' (palma3)' : c[i].innerText;
+				o += (c[i].innerText != lt) ? '<option value="' + write_opt + '">' + c[i].innerText + '</option>' : '<option selected value="' + write_opt + '">' + c[i].innerText + '</option>';
 			}
 
 		}
