@@ -216,7 +216,7 @@
 						]
 					},
 					"prolog": "",
-					"text": "",
+					"text": "Der Keramiker ...<br>",
 					"epilog": {
 						"Ausstellungsort": [
 							[
