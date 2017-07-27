@@ -1163,8 +1163,7 @@
 								"Fredi Lerch"
 							],
 							"Gestaltung": [
-								"<a href='http://www.josnaepflin.ch/index.html' target='_blank'>Jos Näpflin, Zürich</a>",
-								"Beate Schappach (palma3)"
+								"<a href='http://www.josnaepflin.ch/index.html' target='_blank'>Jos Näpflin, Zürich</a>"
 							],
 							"Grafik und Drucksachen": [
 								"Markus Bucher, Zürich"
