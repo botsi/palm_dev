@@ -231,7 +231,7 @@
 						],
 						"Impressum": {
 							"Kurator": [
-								""
+								"<a href='http://www.abotsi.com' target='_blank'>David</a>"
 							]
 						},
 						"Dossier": []
