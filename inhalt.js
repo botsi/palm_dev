@@ -221,11 +221,11 @@
 						"Ausstellungsort": [
 							[
 								"",
+								"Casa Abotsi",
+								"Untereyfeldweg 7",
+								"3063 Ittigen",
 								"",
-								"",
-								"",
-								"",
-								"",
+								"www.abotsi.com",
 								""
 							]
 						],
