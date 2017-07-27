@@ -200,46 +200,6 @@
 			"intro": "Ausstellungen zu Geschichte, Kultur und Gesellschaft.",
 			"data": [
 				{
-					"name": "Keramiken",
-					"comp_name": "sandalen",
-					"search": [
-						"tassen"
-					],
-					"time": {
-						"from": [
-							27,
-							2,
-							2012
-						],
-						"till": [
-							27,
-							1,
-							2018
-						]
-					},
-					"prolog": "Der Keramiker ...",
-					"text": "Der Keramiker David Luginbühl hat viele <a class='line' onclick='slide_lr(1)'>Vasen</a> gedreht.<br>",
-					"epilog": {
-						"Ausstellungsort": [
-							[
-								"",
-								"Casa Abotsi",
-								"Untereyfeldweg 7",
-								"3063 Ittigen",
-								"",
-								"www.abotsi.com",
-								""
-							]
-						],
-						"Impressum": {
-							"Kurator": [
-								"<a href='http://www.abotsi.com' target='_blank'>David</a>"
-							]
-						},
-						"Dossier": []
-					}
-				},
-				{
 					"comp_name": "schreibrausch",
 					"name": "Schreibrausch",
 					"search": [
@@ -918,6 +878,46 @@
 					}
 				},
 				{
+					"name": "Keramiken",
+					"comp_name": "sandalen",
+					"search": [
+						"tassen"
+					],
+					"time": {
+						"from": [
+							27,
+							2,
+							2012
+						],
+						"till": [
+							27,
+							1,
+							2018
+						]
+					},
+					"prolog": "Der Keramiker ...",
+					"text": "Der Keramiker David Luginbühl hat viele <a class='line' onclick='slide_lr(1)'>Vasen</a> gedreht.<br>",
+					"epilog": {
+						"Ausstellungsort": [
+							[
+								"",
+								"Casa Abotsi",
+								"Untereyfeldweg 7",
+								"3063 Ittigen",
+								"",
+								"www.abotsi.com",
+								""
+							]
+						],
+						"Impressum": {
+							"Kurator": [
+								"<a href='http://www.abotsi.com' target='_blank'>David</a>"
+							]
+						},
+						"Dossier": []
+					}
+				},
+				{
 					"name": "Halbzeit",
 					"comp_name": "halbzeit",
 					"search": [
@@ -1228,7 +1228,7 @@
 				},
 				{
 					"comp_name": "die68er",
-					"name": "Utopieder",
+					"name": "Die 68er",
 					"search": [
 						"achtundsechziger",
 						"68er",
