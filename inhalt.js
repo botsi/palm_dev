@@ -1201,7 +1201,8 @@
 						"langewirkung",
 						"kurzersommerlangewirkung",
 						"hippie",
-						"museumfrankfurt"
+						"museumfrankfurt",
+						"erstermai"
 					],
 					"time": {
 						"from": [
