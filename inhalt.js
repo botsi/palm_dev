@@ -911,8 +911,7 @@
 						],
 						"Impressum": {
 							"Kurator": [
-								"<a href='http://www.abotsi.com/' target='_blank'>David</a>",
-								"<a href='Andreas Schwab' target='_blank'>Andreas Schwab</a>"
+								"<a href='http://www.abotsi.com/' target='_blank'>David</a>"
 							]
 						},
 						"Dossier": []
