@@ -664,21 +664,22 @@
 					"epilog": {
 						"Impressum": {
 							"Veranstalter": [
-								"<a href='http://www.strauhof.ch' target='_blank'>Strauhof Zürich</a>"
+								"<a href='http://www.strauhof.ch/' target='_blank'>Strauhof Zürich</a>"
 							],
 							"Kuratoren": [
 								"Andreas Schwab (palma3)",
 								"Ronny Trachsel (palma3)",
-								"Mario Florin"
+								"Mario Florin",
+								"<a href='Philipp Burkard (palma3)' target='_blank'>Philipp Burkard (palma3)</a>"
 							],
 							"Gestaltung": [
-								"<a href='http://www.z-a-dire.ch' target='_blank'>Richard Zeerleder, z-à-dire</a>"
+								"<a href='http://www.z-a-dire.ch/' target='_blank'>Richard Zeerleder, z-à-dire</a>"
 							],
 							"Grafik und Fotos": [
-								"<a href='http://www.thomasroethlisberger.ch' target='_blank'>Thomas P. Röthlisberger, Bern</a>"
+								"<a href='http://www.thomasroethlisberger.ch/' target='_blank'>Thomas P. Röthlisberger, Bern</a>"
 							],
 							"Szenografie": [
-								"<a href='http://www.robandrose.ch/' target='_blank'>Matthias Rohrbach, Rob & Rose</a>"
+								"<a href='http://www.robandrose.ch/' target='_blank'>Matthias Rohrbach, Rob &amp; Rose</a>"
 							],
 							"Produktionsleitung": [
 								"Roman Hess"
