@@ -1309,8 +1309,7 @@
 								"Wenger/Zurflüh, Gestaltungen GmbH, Bern"
 							],
 							"Grafik": [
-								"<a href='http://www.lesgraphistes.ch/' target='_blank'>Petra Schmied und Marc Siegenthaler, Bern</a>",
-								"<a href='Jürg Spichiger (palma3)' target='_blank'>Jürg Spichiger (palma3)</a>"
+								"<a href='http://www.lesgraphistes.ch/' target='_blank'>Petra Schmied und Marc Siegenthaler, Bern</a>"
 							]
 						},
 						"Medienberichte": true,
