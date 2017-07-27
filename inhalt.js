@@ -215,7 +215,7 @@
 							2018
 						]
 					},
-					"prolog": "",
+					"prolog": "Der Keramiker ...",
 					"text": "Der Keramiker ...<br>",
 					"epilog": {
 						"Ausstellungsort": [
