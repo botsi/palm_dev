@@ -202,7 +202,9 @@
 				{
 					"name": "Sandalen",
 					"comp_name": "sandalen",
-					"search": [],
+					"search": [
+						"tassen"
+					],
 					"time": {
 						"from": [
 							27,
