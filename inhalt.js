@@ -1994,7 +1994,7 @@
 						]
 					},
 					"prolog": "Die besten Pressezeichnungen des Jahres",
-					"text": "Über 45 Schweizer Pressezeichner zeigen die prägendsten und pointiertesten Karikaturen und Cartoons des Jahres 2012. Vernissage mit: Slam Poet Simon Libsig, dem Musiker Nic Niedermann und den beiden Politikern Philipp Müller und Alex Tschäppät.",
+					"text": "Über 45 Schweizer Pressezeichner zeigen die prägendsten und pointiertesten Karikaturen und Cartoons des Jahres 2012. Vernissage mit: Slam Poet Simon Libsig, dem Musiker Nic Niedermann und den beiden Politikern Philipp Müller und <a class='line' onclick='slide_lr(5)'>Alex Tschäppät</a>.",
 					"epilog": {
 						"Ausstellungskonzept": "somming soon ...<br>",
 						"Impressum": {
