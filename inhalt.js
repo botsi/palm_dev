@@ -405,8 +405,7 @@
 								"Ursina Clemens"
 							],
 							"Vermittlung": [
-								"Heidi Pechlaner",
-								"tobias"
+								"Heidi Pechlaner"
 							],
 							"Kommunikation": [
 								"Carol Nater Cartier",
