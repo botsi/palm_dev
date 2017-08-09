@@ -604,7 +604,7 @@
 						"Impressum": {
 							"Veranstalter": [
 								"<a href='http://pgi.ch/index.php/centri-regionali/bregaglia/pgi-bregaglia/1407-doppia-mostra-in-bregaglia' target='_blank'>Società culturale di Bregaglia</a>",
-								"Förderverein Emil Zbinden, Bern"
+								"<a href='http://emil-zbinden.ch/f-c3-b6rderverein-e.z..shtml' target='_blank'>Förderverein Emil Zbinden, Bern</a>"
 							],
 							"Kurator": [
 								"Etienne Wismer"
