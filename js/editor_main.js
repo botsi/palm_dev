@@ -2647,11 +2647,6 @@
 
 			var add_inputfield_editor_funcs = function(el) {
 
-				//console.log(el.id);
-
-				//if (el.id == 'Ausstellungskonzept_display') {
-				//console.log('a s length: ', el.querySelectorAll('a').length);
-
 				var as = el.querySelectorAll('input');
 
 				var newItem;
@@ -2700,6 +2695,8 @@
 
 							as[i].readOnly = true;
 
+							as[i].style.cursor = 'pointer';
+
 							as[i].onfocus = function() {
 								sh_link_editor(this);
 							};
@@ -2714,19 +2711,18 @@
 
 						newItem.setAttribute("onclick", "sh_link_editor(this.previousSibling)");
 
+						if (as[i].getAttribute("store_link") != null) {
+							newItem.style.visibility = 'hidden';
+							newItem.style.marginLeft = '-41px';
+							if (as[i].nextSibling.classList.contains('fa-minus-circle') && !as[i].nextSibling.nextSibling.classList.contains('fa-plus-circle')) {
+								as[i].nextSibling.style.marginRight = '41px';
+							}
+						}
+
 						document.getElementById('Impressum_display').insertBefore(newItem, as[i].nextSibling);
 
 					}
 				}
-				//}
-
-			};
-
-			/*******em, as[i].nextSibling);
-
-					}
-				}
-				//}
 
 			};
 

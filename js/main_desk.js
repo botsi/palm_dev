@@ -669,9 +669,9 @@ var inhalt = function(c, i) {
 
 		'<i class="fa fa-expand" aria-hidden="true"></i>' +
 
-		'<i class="fa fa-eye" aria-hidden="true"></i>' +
+		'<i class="fa fa-eye" aria-hidden="true" title="Hintergrundbild sehen"></i>' +
 
-		'<i class="fa fa-file-text-o" aria-hidden="true"></i>' +
+		'<i class="fa fa-file-text-o" aria-hidden="true" title="zurück zum Text"></i>' +
 
 		'';
 
