@@ -668,7 +668,8 @@
 							],
 							"Kuratoren": [
 								"Andreas Schwab (palma3)",
-								"Ronny Trachsel (palma3)"
+								"Ronny Trachsel (palma3)",
+								"Mario Florin"
 							],
 							"Gestaltung": [
 								"<a href='http://www.z-a-dire.ch/' target='_blank'>Richard Zeerleder, z-à-dire</a>"
