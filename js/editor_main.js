@@ -1918,6 +1918,8 @@
 						} else {
 							delete to_edit.epilog[entry_kind];
 						}
+						fill_cat('Impressum');
+
 						break;
 					case 'Ausstellungskonzept':
 						to_edit.epilog[entry_kind] = t.previousSibling.innerHTML.replace(/"/g, "'");
@@ -2701,6 +2703,14 @@
 								sh_link_editor(this);
 							};
 
+							if (as[i].previousSibling.previousSibling.classList.contains('keyfield')) {
+								as[i].nextSibling.style.visibility = 'hidden';
+								if (as[i].nextSibling.nextSibling.classList.contains('fa-plus-circle')) {
+									as[i].nextSibling.style.marginLeft = '-31px';
+								}
+							}
+
+
 						}
 
 						newItem = document.createElement("i");
@@ -3085,10 +3095,13 @@
 
 				if (TextEditor.origin.tagName.toLowerCase() == 'input') {
 
-					alert('comming soon');
+					TextEditor.origin.removeAttribute('store_link');
+
+					go_TextEditor();
+
+					validate(TextEditor.origin, TextEditor.origin.parentNode.nextSibling);
 
 				} else {
-
 
 					if (TextEditor.origin.tagName.toLowerCase() == 'a') {
 						console.log(TextEditor.origin);
