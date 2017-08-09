@@ -1,11 +1,9 @@
 {
-	"folders": [
-		{
+	"folders": [{
 			"menu_name": "Über uns",
 			"name": "uberuns",
 			"intro": "Ausstellungsbüro für Kopfreisen",
-			"data": [
-				{
+			"data": [{
 					"comp_name": "profil",
 					"name": "Profil",
 					"search": [
@@ -198,8 +196,7 @@
 			"menu_name": "Sonderausstellungen",
 			"name": "sonderausstellungen",
 			"intro": "Ausstellungen zu Geschichte, Kultur und Gesellschaft.",
-			"data": [
-				{
+			"data": [{
 					"comp_name": "schreibrausch",
 					"name": "Schreibrausch",
 					"search": [
@@ -619,7 +616,7 @@
 								"SWISSLOS / Promozione della cultura Cantone dei Grigioni",
 								"Jubiläumsstiftung Mobiliar Versicherung",
 								"Kraftwerke Oberhasli KWO",
-								"<a href='http://post.ch/' target='_blank'>P. Herzog-Stiftung</a>",
+								"P. Herzog-Stiftung",
 								"Syndicom",
 								"Stadt Bern",
 								"Stanley-Thomas-Johnson-Stiftung",
@@ -633,7 +630,7 @@
 								"Stiftung Jacques Bischofsberger",
 								"Oscar Neher Stiftung",
 								"Biblioteca Engiadinaisa",
-								"<a href='http://new.mis-magazin.ch' target='_blank'>Fondazione Svizzera per la Radio e la Cultura</a>"
+								"Fondazione Svizzera per la Radio e la Cultura"
 							]
 						},
 						"Medienberichte": true,
@@ -1491,8 +1488,7 @@
 			"menu_name": "Dauerausstellungen",
 			"name": "dauerausstellungen",
 			"intro": "",
-			"data": [
-				{
+			"data": [{
 					"comp_name": "fondazionemonteverita",
 					"name": "Monte Verità",
 					"search": [
@@ -1865,8 +1861,7 @@
 			"menu_name": "Beratung",
 			"name": "beratung",
 			"intro": "",
-			"data": [
-				{
+			"data": [{
 					"comp_name": "sasso",
 					"name": "Sasso San Gottardo",
 					"search": [
@@ -2031,8 +2026,7 @@
 			"menu_name": "Audio und Video",
 			"name": "audioundvideo",
 			"intro": "",
-			"data": [
-				{
+			"data": [{
 					"columns": "",
 					"comp_name": "maxfrisch",
 					"name": "Auf den Spuren von Max Frisch",
@@ -2201,8 +2195,7 @@
 			"menu_name": "Publikationen",
 			"name": "publikationen",
 			"intro": "",
-			"data": [
-				{
+			"data": [{
 					"name": "Anderberg",
 					"comp_name": "anderberg",
 					"search": [
