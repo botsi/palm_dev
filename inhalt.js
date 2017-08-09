@@ -619,7 +619,7 @@
 								"SWISSLOS / Promozione della cultura Cantone dei Grigioni",
 								"Jubiläumsstiftung Mobiliar Versicherung",
 								"Kraftwerke Oberhasli KWO",
-								"<a href='http://post.ch' target='_blank'>P. Herzog-Stiftung</a>",
+								"<a href='http://post.ch/' target='_blank'>P. Herzog-Stiftung</a>",
 								"Syndicom",
 								"Stadt Bern",
 								"Stanley-Thomas-Johnson-Stiftung",
@@ -633,7 +633,7 @@
 								"Stiftung Jacques Bischofsberger",
 								"Oscar Neher Stiftung",
 								"Biblioteca Engiadinaisa",
-								"Fondazione Svizzera per la Radio e la Cultura"
+								"<a href='http://new.mis-magazin.ch' target='_blank'>Fondazione Svizzera per la Radio e la Cultura</a>"
 							]
 						},
 						"Medienberichte": true,
