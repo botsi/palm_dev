@@ -672,8 +672,7 @@
 								"Mario Florin"
 							],
 							"Gestaltung": [
-								"<a href='http://www.z-a-dire.ch/' target='_blank'>Richard Zeerleder, z-à-dire</a>",
-								"<a href='http://velo.ch' target='_blank'>hallo velo</a>"
+								"<a href='http://www.z-a-dire.ch/' target='_blank'>Richard Zeerleder, z-à-dire</a>"
 							],
 							"Grafik und Fotos": [
 								"<a href='http://www.thomasroethlisberger.ch/' target='_blank'>Thomas P. Röthlisberger, Bern</a>"
