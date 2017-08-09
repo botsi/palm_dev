@@ -619,7 +619,7 @@
 								"SWISSLOS / Promozione della cultura Cantone dei Grigioni",
 								"Jubiläumsstiftung Mobiliar Versicherung",
 								"Kraftwerke Oberhasli KWO",
-								"P. Herzog-Stiftung",
+								"<a href='http://post.ch' target='_blank'>P. Herzog-Stiftung</a>",
 								"Syndicom",
 								"Stadt Bern",
 								"Stanley-Thomas-Johnson-Stiftung",
