@@ -668,8 +668,7 @@
 							],
 							"Kuratoren": [
 								"Andreas Schwab (palma3)",
-								"Ronny Trachsel (palma3)",
-								"<a href='http://post.ch' target='_blank'>Mario Florin</a>"
+								"Ronny Trachsel (palma3)"
 							],
 							"Gestaltung": [
 								"<a href='http://www.z-a-dire.ch/' target='_blank'>Richard Zeerleder, z-à-dire</a>"
