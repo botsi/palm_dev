@@ -340,9 +340,11 @@
       }
 
       #Impressum_display input[type="text"] {
-      	min-width: 300px;
+      	min-width: 296px;
       	border: 0 none;
       	margin: 6px calc(6vw / 8);
+      	padding-left: 4px;
+      	padding-right: 4px;
       }
 
       #Impressum_display .keyfield {
@@ -358,6 +360,8 @@
 
       #Impressum_display .keyfield+i {
       	display: inline;
+      	padding: 5px 6px 4px 6px;
+      	vertical-align: -2px;
       }
 
       #Impressum_display .keyfield+i:after {

@@ -1922,6 +1922,8 @@
 
 						break;
 					case 'Ausstellungskonzept':
+						/*
+						 */
 						to_edit.epilog[entry_kind] = t.previousSibling.innerHTML.replace(/"/g, "'");
 						break;
 					default:
@@ -2290,36 +2292,58 @@
 
 										temp_ih += '<i class="' + fa + ' media_icon_size" aria-hidden="true"></i> ';
 
-										temp_ih += '<input' + input_attributes + ' value="' + media_obj[key][0] + '" />';
+										temp_ih += '<input' + input_attributes + ' value="' + media_obj[key][0] + '" disabled />';
 
-
-										temp_ih += '<select onchange="validate(this,this.parentNode.nextSibling)">';
-
-										temp_ih += '<option selected value="' + media_obj[key][1] + '">' + media_obj[key][1] + '</option>';
-
-										for (var i = 0; i < media_options[media_obj[key][3]].length; i++) {
-											temp_ih += '<option value="' + media_options[media_obj[key][3]][i] + '">' + media_options[media_obj[key][3]][i] + '</option>';
-										}
-
-										temp_ih += '</select><select onchange="validate(this,this.parentNode.nextSibling)">';
+										temp_ih += '<input' + input_attributes + ' value="' + media_obj[key][1] + '" disabled />';
 
 										for (var i = 0; i < sel[1].length; i++) {
-											temp_ih += (s[0] != sel[1][i]) ? '<option value="' + sel[1][i] + '">' + sel[1][i] + '</option>' : '<option selected value="' + sel[1][i] + '">' + sel[1][i] + '</option>';
+											if (s[0] == sel[1][i]) {
+												temp_ih += '<input' + input_attributes + ' value="' + sel[1][i] + '" disabled />';
+												break;
+											}
 										}
-
-										temp_ih += '</select><select onchange="validate(this,this.parentNode.nextSibling)">';
 
 										for (var i = 0; i < sel[2].length; i++) {
-											temp_ih += (s[1] != sel[2][i]) ? '<option value="' + sel[2][i] + '">' + sel[2][i] + '</option>' : '<option selected value="' + sel[2][i] + '">' + sel[2][i] + '</option>';
+											if (s[1] == sel[2][i]) {
+												temp_ih += '<input' + input_attributes + ' value="' + sel[2][i] + '" disabled />';
+												break;
+											}
 										}
 
-										temp_ih += '</select>';
+										temp_ih += '<br/>';
 
-										temp_ih += '<i class="fa fa-minus-circle" aria-hidden="true" onclick="remove_media_key(this)"></i><br/>';
+
+										/*
+																				temp_ih += '<select onchange="validate(this,this.parentNode.nextSibling)">';
+
+																				temp_ih += '<option selected value="' + media_obj[key][1] + '">' + media_obj[key][1] + '</option>';
+
+																				for (var i = 0; i < media_options[media_obj[key][3]].length; i++) {
+																					temp_ih += '<option value="' + media_options[media_obj[key][3]][i] + '">' + media_options[media_obj[key][3]][i] + '</option>';
+																				}
+
+																				temp_ih += '</select><select onchange="validate(this,this.parentNode.nextSibling)">';
+
+																				for (var i = 0; i < sel[1].length; i++) {
+																					temp_ih += (s[0] != sel[1][i]) ? '<option value="' + sel[1][i] + '">' + sel[1][i] + '</option>' : '<option selected value="' + sel[1][i] + '">' + sel[1][i] + '</option>';
+																				}
+
+																				temp_ih += '</select><select onchange="validate(this,this.parentNode.nextSibling)">';
+
+																				for (var i = 0; i < sel[2].length; i++) {
+																					temp_ih += (s[1] != sel[2][i]) ? '<option value="' + sel[2][i] + '">' + sel[2][i] + '</option>' : '<option selected value="' + sel[2][i] + '">' + sel[2][i] + '</option>';
+																				}
+
+																				temp_ih += '</select>';
+
+																				temp_ih += '<i class="fa fa-minus-circle" aria-hidden="true" onclick="remove_media_key(this)"></i><br/>';
+
+										*/
+
 									}
 
 
-									el.innerHTML = temp_ih;
+									el.innerHTML = 'Um Dateien einzufügen oder zu entfernen, bitte E-Mail an <a href="mailto:david@abotsi.com" target="_blank" >david@abotsi.com</a><br/>' + temp_ih;
 
 									temp_ih = '';
 
