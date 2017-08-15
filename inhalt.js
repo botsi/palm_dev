@@ -228,7 +228,7 @@
 						"Impressum": {
 							"Veranstalter": [
 								"<a href='http://www.strauhof.ch/' target='_blank'>Strauhof Zürich</a>",
-								"Gesa Schneiderrr",
+								"Gesa Schneider",
 								"Rémi Jaccard",
 								"Carla Peca"
 							],
