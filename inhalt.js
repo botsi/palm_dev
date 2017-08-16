@@ -1,11 +1,9 @@
 {
-	"folders": [
-		{
+	"folders": [{
 			"menu_name": "Über uns",
 			"name": "uberuns",
 			"intro": "Ausstellungsbüro für Kopfreisen",
-			"data": [
-				{
+			"data": [{
 					"comp_name": "profil",
 					"name": "Profil",
 					"search": [
@@ -198,8 +196,7 @@
 			"menu_name": "Sonderausstellungen",
 			"name": "sonderausstellungen",
 			"intro": "Ausstellungen zu Geschichte, Kultur und Gesellschaft.",
-			"data": [
-				{
+			"data": [{
 					"comp_name": "schreibrausch",
 					"name": "Schreibrausch",
 					"search": [
@@ -493,10 +490,10 @@
 						"Ausstellungskonzept": "<h2>«Dreiecksgeschichte» in vier Museen<br/>Warum hat sich Engelberg 1815 für Obwalden und gegen Nidwalden entschieden? Wie wurde dadurch das Verhältnis zwischen den drei Talschaften bis heute geprägt? Die spannende Ausstellung «Dreiecksgeschichte» in vier Museen in Engelberg, Stans, Sarnen und Sachseln leuchtet die wirren historischen Ereignisse rund um den Anschluss Engelberg an Obwalden aus und spannt den Bogen bis in die Gegenwart. Die vierteilige Ausstellung startet am Samstag, 16. Mai im Historischen Museum Obwalden in Sarnen.</h2><p>Das Jahr 2015 ist ein Jahr der Jubiläen: 700 Jahre Schlacht bei Morgarten, 600 Jahre Eroberung des habsburgischen Aargaus, 500 Jahre Schlacht bei Marignano, 200 Jahre Wiener Kongress und Anerkennung der Schweizer Neutralität. Die Reihe lässt sich weiter ergänzen. Eine Frage drängt sich dabei auf: Welche geschichtlichen Ereignisse sind für die Schweiz von heute wichtig?</p><h2>Alle Regionen Unterwaldens gerieten 1798 und 1815 in Turbulenzen</h2><p>Die Anlässe rund um das Jubiläum «200 Jahre Engelberg bei Obwalden» können ebenfalls einen wertvollen Beitrag zur Geschichtsdebatte leisten. Denn die Jahre von 1798 bis 1815, als sich Engelberg vom Kanton Nidwalden abwendete und Obwalden anschloss, lösten heftige Fragen aus nach Identität und Zugehörigkeit. Nicht nur die Innerschweizer Kantone erlebten den damaligen Umbruch schmerzhaft. Diktiert von Napoleon Bonaparte, brachte 1798 eine kleine helvetische Revolution in der ganzen Schweiz das Ancien Régime zum Sturz. Der Klosterstaat Engelberg wurde aufgelöst und die Franzosen wollten die Geistlichen sogar zur Aufgabe des Klosters drängen. In der gleichen Zeit stürzten sich die Nidwaldner in einen aussichtslosen Kampf gegen übermächtige französische Truppen. Allein 400 Nidwaldnerinnen und Nidwaldner starben. Nidwalden holte sich bei der kriegerischen Auseinandersetzung ein lange andauerndes Trauma, wie heute Historiker schreiben.</p><p>1803 war es erneut Napoleon, welcher der Schweiz nach einigen innenpolitischen Wirren den Mediationsvertrag aufzwang. Dabei gab er den Schweizer Ständen die Souveränität zurück, die sie 1798 mit dem Zerfall der Alten Eidgenossenschaft verloren hatten. Bis 1803 konnte Obwalden im eidgenössischen Bund stets mehr Rechte wahrnehmen als Nidwalden, was jahrhundertelang zu teilweise erbitterten Streitigkeiten führte. Nun stellte Napoleon die beiden Erzfeinde rechtlich gleich und schlug Engelberg als gleichberechtigte Gemeinde zu Nidwalden.</p><p>In Unterwalden herrschten für kurze Zeit klare politische Verhältnisse. Doch bereits 1814, erneut durch Napoleon bedingt, geriet Unterwalden abermals in heftige Turbulenzen: Die Frage des Beitritts zum helvetischen Staatenbund stand zur Debatte, wobei wiederum Nidwalden dagegen opponierte und schliesslich 1815 zum Anschluss gezwungen wurde. In dieser Zeit versagte Nidwalden Engelberg im Nidwaldner Landrat wiederholt das Recht, ebenfalls über den Beitritt abzustimmen. Darauf schloss sich Engelberg im Juli 1815 Obwalden an.</p><h2>Sture Nidwaldner, bedächtige Obwaldner, Spezialfall Engelberg?</h2><p>Die Folgerung, dass die Nidwaldner eben stur, unbelehrbar und zu keiner Realpolitik fähig seien, greift allerdings zu kurz. Sowohl die Engelberger wie auch die Obwaldner gerieten in den Jahren 1798 und 1815 durch den politischen Druck von aussen stark in Bedrängnis. Dank Diplomatie und Zurückhaltung gelang es ihnen jedoch in beiden Situationen, den Sturz ins Chaos zu vermeiden, wie ihn die Nidwaldner erlebten. Trifft das Klischee von den bedächtigen, zurückhaltenden Obwaldnern vielleicht in diesem Fall zu? Wohl kaum. Die Realitäten im damaligen Unterwalden waren viel komplexer und sie sind es auch heute. Mit einer kritischen Betrachtung der Geschichte und ihrer Bedeutung für die Gegenwart sollen die Sonderausstellungen «Dreiecksgeschichte Engelberg-Nidwalden-Obwalden» die Verhältnisse in Unterwalden ausleuchten. Da geht es etwa um die Stellung Engelbergs, das bis 1798 ein mächtiger Klosterstaat mit einem Sonderstatus in der Eidgenossenschaft bildete. Seit 1815 gehört Engelberg zwar zum Kanton Obwalden, doch das Selbstverständnis, etwas Eigenes zu sein, ist auch heute noch relevant für die Beziehungen zum übrigen Unterwalden.</p><h2>Blick auf die Verhältnisse der Gegenwart</h2><p>Die vier Ausstellungen, die im Tal Museum Engelberg, im Historischen Museum in Sarnen, im Salzmagazin Stans und im Museum Bruder Klaus Sachseln in je unterschiedlichen Formen präsentiert werden, sollen nicht nur die historisch gewachsene Rivalität der beiden Nachbarkantone fokussieren. Unter dem Stichwort «Zeig mir deinen Lieblingsort in Unterwalden!» haben die Ausstellungsmacher vergangenen Juni die Bevölkerung aufgerufen, Fotos ihrer bevorzugten Orte einzureichen. Dem Aufruf sind rund 150 Kinder, Jugendliche und Erwachsene gefolgt. Eingereicht wurden rund 240 Fotos, Videos und Kunstwerke.</p><p>Das Motiv «Lieblingsort» sollte zu einer persönlichen Auseinandersetzung mit dem eigenen Lebensmittelpunkt anregen, aber auch mit den «Nachbarregionen» fördern. Fragen dazu sind etwa: Ist die regionale Identität in den Regionen Unterwaldens wirklich so stark, wie etwa Lokalhistoriker behaupten? Leben die Nidwaldner und Obwaldner aufgrund von landschaftlichen Schönheiten und steuerlichen Vorteilen in privilegierten Regionen? Was passiert mit ihren Landschaften? Wie steht es um die Solidarität mit den Nachbarn? Aktuelle Beziehungsgeschichten in Unterwalden 2015: ein Grund mehr, in die Ausstellungen «Dreiecksgeschichte Engelberg, Nidwalden, Obwalden» einzutauchen.</p>",
 						"Impressum": {
 							"Veranstalter": [
-								"<a href='http://www.talmuseum.ch' target='_blank'>Tal Museum, Engelberg</a>, Nicole Eller",
-								"<a href='http://www.nidwaldner-museum.ch' target='_blank'>Nidwaldner Museum, Stans</a>, Stefan Zollinger, Jozef Lauwers und Thomas Odermatt",
-								"<a href='http://www.museum-obwalden.ch' target='_blank'>Historisches Museum Obwalden, Sarnen</a>, Klara Spichtig, Emanuel Flück und Christian Imfeld",
-								"<a href='http://www.museumbruderklaus.ch' target='_blank'>Museum Bruder Klaus, Sachseln</a>, Urs Sibler"
+								"<a href='http://www.talmuseum.ch' target='_blank'>Tal Museum, Engelberg, Nicole Eller</a>",
+								"<a href='http://www.nidwaldner-museum.ch' target='_blank'>Nidwaldner Museum, Stans, Stefan Zollinger, Jozef Lauwers und Thomas Odermatt</a>",
+								"<a href='http://www.museum-obwalden.ch' target='_blank'>Historisches Museum Obwalden, Sarnen, Klara Spichtig, Emanuel Flück und Christian Imfeld</a>",
+								"<a href='http://www.museumbruderklaus.ch' target='_blank'>Museum Bruder Klaus, Sachseln, Urs Sibler</a>"
 							],
 							"Kurator und Projektleitung": [
 								"Jürg Spichiger (palma3)"
@@ -1491,8 +1488,7 @@
 			"menu_name": "Dauerausstellungen",
 			"name": "dauerausstellungen",
 			"intro": "",
-			"data": [
-				{
+			"data": [{
 					"comp_name": "fondazionemonteverita",
 					"name": "Monte Verità",
 					"search": [
@@ -1865,8 +1861,7 @@
 			"menu_name": "Beratung",
 			"name": "beratung",
 			"intro": "",
-			"data": [
-				{
+			"data": [{
 					"comp_name": "sasso",
 					"name": "Sasso San Gottardo",
 					"search": [
@@ -2031,8 +2026,7 @@
 			"menu_name": "Audio und Video",
 			"name": "audioundvideo",
 			"intro": "",
-			"data": [
-				{
+			"data": [{
 					"columns": "",
 					"comp_name": "maxfrisch",
 					"name": "Auf den Spuren von Max Frisch",
@@ -2201,8 +2195,7 @@
 			"menu_name": "Publikationen",
 			"name": "publikationen",
 			"intro": "",
-			"data": [
-				{
+			"data": [{
 					"name": "Anderberg",
 					"comp_name": "anderberg",
 					"search": [
