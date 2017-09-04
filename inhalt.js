@@ -1,9 +1,11 @@
 {
-	"folders": [{
+	"folders": [
+		{
 			"menu_name": "Über uns",
 			"name": "uberuns",
 			"intro": "Ausstellungsbüro für Kopfreisen",
-			"data": [{
+			"data": [
+				{
 					"comp_name": "profil",
 					"name": "Profil",
 					"search": [
@@ -196,7 +198,8 @@
 			"menu_name": "Sonderausstellungen",
 			"name": "sonderausstellungen",
 			"intro": "Ausstellungen zu Geschichte, Kultur und Gesellschaft.",
-			"data": [{
+			"data": [
+				{
 					"comp_name": "schreibrausch",
 					"name": "Schreibrausch",
 					"search": [
@@ -1488,7 +1491,8 @@
 			"menu_name": "Dauerausstellungen",
 			"name": "dauerausstellungen",
 			"intro": "",
-			"data": [{
+			"data": [
+				{
 					"comp_name": "fondazionemonteverita",
 					"name": "Monte Verità",
 					"search": [
@@ -1784,7 +1788,7 @@
 							2012
 						]
 					},
-					"prolog": "«Niklaus von Flüe - Vermittler zwischen Welten» Dauerausstellung zu Leben und Wirkungsgeschichte von Bruder Klaus (1417487)",
+					"prolog": "«Niklaus von Flüe - Vermittler zwischen Welten» Dauerausstellung zu Leben und Wirkungsgeschichte von Bruder Klaus (1417 - 1487)",
 					"text": "Bruder Klaus (Niklaus von Flüe) gehört zu den herausragenden Persönlichkeiten der Schweiz. Politisch ist seine Vermittlung beim Stanser Verkommnis von 1481 für die damalige Eidgenossenschaft von entscheidender Bedeutung. Seine Friedens- und Vermittlungsbotschaften sind bis heute über die Konfessionsgrenzen hinweg aktuell geblieben.<br/>Zu seinen Ehren wurden in Sachseln die Stiftung und 1976 das Museum Bruder Klaus errichtet. Das Museum hat gesamtschweizerische Bedeutung und strahlt weit über die Landesgrenzen hinaus. Es hat sich seit seinem Bestehen mit Sonderausstellungen zu religiösen Themen und mit raumbezogenen Installationen zeitgenössischer Kunst über die Pilgerkreise hinaus ein zusätzliches Publikum erarbeitet.",
 					"epilog": {
 						"Ausstellungsort": [
@@ -1861,7 +1865,8 @@
 			"menu_name": "Beratung",
 			"name": "beratung",
 			"intro": "",
-			"data": [{
+			"data": [
+				{
 					"comp_name": "sasso",
 					"name": "Sasso San Gottardo",
 					"search": [
@@ -2026,7 +2031,8 @@
 			"menu_name": "Audio und Video",
 			"name": "audioundvideo",
 			"intro": "",
-			"data": [{
+			"data": [
+				{
 					"columns": "",
 					"comp_name": "maxfrisch",
 					"name": "Auf den Spuren von Max Frisch",
@@ -2195,7 +2201,8 @@
 			"menu_name": "Publikationen",
 			"name": "publikationen",
 			"intro": "",
-			"data": [{
+			"data": [
+				{
 					"name": "Anderberg",
 					"comp_name": "anderberg",
 					"search": [
