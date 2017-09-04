@@ -1328,6 +1328,16 @@ div.epilog span {
 	justify-content: space-between;
 }
 
+#palma_shop span.row_span {
+line-height: 20px;
+min-height: 64px;
+}
+
+#palma_shop span.row_span:nth-of-type(1) {
+width: 100px;
+display: inline-table;
+}
+
 #palma_shop span img {
 	cursor: pointer;
 	margin-left: 24px;
@@ -1577,6 +1587,10 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	line-height: 18px;
 	padding: 3px 0;
 	cursor: pointer;
+/*
+pointer-events: auto;
+*/
+
 }
 
 .sel_day {

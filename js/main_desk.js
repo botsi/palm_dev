@@ -108,9 +108,6 @@ var sh_dat = {
 	"dis": true,
 	"sh": function(el, d) {
 
-		// el = timemachine
-
-
 		if (!sh_dat.dis) {
 			return;
 		}
@@ -687,7 +684,8 @@ var inhalt = function(c, i) {
 
 	if (typeof c[i].form !== 'undefined') {
 
-		var timemachine = '<div class="timemachine" onmouseout="sh_dat.sh(this,0)" onmouseover="sh_dat.sh(this,1)">';
+		var timemachine = '<div class="timemachine">';
+		//var timemachine = '<div class="timemachine" onmouseout="sh_dat.sh(this,0,event)" onmouseover="sh_dat.sh(this,1,event)">';
 
 		timemachine += '<span style="cursor:default;">' + adjustments_de.monthNames[avdays[0].getMonth()] + ' / ' + adjustments_de.monthNames[avdays[avdays.length - 1].getMonth()] + '</span>';
 
@@ -717,7 +715,7 @@ var inhalt = function(c, i) {
 
 			var fol = folders[shop_arr[sai][0]].data[shop_arr[sai][1]];
 
-			shop_content += '<span><i class="fa fa-check form_check form_check_white" aria-hidden="true" onclick="shop.work(this)" onmouseout="shop.info(this,0)" onmouseover="shop.info(this,1)"></i><span style="width:180px;">' + fol.name + '</span><span id="pr' + fol.epilog.Bestellung[2] + '">CHF ' + fol.epilog.Bestellung[2] + '.00</span><input onmouseout="shop.info(this,0)" onmouseover="shop.info(this,1)" onchange="shop.calc(this)" onkeyup="shop.calc(this)" type="number" name="quantity" style="width:36px;" value="' + fol.epilog.Bestellung[3] + '" /><img src="shop/' + fol.comp_name + '.jpg" onmouseout="shop.info(this,0)" onmouseover="shop.info(this,1)" onclick="shop.info(this,0);jump_to(' + shop_arr[sai][1] + ',' + shop_arr[sai][0] + ');" /></span>';
+			shop_content += '<span><i class="fa fa-check form_check form_check_white" aria-hidden="true" onclick="shop.work(this)" onmouseout="shop.info(this,0)" onmouseover="shop.info(this,1)"></i><span class="row_span">' + fol.name + '</span><span class="row_span" id="pr' + fol.epilog.Bestellung[2] + '">CHF ' + fol.epilog.Bestellung[2] + '.00</span><input onmouseout="shop.info(this,0)" onmouseover="shop.info(this,1)" onchange="shop.calc(this)" onkeyup="shop.calc(this)" type="number" name="quantity" style="width:36px;" value="' + fol.epilog.Bestellung[3] + '" /><img src="shop/' + fol.comp_name + '.jpg" onmouseout="shop.info(this,0)" onmouseover="shop.info(this,1)" onclick="shop.info(this,0);jump_to(' + shop_arr[sai][1] + ',' + shop_arr[sai][0] + ');" /></span>';
 
 		}
 

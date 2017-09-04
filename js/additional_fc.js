@@ -583,6 +583,19 @@ var shop = {
 	}
 };
 
+var timemach_onMouseOut = function(event) {
+	e = event.toElement || event.relatedTarget;
+	if (e.parentNode == this || e == this) {
+		return;
+	}
+	sh_dat.sh(this, 0);
+};
+
+var timemach_onMouseOver = function(event) {
+	sh_dat.sh(this, 1);
+};
+
+
 var loadForm = function() {
 
 	console.log('loadForm', shop.items);
@@ -612,6 +625,10 @@ var loadForm = function() {
 		return;
 
 	}
+
+	//console.log('i need shop', document.getElementsByClassName('timemachine')[0]);
+	document.getElementsByClassName('timemachine')[0].addEventListener('mouseover', timemach_onMouseOver, true);
+	document.getElementsByClassName('timemachine')[0].addEventListener('mouseout', timemach_onMouseOut, true);
 
 	var f_ih = '<form>' +
 
