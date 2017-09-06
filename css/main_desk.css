@@ -590,18 +590,22 @@ div.epilog span {
 }
 
 #chapter_content span.sh {
-	display: block;
 	font-size: 28px;
-	position: absolute;
 	margin-top: -36px;
 	cursor: pointer;
 	text-indent: 0;
-	right: 66px;
+	padding-right: 66px;
 	font-weight: 800;
-	/*org*/
+	/*rem*/
 	/*
-		right: 68px;
+	display: block;
+	position: absolute;
 */
+	/*add*/
+    display: table-cell;
+    text-align: right;
+    white-space: nowrap;
+    vertical-align: middle;
 }
 
 #chapter_content span.aus_dat {
@@ -618,11 +622,9 @@ div.epilog span {
 	/*
     font-weight: 800;
 */
-	/*org*/
-	/*
-		width: calc(100% - 82px);
-    padding-left: 10px;
-*/
+	/*add*/
+display: table;
+    line-height: 1;
 }
 
 #chapter_content span.ueandtx {
@@ -750,11 +752,16 @@ div.epilog span {
 }
 
 .fa-play {
-	padding: 10px 4px 10px 16px;
+	padding: 10px 12px 10px 8px;
 }
 
 .fa-pause {
-	padding: 10px 7px 10px 13px;
+	padding: 10px 13px 10px 7px;
+}
+
+.fa-volume-off {
+  padding: 10px 16px 10px 4px;
+line-height: 24px;
 }
 
 .fa-eye {
@@ -802,11 +809,25 @@ div.epilog span {
 
 /*
 #actual_video {}
+	document.getElementById('hg_media').style.height = '100%';
+	document.getElementById('hg_media').style.top = 0;
+	document.getElementById('hg_media').style.zIndex = 1000;
+
 */
 
- :-webkit-full-screen #actual_video {
+
+ #hg_media:-webkit-full-screen {
 	width: 100%;
 	height: 100%;
+}
+/*
+*/
+
+ .hide_all_on_video {
+position: relative !important;
+height: 100% !important;
+top: 0 !important;
+z-index: 1000;
 }
 
 .scroll_positioner {

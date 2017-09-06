@@ -1,6 +1,6 @@
 var sivId, fadeinmovId, foimId, speedId;
 
-var jump_destination = false;
+var jump_destination = isFS = false;
 
 var wlh, folders;
 
@@ -902,6 +902,13 @@ var zweizehn = 210;
 
 var white_head = function() {
 
+	if (isFS == true) {
+		console.log('fs');
+		return;
+	} else {
+		console.log('no fs');
+	}
+
 	clearTimeout(sivId);
 
 	sivId = setTimeout(function() {
@@ -1596,9 +1603,10 @@ var see = function(t, s, p) {
 
 		t.style.display = 'none';
 		t.nextSibling.style.display = 'inline-block';
-		t.parentNode.style.marginTop = '-42px';
+		//t.parentNode.style.marginTop = '-42px';
 		t.parentNode.parentNode.style.fontSize = '3.6vw';
-		t.parentNode.parentNode.style.textIndent = '40px';
+		t.parentNode.parentNode.style.paddingLeft = '40px';
+		t.parentNode.parentNode.style.width = 'calc(100vw - 300px)';
 		t.parentNode.parentNode.style.background = 'rgba(191, 191, 191, 0.6)';
 
 
@@ -1642,9 +1650,11 @@ var see = function(t, s, p) {
 
 		t.style.display = 'none';
 		t.previousSibling.style.display = 'inline-block';
-		t.parentNode.style.marginTop = '-36px';
+		//t.parentNode.style.marginTop = '-36px';
 		t.parentNode.parentNode.style.fontSize = '28px';
-		t.parentNode.parentNode.style.textIndent = 0;
+		t.parentNode.parentNode.style.paddingLeft = 0;
+		t.parentNode.parentNode.style.width = 'inherit';
+
 		t.parentNode.parentNode.style.background = (window.innerWidth > 950) ? 'rgba(0, 0, 0, 0)' : 'rgba(141, 170, 212, 1)';
 		t.parentNode.parentNode.style.marginTop = '0';
 		t.parentNode.parentNode.style.borderTop = '0 none';
@@ -1981,25 +1991,32 @@ var search = function(t) {
 
 var arrow = function(e) {
 
-	if (document.getElementById('chapter_menu').style.display != 'none') {
-		//return;
-	}
-
 	if (!e) {
 
 		e = window.event;
 
 	}
 
+	if (e.keyCode == 27 && !isFS && folders[chapter].data[folders[chapter].last_position].see_read_state == 1) {
+
+		see(document.getElementsByClassName('fa-file-text-o')[folders[chapter].last_position], 0);
+		folders[chapter].data[folders[chapter].last_position].video.playstate = 'closed';
+		video_controls.hide();
+		return;
+
+	}
+
 	if (e.keyCode == 37) {
 
 		slide_lr(-1);
+		return;
 
 	}
 
 	if (e.keyCode == 39) {
 
 		slide_lr(1);
+		return;
 
 	}
 

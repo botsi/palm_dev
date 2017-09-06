@@ -25,46 +25,45 @@ var mergeObjects = function() {
 //	end spaghetti turn
 
 
+var exitHandler = function() {
+	if (document.webkitIsFullScreen === false) {
+		isFS = false;
+	} else if (document.mozFullScreen === false) {
+		isFS = false;
+	} else if (document.msFullscreenElement === false) {
+		isFS = false;
+	}
+	if (isFS == false) {
+		document.getElementById('hg_media').classList.remove('hide_all_on_video');
+	}
+};
+
+
+document.addEventListener('webkitfullscreenchange', exitHandler, false);
+document.addEventListener('mozfullscreenchange', exitHandler, false);
+document.addEventListener('fullscreenchange', exitHandler, false);
+document.addEventListener('MSFullscreenChange', exitHandler, false);
+
+
 var toggleFullScreen = function() {
-	console.log('vid: ' + vid);
 
-	if (vid.requestFullscreen) {
-		vid.requestFullscreen();
-	} else if (vid.mozRequestFullScreen) {
-		vid.mozRequestFullScreen(); // Firefox
-	} else if (vid.webkitRequestFullScreen) {
-		/*
-		        console.log('webkit vid.parentNode: ' + vid.parentNode);
-		        vid.parentNode.style.width = '100vw !important';
-		        vid.parentNode.style.height = 'auto !important';
-		        vid.parentNode.style.top = '0px !important';
-		        vid.parentNode.style.position = 'fixed !important';
-		        vid.parentNode.style.zIndex = '20000 !important';
-		        vid.parentNode.style.display = 'block !important';
-		*/
+	isFS = true;
+	//console.log(new Date().getSeconds(), 'enter', isFS);
 
-		vid.webkitRequestFullScreen(); // Chrome and Safari
+	var vid_cont = document.getElementById('hg_media');
+
+	vid_cont.classList.add('hide_all_on_video');
+
+	// go full-screen
+	if (vid_cont.requestFullscreen) {
+		vid_cont.requestFullscreen();
+	} else if (vid_cont.webkitRequestFullscreen) {
+		vid_cont.webkitRequestFullscreen();
+	} else if (vid_cont.mozRequestFullScreen) {
+		vid_cont.mozRequestFullScreen();
+	} else if (vid_cont.msRequestFullscreen) {
+		vid_cont.msRequestFullscreen();
 	}
-	/*
-
-	// Note: FF nightly needs about:config full-screen-api.enabled set to true.
-	//function enterFullscreen() {
-	console.log("enterFullscreen()");
-	//vid.onwebkitfullscreenchange = onFullScreenEnter;
-	//vid.onmozfullscreenchange = onFullScreenEnter;
-	//vid.onfullscreenchange = onFullScreenEnter;
-	if (vid.webkitRequestFullscreen) {
-	    vid.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-	} else {
-	    if (vid.mozRequestFullScreen) {
-	        vid.mozRequestFullScreen();
-	    } else {
-	        vid.requestFullscreen();
-	    }
-	}
-	//document.getElementById('enter-exit-fs').onclick = exitFullscreen;
-	//}
-	*/
 
 };
 
