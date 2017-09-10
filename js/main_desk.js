@@ -1195,7 +1195,6 @@ fade_img = function(over, under) {
 
 var vid = '';
 var video_controls = {
-	//"prev_vid": [],
 	"act_src": "",
 	"run": function() {
 
@@ -1207,7 +1206,7 @@ var video_controls = {
 		folders[chapter].data[folders[chapter].last_position].video.playstate = 'open';
 
 		vid.onended = function() {
-			//folders[video_controls.prev_vid[0]].data[video_controls.prev_vid[1]].video.time = vid.currentTime; //arrow
+
 			if (isFS == true) {
 				if (document.exitFullscreen) {
 					document.exitFullscreen();
@@ -1218,7 +1217,24 @@ var video_controls = {
 				} else if (document.msExitFullscreen) {
 					document.msExitFullscreen();
 				}
+
 			}
+
+			see(document.getElementsByClassName('fa-file-text-o')[folders[chapter].last_position], 0);
+			folders[chapter].data[folders[chapter].last_position].video.playstate = 'closed';
+			video_controls.hide();
+		};
+
+		vid.onclick = function() {
+			//folders[video_controls.prev_vid[0]].data[video_controls.prev_vid[1]].video.time = vid.currentTime; //arrow
+			if (isFS == true) {
+				if (vid.paused) {
+					video_controls.run();
+				} else {
+					video_controls.pause();
+				}
+			}
+
 		};
 
 		vid.ontimeupdate = function() {
@@ -2012,12 +2028,27 @@ var arrow = function(e) {
 
 	}
 
-	if (e.keyCode == 27 && !isFS && folders[chapter].data[folders[chapter].last_position].see_read_state == 1) {
+	if (e.keyCode == 32 && folders[chapter].data[folders[chapter].last_position].see_read_state == 1) {
+		e.preventDefault();
+	}
 
-		see(document.getElementsByClassName('fa-file-text-o')[folders[chapter].last_position], 0);
-		folders[chapter].data[folders[chapter].last_position].video.playstate = 'closed';
-		video_controls.hide();
-		return;
+	if (folders[chapter].data[folders[chapter].last_position].see_read_state == 1 && vid != '') {
+		if (e.keyCode == 27 && !isFS) {
+
+			see(document.getElementsByClassName('fa-file-text-o')[folders[chapter].last_position], 0);
+			folders[chapter].data[folders[chapter].last_position].video.playstate = 'closed';
+			video_controls.hide();
+			return;
+		}
+
+		if (e.keyCode == 32 && isFS == true) {
+			if (vid.paused) {
+				video_controls.run();
+			} else {
+				video_controls.pause();
+			}
+			return;
+		}
 
 	}
 
