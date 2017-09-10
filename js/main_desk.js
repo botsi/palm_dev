@@ -1206,6 +1206,21 @@ var video_controls = {
 
 		folders[chapter].data[folders[chapter].last_position].video.playstate = 'open';
 
+		vid.onended = function() {
+			//folders[video_controls.prev_vid[0]].data[video_controls.prev_vid[1]].video.time = vid.currentTime; //arrow
+			if (isFS == true) {
+				if (document.exitFullscreen) {
+					document.exitFullscreen();
+				} else if (document.webkitExitFullscreen) {
+					document.webkitExitFullscreen();
+				} else if (document.mozCancelFullScreen) {
+					document.mozCancelFullScreen();
+				} else if (document.msExitFullscreen) {
+					document.msExitFullscreen();
+				}
+			}
+		};
+
 		vid.ontimeupdate = function() {
 			folders[video_controls.prev_vid[0]].data[video_controls.prev_vid[1]].video.time = vid.currentTime;
 		};
