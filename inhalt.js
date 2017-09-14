@@ -2064,7 +2064,7 @@
 							2016
 						]
 					},
-					"prolog": "Drei Stadtspaziergänge Begeben Sie sich mit der FRISCH-App auf Entdeckungsreise!",
+					"prolog": "Drei Stadtspaziergänge - begeben Sie sich mit der FRISCH-App auf Entdeckungsreise!",
 					"text": "Interessieren Sie sich für Max Frisch und seine Heimatstadt Zürich? Die Stadt, in der er seine prägenden Jahre als Kind und Jugendlicher verbracht hat, wo er als junger Architekt und Dramatiker wirkte, die Stadt, in der er als etablierter Autor lebte und mit der er sich ein Leben lang eng verbunden fühlte?<br/>Wenn Sie dieser App folgen, entdecken Sie auf drei Spaziergängen durch Zürich die einzelnen Lebensstationen von Max Frisch. Sie erfahren dabei viel Spannendes über Max Frisch und sein Leben. Sie werden unter anderem sehen, wo er geboren wurde, welche Schulen und Universitäten er besuchte, in welchen Cafés und Restaurants er sich mit Freunden und Gästen traf und wo er mit seinen Theaterstücken Welterfolge feierte.",
 					"epilog": {
 						"Impressum": {
