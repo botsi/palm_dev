@@ -1497,12 +1497,20 @@
 					"name": "Monte Verità",
 					"search": [
 						"ikosaeder",
-						"monteverità",
 						"ascona",
 						"verita",
 						"verità",
 						"szeemann",
-						"haraldszeemann"
+						"haraldszeemann",
+						"baronvonderheydt",
+						"vonderheydt",
+						"heydt",
+						"mammelledellaverità",
+						"mammelledellaverita",
+						"mammelle",
+						"casaanatta",
+						"anatta",
+						"locarno"
 					],
 					"time": {
 						"from": [
@@ -2099,6 +2107,8 @@
 					"comp_name": "monteverita",
 					"name": "Mediaguide Monte Verità",
 					"search": [
+						"monteveritaapp",
+						"mediaguidemonteverita",
 						"mediaguide"
 					],
 					"time": {
