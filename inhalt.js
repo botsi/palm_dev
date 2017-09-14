@@ -1,11 +1,9 @@
 {
-	"folders": [
-		{
+	"folders": [{
 			"menu_name": "Über uns",
 			"name": "uberuns",
 			"intro": "Ausstellungsbüro für Kopfreisen",
-			"data": [
-				{
+			"data": [{
 					"comp_name": "profil",
 					"name": "Profil",
 					"search": [
@@ -198,8 +196,7 @@
 			"menu_name": "Sonderausstellungen",
 			"name": "sonderausstellungen",
 			"intro": "Ausstellungen zu Geschichte, Kultur und Gesellschaft.",
-			"data": [
-				{
+			"data": [{
 					"comp_name": "schreibrausch",
 					"name": "Schreibrausch",
 					"search": [
@@ -1491,18 +1488,24 @@
 			"menu_name": "Dauerausstellungen",
 			"name": "dauerausstellungen",
 			"intro": "",
-			"data": [
-				{
+			"data": [{
 					"comp_name": "fondazionemonteverita",
 					"name": "Monte Verità",
 					"search": [
 						"ikosaeder",
-						"monteverità",
 						"ascona",
 						"verita",
 						"verità",
 						"szeemann",
-						"haraldszeemann"
+						"haraldszeemann",
+						"baronvonderheydt",
+						"vonderheydt",
+						"heydt",
+						"mammelledellaverità",
+						"mammelledellaverita",
+						"mammelle",
+						"casaanatta",
+						"anatta"
 					],
 					"time": {
 						"from": [
@@ -1865,8 +1868,7 @@
 			"menu_name": "Beratung",
 			"name": "beratung",
 			"intro": "",
-			"data": [
-				{
+			"data": [{
 					"comp_name": "sasso",
 					"name": "Sasso San Gottardo",
 					"search": [
@@ -2031,8 +2033,7 @@
 			"menu_name": "Audio und Video",
 			"name": "audioundvideo",
 			"intro": "",
-			"data": [
-				{
+			"data": [{
 					"columns": "",
 					"comp_name": "maxfrisch",
 					"name": "Auf den Spuren von Max Frisch",
@@ -2099,6 +2100,8 @@
 					"comp_name": "monteverita",
 					"name": "Mediaguide Monte Verità",
 					"search": [
+						"monteveritaapp",
+						"mediaguidemonteverita",
 						"mediaguide"
 					],
 					"time": {
@@ -2201,8 +2204,7 @@
 			"menu_name": "Publikationen",
 			"name": "publikationen",
 			"intro": "",
-			"data": [
-				{
+			"data": [{
 					"name": "Anderberg",
 					"comp_name": "anderberg",
 					"search": [
