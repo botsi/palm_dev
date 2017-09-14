@@ -2020,6 +2020,8 @@ var search = function(t) {
 	}
 };
 
+var meta_presed;
+
 var arrow = function(e) {
 
 	if (!e) {
@@ -2027,6 +2029,52 @@ var arrow = function(e) {
 		e = window.event;
 
 	}
+
+	if (e.keyCode == 70 && meta_presed) {
+
+		console.log('meta_presed (on f key): ', meta_presed);
+
+		var cm = document.getElementById('chapter_menu');
+
+		if (cm.style.display != 'block') {
+			e.preventDefault();
+
+
+			var th = document.getElementsByClassName('items')[0];
+
+			cm.innerHTML = folders[th.ix].menu_ih;
+
+			if (folders[th.ix].menu_ih != '') {
+
+				cm.style.display = 'block';
+
+				var last_p_bottom = cm.children[0].lastElementChild.getBoundingClientRect().bottom;
+
+				if (last_p_bottom > window.innerHeight - 210) {
+
+					cm.children[0].style.maxHeight = window.innerHeight - 210 + 'px';
+					cm.children[0].style.overflowY = 'scroll';
+
+				}
+
+				var ml = parseInt(th.getBoundingClientRect().left - cm.offsetWidth / 2 + this.offsetWidth / 2);
+
+				cm.style.marginLeft = (ml > 0) ? ml + 'px' : '0';
+
+				cm.children[0].children[0].children[0].focus();
+			}
+
+		}
+
+		meta_presed = false;
+
+		return;
+
+	}
+
+	meta_presed = (e.metaKey);
+
+	console.log('meta_presed (always): ', meta_presed);
 
 	if (e.keyCode == 32 && folders[chapter].data[folders[chapter].last_position].see_read_state == 1) {
 		e.preventDefault();
