@@ -1505,12 +1505,7 @@
 						"mammelledellaverita",
 						"mammelle",
 						"casaanatta",
-<<<<<<< HEAD
 						"anatta"
-=======
-						"anatta",
-						"locarno"
->>>>>>> origin/palm_prod
 					],
 					"time": {
 						"from": [
