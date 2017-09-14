@@ -2048,7 +2048,9 @@
 						"max",
 						"frisch",
 						"frisch-app",
-						"frischapp"
+						"frischapp",
+						"spurenvonmaxfrisch",
+						"maxfrischapp"
 					],
 					"time": {
 						"from": [
