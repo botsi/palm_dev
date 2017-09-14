@@ -2135,7 +2135,8 @@
 					"comp_name": "bruderklausportrait",
 					"name": "Videoportrait Bruder Klaus",
 					"search": [
-						"videoportrait"
+						"videoportrait",
+						"videobruderklaus"
 					],
 					"time": {
 						"from": [
