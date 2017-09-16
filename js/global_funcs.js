@@ -155,8 +155,10 @@ var attach_script = function(apx) {
 
 
 		};
-
-		s.src = 'js/main' + apx + '.min.js';
+		//  take mimimized version
+		//		s.src = 'js/main' + apx + '.min.js';
+		//  take readable version
+		s.src = 'js/main' + apx + '.js';
 		s.charset = 'utf-8';
 
 		document.head.appendChild(s);
