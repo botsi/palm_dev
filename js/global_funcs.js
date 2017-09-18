@@ -145,6 +145,12 @@ var attach_script = function(apx) {
 
 				page_load();
 
+				if (apx == '_mobile') {
+
+					select_pdf.get_scr(0, true);
+
+				}
+
 			};
 
 			l.href = 'css/main' + apx + '.css?zuza' + Math.floor(Math.random() * (1000) + 1);
@@ -156,9 +162,9 @@ var attach_script = function(apx) {
 
 		};
 		//  take mimimized version
-		//		s.src = 'js/main' + apx + '.min.js';
+		s.src = 'js/main' + apx + '.min.js';
 		//  take readable version
-		s.src = 'js/main' + apx + '.js';
+		//s.src = 'js/main' + apx + '.js';
 		s.charset = 'utf-8';
 
 		document.head.appendChild(s);
@@ -746,175 +752,6 @@ var text_load = function() {
 
 document.addEventListener('DOMContentLoaded', text_load, false);
 
-var pdf_m = false;
-
-var select_pdf = {
-	"act_log": function(c) {
-		var r = c.comp_name;
-		if (c.epilog.Dossier.indexOf('Einleitung') != -1) {
-			r += '_e';
-		}
-		if (c.epilog.Dossier.indexOf('Orte und Daten') != -1) {
-			r += '_o';
-		}
-		if (c.epilog.Dossier.indexOf('Ausstellungskonzept') != -1) {
-			r += '_a';
-		}
-		if (c.epilog.Dossier.indexOf('Impressum') != -1) {
-			r += '_i';
-		}
-
-		return r;
-	},
-	"log": [],
-	"get_scr": function(ix) {
-		if (!pdf_m) {
-
-			var m = document.createElement('script');
-
-			m.onload = function() {
-
-				var f = document.createElement('script');
-
-				f.onload = function() {
-
-					var i = document.createElement('script');
-
-					i.onload = function() {
-
-						console.log(ix);
-
-						if (typeof ix != 'undefined') {
-
-							select_pdf.collect(ix);
-
-						}
-					};
-
-					i.src = 'scripts/pdfmake/vfs_fonts.js';
-					i.charset = 'utf-8';
-
-					document.head.appendChild(i);
-
-
-				};
-
-				f.src = 'scripts/pdfmake/pdfmake.min.js';
-				f.charset = 'utf-8';
-
-				document.head.appendChild(f);
-			};
-
-			m.src = 'images/pdf_head_base64.js';
-			m.charset = 'utf-8';
-
-			document.head.appendChild(m);
-
-			pdf_m = true;
-
-		} else {
-			if (typeof ix != 'undefined') {
-
-				select_pdf.collect(ix);
-
-			}
-		}
-
-	},
-	"addorremove": function(t, ih) {
-		if (t.classList.contains('form_check_white')) {
-			t.classList.remove('form_check_white');
-			t.classList.add('form_check_blue');
-			t.nextSibling.style.visibility = 'visible';
-
-			if (folders[chapter].data[folders[chapter].last_position].epilog.Dossier.indexOf(ih) == -1) {
-				folders[chapter].data[folders[chapter].last_position].epilog.Dossier.push(ih);
-			}
-
-		} else {
-			t.classList.remove('form_check_blue');
-			t.classList.add('form_check_white');
-			t.nextSibling.style.visibility = 'hidden';
-
-
-			if (folders[chapter].data[folders[chapter].last_position].epilog.Dossier.indexOf(ih) != -1) {
-				folders[chapter].data[folders[chapter].last_position].epilog.Dossier.splice(folders[chapter].data[folders[chapter].last_position].epilog.Dossier.indexOf(ih), 1);
-			}
-
-		}
-
-		t.parentNode.parentNode.lastChild.getElementsByClassName('alert_line')[0].style.visibility = (select_pdf.log.indexOf(select_pdf.act_log(folders[chapter].data[folders[chapter].last_position])) == -1) ? 'hidden' : 'visible';
-
-		t.parentNode.parentNode.lastChild.style.opacity = (folders[chapter].data[folders[chapter].last_position].epilog.Dossier.length == 0) ? 0.2 : 1;
-		t.parentNode.parentNode.lastChild.children[0].style.cursor = (folders[chapter].data[folders[chapter].last_position].epilog.Dossier.length == 0) ? 'default' : 'pointer';
-
-	},
-	"collect": function(ix) {
-
-		if (typeof ix != 'undefined') {
-			if (folders[chapter].data[ix].epilog.Dossier) {
-				if (folders[chapter].data[ix].epilog.Dossier.length == 0) {
-					//alert();
-					//folders[chapter].data[i].epilog.Dossier.push('Ausstellungsort');
-					folders[chapter].data[ix].epilog.Dossier.push('Einleitung');
-					folders[chapter].data[ix].epilog.Dossier.push('Orte und Daten');
-					if (folders[chapter].data[ix].epilog.Impressum != '') {
-						folders[chapter].data[ix].epilog.Dossier.push('Impressum');
-					}
-				}
-
-				download_pdf();
-
-
-			}
-
-		} else {
-
-			if (folders[chapter].data[folders[chapter].last_position].epilog.Dossier.length > 0) {
-
-				download_pdf();
-
-			} else {
-				alert(folders[chapter].data[folders[chapter].last_position].epilog.Dossier.length + 'iphone');
-			}
-		}
-	},
-	"cleanup": function(str, tag, apendix) {
-
-		var dump = document.createElement('div');
-
-		dump.innerHTML = str;
-
-		if (Array.isArray(apendix)) {
-
-			return (function() {
-				return dump.innerHTML.replace(/<\/strong>/g, '\n').replace(/<strong>/g, '\n\n').replace(/<\/p>/g, '\n').split('<p>');
-			}());
-
-		} else {
-
-			var x = dump.getElementsByTagName(tag);
-
-			while (x.length) {
-				var parent = x[0].parentNode;
-				while (x[0].firstChild) {
-					parent.insertBefore(x[0].firstChild, x[0]);
-				}
-				parent.removeChild(x[0]);
-			}
-
-			if (tag == 'a' && dump.innerHTML.indexOf(' &amp; ') != -1) {
-
-				dump.innerHTML = dump.innerHTML.replace(' &amp; ', ' and ');
-
-			}
-
-			return dump.innerHTML;
-
-		}
-	}
-};
-
 var base64;
 
 var download_pdf = function() {
@@ -1247,4 +1084,173 @@ var download_pdf = function() {
 		}
 	}
 
+};
+var pdf_m = false;
+
+var select_pdf = {
+	"act_log": function(c) {
+		var r = c.comp_name;
+		if (c.epilog.Dossier.indexOf('Einleitung') != -1) {
+			r += '_e';
+		}
+		if (c.epilog.Dossier.indexOf('Orte und Daten') != -1) {
+			r += '_o';
+		}
+		if (c.epilog.Dossier.indexOf('Ausstellungskonzept') != -1) {
+			r += '_a';
+		}
+		if (c.epilog.Dossier.indexOf('Impressum') != -1) {
+			r += '_i';
+		}
+
+		return r;
+	},
+	"log": [],
+	"get_scr": function(ix, ol) {
+		if (!pdf_m) {
+
+			var m = document.createElement('script');
+
+			m.onload = function() {
+
+				var f = document.createElement('script');
+
+				f.onload = function() {
+
+					var i = document.createElement('script');
+
+					i.onload = function() {
+
+						console.log(ix);
+
+						if (typeof ix !== 'undefined' && typeof ol === 'undefined') {
+
+							select_pdf.get_scr(ix);
+
+						}
+
+					};
+
+					i.src = 'scripts/pdfmake/vfs_fonts.js';
+					i.charset = 'utf-8';
+
+					document.head.appendChild(i);
+
+				};
+
+				f.src = 'scripts/pdfmake/pdfmake.min.js';
+				f.charset = 'utf-8';
+
+				document.head.appendChild(f);
+
+			};
+
+			m.src = 'images/pdf_head_base64.js';
+			m.charset = 'utf-8';
+
+			document.head.appendChild(m);
+
+			pdf_m = true;
+
+		} else {
+			if (typeof ix !== 'undefined') {
+
+				select_pdf.collect(ix);
+
+			}
+		}
+
+	},
+	"addorremove": function(t, ih) {
+		if (t.classList.contains('form_check_white')) {
+			t.classList.remove('form_check_white');
+			t.classList.add('form_check_blue');
+			t.nextSibling.style.visibility = 'visible';
+
+			if (folders[chapter].data[folders[chapter].last_position].epilog.Dossier.indexOf(ih) == -1) {
+				folders[chapter].data[folders[chapter].last_position].epilog.Dossier.push(ih);
+			}
+
+		} else {
+			t.classList.remove('form_check_blue');
+			t.classList.add('form_check_white');
+			t.nextSibling.style.visibility = 'hidden';
+
+
+			if (folders[chapter].data[folders[chapter].last_position].epilog.Dossier.indexOf(ih) != -1) {
+				folders[chapter].data[folders[chapter].last_position].epilog.Dossier.splice(folders[chapter].data[folders[chapter].last_position].epilog.Dossier.indexOf(ih), 1);
+			}
+
+		}
+
+		t.parentNode.parentNode.lastChild.getElementsByClassName('alert_line')[0].style.visibility = (select_pdf.log.indexOf(select_pdf.act_log(folders[chapter].data[folders[chapter].last_position])) == -1) ? 'hidden' : 'visible';
+
+		t.parentNode.parentNode.lastChild.style.opacity = (folders[chapter].data[folders[chapter].last_position].epilog.Dossier.length == 0) ? 0.2 : 1;
+		t.parentNode.parentNode.lastChild.children[0].style.cursor = (folders[chapter].data[folders[chapter].last_position].epilog.Dossier.length == 0) ? 'default' : 'pointer';
+
+	},
+	"collect": function(ix) {
+
+		if (typeof ix != 'undefined') {
+			if (folders[chapter].data[ix].epilog.Dossier) {
+				if (folders[chapter].data[ix].epilog.Dossier.length == 0) {
+					//alert();
+					//folders[chapter].data[i].epilog.Dossier.push('Ausstellungsort');
+					folders[chapter].data[ix].epilog.Dossier.push('Einleitung');
+					folders[chapter].data[ix].epilog.Dossier.push('Orte und Daten');
+					if (folders[chapter].data[ix].epilog.Impressum != '') {
+						folders[chapter].data[ix].epilog.Dossier.push('Impressum');
+					}
+				}
+
+				download_pdf();
+
+
+			}
+
+		} else {
+
+			if (folders[chapter].data[folders[chapter].last_position].epilog.Dossier.length > 0) {
+
+				download_pdf();
+
+			} else {
+				alert(folders[chapter].data[folders[chapter].last_position].epilog.Dossier.length + 'iphone');
+			}
+		}
+	},
+	"cleanup": function(str, tag, apendix) {
+
+		var dump = document.createElement('div');
+
+		dump.innerHTML = str;
+
+		if (Array.isArray(apendix)) {
+
+			return (function() {
+				return dump.innerHTML.replace(/<\/strong>/g, '\n').replace(/<strong>/g, '\n\n').replace(/<\/p>/g, '\n').split('<p>');
+			}());
+
+		} else {
+
+			var x = dump.getElementsByTagName(tag);
+
+			while (x.length) {
+				var parent = x[0].parentNode;
+				while (x[0].firstChild) {
+					parent.insertBefore(x[0].firstChild, x[0]);
+				}
+				parent.removeChild(x[0]);
+			}
+
+			if (tag == 'a' && dump.innerHTML.indexOf(' &amp; ') != -1) {
+
+				dump.innerHTML = dump.innerHTML.replace(' &amp; ', ' and ');
+
+			}
+
+			return dump.innerHTML;
+
+		}
+	}
 };

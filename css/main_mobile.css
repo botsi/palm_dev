@@ -225,11 +225,13 @@ a:visited, a:hover, a:active {
 	color: #bc123a;
 }
 
+.fa-download {
+display: none;
+}
+
 .fa-download, .fa-eye, .fa-file-text-o {
 	width: 18px;
 	margin-left: 24px;
-	display: none;
-	/**/
 }
 
 .fa-check, .fa-arrow-circle-right {
@@ -269,21 +271,23 @@ a:visited, a:hover, a:active {
 	overflow-x: hidden;
 	-webkit-overflow-scrolling: touch;
 	-webkit-scroll-snap-type: mandatory;
-	-ms-scroll-snap-type: mandatory;
 	scroll-snap-type: mandatory;
-	/*
-*/
 	/* older spec implementation */
-	-webkit-scroll-snap-destination: 0% 100%;
-	/*
-  -ms-scroll-snap-destination: 0% calc(100% - 236px);
-*/
-	scroll-snap-destination: 0% 100%;
+	-webkit-scroll-snap-coordinate: 0% 100%;
+	scroll-snap-coordinate: 0% 100%;
 	-webkit-scroll-snap-points-y: repeat(100%);
-	/*
-  -ms-scroll-snap-points-y: repeat(100%);
-*/
 	scroll-snap-points-y: repeat(100%);
+	/*
+*/
+}
+
+.escape_scroll{
+	-webkit-scroll-snap-type: none !important;
+	scroll-snap-type: none !important;
+	-webkit-scroll-snap-coordinate: none !important;
+	scroll-snap-coordinate: none !important;
+	-webkit-scroll-snap-points-y: none !important;
+	scroll-snap-points-y: none !important;
 }
 
 #chapter_content span.ueandtx {
@@ -347,7 +351,7 @@ a:visited, a:hover, a:active {
 	max-height: calc(100% - 114px);
 	padding: 0 8px;
 	overflow-x: hidden;
-	overflow-y: scroll;
+	overflow-y: auto;
 	margin-top: 210px;
 }
 
