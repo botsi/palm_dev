@@ -204,9 +204,59 @@ var see = function(t) {
 
 
 
-//var toggle_favicons = function() {
+var toggle_favicons = function() {
 
-//};
+	var fa_dol = document.getElementsByClassName('fa-download');
+
+	var fa_img = document.getElementsByClassName('eye_txt');
+
+	for (var i = 0; i < fa_img.length; i++) {
+
+		fa_dol[i].ix = fa_img[i].ix = i;
+
+		if (chapter == 0) {
+
+			fa_dol[i].style.visibility = 'hidden';
+
+		} else {
+
+			fa_dol[i].style.visibility = 'visible';
+
+			//fa-arrow-circle-right
+
+			//fa_dol[i].addEventListener('touchstart', function(e) {
+			fa_dol[i].ontouchstart = function(e) {
+				blink_up(this);
+				select_pdf.get_scr(this.ix);
+
+				//if (confirm('Möchten Sie das PDF Dossier über "' + folders[chapter].data[this.ix].name + '"\nherunterladen und speichern?')) {
+
+
+
+
+				//}
+
+				//}, false);
+			};
+
+		}
+
+		fa_img[i].ontouchstart = function(e) {
+			blink_up(this);
+
+			if (folders[chapter].first_human_slide == false) {
+				cc.classList.add('escape_scroll');
+			}
+
+			console.log('added');
+			console.log('see');
+			see(this);
+
+		};
+
+	}
+
+};
 
 
 
@@ -215,6 +265,11 @@ var slide_lr = function(d, f) {
 	if (folders[chapter].data[folders[chapter].last_position].comp_name == 'bestellen') {
 		return;
 	}
+
+	if (folders[chapter].first_human_slide == false) {
+		cc.classList.add('escape_scroll');
+	}
+
 
 	if (folders[chapter].data[folders[chapter].last_position].see_read_state == 0) {
 
@@ -274,6 +329,8 @@ var i_scrolled = false;
 
 
 var white_head = function() {
+
+	console.log('iscr');
 
 	i_scrolled = true;
 
@@ -421,6 +478,27 @@ var jump_to = function(j, i) {
 
 };
 
+/*
+var jump_to = function(j, i) {
+
+	jump_destination = false;
+
+	found.style.display = 'none';
+
+	chapter = i;
+
+	folders[chapter].last_position = j;
+
+	if (i == chapter) {
+		//hit_menue(i, -1);
+		//return;
+	}
+
+	hit_menue(i);
+
+};
+*/
+
 var stack = '';
 
 var hit_menue = function(t, ju) {
@@ -468,7 +546,21 @@ var hit_menue = function(t, ju) {
 		}
 	}
 
+	for (var i = 0; i < folders[chapter].data.length; i++) {
+
+		if (typeof folders[chapter].data[i].slid_count === 'undefined') {
+			folders[chapter].data[i].slid_count = 0;
+		}
+
+		if (typeof folders[chapter].data[i].see_read_state === 'undefined') {
+			folders[chapter].data[i].see_read_state = 0;
+		}
+
+	}
+
 	if (typeof folders[chapter].data[0].bilder === 'undefined') {
+
+		folders[chapter].first_human_slide = false;
 
 		for (var i = 0; i < folders[chapter].data.length; i++) {
 			folders[chapter].data[i].bilder = [];
@@ -490,7 +582,28 @@ var hit_menue = function(t, ju) {
 
 				preload_images.folder_imgs = false;
 
-				jump_to(0, chapter);
+
+				document.getElementById("hg_cover").style.display = 'block';
+
+				document.getElementsByClassName('scroll_positioner')[folders[chapter].last_position].scrollIntoView({
+					block: "start",
+					behavior: "smooth"
+				});
+
+
+
+				if (i_scrolled == false) {
+
+					white_head();
+
+					jump_to(stack, chapter);
+
+					stack = '';
+
+				}
+
+				console.log('fav ?');
+				toggle_favicons();
 
 				//console.log('first way');
 
@@ -506,70 +619,12 @@ var hit_menue = function(t, ju) {
 
 	document.getElementById("hg_cover").style.display = 'block';
 
-	for (var i = 0; i < folders[chapter].data.length; i++) {
-
-		if (typeof folders[chapter].data[i].slid_count === 'undefined') {
-			folders[chapter].data[i].slid_count = 0;
-		}
-
-		if (typeof folders[chapter].data[i].see_read_state === 'undefined') {
-			folders[chapter].data[i].see_read_state = 0;
-		}
-
-	}
-
 	document.getElementsByClassName('scroll_positioner')[folders[chapter].last_position].scrollIntoView({
 		block: "start",
 		behavior: "smooth"
 	});
 
-	//setTimeout(function() {
 
-	console.log('fav ?');
-	//toggle_favicons();
-
-	var fa_dol = document.getElementsByClassName('fa-download');
-
-	var fa_img = document.getElementsByClassName('eye_txt');
-
-	for (var i = 0; i < fa_img.length; i++) {
-
-		fa_dol[i].ix = fa_img[i].ix = i;
-
-		if (chapter == 0) {
-
-			fa_dol[i].style.visibility = 'hidden';
-
-		} else {
-
-			fa_dol[i].style.visibility = 'visible';
-
-			fa_dol[i].addEventListener('touchend', function() {
-
-				//if (confirm('Möchten Sie das PDF Dossier über "' + folders[chapter].data[this.ix].name + '"\nherunterladen und speichern?')) {
-
-
-				select_pdf.get_scr(this.ix);
-
-
-				//}
-
-			}, false);
-
-		}
-
-		fa_img[i].ontouchstart = function(e) {
-
-			cc.classList.add('escape_scroll');
-			console.log('added');
-			console.log('see');
-			see(this);
-
-		};
-
-	}
-
-	// end favicons
 
 	if (i_scrolled == false) {
 
@@ -581,9 +636,17 @@ var hit_menue = function(t, ju) {
 
 	}
 
-	//}, 50);
-
 	//console.log('second way');
+	console.log('fav ?');
+	toggle_favicons();
+
+};
+
+var blink_up = function(t) {
+	t.classList.add('blink_but');
+	setTimeout(function() {
+		t.classList.remove('blink_but');
+	}, 500);
 
 };
 
@@ -782,20 +845,23 @@ var page_load = function() {
 	s.className = 'item_search';
 
 	s.innerHTML = '<i class="fa fa-search" aria-hidden="true"></i>';
-	s.addEventListener('click', function() {
+	s.addEventListener('touchstart', function() {
 		found.children[0].children[1].value = '';
 		if (found.style.display == 'block') {
 			found.style.display = 'none';
+			found.children[0].children[1].blur();
 		} else {
 			found.style.display = 'block';
 			found.children[0].children[1].focus();
 		}
 
+		blink_up(this.children[0]);
+
 	}, false);
 
 	document.getElementById('content').insertBefore(s, document.getElementById('content').children[3]);
 
-	found.innerHTML = '<p><i class="fa fa-check search_check" aria-hidden="true"></i><input type="text" onkeyup="search(this)" placeholder=" ... suchen" /><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></p>';
+	found.innerHTML = '<p><i class="fa fa-check search_check" aria-hidden="true"></i><input type="text" onkeyup="search(this)" placeholder=" ... suchen" /><i class="fa fa-arrow-circle-right" aria-hidden="true" ontouchstart="blink_up(this)"></i></p>';
 
 	//window.addEventListener("resize", align_onresize, false);
 

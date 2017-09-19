@@ -73,6 +73,17 @@ function check_swipe(t) {
 
 	}
 
+
+	if (Math.abs(touchobj.pageY - mouse_y) >= 100) {
+
+		folders[chapter].first_human_slide = true;
+
+		if (cc.classList.contains('escape_scroll')) {
+			cc.classList.remove('escape_scroll');
+		};
+
+	}
+
 }
 
 function swap_now(t) {
