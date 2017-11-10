@@ -336,8 +336,7 @@
 						"bbc",
 						"abb",
 						"brownboveri",
-						"baden",
-						"oli"
+						"baden"
 					],
 					"time": {
 						"from": [
