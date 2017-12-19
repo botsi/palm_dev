@@ -2509,7 +2509,8 @@
 								"Yoki van de Cream, Zürich"
 							],
 							"Gestaltung": [
-								"Marc Lüthi"
+								"Marc Lüthi",
+								"Maya Halle"
 							],
 							"Druck": [
 								"Graf-Lehmann AG, Bern"
