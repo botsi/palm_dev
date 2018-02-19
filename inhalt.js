@@ -221,11 +221,11 @@
 						"Ausstellungsort": [
 							[
 								"",
+								"Museum für Kommunikation",
+								"Helvetiastrasse 16",
+								"3000 Bern",
 								"",
-								"",
-								"",
-								"",
-								"",
+								"http://www.mfk.ch",
 								""
 							]
 						],
