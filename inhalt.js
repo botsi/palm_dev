@@ -215,7 +215,7 @@
 							2018
 						]
 					},
-					"prolog": "",
+					"prolog": "175 Jahre Schweizer Briefmarken",
 					"text": "",
 					"epilog": {
 						"Ausstellungsort": [
