@@ -200,6 +200,44 @@
 			"intro": "Ausstellungen zu Geschichte, Kultur und Gesellschaft.",
 			"data": [
 				{
+					"name": "Extrem",
+					"comp_name": "extrem",
+					"search": [],
+					"time": {
+						"from": [
+							19,
+							2,
+							2018
+						],
+						"till": [
+							19,
+							8,
+							2018
+						]
+					},
+					"prolog": "",
+					"text": "",
+					"epilog": {
+						"Ausstellungsort": [
+							[
+								"",
+								"",
+								"",
+								"",
+								"",
+								"",
+								""
+							]
+						],
+						"Impressum": {
+							"Kurator": [
+								""
+							]
+						},
+						"Dossier": []
+					}
+				},
+				{
 					"comp_name": "schreibrausch",
 					"name": "Schreibrausch",
 					"search": [
