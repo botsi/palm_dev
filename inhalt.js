@@ -216,7 +216,7 @@
 						]
 					},
 					"prolog": "175 Jahre Schweizer Briefmarken",
-					"text": "",
+					"text": "<h3>Extrem früh!</h3>\n<p class='bodytext'>Briefmarken sind nicht nur ein Spiegel der \nKulturgeschichte, sondern auch eine Schweizer Erfolgsstory. Als zweites \nLand überhaupt führte die Schweiz Briefmarken ein. Heute gehören diese \nraren Stücke weltweit zu den begehrtesten Briefmarken.\n</p>\n<h3>Extrem teuer!</h3>\n<p class='bodytext'>Im Museum für Kommunikation ist vom 2. März bis zum \n8. Juli 2018 eine Show der Superlative zu sehen: Ausgestellt werden die \nbedeutendsten 50 Perlen aus den ersten Schweizer Briefmarkenjahren. \nZusammen sind sie mehrere&nbsp;Millionen Schweizerfranken wert.\n</p>\n<h3>Extrem aufwändig!</h3>\n<p class='bodytext'>Sie sind zwar klein, aber die Herstellung von \nBriefmarken ist ein komplexer Prozess, in dem viel künstlerische \nQualität steckt. Dank Originalentwürfen von Ferdinand Hodler und anderen\n Künstlern wird diese Arbeit in der Ausstellung sichtbar.\n</p>\n<h3>Extrem leidenschaftlich!</h3>\n<p class='bodytext'>Hinter Briefmarkensammlungen steckt viel \nLeidenschaft. Sammlerinnen und Sammler investieren Unmengen von Zeit und\n beachtliche Summen Geld in ihre Sammlung. Verschiedene Videoportraits \ngeben einen sehr persönlichen Einblick in ihre Welt.</p>",
 					"epilog": {
 						"Ausstellungsort": [
 							[
