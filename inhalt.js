@@ -200,7 +200,7 @@
 			"intro": "Ausstellungen zu Geschichte, Kultur und Gesellschaft.",
 			"data": [
 				{
-					"name": "Extrem",
+					"name": "EXTREM",
 					"comp_name": "extrem",
 					"search": [],
 					"time": {
