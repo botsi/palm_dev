@@ -225,7 +225,7 @@
 								"Helvetiastrasse 16",
 								"3000 Bern",
 								"",
-								"http://www.mfk.ch",
+								"www.mfk.ch",
 								""
 							]
 						],
