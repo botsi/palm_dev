@@ -226,7 +226,7 @@
 								"3000 Bern",
 								"",
 								"www.mfk.ch",
-								""
+								"cXiAgVGXkXN2"
 							]
 						],
 						"Impressum": {
