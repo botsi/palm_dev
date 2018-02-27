@@ -232,9 +232,6 @@
 						"Impressum": {
 							"Kurator": [
 								""
-							],
-							"": [
-								""
 							]
 						},
 						"Dossier": []
