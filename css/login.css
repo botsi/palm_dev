@@ -1,0 +1,95 @@
+@charset "UTF-8";
+@keyframes fadein {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0.9;
+	}
+}
+
+body {
+	margin: 68px;
+	font-family: Arial;
+}
+
+#start {
+	margin: 0;
+	padding-left: 0;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	overflow: hidden;
+	background: linear-gradient(rgba(207, 207, 207, 0.9) 200px, rgba(207, 207, 207, 1) 280px, rgba(207, 207, 207, 1));
+	z-index: 3;
+}
+
+#form_date {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	flex-wrap: wrap;
+}
+
+#start input {
+	color: rgba(141, 170, 212, 0.9);
+	font-size: 48px;
+	width: 18vw;
+	text-align: center;
+	margin: 4vw 4vw -16vw 4vw;
+	padding: 1vw 0;
+	border: rgba(0, 0, 0, 0) 2px solid;
+	border-radius: 0;
+	outline: 0 none;
+}
+
+#start input::selection {
+	background: rgba(0, 0, 0, 0);
+	color: #ccc;
+}
+
+#start input::-moz-selection {
+	background: rgba(0, 0, 0, 0);
+	color: #ccc;
+}
+
+#start input:focus {
+	border: rgba(141, 170, 212, 0.9) 2px solid;
+}
+
+#start_info {
+	color: rgba(141, 170, 212, 0.9);
+	font-size: 48px;
+	width: 100%;
+	text-align: center;
+	margin-top: -16vw;
+	-webkit-animation: fadein 10s ease-in;
+	animation: fadein ease-in 10s 1;
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}
+
+.shake {
+	animation: shake 0.4s cubic-bezier(.36, .07, .19, .97) both;
+	transform: translate3d(0, 0, 0);
+	backface-visibility: hidden;
+	perspective: 1000px;
+}
+
+@keyframes shake {
+	10%, 90% {
+		transform: translate3d(-1px, 0, 0);
+	}
+	20%, 80% {
+		transform: translate3d(2px, 0, 0);
+	}
+	30%, 50%, 70% {
+		transform: translate3d(-4px, 0, 0);
+	}
+	40%, 60% {
+		transform: translate3d(4px, 0, 0);
+	}
+}
